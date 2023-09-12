@@ -6,7 +6,7 @@ export type TStage = {
 
 export interface IPagination {
   page?: number;
-  perPage?: number;
+  size?: number;
 }
 
 export interface INetworkConfig {

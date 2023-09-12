@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import React, {useEffect, useState} from 'react';
 import {observer} from 'mobx-react';
 import {
@@ -23,13 +22,20 @@ import {sentenceCase} from 'change-case';
 import USERLIST from '../../_mock/user';
 import Iconify from '../../components/iconify';
 import Label from '../../components/label';
-import {usersStore} from '../../store/users';
-import {TABLE_HEAD} from './constants';
+import {foodsStore} from '../../store/foods';
+import {organisationStore} from '../../store/organisation';
 import UserListHead from './Head/UserListHead';
-import {UsersStyles} from './styles';
 import {UserListToolbar} from './Toolbar';
 
-export const Users = observer(() => {
+const TABLE_HEAD = [
+  {id: 'name', label: 'Name'},
+  {id: 'product', label: 'Product'},
+  {id: 'cost', label: 'Cost'},
+  {id: 'category', label: 'Category'},
+  {id: 'action', label: 'Action', alignRight: true},
+];
+
+export const Order = observer(() => {
   const [open, setOpen] = useState(null);
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('asc');
@@ -37,13 +43,6 @@ export const Users = observer(() => {
   const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  useEffect(() => {
-    usersStore.getUsers({
-      page: 1,
-      size: 10,
-    });
-  }, []);
 
   const handleCloseMenu = () => {
     setOpen(null);
@@ -101,15 +100,22 @@ export const Users = observer(() => {
     setSelected(newSelected);
   };
 
+  useEffect(() => {
+    organisationStore.getOrganisation({
+      page: 1,
+      size: 10,
+    });
+  }, []);
+
   return (
     <>
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            Order
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New User
+            New Order
           </Button>
         </Stack>
 
@@ -132,17 +138,8 @@ export const Users = observer(() => {
                 onSelectAllClick={handleSelectAllClick}
               />
               <TableBody>
-                {usersStore.users?.map((row) => {
-                  const {
-                    _id,
-                    first_name,
-                    last_name,
-                    phone_number,
-                    telegram_id,
-                    balance,
-                    is_verified,
-                    org,
-                  } = row;
+                {foodsStore.foods?.map((row) => {
+                  const {_id, name, category, products, cost} = row;
                   const selectedUser = selected.indexOf(_id) !== -1;
 
                   return (
@@ -159,17 +156,16 @@ export const Users = observer(() => {
                           onChange={handleRowClick.bind(null, _id)}
                         />
                       </TableCell>
-                      <TableCell align="left">{first_name || '-'}</TableCell>
-                      <TableCell align="left">{last_name || '-'}</TableCell>
-                      <TableCell align="left">{telegram_id || '-'}</TableCell>
-                      <TableCell align="left">{balance}</TableCell>
-                      <TableCell align="left">{phone_number || '-'}</TableCell>
-                      <TableCell align="left">{org?.name_org || '-'}</TableCell>
+
+                      <TableCell align="left">{name}</TableCell>
+                      <TableCell align="left">{products[0]?.product?.name}</TableCell>
+                      <TableCell align="left">{cost}</TableCell>
                       <TableCell align="left">
-                        <Label color={is_verified ? 'success' : 'error'} variant={'outlined'}>
-                          {sentenceCase(is_verified ? 'Verify' : 'Not Verify')}
+                        <Label color="success" variant={'outlined'}>
+                          {sentenceCase(category)}
                         </Label>
                       </TableCell>
+
                       <TableCell align="right">
                         <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
                           <Iconify icon={'eva:more-vertical-fill'} />
@@ -180,10 +176,10 @@ export const Users = observer(() => {
                 })}
               </TableBody>
 
-              {usersStore.users?.length === 0 && (
+              {USERLIST?.length === 0 && (
                 <TableBody>
                   <TableRow>
-                    <TableCell align="center" colSpan={9} sx={{py: 3}}>
+                    <TableCell align="center" colSpan={6} sx={{py: 3}}>
                       <Paper
                         sx={{
                           textAlign: 'center',
@@ -209,7 +205,7 @@ export const Users = observer(() => {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={usersStore.users?.length}
+            count={USERLIST.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
@@ -224,15 +220,25 @@ export const Users = observer(() => {
         onClose={handleCloseMenu}
         anchorOrigin={{vertical: 'top', horizontal: 'left'}}
         transformOrigin={{vertical: 'top', horizontal: 'right'}}
-        PaperProps={UsersStyles.sx}
+        PaperProps={{
+          sx: {
+            p: 1,
+            width: 140,
+            '& .MuiMenuItem-root': {
+              px: 1,
+              typography: 'body2',
+              borderRadius: 0.75,
+            },
+          },
+        }}
       >
         <MenuItem>
-          <Iconify icon={'eva:edit-fill'} sx={UsersStyles.mr} />
+          <Iconify icon={'eva:edit-fill'} sx={{mr: 2}} />
           Edit
         </MenuItem>
 
         <MenuItem sx={{color: 'error.main'}}>
-          <Iconify icon={'eva:trash-2-outline'} sx={UsersStyles.mr} />
+          <Iconify icon={'eva:trash-2-outline'} sx={{mr: 2}} />
           Delete
         </MenuItem>
       </Popover>

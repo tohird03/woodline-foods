@@ -36,3 +36,8 @@ export const Organisation = lazy(() =>
   import('../pages/Organisation')
     .then(({Organisation}) => ({default: Organisation}))
     .catch(handleCatchChunkError));
+
+export const Order = lazy(() =>
+  import('../pages/Order')
+    .then(({Order}) => ({default: Order}))
+    .catch(handleCatchChunkError));

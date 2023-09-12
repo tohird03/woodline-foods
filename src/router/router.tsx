@@ -8,6 +8,8 @@ import SimpleLayout from '../layouts/simple';
 import {
   Foods,
   NotFound,
+  Order,
+  Organisation,
   PhoneLogin,
   Products,
   Users,
@@ -36,6 +38,14 @@ export const Router = observer(({isAuth}: AuthProps) => {
         {
           path: ROUTES.food,
           element: <Suspense fallback={<Loading />}><Foods /></Suspense>,
+        },
+        {
+          path: ROUTES.org,
+          element: <Suspense fallback={<Loading />}><Organisation /></Suspense>,
+        },
+        {
+          path: ROUTES.order,
+          element: <Suspense fallback={<Loading />}><Order /></Suspense>,
         },
       ],
     },

@@ -23,7 +23,6 @@ import USERLIST from '../../_mock/user';
 import Iconify from '../../components/iconify';
 import Label from '../../components/label';
 import {foodsStore} from '../../store/foods';
-import {productStore} from '../../store/products';
 import UserListHead from './Head/UserListHead';
 import {UserListToolbar} from './Toolbar';
 
@@ -36,12 +35,9 @@ const TABLE_HEAD = [
 ];
 
 export const Foods = observer(() => {
-
   const [open, setOpen] = useState(null);
   const [page, setPage] = useState(0);
-  const [order, setOrder] = useState('asc');
   const [selected, setSelected] = useState<string[]>([]);
-  const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -65,13 +61,6 @@ export const Foods = observer(() => {
   const handleFilterByName = (event: any) => {
     setPage(0);
     setFilterName(event.target.value);
-  };
-
-  const handleRequestSort = (event: any, property: string) => {
-    const isAsc = orderBy === property && order === 'asc';
-
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
   };
 
   const handleSelectAllClick = (event: any) => {
@@ -104,7 +93,7 @@ export const Foods = observer(() => {
   useEffect(() => {
     foodsStore.getFoods({
       page: 1,
-      perPage: 10,
+      size: 10,
     });
   }, []);
 
@@ -113,10 +102,10 @@ export const Foods = observer(() => {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-          Product
+          Foods
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-          New Product
+          New Foods
           </Button>
         </Stack>
 
@@ -130,12 +119,9 @@ export const Foods = observer(() => {
           <TableContainer sx={{minWidth: 800}}>
             <Table>
               <UserListHead
-                order={order}
-                orderBy={orderBy}
                 headLabel={TABLE_HEAD}
                 rowCount={USERLIST.length}
                 numSelected={selected.length}
-                onRequestSort={handleRequestSort}
                 onSelectAllClick={handleSelectAllClick}
               />
               <TableBody>

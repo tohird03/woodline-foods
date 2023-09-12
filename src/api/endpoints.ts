@@ -3,4 +3,5 @@ export const Endpoints = {
   Users: '/user',
   Products: '/product',
   Foods: '/food',
+  Organisation: '/org',
 };

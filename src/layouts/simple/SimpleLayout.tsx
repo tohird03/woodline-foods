@@ -15,7 +15,6 @@ const StyledHeader = styled('header')(({theme}) => ({
   },
 }));
 
-
 // eslint-disable-next-line react/function-component-definition
 export default function SimpleLayout() {
   return (
@@ -23,7 +22,6 @@ export default function SimpleLayout() {
       <StyledHeader>
         <Logo />
       </StyledHeader>
-
       <Outlet />
     </>
   );

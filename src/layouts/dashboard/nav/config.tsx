@@ -2,13 +2,20 @@ import React from 'react';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import GroupIcon from '@mui/icons-material/Group';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
+import ReceiptLongSharpIcon from '@mui/icons-material/ReceiptLongSharp';
 import SvgColor from '../../../components/svg-color';
 import {ROUTES} from '../../../constants/router';
 
 const icon = (name: string) =>
   <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{width: 1, height: 1}} />;
 
-const navConfig: any[] = [
+interface INavbarLinks {
+  title: string;
+  path: string;
+  icon: React.ReactNode;
+}
+
+const navConfig: INavbarLinks[] = [
   {
     title: 'user',
     path: ROUTES.users,
@@ -30,9 +37,9 @@ const navConfig: any[] = [
     icon: <AccountTreeIcon />,
   },
   {
-    title: 'Not found',
-    path: '/404',
-    icon: icon('ic_disabled'),
+    title: 'Order',
+    path: ROUTES.order,
+    icon: <ReceiptLongSharpIcon />,
   },
 ];
 
