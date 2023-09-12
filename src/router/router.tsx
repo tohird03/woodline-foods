@@ -6,6 +6,7 @@ import {ROUTES} from '../constants/router';
 import DashboardLayout from '../layouts/dashboard';
 import SimpleLayout from '../layouts/simple';
 import {
+  Foods,
   NotFound,
   PhoneLogin,
   Products,
@@ -21,11 +22,21 @@ export const Router = observer(({isAuth}: AuthProps) => {
       path: ROUTES.home,
       element: <Suspense fallback={<Loading />}><DashboardLayout /></Suspense>,
       children: [
-        {element: <Navigate to={ROUTES.users} />, index: true},
-        {path: ROUTES.users, element:
-          <Suspense fallback={<Loading />}><Users /></Suspense>},
-        {path: ROUTES.product, element:
-          <Suspense fallback={<Loading />}><Products /></Suspense>},
+        {
+          element: <Navigate to={ROUTES.users} />,
+          index: true,
+        },
+        {
+          path: ROUTES.users,
+          element: <Suspense fallback={<Loading />}><Users /></Suspense>,
+        },
+        {
+          path: ROUTES.product, element: <Suspense fallback={<Loading />}><Products /></Suspense>,
+        },
+        {
+          path: ROUTES.food,
+          element: <Suspense fallback={<Loading />}><Foods /></Suspense>,
+        },
       ],
     },
     {

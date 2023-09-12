@@ -1,0 +1,1 @@
+export {foodsApi} from './foods';

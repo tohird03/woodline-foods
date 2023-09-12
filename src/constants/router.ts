@@ -5,5 +5,5 @@ export const ROUTES = {
   product: '/product',
   food: '/food',
   org: '/org',
-  errorUrl: '/*'
-}
+  errorUrl: '/*',
+};

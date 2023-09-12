@@ -1,5 +1,5 @@
-### git clone
+## git clone
 
-### npm install
+## npm install
 
-### npm start
+## npm start
