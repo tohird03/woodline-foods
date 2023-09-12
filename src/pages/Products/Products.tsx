@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {observer} from 'mobx-react';
 import {
-  Avatar,
   Button,
   Card,
   Checkbox,
@@ -18,23 +18,21 @@ import {
   TableRow,
   Typography,
 } from '@mui/material';
-import {sentenceCase} from 'change-case';
 import USERLIST from '../../_mock/user';
 import Iconify from '../../components/iconify';
-import Label from '../../components/label';
+import {productStore} from '../../store/products';
 import UserListHead from './Head/UserListHead';
 import {UserListToolbar} from './Toolbar';
 
 const TABLE_HEAD = [
-  {id: 'name', label: 'Name', alignRight: false},
-  {id: 'company', label: 'Company', alignRight: false},
-  {id: 'role', label: 'Role', alignRight: false},
-  {id: 'isVerified', label: 'Verified', alignRight: false},
-  {id: 'status', label: 'Status', alignRight: false},
-  {id: ''},
+  {id: 'name', label: 'Name'},
+  {id: 'amount', label: 'Amount'},
+  {id: 'cost', label: 'Cost'},
+  {id: 'org', label: 'Organisation'},
+  {id: 'action', label: 'Action', alignRight: true},
 ];
 
-export const Products = () => {
+export const Products = observer(() => {
   const [open, setOpen] = useState(null);
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('asc');
@@ -99,15 +97,19 @@ export const Products = () => {
     setSelected(newSelected);
   };
 
+  useEffect(() => {
+    productStore.getProducts();
+  }, []);
+
   return (
     <>
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            Product
           </Typography>
           <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New User
+            New Product
           </Button>
         </Stack>
 
@@ -130,14 +132,14 @@ export const Products = () => {
                 onSelectAllClick={handleSelectAllClick}
               />
               <TableBody>
-                {USERLIST.map((row) => {
-                  const {id, name, role, status, company, avatarUrl, isVerified} = row;
-                  const selectedUser = selected.indexOf(id) !== -1;
+                {productStore.products?.map((row) => {
+                  const {_id, name, amount, unit, cost, org} = row;
+                  const selectedUser = selected.indexOf(_id) !== -1;
 
                   return (
                     <TableRow
                       hover
-                      key={id}
+                      key={_id}
                       tabIndex={-1}
                       role="checkbox"
                       selected={selectedUser}
@@ -145,33 +147,14 @@ export const Products = () => {
                       <TableCell padding="checkbox">
                         <Checkbox
                           checked={selectedUser}
-                          onChange={handleRowClick.bind(null, id)}
+                          onChange={handleRowClick.bind(null, _id)}
                         />
                       </TableCell>
 
-                      <TableCell component="th" scope="row" padding="none">
-                        <Stack direction="row" alignItems="center" spacing={2}>
-                          <Avatar alt={name} src={avatarUrl} />
-                          <Typography variant="subtitle2" noWrap>
-                            {name}
-                          </Typography>
-                        </Stack>
-                      </TableCell>
-
-                      <TableCell align="left">{company}</TableCell>
-
-                      <TableCell align="left">{role}</TableCell>
-
-                      <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
-
-                      <TableCell align="left">
-                        <Label color={'success'} variant={'outlined'}>
-                          {sentenceCase(status)}
-                        </Label>
-                        <Label color={'error'} variant={'outlined'}>
-                          {sentenceCase(status)}
-                        </Label>
-                      </TableCell>
+                      <TableCell align="left">{name}</TableCell>
+                      <TableCell align="left">{`${amount} ${unit}`}</TableCell>
+                      <TableCell align="left">{cost}</TableCell>
+                      <TableCell align="left">{org?.name_org}</TableCell>
 
                       <TableCell align="right">
                         <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
@@ -251,4 +234,4 @@ export const Products = () => {
       </Popover>
     </>
   );
-};
+});

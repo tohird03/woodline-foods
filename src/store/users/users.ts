@@ -13,9 +13,9 @@ class UsersStore {
   getUsers = (params: IPagination) =>
     usersApi.getUsers(params)
       .then(res => {
-        this.setUsers(res);
-
-        return res;
+        if (res) {
+          this.setUsers(res);
+        }
       })
       .catch(addAxiosErrorNotification);
 

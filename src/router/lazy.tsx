@@ -26,3 +26,13 @@ export const Products = lazy(() =>
   import('../pages/Products')
     .then(({Products}) => ({default: Products}))
     .catch(handleCatchChunkError));
+
+export const Foods = lazy(() =>
+  import('../pages/Foods')
+    .then(({Foods}) => ({default: Foods}))
+    .catch(handleCatchChunkError));
+
+export const Organisation = lazy(() =>
+  import('../pages/Organisation')
+    .then(({Organisation}) => ({default: Organisation}))
+    .catch(handleCatchChunkError));

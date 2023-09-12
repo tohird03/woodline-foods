@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import React, {useEffect, useState} from 'react';
 import {observer} from 'mobx-react';
 import {
@@ -23,34 +24,18 @@ import USERLIST from '../../_mock/user';
 import Iconify from '../../components/iconify';
 import Label from '../../components/label';
 import {usersStore} from '../../store/users';
+import {TABLE_HEAD} from './constants';
 import UserListHead from './Head/UserListHead';
 import {UsersStyles} from './styles';
 import {UserListToolbar} from './Toolbar';
 
-const TABLE_HEAD = [
-  {id: 'name', label: 'Name'},
-  {id: 'surname', label: 'Surname'},
-  {id: 'telegram_id', label: 'Telegram Id'},
-  {id: 'balance', label: 'Balance'},
-  {id: 'phone__number', label: 'Phone number'},
-  {id: 'org', label: 'Organisation'},
-  {id: 'is_verified', label: 'Verified'},
-  {id: 'action', label: 'Action', alignRight: true},
-];
-
 export const Users = observer(() => {
   const [open, setOpen] = useState(null);
-
   const [page, setPage] = useState(0);
-
   const [order, setOrder] = useState('asc');
-
   const [selected, setSelected] = useState<string[]>([]);
-
   const [orderBy, setOrderBy] = useState('name');
-
   const [filterName, setFilterName] = useState('');
-
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   useEffect(() => {
@@ -58,7 +43,6 @@ export const Users = observer(() => {
       page: 1,
       perPage: 10,
     });
-
   }, []);
 
   const handleCloseMenu = () => {

@@ -9,6 +9,6 @@ export const UsersStyles = {
     },
   },
   mr: {
-    mr: 2
+    mr: 2,
   },
-}
+};
