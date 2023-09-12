@@ -4,6 +4,7 @@ export const ROUTES = {
   users: '/users',
   product: '/product',
   food: '/food',
-  org: '/org',
+  org: '/organisation',
+  order: '/order',
   errorUrl: '/*',
 };
