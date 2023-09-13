@@ -1,15 +1,12 @@
+/* eslint-disable react/function-component-definition */
+import React from 'react';
 import {AppBar, Box, IconButton, Stack, Toolbar} from '@mui/material';
-// @mui
 import {styled} from '@mui/material/styles';
-import PropTypes from 'prop-types';
-// components
 import Iconify from '../../../components/iconify';
-// utils
 import {bgBlur} from '../../../utils/cssStyles';
 import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import NotificationsPopover from './NotificationsPopover';
-//
 import Searchbar from './Searchbar';
 
 const NAV_WIDTH = 240;
@@ -33,10 +30,6 @@ const StyledToolbar = styled(Toolbar)(({theme}) => ({
     padding: theme.spacing(0, 5),
   },
 }));
-
-Header.propTypes = {
-  onOpenNav: PropTypes.func,
-};
 
 export default function Header({onOpenNav}) {
   return (

@@ -6,6 +6,7 @@ import {ROUTES} from '../constants/router';
 import DashboardLayout from '../layouts/dashboard';
 import SimpleLayout from '../layouts/simple';
 import {
+  AddFoods,
   Foods,
   NotFound,
   Order,
@@ -46,6 +47,10 @@ export const Router = observer(({isAuth}: AuthProps) => {
         {
           path: ROUTES.order,
           element: <Suspense fallback={<Loading />}><Order /></Suspense>,
+        },
+        {
+          path: ROUTES.addFood,
+          element: <Suspense fallback={<Loading />}><AddFoods /></Suspense>,
         },
       ],
     },

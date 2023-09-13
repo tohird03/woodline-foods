@@ -1,7 +1,7 @@
-import { forwardRef } from 'react';
-import { Box } from '@mui/material';
+import React, {forwardRef} from 'react';
+import {Box} from '@mui/material';
 
-const SvgColor = forwardRef(({ src, sx, ...other }: {src: string, sx: Object}, ref) => (
+const SvgColor = forwardRef(({src, sx, ...other}: {src: string, sx: Object}, ref) => (
   <Box
     component="span"
     className="svg-color"

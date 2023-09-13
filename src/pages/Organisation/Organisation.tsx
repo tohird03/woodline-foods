@@ -41,7 +41,7 @@ export const Organisation = observer(() => {
   const [selected, setSelected] = useState<string[]>([]);
   const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleCloseMenu = () => {
     setOpen(null);
@@ -99,6 +99,10 @@ export const Organisation = observer(() => {
     setSelected(newSelected);
   };
 
+  const handleAddNewOrganisation = () => {
+    organisationStore.setIsOpenAddOrganisation(true);
+  };
+
   useEffect(() => {
     organisationStore.getOrganisation({
       page: 1,
@@ -113,7 +117,7 @@ export const Organisation = observer(() => {
           <Typography variant="h4" gutterBottom>
           Organisation
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button onClick={handleAddNewOrganisation} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
           New Organisation
           </Button>
         </Stack>
@@ -174,7 +178,7 @@ export const Organisation = observer(() => {
                 })}
               </TableBody>
 
-              {USERLIST?.length === 0 && (
+              {organisationStore.organisations?.length === 0 && (
                 <TableBody>
                   <TableRow>
                     <TableCell align="center" colSpan={6} sx={{py: 3}}>
@@ -201,9 +205,9 @@ export const Organisation = observer(() => {
           </TableContainer>
 
           <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
+            rowsPerPageOptions={[10, 25, 50, 100]}
             component="div"
-            count={USERLIST.length}
+            count={organisationStore.organisations?.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
@@ -241,7 +245,7 @@ export const Organisation = observer(() => {
         </MenuItem>
       </Popover>
 
-      {<AddOrganisation />}
+      {organisationStore.isOpenAddOrganisation && <AddOrganisation />}
     </>
   );
 });

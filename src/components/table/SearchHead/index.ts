@@ -1,0 +1,1 @@
+export {SearchHead} from './SearchHead';

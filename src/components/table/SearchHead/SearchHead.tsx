@@ -1,7 +1,8 @@
-import React from 'react';
-import {IconButton, InputAdornment, OutlinedInput, Toolbar, Tooltip, Typography} from '@mui/material';
+import React, {useState} from 'react';
+import {IconButton, InputAdornment, OutlinedInput, Toolbar, Tooltip} from '@mui/material';
 import {alpha, styled} from '@mui/material/styles';
 import Iconify from '../../../components/iconify';
+import {ISearchHeadProps} from '../types';
 
 const StyledRoot = styled(Toolbar)(({theme}) => ({
   height: 96,
@@ -26,44 +27,32 @@ const StyledSearch = styled(OutlinedInput)(({theme}: any) => ({
   },
 }));
 
-export const UserListToolbar = ({numSelected, filterName, onFilterName}: any) => (
-  <StyledRoot
-    sx={{
-      ...(numSelected > 0 && {
-        color: 'primary.main',
-        bgcolor: 'primary.lighter',
-      }),
-    }}
-  >
-    {numSelected > 0 ? (
-      <Typography component="div" variant="subtitle1">
-        {numSelected} selected
-      </Typography>
-    ) : (
+export const SearchHead = ({onFilterName}: ISearchHeadProps) => {
+  const [filterName, setFilterName] = useState('');
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterName(event.target.value);
+    onFilterName?.(event.target.value);
+  };
+
+  return (
+    <StyledRoot>
       <StyledSearch
         value={filterName}
-        onChange={onFilterName}
-        placeholder="Search user..."
+        onChange={handleSearchChange}
+        placeholder="Search"
         startAdornment={
           <InputAdornment position="start">
             <Iconify icon="eva:search-fill" sx={{color: 'text.disabled', width: 20, height: 20}} />
           </InputAdornment>
         }
       />
-    )}
 
-    {numSelected > 0 ? (
-      <Tooltip title="Delete">
-        <IconButton>
-          <Iconify icon="eva:trash-2-fill" />
-        </IconButton>
-      </Tooltip>
-    ) : (
       <Tooltip title="Filter list">
         <IconButton>
           <Iconify icon="ic:round-filter-list" />
         </IconButton>
       </Tooltip>
-    )}
-  </StyledRoot>
-);
+    </StyledRoot>
+  );
+};

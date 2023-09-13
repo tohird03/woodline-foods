@@ -1,4 +1,4 @@
-import { alpha } from '@mui/material/styles';
+import {alpha} from '@mui/material/styles';
 
 export function bgBlur(props: any) {
   const color = props?.color || '#000000';

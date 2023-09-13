@@ -1,4 +1,5 @@
-import {useState} from 'react';
+/* eslint-disable react/function-component-definition */
+import React, {useState} from 'react';
 import {Outlet} from 'react-router-dom';
 import {styled} from '@mui/material/styles';
 import Header from './header';

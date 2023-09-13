@@ -6,6 +6,10 @@ import {addAxiosErrorNotification} from '../../utils/notification';
 
 class UsersStore {
   users: IUsers[] = [];
+  totalUsers = 0;
+  page = 1;
+  size = 10;
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -14,13 +18,26 @@ class UsersStore {
     usersApi.getUsers(params)
       .then(res => {
         if (res) {
-          this.setUsers(res);
+          this.setUsers(res?.data);
+          this.setTotalUsers(res?.totalUsers);
         }
       })
       .catch(addAxiosErrorNotification);
 
   setUsers = (users: IUsers[]) => {
     this.users = users;
+  };
+
+  setTotalUsers = (total: number) => {
+    this.totalUsers = total;
+  };
+
+  setPage = (page: number) => {
+    this.page = page;
+  };
+
+  setSize = (size: number) => {
+    this.size = size;
   };
 
   reset() {

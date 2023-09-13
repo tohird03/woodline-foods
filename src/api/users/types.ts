@@ -1,3 +1,8 @@
+export interface IGetUser {
+  data: IUsers[];
+  totalUsers: number;
+}
+
 export interface IUsers {
   _id: string;
   first_name: string;

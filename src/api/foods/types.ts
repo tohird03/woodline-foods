@@ -1,3 +1,8 @@
+export interface IGetFoods {
+  data: IFoods[];
+  totalFoods: number;
+}
+
 export interface IFoods {
   _id: string;
   name: string;
@@ -6,6 +11,7 @@ export interface IFoods {
   org: string;
   category: string;
   createdAt: string;
+  img: string;
 }
 
 export interface IFoodsProducts {
@@ -15,4 +21,50 @@ export interface IFoodsProducts {
     cost: number;
   };
   amount: number;
+}
+
+export interface IGetOrganisation {
+  data: IOrganisation[];
+  totalOrgs: number;
+}
+
+export interface IOrganisation {
+  _id: string;
+  name_org: string;
+  is_active: boolean;
+  is_deleted: boolean;
+  createdAt: string;
+}
+
+
+export interface IAddFoodParams {
+  name: string;
+  cost: number;
+  products: IAddFoodProduct[];
+  org: string;
+  category: string;
+}
+
+export interface IAddFoodProduct {
+  product: string;
+  amount: number;
+}
+
+export interface IGetProducts {
+  data: IProducts[];
+  totalProducts: number;
+}
+
+export interface IProducts {
+  _id: string;
+  amount: number;
+  name: string;
+  min_amount: number;
+  img: string;
+  unit: string;
+  org: {
+    name_org: string;
+  };
+  createdAt: string;
+  cost: number;
 }

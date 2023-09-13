@@ -1,4 +1,5 @@
-import {useState} from 'react';
+/* eslint-disable react/function-component-definition */
+import React, {useState} from 'react';
 import {Avatar, Box, Divider, IconButton, MenuItem, Popover, Stack, Typography} from '@mui/material';
 import {alpha} from '@mui/material/styles';
 import account from '../../../_mock/account';
