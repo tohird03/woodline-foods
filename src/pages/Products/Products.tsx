@@ -39,7 +39,7 @@ export const Products = observer(() => {
     return () => {
       productStore.setProducts([]);
     };
-  }, []);
+  }, [productStore.page, productStore.size]);
 
   return (
     <>

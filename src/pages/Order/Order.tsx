@@ -19,7 +19,6 @@ import {
   Typography,
 } from '@mui/material';
 import {sentenceCase} from 'change-case';
-import USERLIST from '../../_mock/user';
 import Iconify from '../../components/iconify';
 import Label from '../../components/label';
 import {foodsStore} from '../../store/foods';
@@ -75,9 +74,9 @@ export const Order = observer(() => {
 
   const handleSelectAllClick = (event: any) => {
     if (event.target.checked) {
-      const newSelecteds = USERLIST.map((n) => n.id);
+      // const newSelecteds = USERLIST.map((n) => n.id);
 
-      setSelected(newSelecteds);
+      // setSelected(newSelecteds);
 
       return;
     }
@@ -132,7 +131,6 @@ export const Order = observer(() => {
                 order={order}
                 orderBy={orderBy}
                 headLabel={TABLE_HEAD}
-                rowCount={USERLIST.length}
                 numSelected={selected.length}
                 onRequestSort={handleRequestSort}
                 onSelectAllClick={handleSelectAllClick}
@@ -176,72 +174,10 @@ export const Order = observer(() => {
                 })}
               </TableBody>
 
-              {USERLIST?.length === 0 && (
-                <TableBody>
-                  <TableRow>
-                    <TableCell align="center" colSpan={6} sx={{py: 3}}>
-                      <Paper
-                        sx={{
-                          textAlign: 'center',
-                        }}
-                      >
-                        <Typography variant="h6" paragraph>
-                          Not found
-                        </Typography>
-
-                        <Typography variant="body2">
-                          No results found for &nbsp;
-                          <strong>&quot;{filterName}&quot;</strong>.
-                          <br /> Try checking for typos or using complete words.
-                        </Typography>
-                      </Paper>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              )}
             </Table>
           </TableContainer>
-
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={USERLIST.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
         </Card>
       </Container>
-
-      <Popover
-        open={Boolean(open)}
-        anchorEl={open}
-        onClose={handleCloseMenu}
-        anchorOrigin={{vertical: 'top', horizontal: 'left'}}
-        transformOrigin={{vertical: 'top', horizontal: 'right'}}
-        PaperProps={{
-          sx: {
-            p: 1,
-            width: 140,
-            '& .MuiMenuItem-root': {
-              px: 1,
-              typography: 'body2',
-              borderRadius: 0.75,
-            },
-          },
-        }}
-      >
-        <MenuItem>
-          <Iconify icon={'eva:edit-fill'} sx={{mr: 2}} />
-          Edit
-        </MenuItem>
-
-        <MenuItem sx={{color: 'error.main'}}>
-          <Iconify icon={'eva:trash-2-outline'} sx={{mr: 2}} />
-          Delete
-        </MenuItem>
-      </Popover>
     </>
   );
 });

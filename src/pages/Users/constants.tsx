@@ -1,7 +1,9 @@
 import React from 'react';
 import {sentenceCase} from 'change-case';
+import {IUsers} from '../../api/users/types';
 import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
+import {UserStatusChange} from './UserStatusChange';
 
 export const usersColumns: TableColumn[] = [
   {
@@ -40,6 +42,13 @@ export const usersColumns: TableColumn[] = [
       <Label color={value ? 'success' : 'error'} variant={'outlined'}>
         {sentenceCase(value ? 'Verify' : 'Not Verify')}
       </Label>
+    ),
+  },
+  {
+    key: 'is_active',
+    label: 'Изменить статус',
+    render: (value, record) => (
+      <UserStatusChange user={record as IUsers} />
     ),
   },
 ];

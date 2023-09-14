@@ -75,6 +75,11 @@ class ProductsStore {
 
   reset() {
     this.products = [];
+    this.totalProducts = 0;
+    this.organisations = [];
+    this.isOpenProductModal = false;
+    this.page = 1;
+    this.size = 10;
   }
 }
 

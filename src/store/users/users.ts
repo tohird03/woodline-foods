@@ -2,7 +2,7 @@ import {makeAutoObservable} from 'mobx';
 import {IPagination} from '../../api/types';
 import {usersApi} from '../../api/users';
 import {IUsers} from '../../api/users/types';
-import {addAxiosErrorNotification} from '../../utils/notification';
+import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
 class UsersStore {
   users: IUsers[] = [];
@@ -24,6 +24,19 @@ class UsersStore {
       })
       .catch(addAxiosErrorNotification);
 
+  userStatusChange = (id: string) =>
+    usersApi.changeUserStatus(id)
+      .then((res) => {
+        successNotification('Success status change');
+        this.getUsers({
+          page: this.page,
+          size: this.size,
+        });
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
   setUsers = (users: IUsers[]) => {
     this.users = users;
   };
@@ -42,6 +55,9 @@ class UsersStore {
 
   reset() {
     this.users = [];
+    this.totalUsers = 0;
+    this.page = 1;
+    this.size = 10;
   }
 }
 

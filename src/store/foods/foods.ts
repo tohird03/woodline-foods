@@ -74,6 +74,11 @@ class FoodsStore {
 
   reset() {
     this.foods = [];
+    this.totalFoods = 0;
+    this.page = 1;
+    this.size = 10;
+    this.organisations = [];
+    this.products = [];
   }
 }
 

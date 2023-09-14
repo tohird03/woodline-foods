@@ -4,7 +4,7 @@ import {Endpoints} from './endpoints';
 import {INetworkConfig, TMethod} from './types';
 
 const stage = {
-  apiUrl: 'http://192.168.1.141:9000',
+  apiUrl: 'http://192.168.1.127:9000',
 };
 
 export class Instance {

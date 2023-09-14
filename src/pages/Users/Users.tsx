@@ -1,12 +1,10 @@
 import React, {useEffect} from 'react';
 import {observer} from 'mobx-react';
 import {
-  Button,
   Container,
   Stack,
   Typography,
 } from '@mui/material';
-import Iconify from '../../components/iconify';
 import {Table} from '../../components/table';
 import {usersStore} from '../../store/users';
 import {usersColumns} from './constants';
@@ -33,27 +31,25 @@ export const Users = observer(() => {
   }, [usersStore.page, usersStore.size]);
 
   return (
-    <>
-      <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography variant="h4" gutterBottom>
+    <Container>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+        <Typography variant="h4" gutterBottom>
             User
-          </Typography>
-        </Stack>
+        </Typography>
+      </Stack>
 
-        <Table
-          columns={usersColumns}
-          data={usersStore.users}
-          onFilterSearch={handleSearchUsers}
-          pagination={{
-            total: usersStore.totalUsers,
-            page: usersStore.page,
-            size: usersStore.size,
-            handlePageChange: handleChangePage,
-            handleShowSizeChange: handleChangePerPage,
-          }}
-        />
-      </Container>
-    </>
+      <Table
+        columns={usersColumns}
+        data={usersStore.users}
+        onFilterSearch={handleSearchUsers}
+        pagination={{
+          total: usersStore.totalUsers,
+          page: usersStore.page,
+          size: usersStore.size,
+          handlePageChange: handleChangePage,
+          handleShowSizeChange: handleChangePerPage,
+        }}
+      />
+    </Container>
   );
 });
