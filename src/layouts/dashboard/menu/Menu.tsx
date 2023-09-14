@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import {Box, Drawer} from '@mui/material';
-import NavSection from '../../../components/nav-section';
 import Scrollbar from '../../../components/scrollbar';
 import useResponsive from '../../../hooks/useResponsive';
-import navConfig from './config';
+import {navConfig} from './constants';
+import {NavSection} from './NavSection';
 
 const NAV_WIDTH = 240;
 
-// eslint-disable-next-line react/function-component-definition
-export default function Nav({openNav, onCloseNav}: any) {
+
+export const Menu = ({openNav, onCloseNav}: any) => {
   const {pathname} = useLocation();
 
   const isDesktop = useResponsive('up', 'lg', 'lg');
@@ -64,4 +64,4 @@ export default function Nav({openNav, onCloseNav}: any) {
       )}
     </Box>
   );
-}
+};

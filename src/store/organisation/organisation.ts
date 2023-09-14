@@ -7,6 +7,9 @@ import {addAxiosErrorNotification, successNotification} from '../../utils/notifi
 class OrganisationStore {
   organisations: IOrganisation[] = [];
   isOpenAddOrganisation = false;
+  totalOrgs = 0;
+  page = 1;
+  size = 10;
 
   constructor() {
     makeAutoObservable(this);
@@ -17,7 +20,10 @@ class OrganisationStore {
       .then(res => {
         if (res) {
           this.setOrganisation(res?.data);
+          this.setTotalOrg(res?.totalOrgs);
         }
+
+        return res;
       })
       .catch(addAxiosErrorNotification);
 
@@ -44,8 +50,24 @@ class OrganisationStore {
     this.isOpenAddOrganisation = isOpen;
   };
 
+  setTotalOrg = (total: number) => {
+    this.totalOrgs = total;
+  };
+
+  setPage = (page: number) => {
+    this.page = page;
+  };
+
+  setSize = (size: number) => {
+    this.size = size;
+  };
+
   reset() {
     this.organisations = [];
+    this.isOpenAddOrganisation = false;
+    this.totalOrgs = 0;
+    this.page = 1;
+    this.size = 10;
   }
 }
 

@@ -1,11 +1,16 @@
 import React from 'react';
 import DoNotDisturbAltOutlinedIcon from '@mui/icons-material/DoNotDisturbAltOutlined';
 import {Paper, TableBody, TableCell, TableRow, Typography} from '@mui/material';
+import {TableColumn} from '../types';
 
-export const NoData = () => (
+type Props = {
+  column: TableColumn[];
+};
+
+export const NoData = ({column}: Props) => (
   <TableBody>
     <TableRow>
-      <TableCell align="center" colSpan={6} sx={{py: 3}}>
+      <TableCell align="center" colSpan={column?.length} sx={{py: 4}}>
         <Paper
           sx={{
             textAlign: 'center',

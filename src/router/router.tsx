@@ -7,6 +7,7 @@ import DashboardLayout from '../layouts/dashboard';
 import SimpleLayout from '../layouts/simple';
 import {
   AddFoods,
+  Dashboard,
   Foods,
   NotFound,
   Order,
@@ -26,8 +27,9 @@ export const Router = observer(({isAuth}: AuthProps) => {
       element: <Suspense fallback={<Loading />}><DashboardLayout /></Suspense>,
       children: [
         {
-          element: <Navigate to={ROUTES.users} />,
           index: true,
+          path: ROUTES.home,
+          element: <Suspense fallback={<Loading />}><Dashboard /></Suspense>,
         },
         {
           path: ROUTES.users,

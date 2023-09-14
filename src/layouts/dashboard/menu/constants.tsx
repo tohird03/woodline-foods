@@ -6,16 +6,16 @@ import ReceiptLongSharpIcon from '@mui/icons-material/ReceiptLongSharp';
 import SvgColor from '../../../components/svg-color';
 import {ROUTES} from '../../../constants/router';
 
-const icon = (name: string) =>
-  <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{width: 1, height: 1}} />;
-
 interface INavbarLinks {
   title: string;
   path: string;
   icon: React.ReactNode;
 }
 
-const navConfig: INavbarLinks[] = [
+const icon = (name: string) =>
+  <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{width: 1, height: 1}} />;
+
+export const navConfig: INavbarLinks[] = [
   {
     title: 'user',
     path: ROUTES.users,
@@ -32,15 +32,13 @@ const navConfig: INavbarLinks[] = [
     icon: <LocalDiningIcon />,
   },
   {
-    title: 'Organisation',
+    title: 'organisation',
     path: ROUTES.org,
     icon: <AccountTreeIcon />,
   },
   {
-    title: 'Order',
+    title: 'order',
     path: ROUTES.order,
     icon: <ReceiptLongSharpIcon />,
   },
 ];
-
-export default navConfig;

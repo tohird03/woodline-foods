@@ -1,9 +1,10 @@
 /* eslint-disable react/function-component-definition */
 import React, {useState} from 'react';
 import {Outlet} from 'react-router-dom';
+import {observer} from 'mobx-react';
 import {styled} from '@mui/material/styles';
 import Header from './header';
-import Nav from './nav';
+import {Menu} from './menu';
 
 const APP_BAR_MOBILE = 64;
 const APP_BAR_DESKTOP = 92;
@@ -27,18 +28,28 @@ const Main = styled('div')(({theme}) => ({
   },
 }));
 
-export default function DashboardLayout() {
+const DashboardLayout = observer(() => {
   const [open, setOpen] = useState(false);
+
+  const handleOpenSearchHeader = () => {
+    setOpen(true);
+  };
+
+  const handleCloseSearchHeader = () => {
+    setOpen(false);
+  };
 
   return (
     <StyledRoot>
-      <Header onOpenNav={() => setOpen(true)} />
+      <Header onOpenNav={handleOpenSearchHeader} />
 
-      <Nav openNav={open} onCloseNav={() => setOpen(false)} />
+      <Menu openNav={open} onCloseNav={handleCloseSearchHeader} />
 
       <Main>
         <Outlet />
       </Main>
     </StyledRoot>
   );
-}
+});
+
+export default DashboardLayout;

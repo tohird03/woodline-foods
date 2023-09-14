@@ -14,6 +14,9 @@ class UsersApi extends Instance {
 
   getUsers = (params: IPagination): Promise<IGetUser> =>
     this.get(Endpoints.Users, {params});
+
+  changeUserStatus = (id: string): Promise<any> =>
+    this.put(`${Endpoints.UserStatus}/${id}`);
 }
 
 export const usersApi = new UsersApi(config);

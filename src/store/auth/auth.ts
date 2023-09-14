@@ -2,6 +2,7 @@ import {makeAutoObservable} from 'mobx';
 
 class AuthStore {
   token = '';
+
   constructor() {
     makeAutoObservable(this);
   }

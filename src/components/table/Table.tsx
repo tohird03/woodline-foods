@@ -44,7 +44,7 @@ export const Table = ({
           {
             data?.length > 0
               ? <TableBody data={data} columns={columns} />
-              : <NoData />
+              : <NoData column={columns} />
           }
         </MuiTable>
       </TableContainer>
