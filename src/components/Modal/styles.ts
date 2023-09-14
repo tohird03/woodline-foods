@@ -10,6 +10,7 @@ export const styles = {
       maxWidth: 'none',
       height: fullHeight ? 'calc(100vh - 80px)' : 'max-content',
       borderRadius: '10px',
+      padding: '10px',
     },
 
     [`& .${dialogTitleClasses.root}`]: {

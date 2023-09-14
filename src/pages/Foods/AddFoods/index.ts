@@ -1,0 +1,1 @@
+export {AddFoods} from './AddFoods';
