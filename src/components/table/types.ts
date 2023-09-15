@@ -27,6 +27,7 @@ export interface TableColumn {
   label: string | React.ReactNode;
   align?: 'right' | 'center' | 'left';
   render?: (value: string, row: DataRow, index: number) => React.ReactNode;
+  tLabel?: string;
 }
 
 export interface ITableBody {

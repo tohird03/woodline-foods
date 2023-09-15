@@ -1,8 +1,28 @@
 {
   "home": "Дaшборд",
-  "user": "пользователи",
-  "products": "продукты",
+  "user": "Пользователи",
+  "products": "Продукты",
   "foods": "Еда",
-  "organisation": "организация",
-  "order": "Заказы"
+  "organisation": "Организация",
+  "order": "Заказы",
+
+  "newProduct": "Новый продукт",
+  "newFood": "Новый еда",
+  "newOrganisation": "Новые организации",
+
+  "tableUserName": "Имя",
+  "tableUserSurname": "Фамилия",
+  "tableUserTelegramId": "Телеграммы ИД",
+  "tableUserBalance": "Баланс",
+  "tableUserPhoneNumber": "Номер телефона",
+  "tableUserOrganisation": "Организация",
+  "tableUserVerified": "Проверено",
+  "tableUserChangeActive": "Изменение активно",
+  "tableUserChangeOrg": "Изменить",
+
+  "tableProductName": "Наименование товара",
+  "tableProductAmount": "Количество",
+  "tableProductCost": "Цена",
+  "tableProductOrganisation": "Организация",
+  "tableProductDate": "Создан в"
 }

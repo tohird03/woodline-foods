@@ -120,7 +120,6 @@ export const AddFoods = observer(() => {
                   display: 'flex',
                   flexDirection: 'row !important',
                   gap: '10px',
-                // eslint-disable-next-line react/no-array-index-key
                 }} key={index}
               >
                 <FormControl sx={{width: '70%'}} fullWidth>

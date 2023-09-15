@@ -20,3 +20,26 @@ export interface IUsers {
     name_org: string;
   };
 }
+
+export interface IChangeStatus {
+  id: string;
+  is_active: boolean;
+}
+
+export interface IGetOrganisation {
+  data: IOrganisation[];
+  totalOrgs: number;
+}
+
+export interface IOrganisation {
+  _id: string;
+  name_org: string;
+  is_active: boolean;
+  is_deleted: boolean;
+  createdAt: string;
+}
+
+export interface IChangeOrganisation {
+  user: string;
+  org: string;
+}

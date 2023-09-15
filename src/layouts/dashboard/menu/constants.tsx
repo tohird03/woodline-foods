@@ -1,5 +1,6 @@
 import React from 'react';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import ReceiptLongSharpIcon from '@mui/icons-material/ReceiptLongSharp';
@@ -16,6 +17,11 @@ const icon = (name: string) =>
   <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{width: 1, height: 1}} />;
 
 export const navConfig: INavbarLinks[] = [
+  {
+    title: 'home',
+    path: ROUTES.home,
+    icon: <DashboardIcon />,
+  },
   {
     title: 'user',
     path: ROUTES.users,

@@ -1,8 +1,28 @@
 {
-  "home": "dashboard",
-  "user": "user",
-  "products": "products",
-  "foods": "foods",
-  "organisation": "organisation",
-  "order": "order"
+  "home": "Dashboard",
+  "user": "Users",
+  "products": "Products",
+  "foods": "Foods",
+  "organisation": "Organisations",
+  "order": "Orders",
+
+  "newProduct": "New Product",
+  "newFood": "New Food",
+  "newOrganisation": "New Organisation",
+
+  "tableUserName": "Name",
+  "tableUserSurname": "Surname",
+  "tableUserTelegramId": "Telegram Id",
+  "tableUserBalance": "Balance",
+  "tableUserPhoneNumber": "Phone number",
+  "tableUserOrganisation": "Organisation",
+  "tableUserVerified": "Verified",
+  "tableUserChangeActive": "Change active",
+  "tableUserChangeOrg": "Action",
+
+  "tableProductName": "Product name",
+  "tableProductAmount": "Amount",
+  "tableProductCost": "Cost",
+  "tableProductOrganisation": "Organisation",
+  "tableProductDate": "Created At"
 }

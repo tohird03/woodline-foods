@@ -2,7 +2,7 @@ import React from 'react';
 import {MenuItem} from '@mui/material';
 import {Units} from '../../api/products/types';
 import {TableColumn} from '../../components/table/types';
-
+import {getPaymentDate, uszFormatPrice} from '../../utils/formatTime';
 
 export const UnitOption = [
   <MenuItem key={Units.DONA} value={Units.DONA}>{Units.DONA}</MenuItem>,
@@ -13,22 +13,27 @@ export const UnitOption = [
 export const productColumns: TableColumn[] = [
   {
     key: 'name',
-    label: 'Name',
+    label: 'tableProductName',
     render: (value) => (value || '-'),
   },
   {
     key: 'amount',
-    label: 'Amount',
-    render: (value) => (value),
+    label: 'tableProductAmount',
+    render: (value, record) => (`${record?.amount} ${record?.unit}` || '-'),
   },
   {
     key: 'cost',
-    label: 'Cost',
-    render: (value, record) => (`${record?.cost} ${record?.unit}` || '-'),
+    label: 'tableProductCost',
+    render: (value) => (`${uszFormatPrice(parseInt(value, 10))} сум`),
   },
   {
     key: 'org',
-    label: 'Organisation',
+    label: 'tableProductOrganisation',
     render: (value, record) => (record?.org?.name_org || '-'),
+  },
+  {
+    key: 'createdAt',
+    label: 'tableProductDate',
+    render: (value) => (getPaymentDate(value)),
   },
 ];

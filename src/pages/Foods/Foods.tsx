@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
 import {useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {
@@ -15,6 +16,7 @@ import {foodsColumns} from './constants';
 
 export const Foods = observer(() => {
   const navigate = useNavigate();
+  const {t} = useTranslation();
 
   const handleSearchFood = (value: string) => {
     // TODO
@@ -29,6 +31,7 @@ export const Foods = observer(() => {
   };
 
   const handleChangePerPage = (perPage: number) => {
+    foodsStore.setPage(1);
     foodsStore.setSize(perPage);
   };
 
@@ -46,20 +49,20 @@ export const Foods = observer(() => {
           direction="row"
           alignItems="center"
           justifyContent="space-between"
-          mb={5}
+          mb={1}
         >
           <Typography
             variant="h4"
             gutterBottom
           >
-            Foods
+            {t('foods')}
           </Typography>
           <Button
             variant="contained"
             startIcon={<Iconify icon="eva:plus-fill" />}
             onClick={handleAddNewFood}
           >
-            New Foods
+            {t('newFood')}
           </Button>
         </Stack>
 

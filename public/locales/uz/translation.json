@@ -1,8 +1,28 @@
 {
-  "home": "bosh sahifa",
-  "user": "foydalanuvchi",
-  "products": "mahsulotlar",
-  "foods": "ovqatlar",
-  "organisation": "tashkilot",
-  "order": "buyurtma"
+  "home": "Bosh sahifa",
+  "user": "Foydalanuvchilar",
+  "products": "Mahsulotlar",
+  "foods": "Ovqatlar",
+  "organisation": "Tashkilotlar",
+  "order": "Buyurtmalar",
+
+  "newProduct": "Yangi mahsulot",
+  "newFood": "Yangi ovqat",
+  "newOrganisation": "Yangi tashkilot",
+
+  "tableUserName": "Ism",
+  "tableUserSurname": "Familiya",
+  "tableUserTelegramId": "Telegram Id",
+  "tableUserBalance": "Balans",
+  "tableUserPhoneNumber": "Telefon raqam",
+  "tableUserOrganisation": "Tashkilot",
+  "tableUserVerified": "Tasdiqlangan",
+  "tableUserChangeActive": "Active'ni o'zgartirish",
+  "tableUserChangeOrg": "Harakatlar",
+
+  "tableProductName": "Mahsulot nomi",
+  "tableProductAmount": "Miqdori",
+  "tableProductCost": "Narxi",
+  "tableProductOrganisation": "Tashkiloti",
+  "tableProductDate": "Yaratilgan vaqti"
 }

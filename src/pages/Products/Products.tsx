@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
 import {
   Button,
@@ -13,6 +14,7 @@ import {AddProduct} from './AddProduct';
 import {productColumns} from './constants';
 
 export const Products = observer(() => {
+  const {t} = useTranslation();
 
   const handleSearchProduct = (value: string) => {
     // TODO
@@ -23,6 +25,7 @@ export const Products = observer(() => {
   };
 
   const handleChangePerPage = (perPage: number) => {
+    productStore.setPage(1);
     productStore.setSize(perPage);
   };
 
@@ -44,21 +47,24 @@ export const Products = observer(() => {
   return (
     <>
       <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
           <Typography variant="h4" gutterBottom>
-            Product
+            {t('products')}
           </Typography>
           <Button
             variant="contained"
             startIcon={<Iconify icon="eva:plus-fill" />}
             onClick={handleAddNewProduct}
           >
-            New Product
+            {t('newProduct')}
           </Button>
         </Stack>
 
         <Table
-          columns={productColumns}
+          columns={productColumns.map((column) => ({
+            ...column,
+            label: t(column.label),
+          }))}
           data={productStore.products}
           onFilterSearch={handleSearchProduct}
           pagination={{

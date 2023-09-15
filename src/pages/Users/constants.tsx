@@ -3,41 +3,43 @@ import {sentenceCase} from 'change-case';
 import {IUsers} from '../../api/users/types';
 import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
+import {AddBalance} from './AddBalance';
+import {ChangeOrganisation} from './ChangeOrganisation';
 import {UserStatusChange} from './UserStatusChange';
 
 export const usersColumns: TableColumn[] = [
   {
     key: 'first_name',
-    label: 'Name',
+    label: 'tableUserName',
     render: (value) => (value || '-'),
   },
   {
     key: 'last_name',
-    label: 'Surname',
+    label: 'tableUserSurname',
     render: (value) => (value || '-'),
   },
   {
     key: 'telegram_id',
-    label: 'Telegram ID',
+    label: 'tableUserTelegramId',
     render: (value) => (value || '-'),
   },
   {
     key: 'balance',
-    label: 'Balance',
+    label: 'tableUserBalance',
   },
   {
     key: 'phone_number',
-    label: 'Phone number',
+    label: 'tableUserPhoneNumber',
     render: (value) => (value || '-'),
   },
   {
     key: 'org',
-    label: 'Organisation',
+    label: 'tableUserOrganisation',
     render: (value, record) => (record?.org?.name_org || '-'),
   },
   {
     key: 'is_verified',
-    label: 'Verified',
+    label: 'tableUserVerified',
     render: (value) => (
       <Label color={value ? 'success' : 'error'} variant={'outlined'}>
         {sentenceCase(value ? 'Verify' : 'Not Verify')}
@@ -46,9 +48,19 @@ export const usersColumns: TableColumn[] = [
   },
   {
     key: 'is_active',
-    label: 'Изменить статус',
+    label: 'tableUserChangeActive',
     render: (value, record) => (
       <UserStatusChange user={record as IUsers} />
+    ),
+  },
+  {
+    key: 'is_active',
+    label: 'tableUserChangeOrg',
+    render: (value, record) => (
+      <>
+        <ChangeOrganisation user={record as IUsers} />
+        <AddBalance user={record as IUsers} />
+      </>
     ),
   },
 ];

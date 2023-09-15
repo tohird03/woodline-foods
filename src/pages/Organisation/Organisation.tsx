@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
 import {
   Button,
@@ -13,6 +14,7 @@ import {AddOrganisation} from './AddOrganisation';
 import {organisationColumns} from './constants';
 
 export const Organisation = observer(() => {
+  const {t} = useTranslation();
 
   const handleSearchProduct = (value: string) => {
     // TODO
@@ -27,6 +29,7 @@ export const Organisation = observer(() => {
   };
 
   const handleChangePerPage = (perPage: number) => {
+    organisationStore.setPage(1);
     organisationStore.setSize(perPage);
   };
 
@@ -40,12 +43,12 @@ export const Organisation = observer(() => {
   return (
     <>
       <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
           <Typography variant="h4" gutterBottom>
-            Organisation
+            {t('organisation')}
           </Typography>
           <Button onClick={handleAddNewOrganisation} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New Organisation
+            {t('newOrganisation')}
           </Button>
         </Stack>
 

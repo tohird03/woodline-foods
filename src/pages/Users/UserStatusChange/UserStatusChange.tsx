@@ -64,10 +64,15 @@ type UserProps = {
 export const UserStatusChange = observer(({user}: UserProps) => {
   const [loading, setLoading] = useState(false);
 
-  const handleCheckVerify = () => {
+  const handleCheckVerify = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.checked;
+
     setLoading(true);
 
-    usersStore.userStatusChange(user?._id)
+    usersStore.userStatusChange({
+      id: user?._id,
+      is_active: newValue,
+    })
       .finally(() => {
         setLoading(false);
       });
