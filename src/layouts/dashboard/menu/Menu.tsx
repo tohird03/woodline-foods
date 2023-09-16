@@ -18,7 +18,7 @@ export const Menu = ({openNav, onCloseNav}: any) => {
     if (openNav) {
       onCloseNav();
     }
-  }, [onCloseNav, openNav, pathname]);
+  }, [pathname]);
 
   const renderContent = (
     <Scrollbar>

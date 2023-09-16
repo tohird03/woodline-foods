@@ -3,6 +3,7 @@ import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
+import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import ReceiptLongSharpIcon from '@mui/icons-material/ReceiptLongSharp';
 import SvgColor from '../../../components/svg-color';
 import {ROUTES} from '../../../constants/router';
@@ -21,6 +22,11 @@ export const navConfig: INavbarLinks[] = [
     title: 'home',
     path: ROUTES.home,
     icon: <DashboardIcon />,
+  },
+  {
+    title: 'lunch',
+    path: ROUTES.lunch,
+    icon: <LunchDiningIcon />,
   },
   {
     title: 'user',

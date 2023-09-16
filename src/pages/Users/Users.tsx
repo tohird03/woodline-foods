@@ -45,10 +45,7 @@ export const Users = observer(() => {
         </Stack>
 
         <Table
-          columns={usersColumns.map((column) => ({
-            ...column,
-            label: t(column.label),
-          }))}
+          columns={usersColumns}
           data={usersStore.users}
           onFilterSearch={handleSearchUsers}
           pagination={{

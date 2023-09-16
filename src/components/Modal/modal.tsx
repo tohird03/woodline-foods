@@ -38,6 +38,7 @@ export const Modal: FC<TProps> = ({
     <Dialog
       {...rest}
       sx={styles.dialog(width, fullHeight)}
+      onClose={onButtonClose}
     >
       {onButtonClose && (
         <IconButton onClick={handleCloseButtonClick} sx={styles.closeButton}>

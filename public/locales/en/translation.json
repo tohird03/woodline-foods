@@ -5,10 +5,12 @@
   "foods": "Foods",
   "organisation": "Organisations",
   "order": "Orders",
+  "lunch": "Lunch",
 
   "newProduct": "New Product",
   "newFood": "New Food",
   "newOrganisation": "New Organisation",
+  "newLunch": "New lunch",
 
   "tableUserName": "Name",
   "tableUserSurname": "Surname",
@@ -24,5 +26,22 @@
   "tableProductAmount": "Amount",
   "tableProductCost": "Cost",
   "tableProductOrganisation": "Organisation",
-  "tableProductDate": "Created At"
+  "tableProductDate": "Created At",
+
+  "tableFoodPhoto": "Photo",
+  "tableFoodName": "Name",
+  "tableFoodProduct": "Products",
+  "tableFoodCost": "Cost",
+  "tableFoodCategory": "Category",
+  "tableFoodOrg": "Organisation",
+
+  "tableOrgName": "Name",
+  "tableOrgCreatedAt": "Created At",
+  "tableOrgStatus": "Status",
+
+  "tableOrderUser": "User",
+  "tableOrderOrder": "Order",
+  "tableOrderPrice": "Total price",
+  "tableOrderCreatedAt": "Created at",
+  "tableOrderStatus": "Status"
 }

@@ -3,6 +3,7 @@ export interface ITableProps {
   columns: TableColumn[];
   pagination: ITablePaginationProps | false;
   onFilterSearch?: (value: string) => void;
+  min?: boolean;
 }
 
 export interface ITableHead {
@@ -33,6 +34,7 @@ export interface TableColumn {
 export interface ITableBody {
   data: DataRow[];
   columns: TableColumn[];
+  sx: Object;
 }
 
 export type LabelType = {

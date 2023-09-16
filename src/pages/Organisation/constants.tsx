@@ -9,17 +9,17 @@ const CREATED_TIME_ZONE = -5;
 export const organisationColumns: TableColumn[] = [
   {
     key: 'name_org',
-    label: 'Name',
+    label: 'tableOrgName',
     render: (value) => (value || '-'),
   },
   {
     key: 'createdAt',
-    label: 'Created At',
+    label: 'tableOrgCreatedAt',
     render: (value) => (getPaymentDate(value, CREATED_TIME_ZONE)),
   },
   {
     key: 'is_active',
-    label: 'Status',
+    label: 'tableOrgStatus',
     render: (value) => (
       <Label color={value ? 'success' : 'error'} variant={'outlined'}>
         {sentenceCase(value ? 'Active' : 'Not Active')}

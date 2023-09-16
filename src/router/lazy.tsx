@@ -51,3 +51,8 @@ export const Dashboard = lazy(() =>
   import('../pages/Dashboard')
     .then(({Dashboard}) => ({default: Dashboard}))
     .catch(handleCatchChunkError));
+
+export const Lunch = lazy(() =>
+  import('../pages/Lunch')
+    .then(({Lunch}) => ({default: Lunch}))
+    .catch(handleCatchChunkError));

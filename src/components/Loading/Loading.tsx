@@ -8,7 +8,7 @@ import LoadingImg from '../../assets/img/loading.png';
 export const Loading = () => (
   <Box className="loader">
     <Box className="loader__img-wrapper">
-      <img width={200} src={LoadingImg} alt="Loading" />
+      <img className="loader__img" width={200} src={LoadingImg} alt="Loading" />
     </Box>
   </Box>
 );

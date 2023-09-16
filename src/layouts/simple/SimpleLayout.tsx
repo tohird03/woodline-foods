@@ -1,7 +1,8 @@
 import React from 'react';
 import {Outlet} from 'react-router-dom';
 import {styled} from '@mui/material/styles';
-import Logo from '../../components/logo';
+// @ts-ignore
+import LoadingImg from '../../assets/img/loading.png';
 
 const StyledHeader = styled('header')(({theme}) => ({
   top: 0,
@@ -19,9 +20,6 @@ const StyledHeader = styled('header')(({theme}) => ({
 export default function SimpleLayout() {
   return (
     <>
-      <StyledHeader>
-        <Logo />
-      </StyledHeader>
       <Outlet />
     </>
   );

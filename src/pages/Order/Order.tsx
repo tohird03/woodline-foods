@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
 import {
   Container,
@@ -9,9 +8,9 @@ import {
 import {Table} from '../../components/table';
 import {orderStore} from '../../store/order';
 import {ordersColumn} from './constants';
+import {OrderProductModal} from './OrderProduct/OrderProductModal';
 
 export const Order = observer(() => {
-  const {t} = useTranslation();
 
   const handleSearchUsers = (value: string) => {
     // TODO
@@ -43,10 +42,7 @@ export const Order = observer(() => {
         </Stack>
 
         <Table
-          columns={ordersColumn.map((column) => ({
-            ...column,
-            label: t(column.label),
-          }))}
+          columns={ordersColumn}
           data={orderStore.orders}
           onFilterSearch={handleSearchUsers}
           pagination={{
@@ -58,6 +54,8 @@ export const Order = observer(() => {
           }}
         />
       </Container>
+
+      {orderStore.isOpenOrderProductModal && <OrderProductModal />}
     </>
   );
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Avatar, MenuItem, Stack} from '@mui/material';
 import {sentenceCase} from 'change-case';
+import {IFoodsProducts} from '../../api/foods/types';
 import {Category} from '../../api/organisation/types';
 import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
@@ -14,7 +15,7 @@ export const CategoryOption = [
 export const foodsColumns: TableColumn[] = [
   {
     key: 'img',
-    label: 'Photo',
+    label: 'tableFoodPhoto',
     align: 'center',
     render: (value) => (
       <Stack sx={{width: '100%'}} direction="row" alignItems="center" spacing={2}>
@@ -24,22 +25,29 @@ export const foodsColumns: TableColumn[] = [
   },
   {
     key: 'name',
-    label: 'Name',
+    label: 'tableFoodName',
+  },
+  {
+    key: 'org',
+    label: 'tableFoodOrg',
+    render: (value, record) => (
+      record?.org?.name_org
+    ),
   },
   {
     key: 'products',
-    label: 'Product',
+    label: 'tableFoodProduct',
     render: (value, record) => (
-      record?.products[0]?.product?.name
+      record?.products?.map((product: IFoodsProducts, index: number) => `${index + 1} ${product?.product?.cost}`)
     ),
   },
   {
     key: 'cost',
-    label: 'Cost',
+    label: 'tableFoodCost',
   },
   {
     key: 'category',
-    label: 'Category',
+    label: 'tableFoodCategory',
     render: (value) => (
       <Label color="success" variant={'outlined'}>
         {sentenceCase(value)}

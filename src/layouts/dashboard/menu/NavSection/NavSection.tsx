@@ -5,7 +5,7 @@ import {Box, List, ListItemText} from '@mui/material';
 // @ts-ignore
 import Logo from '../../../../assets/img/loading.png';
 import {navConfig} from '../constants';
-import {StyledNavItem, StyledNavItemIcon} from './styles';
+import {navSectionStyles, StyledNavItem, StyledNavItemIcon} from './styles';
 
 export const NavSection = ({...other}: any) => {
   const {t} = useTranslation();
@@ -17,8 +17,14 @@ export const NavSection = ({...other}: any) => {
 
   return (
     <Box {...other}>
-      <img style={{margin: '0 auto', objectFit: 'cover'}} height="100" width="150" src={Logo} />
-      <List disablePadding sx={{p: 1}}>
+      <img
+        // @ts-ignore
+        style={navSectionStyles.navLogo}
+        height="100"
+        width="150"
+        src={Logo}
+      />
+      <List disablePadding sx={navSectionStyles.list}>
         {translatedNavConfig.map((item: any) => (
           <NavItem key={item.title} item={item} />
         ))}
@@ -35,13 +41,7 @@ const NavItem = ({item}: any) => {
     <StyledNavItem
       component={RouterLink}
       to={path}
-      sx={{
-        '&.active': {
-          color: 'text.primary',
-          bgcolor: 'action.selected',
-          fontWeight: 'fontWeightBold',
-        },
-      }}
+      sx={navSectionStyles.styledNav}
     >
       <StyledNavItemIcon>{icon && icon}</StyledNavItemIcon>
 

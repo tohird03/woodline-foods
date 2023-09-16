@@ -2,16 +2,16 @@ import React from 'react';
 import {TableBody as MuiTableBody, TableCell, TableRow} from '@mui/material';
 import {ITableBody, TableColumn} from '../types';
 
-export const TableBody = ({data, columns}: ITableBody) => (
-  <MuiTableBody>
-    {data?.map((row: any) => (
+export const TableBody = ({data, columns, sx}: ITableBody) => (
+  <MuiTableBody sx={sx}>
+    {data?.map((row: any, index: number) => (
       <TableRow
         hover
         key={row?._id}
         tabIndex={-1}
         role="checkbox"
       >
-        {columns?.map((column: TableColumn, index: number) => (
+        {columns?.map((column: TableColumn) => (
           <TableCell
             key={column?.key}
             align={column?.align || 'center'}

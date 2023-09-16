@@ -33,8 +33,8 @@ class OrganisationStore {
         if (res) {
           successNotification('Success add new organisation');
           this.getOrganisation({
-            page: 1,
-            size: 10,
+            page: this.page,
+            size: this.size,
           });
         }
 

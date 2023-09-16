@@ -1,5 +1,6 @@
 import {appStore} from './app';
 import {authStore} from './auth';
+import {lunchStore} from './lunch';
 import {orderStore} from './order';
 import {organisationStore} from './organisation';
 import {productStore} from './products';
@@ -12,6 +13,7 @@ export const store = {
   appStore,
   organisationStore,
   orderStore,
+  lunchStore,
 };
 
 export const resetStores = () => {
@@ -21,4 +23,5 @@ export const resetStores = () => {
   appStore.reset();
   organisationStore.reset();
   orderStore.reset();
+  lunchStore.reset();
 };

@@ -28,7 +28,7 @@
 }
 
 @keyframes circleAnimation {
-  0% {transform: perspective(200px) rotateY(0deg);}
-  50% {transform: perspective(200px) rotateY(0deg);}
-  100% {transform: perspective(200px) rotateY(-180deg);}
+  0% {transform: scale(1);}
+  50% {transform: scale(1.4);}
+  100% {transform: scale(1);}
 }

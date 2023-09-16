@@ -3,8 +3,7 @@ import {GlobalStyles} from '@mui/material';
 import {alpha, useTheme} from '@mui/material/styles';
 import {bgBlur} from '../../utils/cssStyles';
 
-// eslint-disable-next-line react/function-component-definition
-export default function StyledChart() {
+const StyledChart = () => {
   const theme: any = useTheme();
 
   const inputGlobalStyles = (
@@ -54,4 +53,6 @@ export default function StyledChart() {
   );
 
   return inputGlobalStyles;
-}
+};
+
+export default StyledChart;

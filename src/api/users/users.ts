@@ -24,6 +24,8 @@ class UsersApi extends Instance {
   changeOrganisation = (params: IChangeOrganisation): Promise<any> =>
     this.put(`${Endpoints.UserOrganisation}/${params?.user}`, {org: params?.org});
 
+  changeVerifyUser = (id: string): Promise<any> =>
+    this.put(`${Endpoints.UserChangeVerify}/${id}`);
 }
 
 export const usersApi = new UsersApi(config);

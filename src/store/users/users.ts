@@ -66,6 +66,20 @@ class UsersStore {
       })
       .catch(addAxiosErrorNotification);
 
+  changeUserVerify = (id: string) =>
+    usersApi.changeVerifyUser(id)
+      .then(res => {
+        successNotification('Success user verify');
+
+        this.getUsers({
+          page: this.page,
+          size: this.size,
+        });
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
   setUsers = (users: IUsers[]) => {
     this.users = users;
   };

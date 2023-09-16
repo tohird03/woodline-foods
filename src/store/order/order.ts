@@ -1,6 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 import {orderApi} from '../../api/order';
-import {IOrder} from '../../api/order/types';
+import {IOrder, IOrderFoods} from '../../api/order/types';
 import {IPagination} from '../../api/types';
 import {addAxiosErrorNotification} from '../../utils/notification';
 
@@ -9,6 +9,8 @@ class OrderStore {
   totalOrder = 0;
   page = 1;
   size = 10;
+  isOpenOrderProductModal = false;
+  foods: IOrderFoods[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -38,6 +40,14 @@ class OrderStore {
 
   setTotalOrder = (total: number) => {
     this.totalOrder = total;
+  };
+
+  setIsOpenOrderProductModal = (isOpen: boolean) => {
+    this.isOpenOrderProductModal = isOpen;
+  };
+
+  setFoods = (foods: IOrderFoods[]) => {
+    this.foods = foods;
   };
 
   reset() {

@@ -1,80 +1,67 @@
 import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
-import {
-  Button,
-  Container,
-  Stack,
-  Typography,
-} from '@mui/material';
+import {Button, Container, Stack, Typography} from '@mui/material';
 import Iconify from '../../components/iconify';
 import {Table} from '../../components/table';
-import {productStore} from '../../store/products';
-import {AddProduct} from './AddProduct';
-import {productColumns} from './constants';
+import {lunchStore} from '../../store/lunch';
+import {AddLunch} from './AddLunch';
+import {lunchColumns} from './constants';
 
-export const Products = observer(() => {
+export const Lunch = observer(() => {
   const {t} = useTranslation();
 
-  const handleSearchProduct = (value: string) => {
-    // TODO
-  };
-
   const handleChangePage = (newPage: number) => {
-    productStore.setPage(newPage + 1);
+    lunchStore.setPage(newPage + 1);
   };
 
   const handleChangePerPage = (perPage: number) => {
-    productStore.setPage(1);
-    productStore.setSize(perPage);
+    lunchStore.setPage(1);
+    lunchStore.setSize(perPage);
   };
 
   const handleAddNewProduct = () => {
-    productStore.setIsOpenProductModal(true);
+    lunchStore.setIsOpenLunchModal(true);
   };
 
   useEffect(() => {
-    productStore.getProducts({
-      page: productStore.page,
-      size: productStore.size,
+    lunchStore.getLunchs({
+      page: lunchStore.page,
+      size: lunchStore.size,
     });
+  }, [lunchStore.page, lunchStore.size]);
 
-    return () => {
-      productStore.setProducts([]);
-    };
-  }, [productStore.page, productStore.size]);
 
   return (
     <>
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
           <Typography variant="h4" gutterBottom>
-            {t('products')}
+            {t('lunch')}
           </Typography>
           <Button
             variant="contained"
             startIcon={<Iconify icon="eva:plus-fill" />}
             onClick={handleAddNewProduct}
           >
-            {t('newProduct')}
+            {t('newLunch')}
           </Button>
         </Stack>
 
         <Table
-          columns={productColumns}
-          data={productStore.products}
-          onFilterSearch={handleSearchProduct}
+          columns={lunchColumns}
+          data={lunchStore.lunchs}
           pagination={{
-            total: productStore.totalProducts,
-            page: productStore.page,
-            size: productStore.size,
+            total: lunchStore.totalLunchs,
+            page: lunchStore.page,
+            size: lunchStore.size,
             handlePageChange: handleChangePage,
             handleShowSizeChange: handleChangePerPage,
           }}
         />
       </Container>
 
-      {productStore.isOpenProductModal && <AddProduct />}
+      {lunchStore.isOpenAddLunchModal && <AddLunch />}
     </>
   );
 });

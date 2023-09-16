@@ -1,10 +1,9 @@
 import React from 'react';
-import {sentenceCase} from 'change-case';
 import {IUsers} from '../../api/users/types';
-import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
 import {AddBalance} from './AddBalance';
 import {ChangeOrganisation} from './ChangeOrganisation';
+import {ChangeVerify} from './ChangeVerify';
 import {UserStatusChange} from './UserStatusChange';
 
 export const usersColumns: TableColumn[] = [
@@ -40,11 +39,7 @@ export const usersColumns: TableColumn[] = [
   {
     key: 'is_verified',
     label: 'tableUserVerified',
-    render: (value) => (
-      <Label color={value ? 'success' : 'error'} variant={'outlined'}>
-        {sentenceCase(value ? 'Verify' : 'Not Verify')}
-      </Label>
-    ),
+    render: (value, record) => (<ChangeVerify user={record as IUsers} />),
   },
   {
     key: 'is_active',

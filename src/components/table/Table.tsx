@@ -12,6 +12,7 @@ export const Table = ({
   columns,
   pagination,
   onFilterSearch,
+  min,
 }: ITableProps) => {
 
   const handlePaginationPageChange = (event: unknown, newPage: number) => {
@@ -38,12 +39,12 @@ export const Table = ({
         )
       }
 
-      <TableContainer sx={{minWidth: 800}}>
+      <TableContainer>
         <MuiTable>
           <TableHead columns={columns} />
           {
             data?.length > 0
-              ? <TableBody data={data} columns={columns} />
+              ? <TableBody sx={min ? {} : {minWidth: 800}} data={data} columns={columns} />
               : <NoData column={columns} />
           }
         </MuiTable>

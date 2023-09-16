@@ -5,10 +5,12 @@
   "foods": "Ovqatlar",
   "organisation": "Tashkilotlar",
   "order": "Buyurtmalar",
+  "lunch": "Tushlik",
 
   "newProduct": "Yangi mahsulot",
   "newFood": "Yangi ovqat",
   "newOrganisation": "Yangi tashkilot",
+  "newLunch": "Yangi Tushlik",
 
   "tableUserName": "Ism",
   "tableUserSurname": "Familiya",
@@ -24,5 +26,22 @@
   "tableProductAmount": "Miqdori",
   "tableProductCost": "Narxi",
   "tableProductOrganisation": "Tashkiloti",
-  "tableProductDate": "Yaratilgan vaqti"
+  "tableProductDate": "Yaratilgan vaqti",
+
+  "tableFoodPhoto": "Rasmi",
+  "tableFoodName": "Nomi",
+  "tableFoodProduct": "Mahsulotlar",
+  "tableFoodCost": "Narxi",
+  "tableFoodCategory": "Turi",
+  "tableFoodOrg": "Tashkiloti",
+
+  "tableOrgName": "Nomi",
+  "tableOrgCreatedAt": "Yaratilgan vaqti",
+  "tableOrgStatus": "Holati",
+
+  "tableOrderUser": "Foydalanuvchi",
+  "tableOrderOrder": "Buyurtma",
+  "tableOrderPrice": "Umumiy narxi",
+  "tableOrderCreatedAt": "Yaratilgan vaqti",
+  "tableOrderStatus": "Holati"
 }

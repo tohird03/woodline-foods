@@ -18,3 +18,24 @@ export const StyledNavItemIcon = styled(ListItemIcon)({
   alignItems: 'center',
   justifyContent: 'center',
 });
+
+export const navSectionStyles = {
+  styledNav: {
+    '&.active': {
+      color: 'text.primary',
+      bgcolor: 'action.selected',
+      fontWeight: 'fontWeightBold',
+    },
+  },
+  list: {
+    p: 1,
+    height: '70vh',
+    overflowY: 'auto',
+  },
+  navLogo: {
+    margin: '0 auto',
+    objectFit: 'cover',
+    height: '30vh',
+    maxHeight: '120px',
+  },
+};

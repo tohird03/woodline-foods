@@ -5,10 +5,12 @@
   "foods": "Еда",
   "organisation": "Организация",
   "order": "Заказы",
+  "lunch": "Обед",
 
   "newProduct": "Новый продукт",
   "newFood": "Новый еда",
   "newOrganisation": "Новые организации",
+  "newLunch": "Новые Обед",
 
   "tableUserName": "Имя",
   "tableUserSurname": "Фамилия",
@@ -24,5 +26,22 @@
   "tableProductAmount": "Количество",
   "tableProductCost": "Цена",
   "tableProductOrganisation": "Организация",
-  "tableProductDate": "Создан в"
+  "tableProductDate": "Создан в",
+
+  "tableFoodPhoto": "Фото",
+  "tableFoodName": "Имя",
+  "tableFoodProduct": "Продукты",
+  "tableFoodCost": "Цена",
+  "tableFoodCategory": "Категория",
+  "tableFoodOrg": "Организация",
+
+  "tableOrgName": "Имя",
+  "tableOrgCreatedAt": "Создан в",
+  "tableOrgStatus": "Положение дел",
+
+  "tableOrderUser": "Пользователь",
+  "tableOrderOrder": "Заказ",
+  "tableOrderPrice": "Итоговая цена",
+  "tableOrderCreatedAt": "Создан в",
+  "tableOrderStatus": "Положение дел"
 }

@@ -9,6 +9,7 @@ import {
   AddFoods,
   Dashboard,
   Foods,
+  Lunch,
   NotFound,
   Order,
   Organisation,
@@ -54,6 +55,10 @@ export const Router = observer(({isAuth}: AuthProps) => {
           path: ROUTES.addFood,
           element: <Suspense fallback={<Loading />}><AddFoods /></Suspense>,
         },
+        {
+          path: ROUTES.lunch,
+          element: <Suspense fallback={<Loading />}><Lunch /></Suspense>,
+        },
       ],
     },
     {
@@ -64,7 +69,7 @@ export const Router = observer(({isAuth}: AuthProps) => {
       element: <SimpleLayout />,
       children: [
         {element: <Navigate to="/dashboard/app" />, index: true},
-        {path: '404', element: <NotFound />},
+        {path: '404', element: <Suspense fallback={<Loading />}><NotFound /></Suspense>},
         {path: '*', element: <Navigate to="/404" />},
       ],
     },
