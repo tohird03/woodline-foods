@@ -43,5 +43,14 @@
   "tableOrderOrder": "Order",
   "tableOrderPrice": "Total price",
   "tableOrderCreatedAt": "Created at",
-  "tableOrderStatus": "Status"
+  "tableOrderStatus": "Status",
+
+  "dashboardTotalTrade": "Total sales",
+  "dashboardTotalCosts": "Total cost",
+  "dashboardTotalBenefit": "Total profit",
+  "dashboardFilterOrg": "Organisation",
+  "dashboardFilterByTime": "By time",
+
+  "tooltipSendNotification": "Send a notification to a bot",
+  "tooltipLanguageSelect": "Change the language"
 }

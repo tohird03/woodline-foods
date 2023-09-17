@@ -37,3 +37,5 @@ export const productColumns: TableColumn[] = [
     render: (value) => (getPaymentDate(value)),
   },
 ];
+
+export const MODAL_WIDTH = 400;

@@ -1,7 +1,7 @@
 import {Endpoints} from '../endpoints';
 import {Instance} from '../instance';
 import {INetworkConfig, IPagination} from '../types';
-import {IChangeOrganisation, IChangeStatus, IGetOrganisation, IGetUser} from './types';
+import {IChangeOrganisation, IChangeStatus, IGetOrganisation, IGetUser, TransactionParams} from './types';
 
 const config: INetworkConfig = {
   baseURL: Endpoints.Base,
@@ -26,6 +26,9 @@ class UsersApi extends Instance {
 
   changeVerifyUser = (id: string): Promise<any> =>
     this.put(`${Endpoints.UserChangeVerify}/${id}`);
+
+  addBalance = (params: TransactionParams): Promise<any> =>
+    this.patch(Endpoints.UserPayment, params);
 }
 
 export const usersApi = new UsersApi(config);

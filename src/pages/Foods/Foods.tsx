@@ -13,6 +13,7 @@ import {Table} from '../../components/table';
 import {ROUTES} from '../../constants/router';
 import {foodsStore} from '../../store/foods';
 import {foodsColumns} from './constants';
+import {ProductModal} from './Products/ProductModal';
 
 export const Foods = observer(() => {
   const navigate = useNavigate();
@@ -79,6 +80,8 @@ export const Foods = observer(() => {
           }}
         />
       </Container>
+
+      {foodsStore.isOpenSingleFoodProductModal && <ProductModal />}
     </>
   );
 });

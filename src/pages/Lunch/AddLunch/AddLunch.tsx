@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {observer} from 'mobx-react';
 import {Button, FormControl, InputLabel, MenuItem, Select, TextField} from '@mui/material';
 import {useFormik} from 'formik';
@@ -6,9 +6,10 @@ import {IOrganisation} from '../../../api/products/types';
 import {Modal} from '../../../components/Modal';
 import {lunchStore} from '../../../store/lunch';
 import {productStore} from '../../../store/products';
+import {ADD_LUNCH_MODAL_WIDTH} from '../constants';
+import {lunchStyles} from '../styles';
 
 export const AddLunch = observer(() => {
-  const [organisationOption, setOrganisationOption] = useState<React.ReactNode[]>([]);
 
   const formik = useFormik({
     initialValues: {
@@ -28,36 +29,37 @@ export const AddLunch = observer(() => {
     lunchStore.setIsOpenLunchModal(false);
   };
 
+  const organisationOptions = useMemo(() => (
+    productStore.organisations.map((org: IOrganisation) => (
+      <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
+    ))
+  ), [productStore.organisations]);
+
   useEffect(() => {
-    productStore.getOrganisation()
-      .then(res => {
-        if (res) {
-          setOrganisationOption(
-            res?.data?.map((org: IOrganisation) => (
-              <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
-            ))
-          );
-        }
-      });
+    productStore.getOrganisation();
+
+    return () => {
+      productStore.setOrganisation([]);
+    };
   }, []);
 
   return (
     <Modal
       open={lunchStore.isOpenAddLunchModal}
       onButtonClose={handleClose}
+      width={ADD_LUNCH_MODAL_WIDTH}
       title="Add new organisation"
-      width={400}
     >
       <form onSubmit={formik.handleSubmit}>
         <TextField
-          sx={{width: '100%', marginBottom: '10px'}}
+          sx={lunchStyles.addLunchTextFeild}
           placeholder="New product name"
           name="name"
           onChange={formik.handleChange}
           value={formik.values.name}
           required
         />
-        <FormControl sx={{marginBottom: '10px'}} fullWidth>
+        <FormControl sx={lunchStyles.addLunchOrgFormControl} fullWidth>
           <InputLabel>Organisation</InputLabel>
           <Select
             name="org"
@@ -66,7 +68,7 @@ export const AddLunch = observer(() => {
             value={formik.values.org}
             required
           >
-            {organisationOption}
+            {organisationOptions}
           </Select>
         </FormControl>
 
@@ -78,11 +80,11 @@ export const AddLunch = observer(() => {
           minRows={0}
           required
           name="cost"
-          sx={{width: '100%', marginBottom: '10px'}}
+          sx={lunchStyles.addLunchTextFeild}
         />
 
         <Button
-          sx={{width: '100%'}}
+          sx={lunchStyles.widthFull}
           variant="contained"
           type="submit"
         >

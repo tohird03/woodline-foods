@@ -43,5 +43,14 @@
   "tableOrderOrder": "Buyurtma",
   "tableOrderPrice": "Umumiy narxi",
   "tableOrderCreatedAt": "Yaratilgan vaqti",
-  "tableOrderStatus": "Holati"
+  "tableOrderStatus": "Holati",
+
+  "dashboardTotalTrade": "Jami savdo",
+  "dashboardTotalCosts": "Jami xarajatlar",
+  "dashboardTotalBenefit": "Jami foyda",
+  "dashboardFilterOrg": "Tashkilot",
+  "dashboardFilterByTime": "Vaqt bo'yicha",
+
+  "tooltipSendNotification": "Botga xabar yuborish",
+  "tooltipLanguageSelect": "Tilni o'zgartirish"
 }

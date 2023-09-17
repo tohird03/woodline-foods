@@ -4,6 +4,8 @@ import {Button, TextField} from '@mui/material';
 import {useFormik} from 'formik';
 import {Modal} from '../../../components/Modal';
 import {organisationStore} from '../../../store/organisation';
+import {MODAL_WIDTH} from '../constants';
+import {organisationStyles} from '../styles';
 
 export const AddOrganisation = observer(() => {
 
@@ -28,19 +30,19 @@ export const AddOrganisation = observer(() => {
       open={organisationStore.isOpenAddOrganisation}
       onButtonClose={handleClose}
       title="Add new organisation"
-      width={400}
+      width={MODAL_WIDTH}
     >
       <form onSubmit={formik.handleSubmit}>
         <TextField
-          sx={{width: '100%', marginBottom: '10px'}}
-          placeholder="New Organisation name"
-          name="name_org"
+          sx={organisationStyles.addOrganisationTextFeild}
           onChange={formik.handleChange}
           value={formik.values.name_org}
+          placeholder="New Organisation name"
+          name="name_org"
           required
         />
         <Button
-          sx={{display: 'block', marginLeft: 'auto', width: '100px'}}
+          sx={organisationStyles.addOrganisationSubmitButton}
           variant="contained"
           type="submit"
         >

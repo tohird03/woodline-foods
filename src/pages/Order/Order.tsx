@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
 import {
   Container,
@@ -11,10 +12,7 @@ import {ordersColumn} from './constants';
 import {OrderProductModal} from './OrderProduct/OrderProductModal';
 
 export const Order = observer(() => {
-
-  const handleSearchUsers = (value: string) => {
-    // TODO
-  };
+  const {t} = useTranslation();
 
   const handleChangePage = (newPage: number) => {
     orderStore.setPage(newPage + 1);
@@ -35,16 +33,20 @@ export const Order = observer(() => {
   return (
     <>
       <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          mb={1}
+        >
           <Typography variant="h4" gutterBottom>
-            Order
+            {t('order')}
           </Typography>
         </Stack>
 
         <Table
           columns={ordersColumn}
           data={orderStore.orders}
-          onFilterSearch={handleSearchUsers}
           pagination={{
             total: orderStore.totalOrder,
             page: orderStore.page,

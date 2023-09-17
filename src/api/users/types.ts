@@ -43,3 +43,14 @@ export interface IChangeOrganisation {
   user: string;
   org: string;
 }
+
+export enum TransactionType {
+  ADD = 'ADD',
+  SUBTRACT = 'SUBTRACT',
+}
+
+export interface TransactionParams {
+  amount: number;
+  user: string;
+  type: boolean;
+}

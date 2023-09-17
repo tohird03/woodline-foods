@@ -12,6 +12,7 @@ export interface IOrder {
   is_accepted: boolean;
   org: IOrderOrganisation;
   createdAt: string;
+  status: IOrderStatus;
 }
 
 export interface IOrderClient {
@@ -33,4 +34,10 @@ export interface IOrderFoods {
 export interface IOrderOrganisation {
   _id: string;
   name_org: string;
+}
+
+export enum IOrderStatus {
+  PENDING = 'pending',
+  CANCELED = 'canceled',
+  ACCEPTED = 'accepted',
 }

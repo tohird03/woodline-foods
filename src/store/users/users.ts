@@ -1,7 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 import {IPagination} from '../../api/types';
 import {usersApi} from '../../api/users';
-import {IChangeOrganisation, IChangeStatus, IOrganisation, IUsers} from '../../api/users/types';
+import {IChangeOrganisation, IChangeStatus, IOrganisation, IUsers, TransactionParams} from '../../api/users/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
 class UsersStore {
@@ -80,6 +80,21 @@ class UsersStore {
       })
       .catch(addAxiosErrorNotification);
 
+  addBalance = (params: TransactionParams) =>
+    usersApi.addBalance(params)
+      .then(res => {
+        if (res) {
+          successNotification('Success balance change');
+          this.getUsers({
+            page: this.page,
+            size: this.size,
+          });
+
+          return res;
+        }
+      })
+      .catch(addAxiosErrorNotification);
+
   setUsers = (users: IUsers[]) => {
     this.users = users;
   };
@@ -118,6 +133,9 @@ class UsersStore {
     this.page = 1;
     this.size = 10;
     this.isOpenOrganisationModal = false;
+    this.organisations = [];
+    this.singleUser = null;
+    this.isOpenBalanceModal = false;
   }
 }
 

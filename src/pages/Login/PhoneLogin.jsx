@@ -4,19 +4,17 @@ import 'react-phone-input-2/lib/style.css';
 import React, {useState} from 'react';
 import {Helmet} from 'react-helmet-async';
 import PhoneInput from 'react-phone-input-2';
-import OtpInput from 'react18-input-otp';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import {Button, Container, Typography} from '@mui/material';
-import Timer from 'otp-timer';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import {Button, Container, IconButton, Typography} from '@mui/material';
 import useResponsive from '../../hooks/useResponsive';
 import {StyledContent, StyledRoot, StyledSection} from './styles';
 
 export const PhoneLogin = () => {
   const mdUp = useResponsive('up', 'md');
+  const [isShowPass, setIsShowPass] = useState(false);
 
   const [phone, setPhone] = useState('');
-  const [otp, setOtp] = useState('');
-  const [isSendSms, setIsSendSms] = useState(false);
 
   const handlePhoneChange = (phone) => {
     setPhone(phone);
@@ -28,16 +26,8 @@ export const PhoneLogin = () => {
     }
   };
 
-  const handleChangeOtp = (otp) => {
-    setOtp(otp);
-  };
-
-  const handleClick = () => {
-    // TODO
-  };
-
-  const handleSendSms = () => {
-    setIsSendSms(true);
+  const handleShowPass = () => {
+    setIsShowPass(!isShowPass);
   };
 
   return (
@@ -74,45 +64,20 @@ export const PhoneLogin = () => {
                 }}
                 className="form__phone"
               />
-              <div className="form__otp-wrapper">
-                <OtpInput
-                  value={otp}
-                  onChange={handleChangeOtp}
-                  numInputs={6}
-                  className="form__otp"
-                  inputType="number"
-                  type="number"
+              <div className="form__password-wrapper">
+                <input
+                  className="form__password-input"
+                  type={isShowPass ? 'text' : 'password'}
+                  placeholder="Password"
+                  minLength={8}
                 />
-                {isSendSms
-                  ? (
-                    <div className="form__otp-timer">
-                      <Timer
-                        seconds={59}
-                        minutes={2}
-                        resend={handleClick}
-                        text={' '}
-                        textColor="#000"
-                        background="#cacaca"
-                        buttonColor="#000"
-                        ButtonText={
-                          <>Repeat <RefreshIcon /></>
-                        }
-                      />
-                    </div>
-                  )
-                  : (
-                    <Button
-                      size="small"
-                      variant="contained"
-                      color="primary"
-                      className="form__otp-submit"
-                      onClick={handleSendSms}
-                    >
-                      Get Code
-                    </Button>
-                  )
-
-                }
+                <IconButton
+                  className="form__pass-icon"
+                  onClick={handleShowPass}
+                  size="small"
+                >
+                  {isShowPass ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                </IconButton>
               </div>
               <Button
                 size="small"

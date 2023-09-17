@@ -27,3 +27,5 @@ export const organisationColumns: TableColumn[] = [
     ),
   },
 ];
+
+export const MODAL_WIDTH = 400;

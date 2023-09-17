@@ -15,6 +15,7 @@ export interface IFoods {
 }
 
 export interface IFoodsProducts {
+  _id: string;
   product: {
     _id: string;
     name: string;

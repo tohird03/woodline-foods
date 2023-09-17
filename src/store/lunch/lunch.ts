@@ -62,6 +62,10 @@ class LunchStore {
 
   reset() {
     this.lunchs = [];
+    this.page = 1;
+    this.size = 10;
+    this.totalLunchs = 0;
+    this.isOpenAddLunchModal = false;
   }
 }
 

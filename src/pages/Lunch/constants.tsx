@@ -23,3 +23,5 @@ export const lunchColumns: TableColumn[] = [
     render: (value) => (getFullDateFormat(value)),
   },
 ];
+
+export const ADD_LUNCH_MODAL_WIDTH = 400;

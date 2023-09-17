@@ -43,11 +43,20 @@ export const Organisation = observer(() => {
   return (
     <>
       <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          mb={1}
+        >
           <Typography variant="h4" gutterBottom>
             {t('organisation')}
           </Typography>
-          <Button onClick={handleAddNewOrganisation} variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button
+            onClick={handleAddNewOrganisation}
+            variant="contained"
+            startIcon={<Iconify icon="eva:plus-fill" />}
+          >
             {t('newOrganisation')}
           </Button>
         </Stack>

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Avatar, MenuItem, Stack} from '@mui/material';
 import {sentenceCase} from 'change-case';
-import {IFoodsProducts} from '../../api/foods/types';
 import {Category} from '../../api/organisation/types';
 import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
+import {Products} from './Products';
 
 export const CategoryOption = [
   <MenuItem key={Category.DESSERT} value={Category.DESSERT}>{Category.DESSERT}</MenuItem>,
@@ -37,9 +37,7 @@ export const foodsColumns: TableColumn[] = [
   {
     key: 'products',
     label: 'tableFoodProduct',
-    render: (value, record) => (
-      record?.products?.map((product: IFoodsProducts, index: number) => `${index + 1} ${product?.product?.cost}`)
-    ),
+    render: (value, record) => <Products product={record?.products} />,
   },
   {
     key: 'cost',
@@ -53,5 +51,28 @@ export const foodsColumns: TableColumn[] = [
         {sentenceCase(value)}
       </Label>
     ),
+  },
+];
+
+export const orderFoodsColumns: TableColumn[] = [
+  {
+    key: 'index',
+    label: '#',
+    render: (value, record, index) => (index + 1),
+  },
+  {
+    key: 'name',
+    label: 'Name',
+    render: (value, record) => (record?.product?.name || '-'),
+  },
+  {
+    key: 'amount',
+    label: 'Amount',
+    render: (value) => (value),
+  },
+  {
+    key: 'cost',
+    label: 'Cost',
+    render: (value, record) => (`${record?.product?.cost} сум`),
   },
 ];

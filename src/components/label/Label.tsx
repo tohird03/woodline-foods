@@ -3,7 +3,7 @@ import {Box, BoxProps} from '@mui/material';
 import {Theme, useTheme} from '@mui/material/styles';
 import {StyledLabel} from './styles';
 
-interface LabelProps extends BoxProps {
+export interface LabelProps extends BoxProps {
   children: ReactNode;
   color?: 'default' | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error';
   variant?: 'filled' | 'outlined' | 'ghost' | 'soft';

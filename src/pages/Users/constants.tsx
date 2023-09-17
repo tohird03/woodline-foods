@@ -1,9 +1,11 @@
 import React from 'react';
+import {Box} from '@mui/material';
 import {IUsers} from '../../api/users/types';
 import {TableColumn} from '../../components/table/types';
 import {AddBalance} from './AddBalance';
 import {ChangeOrganisation} from './ChangeOrganisation';
 import {ChangeVerify} from './ChangeVerify';
+import {UsersStyles} from './styles';
 import {UserStatusChange} from './UserStatusChange';
 
 export const usersColumns: TableColumn[] = [
@@ -52,10 +54,10 @@ export const usersColumns: TableColumn[] = [
     key: 'is_active',
     label: 'tableUserChangeOrg',
     render: (value, record) => (
-      <>
+      <Box sx={UsersStyles.tableActionBox}>
         <ChangeOrganisation user={record as IUsers} />
         <AddBalance user={record as IUsers} />
-      </>
+      </Box>
     ),
   },
 ];

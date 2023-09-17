@@ -1,6 +1,7 @@
 import React from 'react';
 import {sentenceCase} from 'change-case';
-import Label from '../../components/label';
+import {IOrderStatus} from '../../api/order/types';
+import Label, {LabelProps} from '../../components/label';
 import {TableColumn} from '../../components/table/types';
 import {getPaymentDate, uszFormatPrice} from '../../utils/formatTime';
 import {OrderProduct} from './OrderProduct';
@@ -29,11 +30,11 @@ export const ordersColumn: TableColumn[] = [
     render: (value) => (getPaymentDate(value)),
   },
   {
-    key: 'is_accepted',
+    key: 'status',
     label: 'tableOrderStatus',
     render: (value) => (
-      <Label color={value ? 'success' : 'error'} variant={'outlined'}>
-        {sentenceCase(value ? 'Accepted' : 'Dont Accepted')}
+      <Label color={OrderStatusColor[value as IOrderStatus]} variant={'outlined'}>
+        {sentenceCase(value)}
       </Label>
     ),
   },
@@ -61,3 +62,9 @@ export const orderFoodsColumns: TableColumn[] = [
     render: (value, record) => (record?.food?.cost),
   },
 ];
+
+export const OrderStatusColor: Record<IOrderStatus, LabelProps['color']> = {
+  [IOrderStatus.ACCEPTED]: 'success',
+  [IOrderStatus.CANCELED]: 'error',
+  [IOrderStatus.PENDING]: 'primary',
+};

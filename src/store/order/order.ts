@@ -52,6 +52,11 @@ class OrderStore {
 
   reset() {
     this.orders = [];
+    this.totalOrder = 0;
+    this.page = 1;
+    this.size = 10;
+    this.isOpenOrderProductModal = false;
+    this.foods = [];
   }
 }
 

@@ -43,6 +43,11 @@ class ProductsStore {
       .then(res => {
         if (res) {
           successNotification('Success add new product');
+
+          this.getProducts({
+            page: this.page,
+            size: this.size,
+          });
         }
 
         return res;

@@ -1,6 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 import {foodsApi} from '../../api/foods';
-import {IFoods, IOrganisation, IProducts} from '../../api/foods/types';
+import {IFoods, IFoodsProducts, IOrganisation, IProducts} from '../../api/foods/types';
 import {IPagination} from '../../api/types';
 import {addAxiosErrorNotification} from '../../utils/notification';
 
@@ -11,6 +11,8 @@ class FoodsStore {
   size = 10;
   organisations: IOrganisation[] = [];
   products: IProducts[] = [];
+  singleFoodProduct: IFoodsProducts[] = [];
+  isOpenSingleFoodProductModal = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -70,6 +72,14 @@ class FoodsStore {
 
   setSize = (size: number) => {
     this.size = size;
+  };
+
+  setSingleFoodProducts = (singleProducts: IFoodsProducts[]) => {
+    this.singleFoodProduct = singleProducts;
+  };
+
+  setIsOpenFoodProductModal = (isOpen: boolean) => {
+    this.isOpenSingleFoodProductModal = isOpen;
   };
 
   reset() {

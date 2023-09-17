@@ -5,6 +5,7 @@ import {useFormik} from 'formik';
 import {IOrganisation} from '../../../../api/users/types';
 import {Modal} from '../../../../components/Modal';
 import {usersStore} from '../../../../store/users';
+import {UsersStyles} from '../../styles';
 
 export const ChangeOrganisationModal = observer(() => {
   const formik = useFormik({
@@ -30,7 +31,7 @@ export const ChangeOrganisationModal = observer(() => {
     usersStore.organisations?.map((org: IOrganisation) => (
       <MenuItem
         sx={org?._id === usersStore?.singleUser?.org?._id
-          ? {backgroundColor: 'green !important', color: 'white !important'}
+          ? UsersStyles.changeOrgMenuItem
           : {}
         }
         key={org?._id} value={org?._id}
@@ -58,28 +59,27 @@ export const ChangeOrganisationModal = observer(() => {
       open={usersStore.isOpenOrganisationModal}
       onButtonClose={handleClose}
       title="Change organisation"
-      width={400}
     >
       <form onSubmit={formik.handleSubmit}>
         <Box>
-          <FormControl sx={{margin: '10px 0'}} fullWidth>
+          <FormControl sx={UsersStyles.changeOrgFormControl} fullWidth>
             <InputLabel>Organisation</InputLabel>
             <Select
-              name="org"
-              label="Organisation"
               onChange={formik.handleChange}
-              required
               defaultValue={usersStore?.singleUser?.org?._id}
+              label="Organisation"
+              name="org"
+              required
             >
               {organisationOption}
             </Select>
           </FormControl>
           <Button
+            sx={UsersStyles.fullWidth}
             variant="contained"
-            sx={{width: '100%'}}
             type="submit"
           >
-          Change organisation
+            Change organisation
           </Button>
         </Box>
       </form>

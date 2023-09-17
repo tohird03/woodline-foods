@@ -1,6 +1,7 @@
 /* eslint-disable react/function-component-definition */
 import React, {useState} from 'react';
-import {Box, IconButton, MenuItem, Popover, Stack} from '@mui/material';
+import {useTranslation} from 'react-i18next';
+import {Box, IconButton, MenuItem, Popover, Stack, Tooltip} from '@mui/material';
 import {alpha} from '@mui/material/styles';
 import i18n from '../../../language/i18next';
 
@@ -38,6 +39,7 @@ export default function LanguagePopover() {
   const [open, setOpen] = useState(null);
   const storedLanguage = localStorage.getItem('lang');
   const [language, setLanguage] = useState<LangValue>(storedLanguage as LangValue || LangValue.Ru);
+  const {t} = useTranslation();
 
   const handleOpen = (event: any) => {
     setOpen(event.currentTarget);
@@ -55,20 +57,23 @@ export default function LanguagePopover() {
 
   return (
     <>
-      <IconButton
-        onClick={handleOpen}
-        sx={{
-          padding: 0,
-          width: 44,
-          height: 44,
-          ...(open ? {
-            bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.action.focusOpacity),
-          } : {}
-          ),
-        }}
-      >
-        <img width="28" src={LANGS[language].icon} alt={LANGS[language].label} />
-      </IconButton>
+      <Tooltip title={t('tooltipLanguageSelect')}>
+        <IconButton
+          onClick={handleOpen}
+          sx={{
+            padding: 0,
+            width: 44,
+            height: 44,
+            ...(open ? {
+              bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.action.focusOpacity),
+            } : {}
+            ),
+          }}
+        >
+          <img width="28" src={LANGS[language].icon} alt={LANGS[language].label} />
+        </IconButton>
+      </Tooltip>
+
 
       <Popover
         open={Boolean(open)}

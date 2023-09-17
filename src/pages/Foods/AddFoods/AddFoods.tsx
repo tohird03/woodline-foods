@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+/* eslint-disable react/no-array-index-key */
+import React, {useEffect, useMemo, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {
@@ -21,10 +22,9 @@ import {ROUTES} from '../../../constants/router';
 import {foodsStore} from '../../../store/foods';
 import {addAxiosErrorNotification, successNotification} from '../../../utils/notification';
 import {CategoryOption} from '../constants';
+import {foodStyles} from '../styles';
 
 export const AddFoods = observer(() => {
-  const [organisationOption, setOrganisationOption] = useState<React.ReactNode[]>([]);
-  const [productsOption, setProductsOption] = useState<React.ReactNode[]>([]);
   const [products, setProducts] = useState<IAddFoodProduct[]>([
     {product: '', amount: 0},
   ]);
@@ -71,58 +71,46 @@ export const AddFoods = observer(() => {
     setProducts(newProducts);
   };
 
-  useEffect(() => {
-    foodsStore.getOrganisation()
-      .then(res => {
-        if (res) {
-          setOrganisationOption(
-            res?.data?.map((org: IOrganisation) => (
-              <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
-            ))
-          );
-        }
-      });
+  const organisationOptions = useMemo(() => (
+    foodsStore.organisations.map((org: IOrganisation) => (
+      <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
+    ))
+  ), [foodsStore.organisations]);
 
-    foodsStore.getProducts()
-      .then(res => {
-        if (res) {
-          setProductsOption(
-            res?.data?.map((product: IProducts) => (
-              <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
-            ))
-          );
-        }
-      });
+  const productOptions = useMemo(() => (
+    foodsStore.products.map((product: IProducts) => (
+      <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
+    ))
+  ), [foodsStore.products]);
+
+  useEffect(() => {
+    foodsStore.getOrganisation();
+    foodsStore.getProducts();
+
+    return () => {
+      foodsStore.setProducts([]);
+      foodsStore.setOrganisation([]);
+    };
   }, []);
 
   return (
     <Container>
-      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2}>
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        mb={2}
+      >
         <Typography variant="h4" gutterBottom>
           Add Foods
         </Typography>
       </Stack>
       <form onSubmit={formik.handleSubmit}>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'row !important',
-            gap: '20px',
-            alignItems: 'flex-start',
-            marginBottom: '30px',
-            width: '100%',
-          }}
-        >
-          <Box sx={{width: '50%', gap: '20px', display: 'grid', marginTop: '15px'}}>
+        <Box sx={foodStyles.addFoodsWRapper}>
+          <Box sx={foodStyles.addFoodsProducts}>
             {products.map((product, index) => (
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'row !important',
-                  gap: '10px',
-                }} key={index}
-              >
-                <FormControl sx={{width: '70%'}} fullWidth>
+              <Box sx={foodStyles.addFoodsProductBox} key={index}>
+                <FormControl sx={foodStyles.addFoodFormControl} fullWidth>
                   <InputLabel>{`Product ${index + 1}`}</InputLabel>
                   <Select
                     label={`Product ${index + 1}`}
@@ -130,14 +118,14 @@ export const AddFoods = observer(() => {
                     onChange={(event) => handleProductSelectChange(event, index)}
                     required
                   >
-                    {productsOption}
+                    {productOptions}
                   </Select>
                 </FormControl>
                 <TextField
-                  label={`Amount ${index + 1}`}
-                  value={product.amount}
-                  type="number"
                   onChange={(event) => handleAmountChange(event, index)}
+                  value={product.amount}
+                  label={`Amount ${index + 1}`}
+                  type="number"
                   required
                   minRows={0}
                 />
@@ -147,25 +135,25 @@ export const AddFoods = observer(() => {
               type="button"
               variant="outlined"
               onClick={addProduct}
-              sx={{width: '100%'}}
+              sx={foodStyles.addFoodsFormBox}
             >
               добавить больше продуктов +
             </Button>
           </Box>
-          <Box sx={{gap: '20px', display: 'grid', width: '50%', marginTop: '15px'}}>
+          <Box sx={foodStyles.addFoodsLeftWrapper}>
             <TextField
+              onChange={formik.handleChange}
+              value={formik.values.name}
               label="Food Name"
               name="name"
-              value={formik.values.name}
-              onChange={formik.handleChange}
               required
             />
             <TextField
+              onChange={formik.handleChange}
+              value={formik.values.cost}
               label="Cost"
               type="number"
               name="cost"
-              value={formik.values.cost}
-              onChange={formik.handleChange}
               required
             />
             <FormControl fullWidth>
@@ -177,7 +165,7 @@ export const AddFoods = observer(() => {
                 value={formik.values.org}
                 required
               >
-                {organisationOption}
+                {organisationOptions}
               </Select>
             </FormControl>
             <FormControl fullWidth>

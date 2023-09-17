@@ -5,6 +5,7 @@ export const Endpoints = {
   UserStatus: '/user/status',
   UserOrganisation: '/user/org',
   UserChangeVerify: '/user/verify',
+  UserPayment: '/user/payment',
   Products: '/product',
   Foods: '/food',
   Organisation: '/org',

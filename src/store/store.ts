@@ -1,5 +1,6 @@
 import {appStore} from './app';
 import {authStore} from './auth';
+import {dashboardStore} from './dashboard';
 import {lunchStore} from './lunch';
 import {orderStore} from './order';
 import {organisationStore} from './organisation';
@@ -7,21 +8,23 @@ import {productStore} from './products';
 import {usersStore} from './users';
 
 export const store = {
-  authStore,
-  usersStore,
-  productStore,
   appStore,
-  organisationStore,
-  orderStore,
+  authStore,
+  dashboardStore,
   lunchStore,
+  orderStore,
+  organisationStore,
+  productStore,
+  usersStore,
 };
 
 export const resetStores = () => {
-  authStore.reset();
-  usersStore.reset();
-  productStore.reset();
   appStore.reset();
-  organisationStore.reset();
-  orderStore.reset();
+  authStore.reset();
+  dashboardStore.reset();
   lunchStore.reset();
+  orderStore.reset();
+  organisationStore.reset();
+  productStore.reset();
+  usersStore.reset();
 };

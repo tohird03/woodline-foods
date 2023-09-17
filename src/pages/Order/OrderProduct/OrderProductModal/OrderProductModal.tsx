@@ -5,6 +5,8 @@ import {Table} from '../../../../components/table';
 import {orderStore} from '../../../../store/order';
 import {orderFoodsColumns} from '../../constants';
 
+const MODAL_WIDTH = 550;
+
 export const OrderProductModal = observer(() => {
 
   const handleClose = () => {
@@ -19,8 +21,8 @@ export const OrderProductModal = observer(() => {
     <Modal
       open={orderStore.isOpenOrderProductModal}
       onButtonClose={handleClose}
+      width={MODAL_WIDTH}
       title="Заказ"
-      width={550}
     >
       <Table
         columns={orderFoodsColumns}

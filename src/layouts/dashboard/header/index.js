@@ -1,5 +1,6 @@
 /* eslint-disable react/function-component-definition */
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import {AppBar, Box, IconButton, Stack, Toolbar, Tooltip} from '@mui/material';
@@ -7,7 +8,6 @@ import {styled} from '@mui/material/styles';
 import Iconify from '../../../components/iconify';
 import {useStores} from '../../../store/store-context';
 import {bgBlur} from '../../../utils/cssStyles';
-import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import {NotificationsPopover} from './NotificationsPopover';
 import Searchbar from './Searchbar';
@@ -36,6 +36,8 @@ const StyledToolbar = styled(Toolbar)(({theme}) => ({
 }));
 
 const DashboardLayout = observer(({onOpenNav}) => {
+  const {t} = useTranslation();
+
   const {appStore} = useStores();
 
   const handleNotificationModalOpen = () => {
@@ -63,13 +65,10 @@ const DashboardLayout = observer(({onOpenNav}) => {
           <Stack
             direction="row"
             alignItems="center"
-            spacing={{
-              xs: 0.5,
-              sm: 1,
-            }}
+            spacing={{xs: 0.5, sm: 1}}
           >
             <LanguagePopover />
-            <Tooltip title="Send a notification to a bot">
+            <Tooltip title={t('tooltipSendNotification')}>
               <IconButton
                 color="primary"
                 onClick={handleNotificationModalOpen}
@@ -77,10 +76,10 @@ const DashboardLayout = observer(({onOpenNav}) => {
                 <TelegramIcon />
               </IconButton>
             </Tooltip>
-            <AccountPopover />
           </Stack>
         </StyledToolbar>
       </StyledRoot>
+
       {appStore.isOpenNotificationModal && <NotificationsPopover />}
     </>
   );
