@@ -4,17 +4,17 @@ export const historyColumns: TableColumn[] = [
   {
     key: 'meal',
     label: 'tableHistoryMeal',
-    render: (value) => (value || '-'),
+    render: (value, record) => (record?.meal?.name || '-'),
   },
   {
     key: 'agree_users',
     label: 'tableHistoryAgreeUsers',
-    render: (value) => (value || '-'),
+    render: (value) => (value || 0),
   },
   {
     key: 'disagree_users',
     label: 'tableHistoryDisagreeUsers',
-    render: (value) => (value || '-'),
+    render: (value) => (value || 0),
   },
   {
     key: 'org',

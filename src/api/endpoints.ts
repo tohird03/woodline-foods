@@ -14,4 +14,5 @@ export const Endpoints = {
   Lunch: '/lunch',
   Login: '/admin/login',
   Admins: '/admin',
+  History: '/trip',
 };

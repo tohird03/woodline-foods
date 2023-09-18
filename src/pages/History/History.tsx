@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
 import {Container, Stack, Typography} from '@mui/material';
@@ -21,6 +21,13 @@ export const History = observer(() => {
     historyStore.setPage(1);
     historyStore.setSize(perPage);
   };
+
+  useEffect(() => {
+    historyStore.getHostory({
+      page: historyStore.page,
+      size: historyStore.size,
+    });
+  }, [historyStore.page, historyStore.size]);
 
   return (
     <Container>
