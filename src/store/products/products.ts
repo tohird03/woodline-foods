@@ -1,7 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 import {IOrganisation} from '../../api/organisation/types';
 import {productApi} from '../../api/products';
-import {IAddNewProduct, IProducts} from '../../api/products/types';
+import {IAddAmountProduct, IAddNewProduct, IProducts} from '../../api/products/types';
 import {IPagination} from '../../api/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
@@ -12,6 +12,8 @@ class ProductsStore {
   isOpenProductModal = false;
   page = 1;
   size = 10;
+  isOpenAmountModal = false;
+  singleProduct: IProducts | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -54,6 +56,20 @@ class ProductsStore {
       })
       .catch(addAxiosErrorNotification);
 
+  productAmountChange = (params: IAddAmountProduct) =>
+    productApi.productAmountChange(params)
+      .then(res => {
+        if (res) {
+          successNotification('Success change amount');
+
+          this.getProducts({
+            page: this.page,
+            size: this.size,
+          });
+        }
+      })
+      .catch(addAxiosErrorNotification);
+
   setProducts = (products: IProducts[]) => {
     this.products = products;
   };
@@ -76,6 +92,14 @@ class ProductsStore {
 
   setSize = (size: number) => {
     this.size = size;
+  };
+
+  setIsAmountModal = (isOpen: boolean) => {
+    this.isOpenAmountModal = isOpen;
+  };
+
+  setSingleProduct = (singleProduct: IProducts | null) => {
+    this.singleProduct = singleProduct;
   };
 
   reset() {

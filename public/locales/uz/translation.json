@@ -6,11 +6,13 @@
   "organisation": "Tashkilotlar",
   "order": "Buyurtmalar",
   "lunch": "Tushlik",
+  "lunchHistory": "Tushliklar tarixi",
 
   "newProduct": "Yangi mahsulot",
   "newFood": "Yangi ovqat",
   "newOrganisation": "Yangi tashkilot",
   "newLunch": "Yangi Tushlik",
+  "newAdmin": "Yangi admin",
 
   "tableUserName": "Ism",
   "tableUserSurname": "Familiya",
@@ -27,6 +29,7 @@
   "tableProductCost": "Narxi",
   "tableProductOrganisation": "Tashkiloti",
   "tableProductDate": "Yaratilgan vaqti",
+  "tableProductChangeAmount": "Miqdorni o'zgartirish",
 
   "tableFoodPhoto": "Rasmi",
   "tableFoodName": "Nomi",
@@ -52,5 +55,13 @@
   "dashboardFilterByTime": "Vaqt bo'yicha",
 
   "tooltipSendNotification": "Botga xabar yuborish",
-  "tooltipLanguageSelect": "Tilni o'zgartirish"
+  "tooltipLanguageSelect": "Tilni o'zgartirish",
+  "tooltipLogoutBtn": "Chiqish",
+
+  "admins": "Adminlar",
+  "adminsPassword": "Parol",
+
+  "tableHistoryMeal": "Ovqat",
+  "tableHistoryAgreeUsers": "Xohlovchilar",
+  "tableHistoryDisagreeUsers": "Xohlamaganlar"
 }

@@ -10,6 +10,7 @@ import {
 import Iconify from '../../components/iconify';
 import {Table} from '../../components/table';
 import {productStore} from '../../store/products';
+import {AddAmountModal} from './AddAmount/AddAmountModal';
 import {AddProduct} from './AddProduct';
 import {productColumns} from './constants';
 
@@ -80,6 +81,7 @@ export const Products = observer(() => {
       </Container>
 
       {productStore.isOpenProductModal && <AddProduct />}
+      {productStore.isOpenAmountModal && <AddAmountModal />}
     </>
   );
 });

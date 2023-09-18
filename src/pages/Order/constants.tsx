@@ -3,7 +3,7 @@ import {sentenceCase} from 'change-case';
 import {IOrderStatus} from '../../api/order/types';
 import Label, {LabelProps} from '../../components/label';
 import {TableColumn} from '../../components/table/types';
-import {getPaymentDate, uszFormatPrice} from '../../utils/formatTime';
+import {getFullDateFormat, uszFormatPrice} from '../../utils/formatTime';
 import {OrderProduct} from './OrderProduct';
 
 export const ordersColumn: TableColumn[] = [
@@ -27,7 +27,7 @@ export const ordersColumn: TableColumn[] = [
   {
     key: 'createdAt',
     label: 'tableOrderCreatedAt',
-    render: (value) => (getPaymentDate(value)),
+    render: (value) => (getFullDateFormat(value)),
   },
   {
     key: 'status',

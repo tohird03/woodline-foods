@@ -1,8 +1,7 @@
 import React from 'react';
 import {GlobalStyles as MUIGlobalStyles} from '@mui/material';
 
-// eslint-disable-next-line react/function-component-definition
-export default function GlobalStyles() {
+const GlobalStyles = () => {
   const inputGlobalStyles = (
     <MUIGlobalStyles
       styles={{
@@ -47,9 +46,15 @@ export default function GlobalStyles() {
           margin: 0,
           padding: 0,
         },
+        th: {
+          maxWidth: '300px',
+          wordBreak: 'break-all',
+        },
       }}
     />
   );
 
   return inputGlobalStyles;
-}
+};
+
+export default GlobalStyles;

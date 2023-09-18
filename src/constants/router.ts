@@ -8,5 +8,7 @@ export const ROUTES = {
   addFood: '/add-food',
   org: '/organisation',
   order: '/order',
+  admins: '/admins',
   errorUrl: '/*',
+  history: '/history',
 };

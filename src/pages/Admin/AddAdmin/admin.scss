@@ -93,16 +93,4 @@
     outline: none;
     width: 100%;
   }
-  &__pass-icon {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translate(0, -50%);
-    size: 12px;
-  }
-}
-
-.form__phone .form-control {
-  width: 100% !important;
-  min-width: 300px;
 }

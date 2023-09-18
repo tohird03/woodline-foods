@@ -77,6 +77,7 @@ export const AddLunch = observer(() => {
           value={formik.values.cost}
           type="number"
           onChange={formik.handleChange}
+          inputProps={{min: 0}}
           minRows={0}
           required
           name="cost"

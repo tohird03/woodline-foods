@@ -4,27 +4,57 @@ import 'react-phone-input-2/lib/style.css';
 import React, {useState} from 'react';
 import {Helmet} from 'react-helmet-async';
 import PhoneInput from 'react-phone-input-2';
+import {useNavigate} from 'react-router-dom';
+import {observer} from 'mobx-react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import {Button, Container, IconButton, Typography} from '@mui/material';
+import {useFormik} from 'formik';
+import {useLocalStorage} from 'usehooks-ts';
+import {AdminRole, ILoginResponse} from '../../api/auth/types';
+import {ROUTES} from '../../constants/router';
 import useResponsive from '../../hooks/useResponsive';
+import {authStore} from '../../store/auth';
+import {successNotification} from '../../utils/notification';
 import {StyledContent, StyledRoot, StyledSection} from './styles';
 
-export const PhoneLogin = () => {
-  const mdUp = useResponsive('up', 'md');
+export const PhoneLogin = observer(() => {
+  const mdUp = useResponsive('up', 'md', 1);
   const [isShowPass, setIsShowPass] = useState(false);
+  const [, setAccessToken] = useLocalStorage<string>('accessToken', '');
+  const [, setStaff] = useLocalStorage<ILoginResponse | null>('staff', null);
+  const navigate = useNavigate();
 
-  const [phone, setPhone] = useState('');
+  const formik = useFormik({
+    initialValues: {
+      phone_number: '',
+      password: '',
+    },
+    onSubmit: values => {
+      authStore.login({
+        ...values,
+        phone_number: values.phone_number?.slice(4)?.split(' ').join(''),
+      })
+        .then(res => {
+          if (res?.token && res?.admin) {
+            setAccessToken(res.token);
+            setStaff(res);
 
-  const handlePhoneChange = (phone) => {
-    setPhone(phone);
-  };
+            const role = res?.admin?.role[0];
 
-  const handleSubmitPhone = (evt) => {
-    if (evt) {
-      evt.preventDefault();
-    }
-  };
+            if (role === AdminRole.COOK) {
+              navigate(ROUTES.lunch);
+            } else if (role === AdminRole.STOREKEEPER) {
+              navigate(ROUTES.product);
+            } else if (role === AdminRole.SUPER_ADMIN) {
+              navigate(ROUTES.home);
+            }
+
+            successNotification(`Welcome to ${res.admin?.fullname}`);
+          }
+        });
+    },
+  });
 
   const handleShowPass = () => {
     setIsShowPass(!isShowPass);
@@ -52,28 +82,34 @@ export const PhoneLogin = () => {
               Sign in to Woodline Food
             </Typography>
 
-            <form className="form" onSubmit={handleSubmitPhone}>
+            <form className="form" onSubmit={formik.handleSubmit}>
               <PhoneInput
                 country={'uz'}
-                value={phone}
-                onChange={handlePhoneChange}
+                onChange={formik.handleChange}
+                value={formik.values.phone_number}
                 inputProps={{
-                  name: 'phone',
+                  name: 'phone_number',
                   required: true,
                   autoFocus: true,
+                  onChange: formik.handleChange,
+                  className: 'form__password-input form__phone-input',
+                  autocomplete: 'off',
                 }}
-                className="form__phone"
               />
               <div className="form__password-wrapper">
                 <input
+                  onChange={formik.handleChange}
+                  value={formik.values.password}
+                  minLength={8}
                   className="form__password-input"
                   type={isShowPass ? 'text' : 'password'}
                   placeholder="Password"
-                  minLength={8}
+                  name="password"
+                  required
                 />
                 <IconButton
-                  className="form__pass-icon"
                   onClick={handleShowPass}
+                  className="form__pass-icon"
                   size="small"
                 >
                   {isShowPass ? <VisibilityIcon /> : <VisibilityOffIcon />}
@@ -84,6 +120,7 @@ export const PhoneLogin = () => {
                 variant="contained"
                 color="primary"
                 className="form__otp-submit"
+                type="submit"
               >
                 Login
               </Button>
@@ -93,4 +130,4 @@ export const PhoneLogin = () => {
       </StyledRoot>
     </>
   );
-};
+});

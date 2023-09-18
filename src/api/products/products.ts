@@ -1,7 +1,7 @@
 import {Endpoints} from '../endpoints';
 import {Instance} from '../instance';
 import {INetworkConfig, IPagination} from '../types';
-import {IAddNewProduct, IGetOrganisation, IGetProducts, IProducts} from './types';
+import {IAddAmountProduct, IAddNewProduct, IGetOrganisation, IGetProducts, IProducts} from './types';
 
 const config: INetworkConfig = {
   baseURL: '',
@@ -25,6 +25,9 @@ class ProductApi extends Instance {
 
   addNewProduct = (params: IAddNewProduct): Promise<IProducts> =>
     this.post(Endpoints.Products, params);
+
+  productAmountChange = (params: IAddAmountProduct): Promise<IProducts> =>
+    this.patch(Endpoints.ProductAmount, params);
 }
 
 export const productApi = new ProductApi(config);

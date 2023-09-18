@@ -6,11 +6,13 @@
   "organisation": "Organisations",
   "order": "Orders",
   "lunch": "Lunch",
+  "lunchHistory": "Lunch History",
 
   "newProduct": "New Product",
   "newFood": "New Food",
   "newOrganisation": "New Organisation",
   "newLunch": "New lunch",
+  "newAdmin": "New Admin",
 
   "tableUserName": "Name",
   "tableUserSurname": "Surname",
@@ -27,6 +29,7 @@
   "tableProductCost": "Cost",
   "tableProductOrganisation": "Organisation",
   "tableProductDate": "Created At",
+  "tableProductChangeAmount": "Change amount",
 
   "tableFoodPhoto": "Photo",
   "tableFoodName": "Name",
@@ -52,5 +55,13 @@
   "dashboardFilterByTime": "By time",
 
   "tooltipSendNotification": "Send a notification to a bot",
-  "tooltipLanguageSelect": "Change the language"
+  "tooltipLanguageSelect": "Change the language",
+  "tooltipLogoutBtn": "Logout",
+
+  "admins": "Admins",
+  "adminsPassword": "Password",
+
+  "tableHistoryMeal": "Food",
+  "tableHistoryAgreeUsers": "Agree users",
+  "tableHistoryDisagreeUsers": "Disagree users"
 }

@@ -1,7 +1,9 @@
 import React from 'react';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
+import HistoryIcon from '@mui/icons-material/History';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import ReceiptLongSharpIcon from '@mui/icons-material/ReceiptLongSharp';
@@ -24,14 +26,19 @@ export const navConfig: INavbarLinks[] = [
     icon: <DashboardIcon />,
   },
   {
-    title: 'lunch',
-    path: ROUTES.lunch,
-    icon: <LunchDiningIcon />,
+    title: 'admins',
+    path: ROUTES.admins,
+    icon: <AdminPanelSettingsIcon />,
   },
   {
     title: 'user',
     path: ROUTES.users,
     icon: <GroupIcon />,
+  },
+  {
+    title: 'lunch',
+    path: ROUTES.lunch,
+    icon: <LunchDiningIcon />,
   },
   {
     title: 'products',
@@ -52,5 +59,10 @@ export const navConfig: INavbarLinks[] = [
     title: 'order',
     path: ROUTES.order,
     icon: <ReceiptLongSharpIcon />,
+  },
+  {
+    title: 'lunchHistory',
+    path: ROUTES.history,
+    icon: <HistoryIcon />,
   },
 ];

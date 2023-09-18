@@ -7,8 +7,11 @@ export const Endpoints = {
   UserChangeVerify: '/user/verify',
   UserPayment: '/user/payment',
   Products: '/product',
+  ProductAmount: '/product/amount',
   Foods: '/food',
   Organisation: '/org',
   Order: '/order',
   Lunch: '/lunch',
+  Login: '/admin/login',
+  Admins: '/admin',
 };

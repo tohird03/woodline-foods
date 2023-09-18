@@ -11,4 +11,14 @@ export const productStyles = {
     marginLeft: 'auto',
     width: '100px',
   },
+  addBalanceTextFeild: {
+    margin: '10px 0',
+    width: '100%',
+  },
+  addBalanceFormControl: {
+    marginBottom: '10px',
+  },
+  addBalanceSubmitBtn: {
+    width: '100%',
+  },
 };

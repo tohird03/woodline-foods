@@ -2,9 +2,7 @@ import React from 'react';
 import {sentenceCase} from 'change-case';
 import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
-import {getPaymentDate} from '../../utils/formatTime';
-
-const CREATED_TIME_ZONE = -5;
+import {getFullDateFormat} from '../../utils/formatTime';
 
 export const organisationColumns: TableColumn[] = [
   {
@@ -15,7 +13,7 @@ export const organisationColumns: TableColumn[] = [
   {
     key: 'createdAt',
     label: 'tableOrgCreatedAt',
-    render: (value) => (getPaymentDate(value, CREATED_TIME_ZONE)),
+    render: (value) => (getFullDateFormat(value)),
   },
   {
     key: 'is_active',

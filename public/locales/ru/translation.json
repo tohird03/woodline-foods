@@ -6,11 +6,13 @@
   "organisation": "Организация",
   "order": "Заказы",
   "lunch": "Обед",
+  "lunchHistory": "История обеда",
 
   "newProduct": "Новый продукт",
   "newFood": "Новый еда",
   "newOrganisation": "Новые организации",
   "newLunch": "Новые Обед",
+  "newAdmin": "Новый администратор",
 
   "tableUserName": "Имя",
   "tableUserSurname": "Фамилия",
@@ -27,6 +29,7 @@
   "tableProductCost": "Цена",
   "tableProductOrganisation": "Организация",
   "tableProductDate": "Создан в",
+  "tableProductChangeAmount": "Изменить сумму",
 
   "tableFoodPhoto": "Фото",
   "tableFoodName": "Имя",
@@ -52,5 +55,13 @@
   "dashboardFilterByTime": "По времени",
 
   "tooltipSendNotification": "Отправить уведомление боту",
-  "tooltipLanguageSelect": "Изменить язык"
+  "tooltipLanguageSelect": "Изменить язык",
+  "tooltipLogoutBtn": "Выйти",
+
+  "admins": "Админы",
+  "adminsPassword": "Пароль",
+
+  "tableHistoryMeal": "Еда",
+  "tableHistoryAgreeUsers": "Согласитесь пользователи",
+  "tableHistoryDisagreeUsers": "Не согласны пользователи"
 }

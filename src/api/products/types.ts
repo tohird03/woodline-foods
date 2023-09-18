@@ -42,3 +42,9 @@ export enum Units {
   LITR = 'litr',
   DONA = 'dona',
 }
+
+export interface IAddAmountProduct {
+  product: string;
+  amount: number;
+  type: boolean;
+}

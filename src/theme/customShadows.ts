@@ -3,7 +3,7 @@ import palette from './palette';
 
 const color = palette.grey[500];
 
-export default function customShadows() {
+const customShadows = () => {
   const transparent = alpha(color, 0.16);
 
   return {
@@ -25,4 +25,6 @@ export default function customShadows() {
     dialog: `-40px 40px 80px -8px ${alpha(color, 0.24)}`,
     dropdown: `0 0 2px 0 ${alpha(color, 0.24)}, -20px 20px 40px -4px ${alpha(color, 0.24)}`,
   };
-}
+};
+
+export default customShadows;

@@ -7,8 +7,10 @@ import DashboardLayout from '../layouts/dashboard';
 import SimpleLayout from '../layouts/simple';
 import {
   AddFoods,
+  Admin,
   Dashboard,
   Foods,
+  History,
   Lunch,
   NotFound,
   Order,
@@ -19,51 +21,95 @@ import {
 } from './lazy';
 import {PrivateRoute} from './PrivateRoute';
 import {PublicRoutes} from './PublicRoute';
+import {RoleChecker} from './RoleChecker';
 import {AuthProps} from './types';
 
 export const Router = observer(({isAuth}: AuthProps) => {
   const routes = useRoutes([
     {
       path: ROUTES.home,
-      element: <Suspense fallback={<Loading />}><DashboardLayout /></Suspense>,
+      element: <PrivateRoute isAuth={isAuth} />,
       children: [
         {
-          index: true,
           path: ROUTES.home,
-          element: <Suspense fallback={<Loading />}><Dashboard /></Suspense>,
-        },
-        {
-          path: ROUTES.users,
-          element: <Suspense fallback={<Loading />}><Users /></Suspense>,
-        },
-        {
-          path: ROUTES.product, element: <Suspense fallback={<Loading />}><Products /></Suspense>,
-        },
-        {
-          path: ROUTES.food,
-          element: <Suspense fallback={<Loading />}><Foods /></Suspense>,
-        },
-        {
-          path: ROUTES.org,
-          element: <Suspense fallback={<Loading />}><Organisation /></Suspense>,
-        },
-        {
-          path: ROUTES.order,
-          element: <Suspense fallback={<Loading />}><Order /></Suspense>,
-        },
-        {
-          path: ROUTES.addFood,
-          element: <Suspense fallback={<Loading />}><AddFoods /></Suspense>,
-        },
-        {
-          path: ROUTES.lunch,
-          element: <Suspense fallback={<Loading />}><Lunch /></Suspense>,
+          element: <Suspense fallback={<Loading />}><DashboardLayout /></Suspense>,
+          children: [
+            {
+              path: ROUTES.home,
+              element: (
+                <RoleChecker
+                  page={<Suspense fallback={<Loading />}><Dashboard /></Suspense>}
+                  path={ROUTES.home}
+                />),
+              index: true,
+            },
+            {
+              path: ROUTES.users,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><Users /></Suspense>} path={ROUTES.users} />
+              ),
+            },
+            {
+              path: ROUTES.product,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><Products /></Suspense>} path={ROUTES.product} />
+              ),
+            },
+            {
+              path: ROUTES.food,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><Foods /></Suspense>} path={ROUTES.food} />
+              ),
+            },
+            {
+              path: ROUTES.org,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><Organisation /></Suspense>} path={ROUTES.org} />
+              ),
+            },
+            {
+              path: ROUTES.order,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><Order /></Suspense>} path={ROUTES.order} />
+              ),
+            },
+            {
+              path: ROUTES.addFood,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><AddFoods /></Suspense>} path={ROUTES.addFood} />
+              ),
+            },
+            {
+              path: ROUTES.lunch,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><Lunch /></Suspense>} path={ROUTES.lunch} />
+              ),
+            },
+            {
+              path: ROUTES.admins,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><Admin /></Suspense>} path={ROUTES.admins} />
+              ),
+            },
+            {
+              path: ROUTES.history,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><History /></Suspense>} path={ROUTES.admins} />
+              ),
+            },
+          ],
         },
       ],
     },
     {
       path: ROUTES.login,
-      element: <Suspense fallback={<Loading />}><PhoneLogin />  </Suspense>,
+      element: <PublicRoutes isAuth={isAuth} />,
+      children: [
+        {
+          path: ROUTES.login,
+          element: <Suspense fallback={<Loading />}><PhoneLogin />  </Suspense>,
+        },
+      ],
     },
     {
       element: <SimpleLayout />,
