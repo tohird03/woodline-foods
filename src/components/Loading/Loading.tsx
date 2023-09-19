@@ -1,14 +1,12 @@
 import './loading.scss';
 
 import React from 'react';
-import {Box} from '@mui/material';
-// @ts-ignore
-import LoadingImg from '../../assets/img/loading.png';
+import {Box, CircularProgress} from '@mui/material';
 
 export const Loading = () => (
   <Box className="loader">
     <Box className="loader__img-wrapper">
-      <img className="loader__img" width={200} src={LoadingImg} alt="Loading" />
+      <CircularProgress color="inherit" />
     </Box>
   </Box>
 );
