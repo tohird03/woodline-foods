@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
-import {Button, Container, Stack, Typography} from '@mui/material';
+import {Button, Stack, Typography} from '@mui/material';
 import Iconify from '../../components/iconify';
 import {Table} from '../../components/table';
 import {lunchStore} from '../../store/lunch';
@@ -34,32 +34,30 @@ export const Lunch = observer(() => {
 
   return (
     <>
-      <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
-          <Typography variant="h4" gutterBottom>
-            {t('lunch')}
-          </Typography>
-          <Button
-            variant="contained"
-            startIcon={<Iconify icon="eva:plus-fill" />}
-            onClick={handleAddNewProduct}
-          >
-            {t('newLunch')}
-          </Button>
-        </Stack>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
+        <Typography variant="h4" gutterBottom>
+          {t('lunch')}
+        </Typography>
+        <Button
+          variant="contained"
+          startIcon={<Iconify icon="eva:plus-fill" />}
+          onClick={handleAddNewProduct}
+        >
+          {t('newLunch')}
+        </Button>
+      </Stack>
 
-        <Table
-          columns={lunchColumns}
-          data={lunchStore.lunchs}
-          pagination={{
-            total: lunchStore.totalLunchs,
-            page: lunchStore.page,
-            size: lunchStore.size,
-            handlePageChange: handleChangePage,
-            handleShowSizeChange: handleChangePerPage,
-          }}
-        />
-      </Container>
+      <Table
+        columns={lunchColumns}
+        data={lunchStore.lunchs}
+        pagination={{
+          total: lunchStore.totalLunchs,
+          page: lunchStore.page,
+          size: lunchStore.size,
+          handlePageChange: handleChangePage,
+          handleShowSizeChange: handleChangePerPage,
+        }}
+      />
 
       {lunchStore.isOpenAddLunchModal && <AddLunch />}
     </>

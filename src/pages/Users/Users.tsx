@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
 import {
-  Container,
   Stack,
   Typography,
 } from '@mui/material';
@@ -37,26 +36,24 @@ export const Users = observer(() => {
 
   return (
     <>
-      <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
-          <Typography variant="h4" gutterBottom>
-            {t('user')}
-          </Typography>
-        </Stack>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
+        <Typography variant="h4" gutterBottom>
+          {t('user')}
+        </Typography>
+      </Stack>
 
-        <Table
-          columns={usersColumns}
-          data={usersStore.users}
-          onFilterSearch={handleSearchUsers}
-          pagination={{
-            total: usersStore.totalUsers,
-            page: usersStore.page,
-            size: usersStore.size,
-            handlePageChange: handleChangePage,
-            handleShowSizeChange: handleChangePerPage,
-          }}
-        />
-      </Container>
+      <Table
+        columns={usersColumns}
+        data={usersStore.users}
+        onFilterSearch={handleSearchUsers}
+        pagination={{
+          total: usersStore.totalUsers,
+          page: usersStore.page,
+          size: usersStore.size,
+          handlePageChange: handleChangePage,
+          handleShowSizeChange: handleChangePerPage,
+        }}
+      />
 
       {usersStore.isOpenOrganisationModal && <ChangeOrganisationModal />}
       {usersStore.isOpenBalanceModal && <AddBalanceModal />}

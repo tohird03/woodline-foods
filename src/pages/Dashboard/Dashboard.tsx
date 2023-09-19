@@ -1,6 +1,5 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import {Container} from '@mui/material';
 import {TabsWithPanel} from '../../components/Tabs';
 import {dashboardStore} from '../../store/dashboard';
 import {Chart} from './Chart';
@@ -14,13 +13,13 @@ export const Dashboard = observer(() => {
   };
 
   return (
-    <Container>
+    <>
       <TabsWithPanel
         tabs={DashboardTabs}
         onTabChange={handleTabChange}
       />
       <Filter />
       <Chart />
-    </Container>
+    </>
   );
 });

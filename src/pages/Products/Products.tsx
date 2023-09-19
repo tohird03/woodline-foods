@@ -3,7 +3,6 @@ import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
 import {
   Button,
-  Container,
   Stack,
   Typography,
 } from '@mui/material';
@@ -47,38 +46,36 @@ export const Products = observer(() => {
 
   return (
     <>
-      <Container>
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          mb={1}
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        mb={1}
+      >
+        <Typography variant="h4" gutterBottom>
+          {t('products')}
+        </Typography>
+        <Button
+          variant="contained"
+          startIcon={<Iconify icon="eva:plus-fill" />}
+          onClick={handleAddNewProduct}
         >
-          <Typography variant="h4" gutterBottom>
-            {t('products')}
-          </Typography>
-          <Button
-            variant="contained"
-            startIcon={<Iconify icon="eva:plus-fill" />}
-            onClick={handleAddNewProduct}
-          >
-            {t('newProduct')}
-          </Button>
-        </Stack>
+          {t('newProduct')}
+        </Button>
+      </Stack>
 
-        <Table
-          columns={productColumns}
-          data={productStore.products}
-          onFilterSearch={handleSearchProduct}
-          pagination={{
-            total: productStore.totalProducts,
-            page: productStore.page,
-            size: productStore.size,
-            handlePageChange: handleChangePage,
-            handleShowSizeChange: handleChangePerPage,
-          }}
-        />
-      </Container>
+      <Table
+        columns={productColumns}
+        data={productStore.products}
+        onFilterSearch={handleSearchProduct}
+        pagination={{
+          total: productStore.totalProducts,
+          page: productStore.page,
+          size: productStore.size,
+          handlePageChange: handleChangePage,
+          handleShowSizeChange: handleChangePerPage,
+        }}
+      />
 
       {productStore.isOpenProductModal && <AddProduct />}
       {productStore.isOpenAmountModal && <AddAmountModal />}

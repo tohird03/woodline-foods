@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
-import {Container, Stack, Typography} from '@mui/material';
+import {Stack, Typography} from '@mui/material';
 import {Table} from '../../components/table';
 import {historyStore} from '../../store/history';
 import {historyColumns} from './constants';
@@ -30,7 +30,7 @@ export const History = observer(() => {
   }, [historyStore.page, historyStore.size]);
 
   return (
-    <Container>
+    <>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
         <Typography variant="h4" gutterBottom>
           {t('lunchHistory')}
@@ -49,6 +49,6 @@ export const History = observer(() => {
           handleShowSizeChange: handleChangePerPage,
         }}
       />
-    </Container>
+    </>
   );
 });

@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
 import {
-  Container,
   Stack,
   Typography,
 } from '@mui/material';
@@ -32,30 +31,28 @@ export const Order = observer(() => {
 
   return (
     <>
-      <Container>
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          mb={1}
-        >
-          <Typography variant="h4" gutterBottom>
-            {t('order')}
-          </Typography>
-        </Stack>
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        mb={1}
+      >
+        <Typography variant="h4" gutterBottom>
+          {t('order')}
+        </Typography>
+      </Stack>
 
-        <Table
-          columns={ordersColumn}
-          data={orderStore.orders}
-          pagination={{
-            total: orderStore.totalOrder,
-            page: orderStore.page,
-            size: orderStore.size,
-            handlePageChange: handleChangePage,
-            handleShowSizeChange: handleChangePerPage,
-          }}
-        />
-      </Container>
+      <Table
+        columns={ordersColumn}
+        data={orderStore.orders}
+        pagination={{
+          total: orderStore.totalOrder,
+          page: orderStore.page,
+          size: orderStore.size,
+          handlePageChange: handleChangePage,
+          handleShowSizeChange: handleChangePerPage,
+        }}
+      />
 
       {orderStore.isOpenOrderProductModal && <OrderProductModal />}
     </>

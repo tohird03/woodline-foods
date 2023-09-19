@@ -3,7 +3,6 @@ import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
 import {
   Button,
-  Container,
   Stack,
   Typography,
 } from '@mui/material';
@@ -42,38 +41,36 @@ export const Organisation = observer(() => {
 
   return (
     <>
-      <Container>
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          mb={1}
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        mb={1}
+      >
+        <Typography variant="h4" gutterBottom>
+          {t('organisation')}
+        </Typography>
+        <Button
+          onClick={handleAddNewOrganisation}
+          variant="contained"
+          startIcon={<Iconify icon="eva:plus-fill" />}
         >
-          <Typography variant="h4" gutterBottom>
-            {t('organisation')}
-          </Typography>
-          <Button
-            onClick={handleAddNewOrganisation}
-            variant="contained"
-            startIcon={<Iconify icon="eva:plus-fill" />}
-          >
-            {t('newOrganisation')}
-          </Button>
-        </Stack>
+          {t('newOrganisation')}
+        </Button>
+      </Stack>
 
-        <Table
-          columns={organisationColumns}
-          data={organisationStore.organisations}
-          onFilterSearch={handleSearchProduct}
-          pagination={{
-            total: organisationStore.totalOrgs,
-            page: organisationStore.page,
-            size: organisationStore.size,
-            handlePageChange: handleChangePage,
-            handleShowSizeChange: handleChangePerPage,
-          }}
-        />
-      </Container>
+      <Table
+        columns={organisationColumns}
+        data={organisationStore.organisations}
+        onFilterSearch={handleSearchProduct}
+        pagination={{
+          total: organisationStore.totalOrgs,
+          page: organisationStore.page,
+          size: organisationStore.size,
+          handlePageChange: handleChangePage,
+          handleShowSizeChange: handleChangePerPage,
+        }}
+      />
 
       {organisationStore.isOpenAddOrganisation && <AddOrganisation />}
     </>
