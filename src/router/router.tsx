@@ -32,10 +32,9 @@ export const Router = observer(({isAuth}: AuthProps) => {
       children: [
         {
           path: ROUTES.home,
-          element: <Suspense fallback={<Loading />}><DashboardLayout /></Suspense>,
+          element: <DashboardLayout />,
           children: [
             {
-              path: ROUTES.home,
               element: (
                 <RoleChecker
                   page={<Suspense fallback={<Loading />}><Dashboard /></Suspense>}
