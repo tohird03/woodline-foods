@@ -40,7 +40,7 @@ export const Table = ({
       }
 
       <TableContainer>
-        <MuiTable>
+        <MuiTable sx={min ? {} : {minWidth: 800}}>
           <TableHead columns={columns} />
           {
             data?.length > 0
