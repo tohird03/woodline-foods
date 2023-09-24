@@ -2,8 +2,10 @@ import React, {useEffect} from 'react';
 import {observer} from 'mobx-react';
 import {Button, FormControl, InputLabel, MenuItem, Select, TextField} from '@mui/material';
 import {useFormik} from 'formik';
+import {AdminRole} from '../../../../api/auth/types';
 import {TransactionType} from '../../../../api/users/types';
 import {Modal} from '../../../../components/Modal';
+import {authStore} from '../../../../store/auth';
 import {productStore} from '../../../../store/products';
 import {productStyles} from '../../styles';
 
@@ -12,11 +14,14 @@ export const AddAmountModal = observer(() => {
     initialValues: {
       amount: 0,
       type: null,
+      cost: 0,
     },
     onSubmit: values => {
       productStore.productAmountChange({
         ...values,
-        type: values.type === TransactionType.ADD,
+        type: (
+          authStore.staffInfo?.admin?.role[0] === AdminRole.STOREKEEPER || values.type === TransactionType.ADD
+        ),
         product: productStore.singleProduct?._id!,
       })
         .finally(() => {
@@ -45,27 +50,41 @@ export const AddAmountModal = observer(() => {
           sx={productStyles.addBalanceTextFeild}
           inputProps={{min: 0}}
           minRows={0}
-          label="Balance"
+          label="Cost"
+          name="cost"
+          type="number"
+          required
+        />
+        <TextField
+          onChange={formik.handleChange}
+          sx={productStyles.addBalanceTextFeild}
+          inputProps={{min: 0}}
+          minRows={0}
+          label="Amount"
           name="amount"
           type="number"
           required
         />
-        <FormControl sx={productStyles.addBalanceFormControl} fullWidth>
-          <InputLabel>Type</InputLabel>
-          <Select
-            onChange={formik.handleChange}
-            label="Type"
-            name="type"
-            required
-          >
-            <MenuItem value={TransactionType.ADD}>
-              Plus
-            </MenuItem>
-            <MenuItem value={TransactionType.SUBTRACT}>
-              Minus
-            </MenuItem>
-          </Select>
-        </FormControl>
+        {
+          authStore.staffInfo?.admin?.role[0] !== AdminRole.STOREKEEPER && (
+            <FormControl sx={productStyles.addBalanceFormControl} fullWidth>
+              <InputLabel>Type</InputLabel>
+              <Select
+                onChange={formik.handleChange}
+                label="Type"
+                name="type"
+                required
+              >
+                <MenuItem value={TransactionType.ADD}>
+                  Plus
+                </MenuItem>
+                <MenuItem value={TransactionType.SUBTRACT}>
+                  Minus
+                </MenuItem>
+              </Select>
+            </FormControl>
+          )
+        }
 
         <Button
           sx={productStyles.addBalanceSubmitBtn}

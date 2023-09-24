@@ -15,7 +15,7 @@ export const Users = observer(() => {
   const {t} = useTranslation();
 
   const handleSearchUsers = (value: string) => {
-    // TODO
+    usersStore.setSearch(value);
   };
 
   const handleChangePage = (newPage: number) => {
@@ -31,8 +31,9 @@ export const Users = observer(() => {
     usersStore.getUsers({
       page: usersStore.page,
       size: usersStore.size,
+      search: usersStore.search,
     });
-  }, [usersStore.page, usersStore.size]);
+  }, [usersStore.page, usersStore.size, usersStore.search]);
 
   return (
     <>

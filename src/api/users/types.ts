@@ -1,6 +1,12 @@
+import {IPagination} from '../types';
+
 export interface IGetUser {
   data: IUsers[];
   totalUsers: number;
+}
+
+export interface IUserParams extends IPagination {
+  search?: string;
 }
 
 export interface IUsers {

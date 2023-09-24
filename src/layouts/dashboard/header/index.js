@@ -1,14 +1,13 @@
 /* eslint-disable react/function-component-definition */
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import {AppBar, Box, IconButton, Stack, Toolbar, Tooltip} from '@mui/material';
 import {styled} from '@mui/material/styles';
 import Iconify from '../../../components/iconify';
-import {ROUTES} from '../../../constants/router';
+import {resetStores} from '../../../store/store';
 import {useStores} from '../../../store/store-context';
 import {bgBlur} from '../../../utils/cssStyles';
 import LanguagePopover from './LanguagePopover';
@@ -40,18 +39,16 @@ const StyledToolbar = styled(Toolbar)(({theme}) => ({
 
 const DashboardLayout = observer(({onOpenNav}) => {
   const {t} = useTranslation();
-  const navigate = useNavigate();
 
-  const {appStore, authStore} = useStores();
+  const {appStore} = useStores();
 
   const handleNotificationModalOpen = () => {
     appStore.setIsOpenNotificationModal(true);
   };
 
   const handleLogout = () => {
+    resetStores();
     window.localStorage.clear();
-    authStore.setIsAuth(false);
-    navigate(ROUTES.login);
   };
 
   return (

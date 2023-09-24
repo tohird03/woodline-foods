@@ -1,7 +1,14 @@
 import {makeAutoObservable} from 'mobx';
 import {IPagination} from '../../api/types';
 import {usersApi} from '../../api/users';
-import {IChangeOrganisation, IChangeStatus, IOrganisation, IUsers, TransactionParams} from '../../api/users/types';
+import {
+  IChangeOrganisation,
+  IChangeStatus,
+  IOrganisation,
+  IUserParams,
+  IUsers,
+  TransactionParams,
+} from '../../api/users/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
 class UsersStore {
@@ -13,12 +20,13 @@ class UsersStore {
   size = 10;
   singleUser: IUsers | null = null;
   isOpenBalanceModal = false;
+  search = '';
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  getUsers = (params: IPagination) =>
+  getUsers = (params: IUserParams) =>
     usersApi.getUsers(params)
       .then(res => {
         if (res) {
@@ -125,6 +133,10 @@ class UsersStore {
 
   setIsOpenBalanceModal = (isOpen: boolean) => {
     this.isOpenBalanceModal = isOpen;
+  };
+
+  setSearch = (search: string) => {
+    this.search = search;
   };
 
   reset() {

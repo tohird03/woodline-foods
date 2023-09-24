@@ -7,7 +7,7 @@ export interface ILoginResponse {
   token: string;
   admin: {
     fullname: string;
-    role: string[];
+    role: AdminRole[];
   };
 }
 

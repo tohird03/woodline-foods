@@ -47,4 +47,5 @@ export interface IAddAmountProduct {
   product: string;
   amount: number;
   type: boolean;
+  cost: number;
 }
