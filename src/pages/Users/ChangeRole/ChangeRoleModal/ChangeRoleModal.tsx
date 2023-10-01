@@ -30,7 +30,7 @@ export const ChangeRoleModal = observer(() => {
     usersStore.changeRole({
       user: usersStore?.singleUser?._id!,
       role: addRole!,
-      type: false,
+      type: true,
     })
       .catch(addAxiosErrorNotification);
   };
