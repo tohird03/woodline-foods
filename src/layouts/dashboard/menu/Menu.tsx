@@ -32,6 +32,7 @@ export const Menu = ({openNav, onCloseNav}: any) => {
       sx={{
         flexShrink: {lg: 0},
         width: {lg: NAV_WIDTH},
+        zIndex: '999',
       }}
     >
       {isDesktop ? (

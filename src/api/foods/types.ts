@@ -69,3 +69,8 @@ export interface IProducts {
   createdAt: string;
   cost: number;
 }
+
+export interface IImgChange {
+  food: string;
+  image: string;
+}

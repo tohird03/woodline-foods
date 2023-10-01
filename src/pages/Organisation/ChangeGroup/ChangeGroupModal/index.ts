@@ -1,0 +1,1 @@
+export {ChangeGroupModal} from './ChangeGroupModal';

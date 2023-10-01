@@ -1,7 +1,6 @@
 import {makeAutoObservable} from 'mobx';
-import {IOrganisation} from '../../api/organisation/types';
 import {productApi} from '../../api/products';
-import {IAddAmountProduct, IAddNewProduct, IProducts} from '../../api/products/types';
+import {IAddAmountProduct, IAddNewProduct, IOrganisation, IProducts} from '../../api/products/types';
 import {IPagination} from '../../api/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 

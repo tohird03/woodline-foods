@@ -4,6 +4,7 @@ import {IUsers} from '../../api/users/types';
 import {TableColumn} from '../../components/table/types';
 import {AddBalance} from './AddBalance';
 import {ChangeOrganisation} from './ChangeOrganisation';
+import {ChangeRole} from './ChangeRole';
 import {ChangeVerify} from './ChangeVerify';
 import {UsersStyles} from './styles';
 import {UserStatusChange} from './UserStatusChange';
@@ -57,6 +58,7 @@ export const usersColumns: TableColumn[] = [
       <Box sx={UsersStyles.tableActionBox}>
         <ChangeOrganisation user={record as IUsers} />
         <AddBalance user={record as IUsers} />
+        <ChangeRole user={record as IUsers} />
       </Box>
     ),
   },

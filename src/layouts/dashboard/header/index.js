@@ -26,6 +26,7 @@ const StyledRoot = styled(AppBar)(({theme}) => ({
   boxShadow: 'none',
   [theme.breakpoints.up('lg')]: {
     width: `calc(100% - ${NAV_WIDTH + 1}px)`,
+    zIndex: '999',
   },
 }));
 

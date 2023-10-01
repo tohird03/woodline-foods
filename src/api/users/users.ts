@@ -1,7 +1,16 @@
 import {Endpoints} from '../endpoints';
 import {Instance} from '../instance';
 import {INetworkConfig, IPagination} from '../types';
-import {IChangeOrganisation, IChangeStatus, IGetOrganisation, IGetUser, IUserParams, TransactionParams} from './types';
+import {
+  IChangeOrganisation,
+  IChangeRole,
+  IChangeStatus,
+  IGetOrganisation,
+  IGetUser,
+  IUserParams,
+  IUsers,
+  TransactionParams,
+} from './types';
 
 const config: INetworkConfig = {
   baseURL: Endpoints.Base,
@@ -29,6 +38,9 @@ class UsersApi extends Instance {
 
   addBalance = (params: TransactionParams): Promise<any> =>
     this.patch(Endpoints.UserPayment, params);
+
+  changeRole = (params: IChangeRole): Promise<IUsers> =>
+    this.patch(Endpoints.UserRole, params);
 }
 
 export const usersApi = new UsersApi(config);

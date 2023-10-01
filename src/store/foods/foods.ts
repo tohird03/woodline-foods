@@ -1,6 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 import {foodsApi} from '../../api/foods';
-import {IFoods, IFoodsProducts, IOrganisation, IProducts} from '../../api/foods/types';
+import {IFoods, IFoodsProducts, IImgChange, IOrganisation, IProducts} from '../../api/foods/types';
 import {IPagination} from '../../api/types';
 import {addAxiosErrorNotification} from '../../utils/notification';
 
@@ -13,6 +13,8 @@ class FoodsStore {
   products: IProducts[] = [];
   singleFoodProduct: IFoodsProducts[] = [];
   isOpenSingleFoodProductModal = false;
+  isOpenImgUpload = false;
+  foodId: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -50,6 +52,21 @@ class FoodsStore {
       })
       .catch(addAxiosErrorNotification);
 
+  imgChangeFood = (params: IImgChange) =>
+    foodsApi.imgChangeFood(params)
+      .then(res => {
+        if (res) {
+          this.getFoods({
+            page: this.page,
+            size: this.size,
+          });
+          this.setIsOpenImgUpload(false);
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
   setFoods = (foods: IFoods[]) => {
     this.foods = foods;
   };
@@ -80,6 +97,14 @@ class FoodsStore {
 
   setIsOpenFoodProductModal = (isOpen: boolean) => {
     this.isOpenSingleFoodProductModal = isOpen;
+  };
+
+  setIsOpenImgUpload = (isOpen: boolean) => {
+    this.isOpenImgUpload = isOpen;
+  };
+
+  setFoodId = (id: string | null) => {
+    this.foodId = id;
   };
 
   reset() {

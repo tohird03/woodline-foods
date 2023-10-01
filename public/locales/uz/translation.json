@@ -41,6 +41,9 @@
   "tableOrgName": "Nomi",
   "tableOrgCreatedAt": "Yaratilgan vaqti",
   "tableOrgStatus": "Holati",
+  "tableOrdGroupAId": "A guruh id",
+  "tableOrdGroupBId": "B guruh id",
+  "tableOrdChangeGroup": "Guruhni o'zgartirish",
 
   "tableOrderUser": "Foydalanuvchi",
   "tableOrderOrder": "Buyurtma",

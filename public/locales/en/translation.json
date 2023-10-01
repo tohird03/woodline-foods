@@ -41,6 +41,9 @@
   "tableOrgName": "Name",
   "tableOrgCreatedAt": "Created At",
   "tableOrgStatus": "Status",
+  "tableOrdGroupAId": "Group A ID",
+  "tableOrdGroupBId": "Group B ID",
+  "tableOrdChangeGroup": "Change group",
 
   "tableOrderUser": "User",
   "tableOrderOrder": "Order",

@@ -1,9 +1,13 @@
 import React from 'react';
-import {Avatar, MenuItem, Stack} from '@mui/material';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import {MenuItem} from '@mui/material';
+import {Image} from 'antd';
 import {sentenceCase} from 'change-case';
 import {Category} from '../../api/organisation/types';
 import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
+import {uszFormatPrice} from '../../utils/formatTime';
+import {ImgUpload} from './ImgUpload';
 import {Products} from './Products';
 
 export const CategoryOption = [
@@ -18,9 +22,16 @@ export const foodsColumns: TableColumn[] = [
     label: 'tableFoodPhoto',
     align: 'center',
     render: (value) => (
-      <Stack sx={{width: '100%'}} direction="row" alignItems="center" spacing={2}>
-        <Avatar sx={{margin: '0 auto !important'}} alt={value} src={value} />
-      </Stack>
+      <Image
+        style={{borderRadius: '50%'}}
+        width={50} height={50}
+        alt={value}
+        src={value}
+        preview={{
+          forceRender: false,
+          mask: <RemoveRedEyeOutlinedIcon fontSize="small" />,
+        }}
+      />
     ),
   },
   {
@@ -42,6 +53,7 @@ export const foodsColumns: TableColumn[] = [
   {
     key: 'cost',
     label: 'tableFoodCost',
+    render: (value, record) => <span>{`${uszFormatPrice(record?.cost)} сум`}</span>,
   },
   {
     key: 'category',
@@ -51,6 +63,11 @@ export const foodsColumns: TableColumn[] = [
         {sentenceCase(value)}
       </Label>
     ),
+  },
+  {
+    key: 'img',
+    label: 'Img Upload',
+    render: (value, record) => <ImgUpload food={record?._id} />,
   },
 ];
 

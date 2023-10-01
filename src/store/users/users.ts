@@ -3,6 +3,7 @@ import {IPagination} from '../../api/types';
 import {usersApi} from '../../api/users';
 import {
   IChangeOrganisation,
+  IChangeRole,
   IChangeStatus,
   IOrganisation,
   IUserParams,
@@ -20,6 +21,7 @@ class UsersStore {
   size = 10;
   singleUser: IUsers | null = null;
   isOpenBalanceModal = false;
+  isOpenChangeRoleModal = false;
   search = '';
 
   constructor() {
@@ -103,6 +105,22 @@ class UsersStore {
       })
       .catch(addAxiosErrorNotification);
 
+  changeRole = (params: IChangeRole) =>
+    usersApi.changeRole(params)
+      .then(res => {
+        if (res) {
+          successNotification('Success user change role');
+          this.getUsers({
+            page: this.page,
+            size: this.size,
+          });
+          this.setSingleUser(res);
+
+          return res;
+        }
+      })
+      .catch(addAxiosErrorNotification);
+
   setUsers = (users: IUsers[]) => {
     this.users = users;
   };
@@ -133,6 +151,10 @@ class UsersStore {
 
   setIsOpenBalanceModal = (isOpen: boolean) => {
     this.isOpenBalanceModal = isOpen;
+  };
+
+  setIsOpenChangeRoleModal = (isOpen: boolean) => {
+    this.isOpenChangeRoleModal = isOpen;
   };
 
   setSearch = (search: string) => {

@@ -41,6 +41,9 @@
   "tableOrgName": "Имя",
   "tableOrgCreatedAt": "Создан в",
   "tableOrgStatus": "Положение дел",
+  "tableOrdGroupAId": "ИД группы А",
+  "tableOrdGroupBId": "ИД группы Б",
+  "tableOrdChangeGroup": "Изменить группу",
 
   "tableOrderUser": "Пользователь",
   "tableOrderOrder": "Заказ",

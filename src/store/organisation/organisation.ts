@@ -1,6 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 import {organisationApi} from '../../api/organisation';
-import {IOrganisation} from '../../api/organisation/types';
+import {IChangeGroup, IOrganisation} from '../../api/organisation/types';
 import {IPagination} from '../../api/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
@@ -10,6 +10,8 @@ class OrganisationStore {
   totalOrgs = 0;
   page = 1;
   size = 10;
+  isOpenGroupChangeModal = false;
+  singleOrganisation: IOrganisation | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -42,6 +44,21 @@ class OrganisationStore {
       })
       .catch(addAxiosErrorNotification);
 
+  organisationGroupChange = (params: IChangeGroup) =>
+    organisationApi.organisationGroupChange(params)
+      .then(res => {
+        if (res) {
+          successNotification('Success change group');
+          this.getOrganisation({
+            page: this.page,
+            size: this.size,
+          });
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
   setOrganisation = (organisation: IOrganisation[]) => {
     this.organisations = organisation;
   };
@@ -60,6 +77,14 @@ class OrganisationStore {
 
   setSize = (size: number) => {
     this.size = size;
+  };
+
+  setIsOpenChangeGroupModal = (isOpen: boolean) => {
+    this.isOpenGroupChangeModal = isOpen;
+  };
+
+  setSingleOrganisation = (singleOrganisation: IOrganisation | null) => {
+    this.singleOrganisation = singleOrganisation;
   };
 
   reset() {

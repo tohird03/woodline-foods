@@ -27,7 +27,7 @@ export const styles = {
     },
 
     [`& .${dialogActionsClasses.root}`]: {
-      padding: '24px 32px',
+      padding: '0px 32px 24px 32px',
 
       '&>:not(:first-of-type)': {
         marginLeft: '16px',

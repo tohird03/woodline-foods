@@ -50,6 +50,9 @@ const GlobalStyles = () => {
           maxWidth: '300px',
           wordBreak: 'break-all',
         },
+        '.ant-image-mask': {
+          borderRadius: '50%',
+        },
       }}
     />
   );

@@ -9,7 +9,9 @@ import {Table} from '../../components/table';
 import {usersStore} from '../../store/users';
 import {AddBalanceModal} from './AddBalance/AddBalanceModal';
 import {ChangeOrganisationModal} from './ChangeOrganisation/ChangeOrganisationModal';
+import {ChangeRoleModal} from './ChangeRole/ChangeRoleModal';
 import {usersColumns} from './constants';
+// import {RoleChangeModal} from './RoleChange/RoleChangeModal';
 
 export const Users = observer(() => {
   const {t} = useTranslation();
@@ -58,6 +60,7 @@ export const Users = observer(() => {
 
       {usersStore.isOpenOrganisationModal && <ChangeOrganisationModal />}
       {usersStore.isOpenBalanceModal && <AddBalanceModal />}
+      {usersStore.isOpenChangeRoleModal && <ChangeRoleModal />}
     </>
   );
 });

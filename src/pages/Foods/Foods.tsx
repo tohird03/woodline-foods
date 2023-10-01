@@ -12,6 +12,7 @@ import {Table} from '../../components/table';
 import {ROUTES} from '../../constants/router';
 import {foodsStore} from '../../store/foods';
 import {foodsColumns} from './constants';
+import {ImgUploadModal} from './ImgUpload/ImgUploadModal';
 import {ProductModal} from './Products/ProductModal';
 
 export const Foods = observer(() => {
@@ -79,6 +80,7 @@ export const Foods = observer(() => {
       />
 
       {foodsStore.isOpenSingleFoodProductModal && <ProductModal />}
+      {foodsStore.isOpenImgUpload && <ImgUploadModal />}
     </>
   );
 });

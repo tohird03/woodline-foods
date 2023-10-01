@@ -1,6 +1,6 @@
 import {Endpoints} from '../endpoints';
 import {Instance} from '../instance';
-import {INetworkConfig, IPagination} from '../types';
+import {INetworkConfig} from '../types';
 import {IAddAdmin, IAdmins} from './types';
 
 const config: INetworkConfig = {

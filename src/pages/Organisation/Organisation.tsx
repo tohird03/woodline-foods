@@ -10,6 +10,7 @@ import Iconify from '../../components/iconify';
 import {Table} from '../../components/table';
 import {organisationStore} from '../../store/organisation';
 import {AddOrganisation} from './AddOrganisation';
+import {ChangeGroupModal} from './ChangeGroup/ChangeGroupModal';
 import {organisationColumns} from './constants';
 
 export const Organisation = observer(() => {
@@ -73,6 +74,7 @@ export const Organisation = observer(() => {
       />
 
       {organisationStore.isOpenAddOrganisation && <AddOrganisation />}
+      {organisationStore.isOpenGroupChangeModal && <ChangeGroupModal />}
     </>
   );
 });

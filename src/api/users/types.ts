@@ -18,7 +18,7 @@ export interface IUsers {
   telegram_id: number;
   is_active: boolean;
   is_verified: boolean;
-  roles: string[];
+  roles: IUserRole[];
   language_code: string;
   createdAt: string;
   org: {
@@ -59,4 +59,15 @@ export interface TransactionParams {
   amount: number;
   user: string;
   type: boolean;
+}
+
+export interface IChangeRole {
+  user: string;
+  role: IUserRole;
+  type: boolean;
+}
+
+export enum IUserRole {
+  User = 'user',
+  Cook = 'cook',
 }
