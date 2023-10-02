@@ -12,6 +12,11 @@ export const Users = lazy(() =>
     .then(({Users}) => ({default: Users}))
     .catch(handleCatchChunkError));
 
+export const Analitic = lazy(() =>
+  import('../pages/Users/Analitic')
+    .then(({Analitic}) => ({default: Analitic}))
+    .catch(handleCatchChunkError));
+
 export const NotFound = lazy(() =>
   import('../pages/NotFound')
     .then(({NotFound}) => ({default: NotFound}))

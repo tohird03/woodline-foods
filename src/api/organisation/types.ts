@@ -22,6 +22,7 @@ export enum Category {
 export interface IChangeGroupForm {
   group_a_id: string;
   group_b_id: string;
+  trip_timeout?: number;
 }
 
 export interface IChangeGroup extends IChangeGroupForm {

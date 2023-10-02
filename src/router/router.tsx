@@ -8,6 +8,7 @@ import SimpleLayout from '../layouts/simple';
 import {
   AddFoods,
   Admin,
+  Analitic,
   Dashboard,
   Foods,
   History,
@@ -46,6 +47,12 @@ export const Router = observer(({isAuth}: AuthProps) => {
               path: ROUTES.users,
               element: (
                 <RoleChecker page={<Suspense fallback={<Loading />}><Users /></Suspense>} path={ROUTES.users} />
+              ),
+            },
+            {
+              path: ROUTES.userAnalitic,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><Analitic /></Suspense>} path={ROUTES.users} />
               ),
             },
             {

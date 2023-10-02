@@ -1,6 +1,6 @@
 export const Endpoints = {
   Base: '/',
-  Users: '/user',
+  Users: '/user/search-pagination',
   UsersMessage: '/user/send-message',
   UserStatus: '/user/status',
   UserOrganisation: '/user/org',
@@ -11,7 +11,7 @@ export const Endpoints = {
   ProductAmount: '/product/amount',
   Foods: '/food',
   Organisation: '/org',
-  OrganisationGroup: '/org/group',
+  OrganisationGroup: '/org',
   Order: '/order',
   Lunch: '/lunch',
   Login: '/admin/login',

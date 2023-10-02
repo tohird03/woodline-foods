@@ -44,6 +44,7 @@
   "tableOrdGroupAId": "A guruh id",
   "tableOrdGroupBId": "B guruh id",
   "tableOrdChangeGroup": "Guruhni o'zgartirish",
+  "tableOrgTripTimeOut": "Tugash vaqti",
 
   "tableOrderUser": "Foydalanuvchi",
   "tableOrderOrder": "Buyurtma",

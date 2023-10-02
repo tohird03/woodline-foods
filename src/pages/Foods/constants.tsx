@@ -2,7 +2,6 @@ import React from 'react';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import {MenuItem} from '@mui/material';
 import {Image} from 'antd';
-import {sentenceCase} from 'change-case';
 import {Category} from '../../api/organisation/types';
 import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
@@ -60,7 +59,7 @@ export const foodsColumns: TableColumn[] = [
     label: 'tableFoodCategory',
     render: (value) => (
       <Label color="success" variant={'outlined'}>
-        {sentenceCase(value)}
+        {value}
       </Label>
     ),
   },

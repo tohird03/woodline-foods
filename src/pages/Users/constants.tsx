@@ -1,7 +1,10 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {Box} from '@mui/material';
+import {AreaChartOutlined} from '@ant-design/icons';
 import {IUsers} from '../../api/users/types';
 import {TableColumn} from '../../components/table/types';
+import {ROUTES} from '../../constants/router';
 import {AddBalance} from './AddBalance';
 import {ChangeOrganisation} from './ChangeOrganisation';
 import {ChangeRole} from './ChangeRole';
@@ -59,6 +62,9 @@ export const usersColumns: TableColumn[] = [
         <ChangeOrganisation user={record as IUsers} />
         <AddBalance user={record as IUsers} />
         <ChangeRole user={record as IUsers} />
+        <Link style={{color: '#637381', fontSize: '20px'}} type="text" to={`${ROUTES.users}/${record?._id}`} >
+          <AreaChartOutlined />
+        </Link>
       </Box>
     ),
   },

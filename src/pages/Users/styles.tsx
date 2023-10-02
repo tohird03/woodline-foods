@@ -45,6 +45,7 @@ export const UsersStyles = {
   tableActionBox: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
   },
 };
 

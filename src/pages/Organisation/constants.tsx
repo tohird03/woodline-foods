@@ -1,5 +1,4 @@
 import React from 'react';
-import {sentenceCase} from 'change-case';
 import {IOrganisation} from '../../api/organisation/types';
 import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
@@ -32,7 +31,7 @@ export const organisationColumns: TableColumn[] = [
     label: 'tableOrgStatus',
     render: (value) => (
       <Label color={value ? 'success' : 'error'} variant={'outlined'}>
-        {sentenceCase(value ? 'Active' : 'Not Active')}
+        {value ? 'Active' : 'Not Active'}
       </Label>
     ),
   },

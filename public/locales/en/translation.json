@@ -44,6 +44,7 @@
   "tableOrdGroupAId": "Group A ID",
   "tableOrdGroupBId": "Group B ID",
   "tableOrdChangeGroup": "Change group",
+  "tableOrgTripTimeOut": "Time is up",
 
   "tableOrderUser": "User",
   "tableOrderOrder": "Order",

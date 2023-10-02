@@ -15,7 +15,7 @@ export const TableHead = ({columns = []}: ITableHead) => {
             align={headCell.align || 'center'}
           >
             <TableSortLabel hideSortIcon>
-              {t(headCell.label)}
+              {t(headCell.label as string)}
             </TableSortLabel>
           </TableCell>
         ))}

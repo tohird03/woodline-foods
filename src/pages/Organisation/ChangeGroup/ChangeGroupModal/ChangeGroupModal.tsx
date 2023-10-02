@@ -71,6 +71,16 @@ export const ChangeGroupModal = observer(() => {
             placeholder={t('tableOrdGroupBId')}
           />
         </Form.Item>
+        <Form.Item
+          label={t('tableOrgTripTimeOut')}
+          name="trip_timeout"
+        >
+          <InputNumber
+            style={{width: '100%'}}
+            placeholder={t('tableOrgTripTimeOut')}
+            addonAfter="minut"
+          />
+        </Form.Item>
       </Form>
     </Modal>
   );

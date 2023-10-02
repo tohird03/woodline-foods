@@ -19,7 +19,7 @@ class OrganisationApi extends Instance {
     this.post(Endpoints.Organisation, {name_org: params});
 
   organisationGroupChange = (params: IChangeGroup): Promise<IOrganisation> =>
-    this.patch(Endpoints.OrganisationGroup, params);
+    this.patch(`${Endpoints.OrganisationGroup}/${params?.org}`, params);
 }
 
 export const organisationApi = new OrganisationApi(config);

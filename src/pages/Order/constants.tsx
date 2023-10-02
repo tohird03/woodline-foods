@@ -1,5 +1,4 @@
 import React from 'react';
-import {sentenceCase} from 'change-case';
 import {IOrderStatus} from '../../api/order/types';
 import Label, {LabelProps} from '../../components/label';
 import {TableColumn} from '../../components/table/types';
@@ -34,7 +33,7 @@ export const ordersColumn: TableColumn[] = [
     label: 'tableOrderStatus',
     render: (value) => (
       <Label color={OrderStatusColor[value as IOrderStatus]} variant={'outlined'}>
-        {sentenceCase(value)}
+        {value}
       </Label>
     ),
   },
