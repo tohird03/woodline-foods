@@ -11,6 +11,7 @@ export interface IOrganisation {
   createdAt: string;
   group_a_id: number;
   group_b_id: number;
+  trip_timeout: number;
 }
 
 export enum Category {

@@ -1,6 +1,7 @@
 import React from 'react';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import HistoryIcon from '@mui/icons-material/History';
@@ -68,6 +69,6 @@ export const navConfig: INavbarLinks[] = [
   {
     title: 'payments',
     path: ROUTES.payments,
-    icon: <HistoryIcon />,
+    icon: <CurrencyExchangeIcon />,
   },
 ];

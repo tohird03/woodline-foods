@@ -2,17 +2,17 @@ import {TableColumn} from '../../components/table/types';
 
 export const historyColumns: TableColumn[] = [
   {
-    key: 'meal',
+    key: '_id',
     label: 'tableHistoryMeal',
     render: (value, record) => (record?.meal?.name || '-'),
   },
   {
-    key: 'agree_users',
+    key: 'id',
     label: 'tableHistoryAgreeUsers',
     render: (value) => (value || 0),
   },
   {
-    key: 'disagree_users',
+    key: 'id',
     label: 'tableHistoryDisagreeUsers',
     render: (value) => (value || 0),
   },

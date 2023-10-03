@@ -22,6 +22,11 @@ export const organisationColumns: TableColumn[] = [
     render: (value) => (value || '-'),
   },
   {
+    key: 'trip_timeout',
+    label: 'tableOrgTripTimeOut',
+    render: (value) => (`${value} min` || '-'),
+  },
+  {
     key: 'createdAt',
     label: 'tableOrgCreatedAt',
     render: (value) => (getFullDateFormat(value)),

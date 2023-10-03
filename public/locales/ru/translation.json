@@ -68,5 +68,8 @@
 
   "tableHistoryMeal": "Еда",
   "tableHistoryAgreeUsers": "Согласитесь пользователи",
-  "tableHistoryDisagreeUsers": "Не согласны пользователи"
+  "tableHistoryDisagreeUsers": "Не согласны пользователи",
+
+  "tablePaymentRole": "Роль",
+  "tablePaymentTransaction": "Сделка"
 }

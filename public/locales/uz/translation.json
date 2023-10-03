@@ -68,5 +68,8 @@
 
   "tableHistoryMeal": "Ovqat",
   "tableHistoryAgreeUsers": "Xohlovchilar",
-  "tableHistoryDisagreeUsers": "Xohlamaganlar"
+  "tableHistoryDisagreeUsers": "Xohlamaganlar",
+
+  "tablePaymentRole": "Rol",
+  "tablePaymentTransaction": "Tranzaksiya"
 }

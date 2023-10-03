@@ -68,5 +68,8 @@
 
   "tableHistoryMeal": "Food",
   "tableHistoryAgreeUsers": "Agree users",
-  "tableHistoryDisagreeUsers": "Disagree users"
+  "tableHistoryDisagreeUsers": "Disagree users",
+
+  "tablePaymentRole": "Role",
+  "tablePaymentTransaction": "Transaction"
 }

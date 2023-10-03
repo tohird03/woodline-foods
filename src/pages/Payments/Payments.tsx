@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
 import {Stack, Typography} from '@mui/material';
@@ -19,6 +19,10 @@ export const Payments = observer(() => {
     paymentStore.setPage(page);
     paymentStore.setSize(perPage);
   };
+
+  useEffect(() => {
+    paymentStore.getPayments();
+  }, [paymentStore.page, paymentStore.size]);
 
   return (
     <>
