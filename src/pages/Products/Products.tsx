@@ -9,12 +9,14 @@ import {
 import Iconify from '../../components/iconify';
 import {Table} from '../../components/table';
 import {productStore} from '../../store/products';
+import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {AddAmountModal} from './AddAmount/AddAmountModal';
 import {AddProduct} from './AddProduct';
 import {productColumns} from './constants';
 
 export const Products = observer(() => {
   const {t} = useTranslation();
+  const isMobile = useMediaQuery('(max-width: 650px)');
 
   const handleSearchProduct = (value: string) => {
     // TODO
@@ -24,8 +26,8 @@ export const Products = observer(() => {
     productStore.setPage(newPage + 1);
   };
 
-  const handleChangePerPage = (perPage: number) => {
-    productStore.setPage(1);
+  const handleChangePerPage = (perPage: number, page: number) => {
+    productStore.setPage(page);
     productStore.setSize(perPage);
   };
 
@@ -75,6 +77,7 @@ export const Products = observer(() => {
           handlePageChange: handleChangePage,
           handleShowSizeChange: handleChangePerPage,
         }}
+        isMobile={isMobile}
       />
 
       {productStore.isOpenProductModal && <AddProduct />}

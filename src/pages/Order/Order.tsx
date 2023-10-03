@@ -7,18 +7,20 @@ import {
 } from '@mui/material';
 import {Table} from '../../components/table';
 import {orderStore} from '../../store/order';
+import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {ordersColumn} from './constants';
 import {OrderProductModal} from './OrderProduct/OrderProductModal';
 
 export const Order = observer(() => {
   const {t} = useTranslation();
+  const isMobile = useMediaQuery('(max-width: 650px)');
 
   const handleChangePage = (newPage: number) => {
     orderStore.setPage(newPage + 1);
   };
 
-  const handleChangePerPage = (perPage: number) => {
-    orderStore.setPage(1);
+  const handleChangePerPage = (perPage: number, page: number) => {
+    orderStore.setPage(page);
     orderStore.setSize(perPage);
   };
 
@@ -52,6 +54,7 @@ export const Order = observer(() => {
           handlePageChange: handleChangePage,
           handleShowSizeChange: handleChangePerPage,
         }}
+        isMobile={isMobile}
       />
 
       {orderStore.isOpenOrderProductModal && <OrderProductModal />}

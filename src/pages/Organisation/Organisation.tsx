@@ -9,12 +9,14 @@ import {
 import Iconify from '../../components/iconify';
 import {Table} from '../../components/table';
 import {organisationStore} from '../../store/organisation';
+import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {AddOrganisation} from './AddOrganisation';
 import {ChangeGroupModal} from './ChangeGroup/ChangeGroupModal';
 import {organisationColumns} from './constants';
 
 export const Organisation = observer(() => {
   const {t} = useTranslation();
+  const isMobile = useMediaQuery('(max-width: 650px)');
 
   const handleSearchProduct = (value: string) => {
     // TODO
@@ -28,8 +30,8 @@ export const Organisation = observer(() => {
     organisationStore.setPage(newPage + 1);
   };
 
-  const handleChangePerPage = (perPage: number) => {
-    organisationStore.setPage(1);
+  const handleChangePerPage = (perPage: number, page: number) => {
+    organisationStore.setPage(page);
     organisationStore.setSize(perPage);
   };
 
@@ -71,6 +73,7 @@ export const Organisation = observer(() => {
           handlePageChange: handleChangePage,
           handleShowSizeChange: handleChangePerPage,
         }}
+        isMobile={isMobile}
       />
 
       {organisationStore.isOpenAddOrganisation && <AddOrganisation />}

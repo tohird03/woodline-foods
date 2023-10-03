@@ -1,17 +1,33 @@
+import React from 'react';
+import {DollarOutlined, OrderedListOutlined, PicCenterOutlined, TransactionOutlined} from '@ant-design/icons';
 import {AnalyticsType} from '../../api/dashboard/types';
+import {CardStatistics} from './CardStatistics';
+import {LineStatistics} from './LineStatistics';
 
 export const DashboardTabs = [
   {
+    label: 'dashboardCardStatistics',
+    labelId: 0,
+    tab: <CardStatistics />,
+    icon: <PicCenterOutlined />,
+  },
+  {
     label: 'dashboardTotalTrade',
     labelId: AnalyticsType.Trade,
+    tab: <LineStatistics />,
+    icon: <TransactionOutlined />,
   },
   {
     label: 'dashboardTotalCosts',
     labelId: AnalyticsType.Cost,
+    tab: <LineStatistics />,
+    icon: <OrderedListOutlined />,
   },
   {
     label: 'dashboardTotalBenefit',
     labelId: AnalyticsType.Benefit,
+    tab: <LineStatistics />,
+    icon: <DollarOutlined />,
   },
 ];
 

@@ -52,9 +52,10 @@
   "tableOrderCreatedAt": "Yaratilgan vaqti",
   "tableOrderStatus": "Holati",
 
-  "dashboardTotalTrade": "Jami savdo",
-  "dashboardTotalCosts": "Jami xarajatlar",
-  "dashboardTotalBenefit": "Jami foyda",
+  "dashboardTotalTrade": "Savdo",
+  "dashboardTotalCosts": "Xarajatlar",
+  "dashboardTotalBenefit": "Foyda",
+  "dashboardCardStatistics": "Barchasi",
   "dashboardFilterOrg": "Tashkilot",
   "dashboardFilterByTime": "Vaqt bo'yicha",
 

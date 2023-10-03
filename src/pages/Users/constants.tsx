@@ -31,6 +31,7 @@ export const usersColumns: TableColumn[] = [
   {
     key: 'balance',
     label: 'tableUserBalance',
+    render: (value) => (value),
   },
   {
     key: 'phone_number',

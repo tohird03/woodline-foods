@@ -20,6 +20,7 @@ import {foodsApi} from '../../../api/foods';
 import {IAddFoodProduct, IOrganisation, IProducts} from '../../../api/foods/types';
 import {ROUTES} from '../../../constants/router';
 import {foodsStore} from '../../../store/foods';
+import {useMediaQuery} from '../../../utils/hooks/useMediaQuery';
 import {addAxiosErrorNotification, successNotification} from '../../../utils/notification';
 import {CategoryOption} from '../constants';
 import {foodStyles} from '../styles';
@@ -29,6 +30,7 @@ export const AddFoods = observer(() => {
     {product: '', amount: 0},
   ]);
   const navigate = useNavigate();
+  const isMobile = useMediaQuery('(max-width: 650px)');
 
   const formik = useFormik({
     initialValues: {
@@ -106,7 +108,9 @@ export const AddFoods = observer(() => {
         </Typography>
       </Stack>
       <form onSubmit={formik.handleSubmit}>
-        <Box sx={foodStyles.addFoodsWRapper}>
+        <Box
+          sx={foodStyles.addFoodsWRapper}
+        >
           <Box sx={foodStyles.addFoodsProducts}>
             {products.map((product, index) => (
               <Box sx={foodStyles.addFoodsProductBox} key={index}>
@@ -180,11 +184,18 @@ export const AddFoods = observer(() => {
                 {CategoryOption}
               </Select>
             </FormControl>
-            <Button type="submit" variant="contained">
-              Add new Food
-            </Button>
+            {!isMobile && (
+              <Button type="submit" variant="contained">
+                Add new Food
+              </Button>
+            )}
           </Box>
         </Box>
+        {isMobile && (
+          <Button sx={{width: '100%'}} type="submit" variant="contained">
+            Add new Food
+          </Button>
+        )}
       </form>
     </Container>
   );

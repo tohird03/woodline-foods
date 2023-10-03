@@ -2,10 +2,10 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import {observer} from 'mobx-react';
 import {Box, Card, CardHeader} from '@mui/material';
-import {useChart} from '../../../components/chart';
-import {dashboardStore} from '../../../store/dashboard';
-import {CHART_COLOR, CHART_DATA, CHART_HEIGHT} from '../constants';
-import {dashboardStyles} from '../styles';
+import {useChart} from '../../../../components/chart';
+import {dashboardStore} from '../../../../store/dashboard';
+import {CHART_COLOR, CHART_DATA, CHART_HEIGHT} from '../../constants';
+import {dashboardStyles} from '../../styles';
 
 export const Chart = observer(() => {
   const chartOptions = useChart({

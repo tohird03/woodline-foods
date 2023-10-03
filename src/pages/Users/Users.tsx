@@ -5,16 +5,18 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
+import {SearchOutlined} from '@ant-design/icons';
 import {Table} from '../../components/table';
 import {usersStore} from '../../store/users';
+import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {AddBalanceModal} from './AddBalance/AddBalanceModal';
 import {ChangeOrganisationModal} from './ChangeOrganisation/ChangeOrganisationModal';
 import {ChangeRoleModal} from './ChangeRole/ChangeRoleModal';
 import {usersColumns} from './constants';
-// import {RoleChangeModal} from './RoleChange/RoleChangeModal';
 
 export const Users = observer(() => {
   const {t} = useTranslation();
+  const isMobile = useMediaQuery('(max-width: 650px)');
 
   const handleSearchUsers = (value: string) => {
     usersStore.setSearch(value);
@@ -24,8 +26,8 @@ export const Users = observer(() => {
     usersStore.setPage(newPage + 1);
   };
 
-  const handleChangePerPage = (perPage: number) => {
-    usersStore.setPage(1);
+  const handleChangePerPage = (perPage: number, page: number) => {
+    usersStore.setPage(page);
     usersStore.setSize(perPage);
   };
 
@@ -56,6 +58,9 @@ export const Users = observer(() => {
           handlePageChange: handleChangePage,
           handleShowSizeChange: handleChangePerPage,
         }}
+        isMobile={isMobile}
+        searchPlaceholder="Search user"
+        searchSuffix={<SearchOutlined />}
       />
 
       {usersStore.isOpenOrganisationModal && <ChangeOrganisationModal />}

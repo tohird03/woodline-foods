@@ -1,14 +1,14 @@
 export const foodStyles = {
   addFoodsWRapper: {
     display: 'flex',
-    flexDirection: 'row !important',
+    flexDirection: {xs: 'column !important', md: 'row !important'},
     gap: '20px',
     alignItems: 'flex-start',
     marginBottom: '30px',
     width: '100%',
   },
   addFoodsProducts: {
-    width: '50%',
+    width: {xs: '100%', md: '50%'},
     gap: '20px',
     display: 'grid',
     marginTop: '15px',
@@ -27,7 +27,7 @@ export const foodStyles = {
   addFoodsLeftWrapper: {
     gap: '20px',
     display: 'grid',
-    width: '50%',
+    width: {xs: '100%', md: '50%'},
     marginTop: '15px',
   },
   orderProductChip: {

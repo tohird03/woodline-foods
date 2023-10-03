@@ -52,9 +52,10 @@
   "tableOrderCreatedAt": "Создан в",
   "tableOrderStatus": "Положение дел",
 
-  "dashboardTotalTrade": "Общая распродажа",
-  "dashboardTotalCosts": "Общая стоимость",
-  "dashboardTotalBenefit": "Общая прибыль",
+  "dashboardTotalTrade": "Распродажа",
+  "dashboardTotalCosts": "Cтоимость",
+  "dashboardTotalBenefit": "Прибыль",
+  "dashboardCardStatistics": "Все",
   "dashboardFilterOrg": "Организация",
   "dashboardFilterByTime": "По времени",
 

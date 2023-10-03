@@ -16,6 +16,7 @@ import {
   NotFound,
   Order,
   Organisation,
+  Payments,
   PhoneLogin,
   Products,
   Users,
@@ -101,6 +102,12 @@ export const Router = observer(({isAuth}: AuthProps) => {
               path: ROUTES.history,
               element: (
                 <RoleChecker page={<Suspense fallback={<Loading />}><History /></Suspense>} path={ROUTES.admins} />
+              ),
+            },
+            {
+              path: ROUTES.payments,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><Payments /></Suspense>} path={ROUTES.admins} />
               ),
             },
           ],

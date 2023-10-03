@@ -7,10 +7,12 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
+import {SearchOutlined} from '@ant-design/icons';
 import Iconify from '../../components/iconify';
 import {Table} from '../../components/table';
 import {ROUTES} from '../../constants/router';
 import {foodsStore} from '../../store/foods';
+import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {foodsColumns} from './constants';
 import {ImgUploadModal} from './ImgUpload/ImgUploadModal';
 import {ProductModal} from './Products/ProductModal';
@@ -18,6 +20,7 @@ import {ProductModal} from './Products/ProductModal';
 export const Foods = observer(() => {
   const navigate = useNavigate();
   const {t} = useTranslation();
+  const isMobile = useMediaQuery('(max-width: 650px)');
 
   const handleSearchFood = (value: string) => {
     // TODO
@@ -31,8 +34,8 @@ export const Foods = observer(() => {
     foodsStore.setPage(newPage + 1);
   };
 
-  const handleChangePerPage = (perPage: number) => {
-    foodsStore.setPage(1);
+  const handleChangePerPage = (perPage: number, page: number) => {
+    foodsStore.setPage(page);
     foodsStore.setSize(perPage);
   };
 
@@ -77,6 +80,8 @@ export const Foods = observer(() => {
           handlePageChange: handleChangePage,
           handleShowSizeChange: handleChangePerPage,
         }}
+        isMobile={isMobile}
+        searchSuffix={<SearchOutlined />}
       />
 
       {foodsStore.isOpenSingleFoodProductModal && <ProductModal />}

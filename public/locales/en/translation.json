@@ -52,9 +52,10 @@
   "tableOrderCreatedAt": "Created at",
   "tableOrderStatus": "Status",
 
-  "dashboardTotalTrade": "Total sales",
-  "dashboardTotalCosts": "Total cost",
-  "dashboardTotalBenefit": "Total profit",
+  "dashboardTotalTrade": "Sales",
+  "dashboardTotalCosts": "Cost",
+  "dashboardTotalBenefit": "Profit",
+  "dashboardCardStatistics": "All",
   "dashboardFilterOrg": "Organisation",
   "dashboardFilterByTime": "By time",
 

@@ -1,35 +1,24 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
 import {Stack, Typography} from '@mui/material';
 import {Table} from '../../components/table';
-import {historyStore} from '../../store/history';
+import {paymentStore} from '../../store/payment';
 import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
-import {historyColumns} from './constants';
+import {paymentsColumns} from './constants';
 
-export const History = observer(() => {
+export const Payments = observer(() => {
   const {t} = useTranslation();
   const isMobile = useMediaQuery('(max-width: 650px)');
 
-  const handleSearchUsers = (value: string) => {
-    // TODO
-  };
-
   const handleChangePage = (newPage: number) => {
-    historyStore.setPage(newPage + 1);
+    paymentStore.setPage(newPage + 1);
   };
 
   const handleChangePerPage = (perPage: number, page: number) => {
-    historyStore.setPage(page);
-    historyStore.setSize(perPage);
+    paymentStore.setPage(page);
+    paymentStore.setSize(perPage);
   };
-
-  useEffect(() => {
-    historyStore.getHostory({
-      page: historyStore.page,
-      size: historyStore.size,
-    });
-  }, [historyStore.page, historyStore.size]);
 
   return (
     <>
@@ -40,13 +29,12 @@ export const History = observer(() => {
       </Stack>
 
       <Table
-        columns={historyColumns}
-        data={historyStore.history}
-        onFilterSearch={handleSearchUsers}
+        columns={paymentsColumns}
+        data={paymentStore.payments}
         pagination={{
-          total: historyStore.totalHistory,
-          page: historyStore.page,
-          size: historyStore.size,
+          total: paymentStore.totalPayments,
+          page: paymentStore.page,
+          size: paymentStore.size,
           handlePageChange: handleChangePage,
           handleShowSizeChange: handleChangePerPage,
         }}

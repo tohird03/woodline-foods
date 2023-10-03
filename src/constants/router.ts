@@ -6,10 +6,11 @@ export const ROUTES = {
   lunch: '/lunch',
   product: '/product',
   food: '/food',
-  addFood: '/add-food',
+  addFood: '/food/add',
   org: '/organisation',
   order: '/order',
   admins: '/admins',
   errorUrl: '/*',
   history: '/history',
+  payments: '/payments',
 };

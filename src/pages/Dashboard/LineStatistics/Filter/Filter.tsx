@@ -9,11 +9,11 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
-import {FilterTime} from '../../../api/dashboard/types';
-import {IOrganisation} from '../../../api/products/types';
-import {dashboardStore} from '../../../store/dashboard';
-import {productStore} from '../../../store/products';
-import {dashboardStyles} from '../styles';
+import {FilterTime} from '../../../../api/dashboard/types';
+import {IOrganisation} from '../../../../api/products/types';
+import {dashboardStore} from '../../../../store/dashboard';
+import {productStore} from '../../../../store/products';
+import {dashboardStyles} from '../../styles';
 
 export const Filter = observer(() => {
   const {t} = useTranslation();

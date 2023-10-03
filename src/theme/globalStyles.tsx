@@ -53,6 +53,10 @@ const GlobalStyles = () => {
         '.ant-image-mask': {
           borderRadius: '50%',
         },
+        // eslint-disable-next-line max-len
+        'MuiTab-root': {
+          hight: '20px !import',
+        },
       }}
     />
   );

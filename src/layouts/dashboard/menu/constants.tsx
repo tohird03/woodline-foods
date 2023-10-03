@@ -65,4 +65,9 @@ export const navConfig: INavbarLinks[] = [
     path: ROUTES.history,
     icon: <HistoryIcon />,
   },
+  {
+    title: 'payments',
+    path: ROUTES.payments,
+    icon: <HistoryIcon />,
+  },
 ];

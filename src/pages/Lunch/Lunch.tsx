@@ -5,18 +5,20 @@ import {Button, Stack, Typography} from '@mui/material';
 import Iconify from '../../components/iconify';
 import {Table} from '../../components/table';
 import {lunchStore} from '../../store/lunch';
+import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {AddLunch} from './AddLunch';
 import {lunchColumns} from './constants';
 
 export const Lunch = observer(() => {
   const {t} = useTranslation();
+  const isMobile = useMediaQuery('(max-width: 650px)');
 
   const handleChangePage = (newPage: number) => {
     lunchStore.setPage(newPage + 1);
   };
 
-  const handleChangePerPage = (perPage: number) => {
-    lunchStore.setPage(1);
+  const handleChangePerPage = (perPage: number, page: number) => {
+    lunchStore.setPage(page);
     lunchStore.setSize(perPage);
   };
 
@@ -57,6 +59,7 @@ export const Lunch = observer(() => {
           handlePageChange: handleChangePage,
           handleShowSizeChange: handleChangePerPage,
         }}
+        isMobile={isMobile}
       />
 
       {lunchStore.isOpenAddLunchModal && <AddLunch />}

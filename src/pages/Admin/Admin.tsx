@@ -5,15 +5,13 @@ import {Button, Stack, Typography} from '@mui/material';
 import Iconify from '../../components/iconify';
 import {Table} from '../../components/table';
 import {adminStore} from '../../store/admin';
+import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {AddAdmin} from './AddAdmin';
 import {adminsColumns} from './constants';
 
 export const Admin = observer(() => {
   const {t} = useTranslation();
-
-  const handleSearchUsers = (value: string) => {
-    // TODO
-  };
+  const isMobile = useMediaQuery('(max-width: 650px)');
 
   const handleAddNewAdmin = () => {
     adminStore.setIsOpenNewAdminModal(true);
@@ -41,8 +39,8 @@ export const Admin = observer(() => {
       <Table
         columns={adminsColumns}
         data={adminStore.admins}
-        onFilterSearch={handleSearchUsers}
         pagination={false}
+        isMobile={isMobile}
       />
 
       {adminStore.isOpenNewAdminModal && <AddAdmin />}

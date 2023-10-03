@@ -28,6 +28,7 @@ export const UserStatusChange = observer(({user}: UserProps) => {
 
   return (
     <FormControlLabel
+      style={{margin: '0'}}
       label=""
       control={
         <IOSSwitch

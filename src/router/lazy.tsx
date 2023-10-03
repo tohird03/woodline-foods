@@ -71,3 +71,8 @@ export const History = lazy(() =>
   import('../pages/History')
     .then(({History}) => ({default: History}))
     .catch(handleCatchChunkError));
+
+export const Payments = lazy(() =>
+  import('../pages/Payments')
+    .then(({Payments}) => ({default: Payments}))
+    .catch(handleCatchChunkError));

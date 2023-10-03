@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {Outlet} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {styled} from '@mui/material/styles';
+import {Container} from '../../components/Container';
 import Header from './header';
 import {Menu} from './menu';
 
@@ -46,7 +47,9 @@ const DashboardLayout = observer(() => {
       <Menu openNav={open} onCloseNav={handleCloseSearchHeader} />
 
       <Main>
-        <Outlet />
+        <Container>
+          <Outlet />
+        </Container>
       </Main>
     </StyledRoot>
   );

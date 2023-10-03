@@ -32,9 +32,9 @@ const StyledRoot = styled(AppBar)(({theme}) => ({
 
 const StyledToolbar = styled(Toolbar)(({theme}) => ({
   minHeight: HEADER_MOBILE,
+  padding: '10px',
   [theme.breakpoints.up('lg')]: {
     minHeight: HEADER_DESKTOP,
-    padding: theme.spacing(0, 5),
   },
 }));
 
