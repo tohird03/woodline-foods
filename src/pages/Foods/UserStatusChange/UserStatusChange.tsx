@@ -19,7 +19,7 @@ export const UserStatusChange = observer(({food}: UserProps) => {
 
     foodsStore.changeVerify({
       id: food?._id,
-      status: newValue,
+      status: !newValue,
     })
       .finally(() => {
         setLoading(false);
@@ -32,7 +32,7 @@ export const UserStatusChange = observer(({food}: UserProps) => {
       label=""
       control={
         <IOSSwitch
-          defaultChecked={food?.is_deleted}
+          defaultChecked={!food?.is_deleted}
           onChange={handleCheckVerify}
           disabled={loading}
         />}
