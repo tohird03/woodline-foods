@@ -1,3 +1,5 @@
+import React from 'react';
+import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
 import {getFullDateFormat, uszFormatPrice} from '../../utils/formatTime';
 
@@ -10,7 +12,14 @@ export const productLogsColumns: TableColumn[] = [
   {
     key: 'amount',
     label: 'tableProductAmount',
-    render: (value, record) => (`${record?.amount} ${record?.product?.unit}` || '-'),
+    render: (value, record) => (
+      <Label
+        color={record?.type ? 'success': 'error'}
+        variant="outlined"
+      >
+        {`${record?.type ? '+' : '-'}${record?.amount} ${record?.product?.unit}`}
+      </Label>
+    ),
   },
   {
     key: 'cost',
