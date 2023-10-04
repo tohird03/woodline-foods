@@ -1,7 +1,15 @@
 import {makeAutoObservable} from 'mobx';
 import {foodsApi} from '../../api/foods';
-import {IFoods, IFoodsProducts, IGetFoodsParams, IImgChange, IOrganisation, IProducts} from '../../api/foods/types';
-import {addAxiosErrorNotification} from '../../utils/notification';
+import {
+  IChangeVerify,
+  IFoods,
+  IFoodsProducts,
+  IGetFoodsParams,
+  IImgChange,
+  IOrganisation,
+  IProducts,
+} from '../../api/foods/types';
+import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
 class FoodsStore {
   foods: IFoods[] = [];
@@ -61,6 +69,21 @@ class FoodsStore {
             size: this.size,
           });
           this.setIsOpenImgUpload(false);
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+  changeVerify = (params: IChangeVerify) =>
+    foodsApi.changeVerify(params)
+      .then(res => {
+        if (res) {
+          successNotification('Success change is active');
+          this.getFoods({
+            page: this.page,
+            size: this.size,
+          });
         }
 
         return res;

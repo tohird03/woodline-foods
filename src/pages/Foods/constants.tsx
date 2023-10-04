@@ -2,12 +2,14 @@ import React from 'react';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import {MenuItem} from '@mui/material';
 import {Image} from 'antd';
+import {IProducts} from '../../api/foods/types';
 import {Category} from '../../api/organisation/types';
 import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
 import {uszFormatPrice} from '../../utils/formatTime';
 import {ImgUpload} from './ImgUpload';
 import {Products} from './Products';
+import {UserStatusChange} from './UserStatusChange';
 
 export const CategoryOption = [
   <MenuItem key={Category.DESSERT} value={Category.DESSERT}>{Category.DESSERT}</MenuItem>,
@@ -61,6 +63,13 @@ export const foodsColumns: TableColumn[] = [
       <Label color="success" variant={'outlined'}>
         {value}
       </Label>
+    ),
+  },
+  {
+    key: 'is_active',
+    label: 'tableUserChangeActive',
+    render: (value, record) => (
+      <UserStatusChange food={record as IProducts} />
     ),
   },
   {

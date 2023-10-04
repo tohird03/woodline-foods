@@ -1,7 +1,16 @@
 import {Endpoints} from '../endpoints';
 import {Instance} from '../instance';
 import {INetworkConfig} from '../types';
-import {IAddFoodParams, IFoods, IGetFoods, IGetFoodsParams, IGetOrganisation, IGetProducts, IImgChange} from './types';
+import {
+  IAddFoodParams,
+  IChangeVerify,
+  IFoods,
+  IGetFoods,
+  IGetFoodsParams,
+  IGetOrganisation,
+  IGetProducts,
+  IImgChange,
+} from './types';
 
 const config: INetworkConfig = {
   baseURL: Endpoints.Base,
@@ -36,6 +45,9 @@ class FoodsApi extends Instance {
 
   imgChangeFood = (params: IImgChange): Promise<IFoods> =>
     this.patch(Endpoints.Foods, params);
+
+  changeVerify = (params: IChangeVerify): Promise<IFoods> =>
+    this.patch(`${Endpoints.Foods}/${params?.id}`, params);
 }
 
 export const foodsApi = new FoodsApi(config);

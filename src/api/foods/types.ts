@@ -70,6 +70,7 @@ export interface IProducts {
   };
   createdAt: string;
   cost: number;
+  is_deleted: boolean;
 }
 
 export interface IImgChange {
@@ -79,4 +80,9 @@ export interface IImgChange {
 
 export interface IGetFoodsParams extends IPagination {
   search?: string;
+}
+
+export interface IChangeVerify {
+  id: string;
+  status: boolean;
 }
