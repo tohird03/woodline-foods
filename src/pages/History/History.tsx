@@ -6,12 +6,13 @@ import {Table} from '../../components/table';
 import {historyStore} from '../../store/history';
 import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {historyColumns} from './constants';
+import {UsersModal} from './Users/UsersModal';
 
 export const History = observer(() => {
   const {t} = useTranslation();
   const isMobile = useMediaQuery('(max-width: 650px)');
 
-  const handleSearchUsers = (value: string) => {
+  const handleSearchUsers = () => {
     // TODO
   };
 
@@ -52,6 +53,8 @@ export const History = observer(() => {
         }}
         isMobile={isMobile}
       />
+
+      {historyStore.isOpenUsersModal && <UsersModal />}
     </>
   );
 });

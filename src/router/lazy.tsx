@@ -62,6 +62,11 @@ export const Lunch = lazy(() =>
     .then(({Lunch}) => ({default: Lunch}))
     .catch(handleCatchChunkError));
 
+export const AddLunch = lazy(() =>
+  import('../pages/Lunch/AddLunch')
+    .then(({AddLunch}) => ({default: AddLunch}))
+    .catch(handleCatchChunkError));
+
 export const Admin = lazy(() =>
   import('../pages/Admin')
     .then(({Admin}) => ({default: Admin}))

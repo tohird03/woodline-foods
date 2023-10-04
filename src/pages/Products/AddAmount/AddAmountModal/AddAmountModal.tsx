@@ -19,6 +19,7 @@ export const AddAmountModal = observer(() => {
     onSubmit: values => {
       productStore.productAmountChange({
         ...values,
+        cost: values?.cost,
         type: (
           authStore.staffInfo?.admin?.role[0] === AdminRole.STOREKEEPER || values.type === TransactionType.ADD
         ),

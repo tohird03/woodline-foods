@@ -15,4 +15,26 @@ export interface IHistory {
     name_org: string;
   };
   createdAt: string;
+  agree_users: IHistoryUsers[];
+  disagree_users: IHistoryUsers[];
+}
+
+export interface IHistoryUsers {
+  _id: string;
+  last_name: string;
+  first_name: string;
+  phone_number: string;
+}
+
+export interface IAddFoodParams {
+  name: string;
+  cost: number;
+  products: IAddFoodProduct[];
+  org: string;
+  category: string;
+}
+
+export interface IAddFoodProduct {
+  product: string;
+  amount: number;
 }

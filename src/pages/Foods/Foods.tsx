@@ -22,7 +22,7 @@ export const Foods = observer(() => {
   const {t} = useTranslation();
   const isMobile = useMediaQuery('(max-width: 650px)');
 
-  const handleSearchFood = (value: string) => {
+  const handleSearchFood = () => {
     // TODO
   };
 

@@ -19,4 +19,10 @@ export interface IAddLunch {
   name: string;
   org: string;
   cost: number;
+  products: IAddFoodProduct[];
+}
+
+export interface IAddFoodProduct {
+  product: string;
+  amount: number;
 }

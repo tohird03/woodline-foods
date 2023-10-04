@@ -1,6 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 import {historyApi} from '../../api/history/history';
-import {IHistory} from '../../api/history/types';
+import {IHistory, IHistoryUsers} from '../../api/history/types';
 import {IPagination} from '../../api/types';
 import {addAxiosErrorNotification} from '../../utils/notification';
 
@@ -9,6 +9,8 @@ class HistoryStore {
   page = 1;
   size = 10;
   totalHistory = 0;
+  isOpenUsersModal = false;
+  users: IHistoryUsers[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -38,6 +40,14 @@ class HistoryStore {
 
   setTotalHistory = (totalHistory: number) => {
     this.totalHistory = totalHistory;
+  };
+
+  setIsOpenUsersModal = (isOpen: boolean) => {
+    this.isOpenUsersModal = isOpen;
+  };
+
+  setUsers = (users: IHistoryUsers[]) => {
+    this.users = users;
   };
 
   reset() {

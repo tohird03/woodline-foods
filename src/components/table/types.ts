@@ -33,6 +33,7 @@ export interface TableColumn {
   align?: 'right' | 'center' | 'left';
   render?: (value: string, row: DataRow, index: number) => React.ReactNode;
   tLabel?: string;
+  bgColor?: string;
 }
 
 export interface ITableBody {

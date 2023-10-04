@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Card, Divider, Input, Pagination, PaginationProps} from 'antd';

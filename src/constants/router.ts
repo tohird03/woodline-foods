@@ -4,6 +4,7 @@ export const ROUTES = {
   users: '/users',
   userAnalitic: '/users/:id',
   lunch: '/lunch',
+  lunchAdd: '/lunch/add',
   product: '/product',
   food: '/food',
   addFood: '/food/add',

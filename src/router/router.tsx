@@ -7,6 +7,7 @@ import DashboardLayout from '../layouts/dashboard';
 import SimpleLayout from '../layouts/simple';
 import {
   AddFoods,
+  AddLunch,
   Admin,
   Analitic,
   Dashboard,
@@ -90,6 +91,12 @@ export const Router = observer(({isAuth}: AuthProps) => {
               path: ROUTES.lunch,
               element: (
                 <RoleChecker page={<Suspense fallback={<Loading />}><Lunch /></Suspense>} path={ROUTES.lunch} />
+              ),
+            },
+            {
+              path: ROUTES.lunchAdd,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><AddLunch /></Suspense>} path={ROUTES.lunch} />
               ),
             },
             {
