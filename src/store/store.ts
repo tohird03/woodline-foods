@@ -7,6 +7,7 @@ import {lunchStore} from './lunch';
 import {orderStore} from './order';
 import {organisationStore} from './organisation';
 import {paymentStore} from './payment';
+import {productLogsStore} from './productLogs';
 import {productStore} from './products';
 import {usersStore} from './users';
 
@@ -22,6 +23,7 @@ export const store = {
   usersStore,
   historyStore,
   paymentStore,
+  productLogsStore,
 };
 
 export const resetStores = () => {
@@ -36,4 +38,5 @@ export const resetStores = () => {
   usersStore.reset();
   historyStore.reset();
   paymentStore.reset();
+  productLogsStore.reset();
 };

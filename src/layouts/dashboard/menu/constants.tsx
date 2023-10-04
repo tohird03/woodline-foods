@@ -5,6 +5,7 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import HistoryIcon from '@mui/icons-material/History';
+import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import ReceiptLongSharpIcon from '@mui/icons-material/ReceiptLongSharp';
@@ -70,5 +71,10 @@ export const navConfig: INavbarLinks[] = [
     title: 'payments',
     path: ROUTES.payments,
     icon: <CurrencyExchangeIcon />,
+  },
+  {
+    title: 'productLogs',
+    path: ROUTES.productLogs,
+    icon: <HistoryToggleOffIcon />,
   },
 ];

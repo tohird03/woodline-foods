@@ -18,4 +18,5 @@ export const Endpoints = {
   Admins: '/admin',
   History: '/trip',
   Payment: '/payment',
+  ProductLogs: '/product-log',
 };

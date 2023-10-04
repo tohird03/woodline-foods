@@ -14,4 +14,5 @@ export const ROUTES = {
   errorUrl: '/*',
   history: '/history',
   payments: '/payments',
+  productLogs: '/product-logs',
 };

@@ -81,3 +81,8 @@ export const Payments = lazy(() =>
   import('../pages/Payments')
     .then(({Payments}) => ({default: Payments}))
     .catch(handleCatchChunkError));
+
+export const ProductLogs = lazy(() =>
+  import('../pages/ProductLogs')
+    .then(({ProductLogs}) => ({default: ProductLogs}))
+    .catch(handleCatchChunkError));

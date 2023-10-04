@@ -19,6 +19,7 @@ import {
   Organisation,
   Payments,
   PhoneLogin,
+  ProductLogs,
   Products,
   Users,
 } from './lazy';
@@ -115,6 +116,12 @@ export const Router = observer(({isAuth}: AuthProps) => {
               path: ROUTES.payments,
               element: (
                 <RoleChecker page={<Suspense fallback={<Loading />}><Payments /></Suspense>} path={ROUTES.admins} />
+              ),
+            },
+            {
+              path: ROUTES.productLogs,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><ProductLogs /></Suspense>} path={ROUTES.admins} />
               ),
             },
           ],
