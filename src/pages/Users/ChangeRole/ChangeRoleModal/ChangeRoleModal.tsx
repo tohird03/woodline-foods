@@ -52,8 +52,9 @@ export const ChangeRoleModal = observer(() => {
       onCancel={handleClose}
       title="Change role"
       footer={null}
+      width={500}
     >
-      <div >
+      <div style={{width: '100%'}}>
         <Card title={`${usersStore?.singleUser?.first_name} roles`}>
           {
             usersStore?.singleUser?.roles?.map((role) => (

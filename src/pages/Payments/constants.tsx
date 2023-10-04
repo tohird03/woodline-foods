@@ -13,6 +13,11 @@ export const paymentsColumns: TableColumn[] = [
     render: (value, record) => (`${record?.client?.first_name} ${record?.client?.last_name}` || '-'),
   },
   {
+    key: 'phone_number',
+    label: 'tableUserPhoneNumber',
+    render: (value, record) => (record?.client?.phone_number || '-'),
+  },
+  {
     key: 'agree_users',
     label: 'tablePaymentRole',
     render: (value, record) => (
