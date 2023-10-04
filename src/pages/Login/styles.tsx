@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles';
+import {styled} from '@mui/material/styles';
 
 export const StyledRoot = styled('div')(({theme}: any) => ({
   [theme.breakpoints.up('md')]: {

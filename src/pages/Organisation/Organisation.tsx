@@ -18,7 +18,7 @@ export const Organisation = observer(() => {
   const {t} = useTranslation();
   const isMobile = useMediaQuery('(max-width: 650px)');
 
-  const handleSearchProduct = (value: string) => {
+  const handleSearchProduct = () => {
     // TODO
   };
 

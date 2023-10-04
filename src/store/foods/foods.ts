@@ -1,7 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 import {foodsApi} from '../../api/foods';
-import {IFoods, IFoodsProducts, IImgChange, IOrganisation, IProducts} from '../../api/foods/types';
-import {IPagination} from '../../api/types';
+import {IFoods, IFoodsProducts, IGetFoodsParams, IImgChange, IOrganisation, IProducts} from '../../api/foods/types';
 import {addAxiosErrorNotification} from '../../utils/notification';
 
 class FoodsStore {
@@ -15,12 +14,13 @@ class FoodsStore {
   isOpenSingleFoodProductModal = false;
   isOpenImgUpload = false;
   foodId: string | null = null;
+  search: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  getFoods = (params: IPagination) =>
+  getFoods = (params: IGetFoodsParams) =>
     foodsApi.getFoods(params)
       .then(res => {
         if (res) {
@@ -105,6 +105,10 @@ class FoodsStore {
 
   setFoodId = (id: string | null) => {
     this.foodId = id;
+  };
+
+  setSearch = (search: string) => {
+    this.search = search;
   };
 
   reset() {

@@ -1,7 +1,14 @@
 import {Endpoints} from '../endpoints';
 import {Instance} from '../instance';
-import {INetworkConfig, IPagination} from '../types';
-import {IAddAmountProduct, IAddNewProduct, IGetOrganisation, IGetProducts, IProducts} from './types';
+import {INetworkConfig} from '../types';
+import {
+  IAddAmountProduct,
+  IAddNewProduct,
+  IGetOrganisation,
+  IGetProducts,
+  IGetProductsParams,
+  IProducts,
+} from './types';
 
 const config: INetworkConfig = {
   baseURL: '',
@@ -12,7 +19,7 @@ class ProductApi extends Instance {
     super(config);
   }
 
-  getProducts = (params: IPagination): Promise<IGetProducts> =>
+  getProducts = (params: IGetProductsParams): Promise<IGetProducts> =>
     this.get(Endpoints.Products, {params});
 
   getOrganisation = (): Promise<IGetOrganisation> =>

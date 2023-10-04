@@ -1,3 +1,5 @@
+import {IPagination} from '../types';
+
 export interface IGetProducts {
   data: IProducts[];
   totalProducts: number;
@@ -48,4 +50,8 @@ export interface IAddAmountProduct {
   amount: number;
   type: boolean;
   cost: number;
+}
+
+export interface IGetProductsParams extends IPagination {
+  search?: string;
 }

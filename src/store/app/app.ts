@@ -5,6 +5,7 @@ import {addAxiosErrorNotification, successNotification} from '../../utils/notifi
 
 class AppStore {
   isOpenNotificationModal = false;
+  isOpenQrCode = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -22,6 +23,10 @@ class AppStore {
         }
       })
       .catch(addAxiosErrorNotification);
+
+  setIsOpenQrCode = (isOpen: boolean) => {
+    this.isOpenQrCode = isOpen;
+  };
 
   reset() {
     this.isOpenNotificationModal = false;

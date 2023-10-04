@@ -62,6 +62,7 @@
   "tooltipSendNotification": "Отправить уведомление боту",
   "tooltipLanguageSelect": "Изменить язык",
   "tooltipLogoutBtn": "Выйти",
+  "tooltipQrBtn": "QR Code",
 
   "admins": "Админы",
   "adminsPassword": "Пароль",

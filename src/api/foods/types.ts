@@ -1,3 +1,5 @@
+import {IPagination} from '../types';
+
 export interface IGetFoods {
   data: IFoods[];
   totalFoods: number;
@@ -73,4 +75,8 @@ export interface IProducts {
 export interface IImgChange {
   food: string;
   image: string;
+}
+
+export interface IGetFoodsParams extends IPagination {
+  search?: string;
 }

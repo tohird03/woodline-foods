@@ -1,7 +1,12 @@
 import {makeAutoObservable} from 'mobx';
 import {productApi} from '../../api/products';
-import {IAddAmountProduct, IAddNewProduct, IOrganisation, IProducts} from '../../api/products/types';
-import {IPagination} from '../../api/types';
+import {
+  IAddAmountProduct,
+  IAddNewProduct,
+  IGetProductsParams,
+  IOrganisation,
+  IProducts,
+} from '../../api/products/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
 class ProductsStore {
@@ -13,12 +18,13 @@ class ProductsStore {
   size = 10;
   isOpenAmountModal = false;
   singleProduct: IProducts | null = null;
+  search: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  getProducts = (params: IPagination) =>
+  getProducts = (params: IGetProductsParams) =>
     productApi.getProducts(params)
       .then(res => {
         if (res) {
@@ -99,6 +105,10 @@ class ProductsStore {
 
   setSingleProduct = (singleProduct: IProducts | null) => {
     this.singleProduct = singleProduct;
+  };
+
+  setSearch = (search: string) => {
+    this.search = search;
   };
 
   reset() {

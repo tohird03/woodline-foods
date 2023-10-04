@@ -22,8 +22,8 @@ export const Foods = observer(() => {
   const {t} = useTranslation();
   const isMobile = useMediaQuery('(max-width: 650px)');
 
-  const handleSearchFood = () => {
-    // TODO
+  const handleSearchFood = (value: string) => {
+    foodsStore.setSearch(value);
   };
 
   const handleAddNewFood = () => {
@@ -43,8 +43,9 @@ export const Foods = observer(() => {
     foodsStore.getFoods({
       page: foodsStore.page,
       size: foodsStore.size,
+      search: foodsStore.search!,
     });
-  }, [foodsStore.page, foodsStore.size]);
+  }, [foodsStore.page, foodsStore.size, foodsStore.search]);
 
   return (
     <>

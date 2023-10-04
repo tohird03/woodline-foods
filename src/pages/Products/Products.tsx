@@ -19,7 +19,7 @@ export const Products = observer(() => {
   const isMobile = useMediaQuery('(max-width: 650px)');
 
   const handleSearchProduct = (value: string) => {
-    // TODO
+    productStore.setSearch(value);
   };
 
   const handleChangePage = (newPage: number) => {
@@ -39,12 +39,9 @@ export const Products = observer(() => {
     productStore.getProducts({
       page: productStore.page,
       size: productStore.size,
+      search: productStore.search!,
     });
-
-    return () => {
-      productStore.setProducts([]);
-    };
-  }, [productStore.page, productStore.size]);
+  }, [productStore.page, productStore.size, productStore.search]);
 
   return (
     <>

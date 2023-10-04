@@ -1,4 +1,3 @@
-/* eslint-disable react/function-component-definition */
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
@@ -13,7 +12,6 @@ import {bgBlur} from '../../../utils/cssStyles';
 import LanguagePopover from './LanguagePopover';
 import {NotificationsPopover} from './NotificationsPopover';
 import Searchbar from './Searchbar';
-
 
 const NAV_WIDTH = 240;
 

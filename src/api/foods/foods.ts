@@ -1,7 +1,7 @@
 import {Endpoints} from '../endpoints';
 import {Instance} from '../instance';
-import {INetworkConfig, IPagination} from '../types';
-import {IAddFoodParams, IFoods, IGetFoods, IGetOrganisation, IGetProducts, IImgChange} from './types';
+import {INetworkConfig} from '../types';
+import {IAddFoodParams, IFoods, IGetFoods, IGetFoodsParams, IGetOrganisation, IGetProducts, IImgChange} from './types';
 
 const config: INetworkConfig = {
   baseURL: Endpoints.Base,
@@ -12,7 +12,7 @@ class FoodsApi extends Instance {
     super(config);
   }
 
-  getFoods = (params: IPagination): Promise<IGetFoods> =>
+  getFoods = (params: IGetFoodsParams): Promise<IGetFoods> =>
     this.get(Endpoints.Foods, {params});
 
   getOrganisation = (): Promise<IGetOrganisation> =>
