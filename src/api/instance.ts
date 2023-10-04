@@ -4,8 +4,8 @@ import {Endpoints} from './endpoints';
 import {INetworkConfig, TMethod} from './types';
 
 const stage = {
-  // apiUrl: 'https://food.mirabdulloh.uz',
-  apiUrl: 'http://192.168.1.146:3000',
+  apiUrl: 'https://food.mirabdulloh.uz',
+  // apiUrl: 'http://192.168.1.146:3000',
 };
 
 export class Instance {
