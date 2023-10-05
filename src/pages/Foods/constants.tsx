@@ -74,7 +74,7 @@ export const foodsColumns: TableColumn[] = [
   },
   {
     key: 'img',
-    label: 'Img Upload',
+    label: 'Action',
     render: (value, record) => <Action food={record as IFoods} />,
   },
 ];
