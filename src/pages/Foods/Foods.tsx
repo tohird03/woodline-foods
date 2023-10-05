@@ -13,8 +13,8 @@ import {Table} from '../../components/table';
 import {ROUTES} from '../../constants/router';
 import {foodsStore} from '../../store/foods';
 import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
+import {ImgUploadModal} from '../ImgUploadModal';
 import {foodsColumns} from './constants';
-import {ImgUploadModal} from './ImgUpload/ImgUploadModal';
 import {ProductModal} from './Products/ProductModal';
 
 export const Foods = observer(() => {

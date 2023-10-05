@@ -2,12 +2,12 @@ import React from 'react';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import {MenuItem} from '@mui/material';
 import {Image} from 'antd';
-import {IProducts} from '../../api/foods/types';
+import {IFoods, IProducts} from '../../api/foods/types';
 import {Category} from '../../api/organisation/types';
 import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
 import {uszFormatPrice} from '../../utils/formatTime';
-import {ImgUpload} from './ImgUpload';
+import {Action} from './Action';
 import {Products} from './Products';
 import {UserStatusChange} from './UserStatusChange';
 
@@ -75,7 +75,7 @@ export const foodsColumns: TableColumn[] = [
   {
     key: 'img',
     label: 'Img Upload',
-    render: (value, record) => <ImgUpload food={record?._id} />,
+    render: (value, record) => <Action food={record as IFoods} />,
   },
 ];
 

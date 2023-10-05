@@ -10,6 +10,7 @@ export const Endpoints = {
   Products: '/product',
   ProductAmount: '/product/amount',
   Foods: '/food',
+  FoodUpdate: '/food/update',
   Organisation: '/org',
   OrganisationGroup: '/org',
   Order: '/order',

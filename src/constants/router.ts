@@ -15,4 +15,5 @@ export const ROUTES = {
   history: '/history',
   payments: '/payments',
   productLogs: '/product-logs',
+  foodEdit: '/food/edit',
 };

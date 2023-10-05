@@ -23,6 +23,7 @@ class FoodsStore {
   isOpenImgUpload = false;
   foodId: string | null = null;
   search: string | null = null;
+  singleFood: IFoods | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -132,6 +133,10 @@ class FoodsStore {
 
   setSearch = (search: string) => {
     this.search = search;
+  };
+
+  setSingleFood = (singleFood: IFoods) => {
+    this.singleFood = singleFood;
   };
 
   reset() {

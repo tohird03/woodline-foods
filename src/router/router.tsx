@@ -11,6 +11,7 @@ import {
   Admin,
   Analitic,
   Dashboard,
+  EditFoods,
   Foods,
   History,
   Lunch,
@@ -122,6 +123,12 @@ export const Router = observer(({isAuth}: AuthProps) => {
               path: ROUTES.productLogs,
               element: (
                 <RoleChecker page={<Suspense fallback={<Loading />}><ProductLogs /></Suspense>} path={ROUTES.admins} />
+              ),
+            },
+            {
+              path: ROUTES.foodEdit,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><EditFoods /></Suspense>} path={ROUTES.admins} />
               ),
             },
           ],

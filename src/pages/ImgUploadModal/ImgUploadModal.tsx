@@ -4,9 +4,9 @@ import {LoadingOutlined, PlusOutlined} from '@ant-design/icons';
 import {message, Modal, Upload, UploadFile, UploadProps} from 'antd';
 import {RcFile} from 'antd/es/upload';
 import {getDownloadURL, ref, uploadBytes} from 'firebase/storage';
-import {storage} from '../../../../firebase/firebase';
-import {foodsStore} from '../../../../store/foods';
-import {addAxiosErrorNotification} from '../../../../utils/notification';
+import {storage} from '../../firebase/firebase';
+import {foodsStore} from '../../store/foods';
+import {addAxiosErrorNotification} from '../../utils/notification';
 
 const getBase64 = (file: RcFile): Promise<string> =>
   new Promise((resolve, reject) => {

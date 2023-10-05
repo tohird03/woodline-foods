@@ -48,6 +48,9 @@ class FoodsApi extends Instance {
 
   changeVerify = (params: IChangeVerify): Promise<IFoods> =>
     this.patch(`${Endpoints.Foods}/${params?.id}`, params);
+
+  changeFoods = (params: any): Promise<IFoods> =>
+    this.patch(`${Endpoints.FoodUpdate}/${params?.id}`, params);
 }
 
 export const foodsApi = new FoodsApi(config);

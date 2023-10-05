@@ -86,3 +86,8 @@ export const ProductLogs = lazy(() =>
   import('../pages/ProductLogs')
     .then(({ProductLogs}) => ({default: ProductLogs}))
     .catch(handleCatchChunkError));
+
+export const EditFoods = lazy(() =>
+  import('../pages/Foods/EditFoods')
+    .then(({EditFoods}) => ({default: EditFoods}))
+    .catch(handleCatchChunkError));
