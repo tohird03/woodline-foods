@@ -1,6 +1,6 @@
 export interface IGetLunchs {
   data: ILunchs[];
-  totalLunches: number;
+  totalLunchBases: number;
 }
 
 export interface ILunchs {
@@ -18,11 +18,29 @@ export interface ILunchOrg {
 export interface IAddLunch {
   name: string;
   org: string;
-  cost: number;
+}
+
+export interface IAddLunchProducts {
+  id: string;
   products: IAddFoodProduct[];
 }
 
 export interface IAddFoodProduct {
   product: string;
   amount: number;
+}
+
+export interface IGetLunchBase {
+  _id: string;
+  name: string;
+  cost: number;
+  percent__cook: number;
+  products: IAddFoodProduct[];
+  createdAt: string;
+}
+
+export interface IAddLunchBaseParams {
+  id: string;
+  name: string;
+  cost: number;
 }

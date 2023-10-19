@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, {useEffect, useMemo, useState} from 'react';
+import {useNavigate, useParams} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {
   Box,
@@ -16,42 +17,33 @@ import {
 import {useFormik} from 'formik';
 import {IProducts} from '../../../api/foods/types';
 import {IAddFoodProduct} from '../../../api/history/types';
-import {IOrganisation} from '../../../api/products/types';
 import {Container} from '../../../components/Container';
+import {ROUTES} from '../../../constants/router';
 import {foodsStore} from '../../../store/foods';
 import {lunchStore} from '../../../store/lunch';
-import {useMediaQuery} from '../../../utils/hooks/useMediaQuery';
-import {foodStyles, lunchStyles} from '../styles';
+import {foodStyles} from '../styles';
 
 export const AddLunch = observer(() => {
   const [products, setProducts] = useState<IAddFoodProduct[]>([
     {product: '', amount: 0},
   ]);
-  const isMobile = useMediaQuery('(max-width: 650px)');
+  const {id} = useParams();
+  const navigate = useNavigate();
 
   const formik = useFormik({
-    initialValues: {
-      name: '',
-      org: '',
-      cost: 0,
-    },
-    onSubmit: values => {
-      lunchStore.addLunchs({
-        ...values,
-        products,
-      })
-        .finally(() => {
-          handleClose();
+    initialValues: {},
+    onSubmit: () => {
+      lunchStore.addLunchProducts({id: id!, products})
+        .then(res => {
+          if (res) {
+            navigate(-1);
+          }
         });
     },
   });
 
   const addProduct = () => {
     setProducts([...products, {product: '', amount: 0}]);
-  };
-
-  const handleClose = () => {
-    lunchStore.setIsOpenLunchModal(false);
   };
 
   const handleProductSelectChange = (event: SelectChangeEvent<string>, index: number) => {
@@ -71,12 +63,6 @@ export const AddLunch = observer(() => {
     setProducts(newProducts);
   };
 
-  const organisationOptions = useMemo(() => (
-    foodsStore.organisations.map((org: IOrganisation) => (
-      <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
-    ))
-  ), [foodsStore.organisations]);
-
   const productOptions = useMemo(() => (
     foodsStore.products.map((product: IProducts) => (
       <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
@@ -84,14 +70,18 @@ export const AddLunch = observer(() => {
   ), [foodsStore.products]);
 
   useEffect(() => {
-    foodsStore.getOrganisation();
     foodsStore.getProducts();
 
     return () => {
       foodsStore.setProducts([]);
-      foodsStore.setOrganisation([]);
     };
   }, []);
+
+  useEffect(() => {
+    if (!id) {
+      navigate(-1);
+    }
+  }, [id]);
 
   return (
     <Container>
@@ -133,61 +123,21 @@ export const AddLunch = observer(() => {
                 />
               </Box>
             ))}
-            <Button
-              type="button"
-              variant="outlined"
-              onClick={addProduct}
-              sx={foodStyles.addFoodsFormBox}
-            >
-              добавить больше продуктов +
-            </Button>
-          </Box>
-          <Box sx={foodStyles.addFoodsLeftWrapper}>
-            <TextField
-              sx={lunchStyles.addLunchTextFeild}
-              placeholder="New product name"
-              name="name"
-              onChange={formik.handleChange}
-              value={formik.values.name}
-              required
-            />
-            <FormControl sx={lunchStyles.addLunchOrgFormControl} fullWidth>
-              <InputLabel>Organisation</InputLabel>
-              <Select
-                name="org"
-                label="Organisation"
-                onChange={formik.handleChange}
-                value={formik.values.org}
-                required
+            <Box sx={{display: 'flex', gap: '10px', flexDirection: {xs: 'column'}}}>
+              <Button
+                type="button"
+                variant="outlined"
+                onClick={addProduct}
+                sx={foodStyles.addFoodsFormBox}
               >
-                {organisationOptions}
-              </Select>
-            </FormControl>
-
-            <TextField
-              label="Cost"
-              value={formik.values.cost}
-              type="number"
-              onChange={formik.handleChange}
-              inputProps={{min: 0}}
-              minRows={0}
-              required
-              name="cost"
-              sx={lunchStyles.addLunchTextFeild}
-            />
-
-            {!isMobile && (
-              <Button type="submit" variant="contained">
-                Add new lunch
+                добавить больше продуктов +
               </Button>
-            )}
+              <Button sx={{width: '100%'}} type="submit" variant="contained">
+                Add new Lunch
+              </Button>
+            </Box>
           </Box>
         </Box>
-        {isMobile && (
-          <Button sx={{width: '100%'}} type="submit" variant="contained">
-            Add new Lunch
-          </Button>
-        )}
       </form>
     </Container>
   );

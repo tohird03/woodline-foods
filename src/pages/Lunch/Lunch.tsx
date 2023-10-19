@@ -1,19 +1,17 @@
 import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {Button, Stack, Typography} from '@mui/material';
 import Iconify from '../../components/iconify';
 import {Table} from '../../components/table';
-import {ROUTES} from '../../constants/router';
 import {lunchStore} from '../../store/lunch';
 import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
+import {AddLunchBaseModal} from './AddLunchBaseModal';
 import {lunchColumns} from './constants';
 
 export const Lunch = observer(() => {
   const {t} = useTranslation();
   const isMobile = useMediaQuery('(max-width: 650px)');
-  const navigate = useNavigate();
 
   const handleChangePage = (newPage: number) => {
     lunchStore.setPage(newPage + 1);
@@ -25,7 +23,7 @@ export const Lunch = observer(() => {
   };
 
   const handleAddNewProduct = () => {
-    navigate(ROUTES.lunchAdd);
+    lunchStore.setIsOpenLunchModal(true);
   };
 
   useEffect(() => {
@@ -40,14 +38,14 @@ export const Lunch = observer(() => {
     <>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
         <Typography variant="h4" gutterBottom>
-          {t('lunch')}
+          {t('lunchBase')}
         </Typography>
         <Button
           variant="contained"
           startIcon={<Iconify icon="eva:plus-fill" />}
           onClick={handleAddNewProduct}
         >
-          {t('newLunch')}
+          {t('newLunchBase')}
         </Button>
       </Stack>
 
@@ -63,6 +61,8 @@ export const Lunch = observer(() => {
         }}
         isMobile={isMobile}
       />
+
+      {lunchStore.isOpenAddLunchModal && <AddLunchBaseModal />}
     </>
   );
 });

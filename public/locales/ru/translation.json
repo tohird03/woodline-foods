@@ -6,6 +6,7 @@
   "organisation": "Организация",
   "order": "Заказы",
   "lunch": "Обед",
+  "lunchBase": "Обеденная база",
   "lunchHistory": "История обеда",
   "productLogs": "История продукта",
 
@@ -13,6 +14,7 @@
   "newFood": "Новый еда",
   "newOrganisation": "Новые организации",
   "newLunch": "Новые Обед",
+  "newLunchBase": "Новая обеденная база",
   "newAdmin": "Новый администратор",
 
   "tableUserName": "Имя",

@@ -6,6 +6,7 @@
   "organisation": "Tashkilotlar",
   "order": "Buyurtmalar",
   "lunch": "Tushlik",
+  "lunchBase": "Yangi tushlik bazasi",
   "lunchHistory": "Tushliklar tarixi",
   "productLogs": "Mahsulotlar tarixi",
 
@@ -13,6 +14,7 @@
   "newFood": "Yangi ovqat",
   "newOrganisation": "Yangi tashkilot",
   "newLunch": "Yangi Tushlik",
+  "newLunchBase": "Yangi Tushlik Bazasi",
   "newAdmin": "Yangi admin",
 
   "tableUserName": "Ism",

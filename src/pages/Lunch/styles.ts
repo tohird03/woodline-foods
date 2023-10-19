@@ -21,8 +21,9 @@ export const foodStyles = {
     width: '100%',
   },
   addFoodsProducts: {
-    width: {xs: '100%', md: '50%'},
+    width: '50%',
     gap: '20px',
+    margin: '0 auto',
     display: 'grid',
     marginTop: '15px',
   },

@@ -6,6 +6,7 @@
   "organisation": "Organisations",
   "order": "Orders",
   "lunch": "Lunch",
+  "lunchBase": "Lunch base",
   "lunchHistory": "Lunch History",
   "productLogs": "Product logs",
 
@@ -13,6 +14,7 @@
   "newFood": "New Food",
   "newOrganisation": "New Organisation",
   "newLunch": "New lunch",
+  "newLunchBase": "New lunch base",
   "newAdmin": "New Admin",
 
   "tableUserName": "Name",

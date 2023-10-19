@@ -1,6 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 import {lunchApi} from '../../api/lunch';
-import {IAddLunch, ILunchs} from '../../api/lunch/types';
+import {IAddLunch, IAddLunchBaseParams, IAddLunchProducts, IGetLunchBase, ILunchs} from '../../api/lunch/types';
 import {IPagination} from '../../api/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
@@ -10,6 +10,9 @@ class LunchStore {
   size = 10;
   totalLunchs = 0;
   isOpenAddLunchModal = false;
+  lunchBases: IGetLunchBase[] = [];
+  singleLunchId: string | null = null;
+  isOpenLunchModal = false;
 
   constructor(){
     makeAutoObservable(this);
@@ -20,7 +23,7 @@ class LunchStore {
       .then(res => {
         if (res?.data) {
           this.setLunchs(res?.data);
-          this.setTotalLunch(res?.totalLunches);
+          this.setTotalLunch(res?.totalLunchBases);
         }
       })
       .catch(addAxiosErrorNotification);
@@ -34,6 +37,44 @@ class LunchStore {
             page: this.page,
             size: this.size,
           });
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+  addLunchProducts = (params: IAddLunchProducts) =>
+    lunchApi.addLunchProducts(params)
+      .then(res => {
+        if (res) {
+          successNotification('Success add lunch products');
+          this.getLunchs({
+            page: this.page,
+            size: this.size,
+          });
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+  getLunchBases = (id: string) =>
+    lunchApi.getLunchBase(id)
+      .then(res => {
+        if (res) {
+          this.setLunchBases(res);
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+  addLunchBase = (params: IAddLunchBaseParams) =>
+    lunchApi.addLunchBase(params)
+      .then(res => {
+        if (res) {
+          successNotification('Success add new lunch');
+          this.getLunchBases(this.singleLunchId!);
         }
 
         return res;
@@ -58,6 +99,18 @@ class LunchStore {
 
   setIsOpenLunchModal = (isOpen: boolean) => {
     this.isOpenAddLunchModal = isOpen;
+  };
+
+  setLunchBases = (lunchBases: IGetLunchBase[]) => {
+    this.lunchBases = lunchBases;
+  };
+
+  setSingleLunchId = (id: string) => {
+    this.singleLunchId = id;
+  };
+
+  setIsOpenLunchBaseModal = (isOpen: boolean) => {
+    this.isOpenLunchModal = isOpen;
   };
 
   reset() {
