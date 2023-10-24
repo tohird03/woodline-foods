@@ -44,6 +44,18 @@ export const foodStyles = {
     gap: '20px',
     marginTop: '10px',
   },
+  actionEditFoodsUploadImgCard: {
+    gap: '10px',
+    display: 'flex',
+  },
+
+  foodsButton: {
+    width: '100%',
+  },
+
+  formStatusChangeFormControlLabel: {
+    margin: '0',
+  },
 };
 
 export const IOSSwitch = styled((props: SwitchProps) => (

@@ -7,6 +7,7 @@ import {Button} from 'antd';
 import {IFoods} from '../../../api/foods/types';
 import {ROUTES} from '../../../constants/router';
 import {foodsStore} from '../../../store/foods';
+import {foodStyles} from '../styles';
 
 type Props = {
   food: IFoods;
@@ -26,7 +27,7 @@ export const Action = observer(({food}: Props) => {
   };
 
   return (
-    <div style={{gap: '10px', display: 'flex'}}>
+    <div style={foodStyles.actionEditFoodsUploadImgCard}>
       <Button onClick={handleImgUpload} icon={<FlipCameraIosIcon color="primary" />} />
       <Button onClick={handleEditFoods} icon={<EditIcon color="primary" />} />
     </div>

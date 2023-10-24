@@ -4,6 +4,7 @@ import {Button, Card, Col, Modal, Row, Select, Tag} from 'antd';
 import {IUserRole} from '../../../../api/users/types';
 import {usersStore} from '../../../../store/users';
 import {addAxiosErrorNotification} from '../../../../utils/notification';
+import {UsersStyles} from '../../styles';
 
 export const ChangeRoleModal = observer(() => {
   const [addRole, setAddRole] = useState<IUserRole | null>(null);
@@ -54,7 +55,7 @@ export const ChangeRoleModal = observer(() => {
       footer={null}
       width={500}
     >
-      <div style={{width: '100%'}}>
+      <div style={UsersStyles.changeRoleModal}>
         <Card title={`${usersStore?.singleUser?.first_name} roles`}>
           {
             usersStore?.singleUser?.roles?.map((role) => (
@@ -72,7 +73,7 @@ export const ChangeRoleModal = observer(() => {
 
         {
           roleOptions?.length > 0 && (
-            <Row style={{margin: '20px 0'}} gutter={24}>
+            <Row style={UsersStyles.changeRoleModalRow} gutter={24}>
               <Col span={6}>
                 <Select
                   placeholder="Add Role"

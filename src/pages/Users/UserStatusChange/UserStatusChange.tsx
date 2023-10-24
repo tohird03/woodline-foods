@@ -1,34 +1,36 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {observer} from 'mobx-react';
 import {FormControlLabel} from '@mui/material';
+import {useBoolean} from 'usehooks-ts';
 import {IUsers} from '../../../api/users/types';
 import {usersStore} from '../../../store/users';
-import {IOSSwitch} from '../styles';
+import {IOSSwitch, UsersStyles} from '../styles';
 
 type UserProps = {
   user: IUsers;
 };
 
 export const UserStatusChange = observer(({user}: UserProps) => {
-  const [loading, setLoading] = useState(false);
+  const {value: loading, setTrue, setFalse} = useBoolean(false);
+
 
   const handleCheckVerify = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.checked;
 
-    setLoading(true);
+    setTrue();
 
     usersStore.userStatusChange({
       id: user?._id,
       is_active: newValue,
     })
       .finally(() => {
-        setLoading(false);
+        setFalse();
       });
   };
 
   return (
     <FormControlLabel
-      style={{margin: '0'}}
+      style={UsersStyles.switch}
       label=""
       control={
         <IOSSwitch

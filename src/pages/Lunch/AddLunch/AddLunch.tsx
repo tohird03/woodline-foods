@@ -123,7 +123,7 @@ export const AddLunch = observer(() => {
                 />
               </Box>
             ))}
-            <Box sx={{display: 'flex', gap: '10px', flexDirection: {xs: 'column'}}}>
+            <Box sx={foodStyles.addLunchBox}>
               <Button
                 type="button"
                 variant="outlined"

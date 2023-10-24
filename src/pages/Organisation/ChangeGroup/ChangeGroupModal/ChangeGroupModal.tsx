@@ -6,6 +6,7 @@ import {useForm} from 'antd/es/form/Form';
 import {IChangeGroupForm} from '../../../../api/organisation/types';
 import {Modal} from '../../../../components/Modal';
 import {organisationStore} from '../../../../store/organisation';
+import {organisationStyles} from '../../styles';
 
 export const ChangeGroupModal = observer(() => {
   const [form] = useForm();
@@ -58,7 +59,7 @@ export const ChangeGroupModal = observer(() => {
           name="group_a_id"
         >
           <InputNumber
-            style={{width: '100%'}}
+            style={organisationStyles.changeGroupModalInput}
             placeholder={t('tableOrdGroupAId')}
           />
         </Form.Item>
@@ -67,7 +68,7 @@ export const ChangeGroupModal = observer(() => {
           name="group_b_id"
         >
           <InputNumber
-            style={{width: '100%'}}
+            style={organisationStyles.changeGroupModalInput}
             placeholder={t('tableOrdGroupBId')}
           />
         </Form.Item>
@@ -76,7 +77,7 @@ export const ChangeGroupModal = observer(() => {
           name="trip_timeout"
         >
           <InputNumber
-            style={{width: '100%'}}
+            style={organisationStyles.changeGroupModalInput}
             placeholder={t('tableOrgTripTimeOut')}
             addonAfter="minut"
           />

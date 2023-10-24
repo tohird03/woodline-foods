@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {Grid} from '@mui/material';
 import {DollarOutlined, OrderedListOutlined, TransactionOutlined} from '@ant-design/icons';
 import {CardSummary} from '../../../components/CardSummary';
+import {dashboardStyles} from '../styles';
 
 export const CardStatistics = () => {
   const {t} = useTranslation();
@@ -14,7 +15,7 @@ export const CardStatistics = () => {
           title={t('dashboardTotalTrade')}
           total={5869453921}
           color="warning"
-          icon={<TransactionOutlined style={{fontSize: '24px'}} />}
+          icon={<TransactionOutlined style={dashboardStyles.cardStatisticsIcons} />}
         />
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
@@ -22,7 +23,7 @@ export const CardStatistics = () => {
           title={t('dashboardTotalCosts')}
           total={2869453921}
           color="error"
-          icon={<OrderedListOutlined style={{fontSize: '24px'}} />}
+          icon={<OrderedListOutlined style={dashboardStyles.cardStatisticsIcons} />}
         />
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
@@ -30,7 +31,7 @@ export const CardStatistics = () => {
           title={t('dashboardTotalBenefit')}
           total={1479962900}
           color="success"
-          icon={<DollarOutlined style={{fontSize: '24px'}} />}
+          icon={<DollarOutlined style={dashboardStyles.cardStatisticsIcons} />}
         />
       </Grid>
     </Grid>

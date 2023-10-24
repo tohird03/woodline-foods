@@ -1,34 +1,35 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {observer} from 'mobx-react';
 import {FormControlLabel} from '@mui/material';
+import {useBoolean} from 'usehooks-ts';
 import {IProducts} from '../../../api/foods/types';
 import {foodsStore} from '../../../store/foods';
-import {IOSSwitch} from '../styles';
+import {foodStyles, IOSSwitch} from '../styles';
 
 type UserProps = {
   food: IProducts;
 };
 
 export const UserStatusChange = observer(({food}: UserProps) => {
-  const [loading, setLoading] = useState(false);
+  const {value: loading, setTrue, setFalse} = useBoolean(false);
 
   const handleCheckVerify = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.checked;
 
-    setLoading(true);
+    setTrue();
 
     foodsStore.changeVerify({
       id: food?._id,
       status: !newValue,
     })
       .finally(() => {
-        setLoading(false);
+        setFalse();
       });
   };
 
   return (
     <FormControlLabel
-      style={{margin: '0'}}
+      style={foodStyles.formStatusChangeFormControlLabel}
       label=""
       control={
         <IOSSwitch

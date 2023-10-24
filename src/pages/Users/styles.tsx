@@ -47,6 +47,11 @@ export const UsersStyles = {
     flexDirection: 'row',
     alignItems: 'center',
   },
+  switch: {margin: '0'},
+  changeRoleModal: {width: '100%'},
+  changeRoleModalRow: {
+    margin: '20px 0',
+  },
 };
 
 export const IOSSwitch = styled((props: SwitchProps) => (

@@ -7,6 +7,7 @@ import {getDownloadURL, ref, uploadBytes} from 'firebase/storage';
 import {storage} from '../../firebase/firebase';
 import {foodsStore} from '../../store/foods';
 import {addAxiosErrorNotification} from '../../utils/notification';
+import {imgUploadStyle} from './styles';
 
 const getBase64 = (file: RcFile): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -100,7 +101,7 @@ export const ImgUploadModal = observer(() => {
         {fileList.length > 0 ? null : uploadButton}
       </Upload>
       <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
-        <img alt="example" style={{width: '100%'}} src={previewImage} />
+        <img alt="example" style={imgUploadStyle.uploadModalImg} src={previewImage} />
       </Modal>
     </Modal>
   );

@@ -47,4 +47,10 @@ export const foodStyles = {
   orderProductChip: {
     color: 'white',
   },
+  lunchModalButton: {
+    width: '100%',
+  },
+  addLunchBox: {
+    display: 'flex', gap: '10px', flexDirection: {xs: 'column'},
+  },
 };

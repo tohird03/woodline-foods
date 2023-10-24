@@ -6,7 +6,7 @@ import {IOrganisation} from '../../../api/foods/types';
 import {Modal} from '../../../components/Modal';
 import {foodsStore} from '../../../store/foods';
 import {lunchStore} from '../../../store/lunch';
-import {lunchStyles} from '../styles';
+import {foodStyles, lunchStyles} from '../styles';
 
 export const AddLunchBaseModal = observer(() => {
   const formik = useFormik({
@@ -70,7 +70,7 @@ export const AddLunchBaseModal = observer(() => {
           </Select>
         </FormControl>
 
-        <Button sx={{width: '100%'}} type="submit" variant="contained">
+        <Button sx={foodStyles.lunchModalButton} type="submit" variant="contained">
         Add new Lunch
         </Button>
       </form>

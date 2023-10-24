@@ -8,4 +8,7 @@ export const organisationStyles = {
     marginLeft: 'auto',
     width: '100px',
   },
+  changeGroupModalInput: {
+    width: '100%',
+  },
 };

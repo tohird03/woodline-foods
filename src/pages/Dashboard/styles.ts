@@ -14,4 +14,7 @@ export const dashboardStyles = {
     p: 3,
     pb: 1,
   },
+  cardStatisticsIcons: {
+    fontSize: '24px',
+  },
 };

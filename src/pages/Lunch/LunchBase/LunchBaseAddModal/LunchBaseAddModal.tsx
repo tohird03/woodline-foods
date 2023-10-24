@@ -4,7 +4,7 @@ import {Button, TextField} from '@mui/material';
 import {useFormik} from 'formik';
 import {Modal} from '../../../../components/Modal';
 import {lunchStore} from '../../../../store/lunch';
-import {lunchStyles} from '../../styles';
+import {foodStyles, lunchStyles} from '../../styles';
 
 export const LunchBaseAddModal = observer(() => {
 
@@ -57,7 +57,7 @@ export const LunchBaseAddModal = observer(() => {
           sx={lunchStyles.addLunchTextFeild}
         />
 
-        <Button sx={{width: '100%'}} type="submit" variant="contained">
+        <Button sx={foodStyles.lunchModalButton} type="submit" variant="contained">
         Add new Lunch
         </Button>
       </form>

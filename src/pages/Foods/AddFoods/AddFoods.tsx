@@ -192,7 +192,7 @@ export const AddFoods = observer(() => {
           </Box>
         </Box>
         {isMobile && (
-          <Button sx={{width: '100%'}} type="submit" variant="contained">
+          <Button sx={foodStyles.foodsButton} type="submit" variant="contained">
             Add new Food
           </Button>
         )}
