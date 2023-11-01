@@ -1,4 +1,5 @@
 import {makeAutoObservable} from 'mobx';
+import {IFoodsProducts} from '../../api/foods/types';
 import {lunchApi} from '../../api/lunch';
 import {IAddLunch, IAddLunchBaseParams, IAddLunchProducts, IGetLunchBase, ILunchs} from '../../api/lunch/types';
 import {IPagination} from '../../api/types';
@@ -13,6 +14,8 @@ class LunchStore {
   lunchBases: IGetLunchBase[] = [];
   singleLunchId: string | null = null;
   isOpenLunchModal = false;
+  singleFoodProduct: IFoodsProducts[] = [];
+  isOpenSingleFoodProductModal = false;
 
   constructor(){
     makeAutoObservable(this);
@@ -69,6 +72,11 @@ class LunchStore {
       })
       .catch(addAxiosErrorNotification);
 
+  getSingleLunch = (id: string) =>
+    lunchApi.getSingleLunch(id)
+      .then(res => res)
+      .catch(addAxiosErrorNotification);
+
   addLunchBase = (params: IAddLunchBaseParams) =>
     lunchApi.addLunchBase(params)
       .then(res => {
@@ -111,6 +119,14 @@ class LunchStore {
 
   setIsOpenLunchBaseModal = (isOpen: boolean) => {
     this.isOpenLunchModal = isOpen;
+  };
+
+  setSingleFoodProducts = (singleProducts: IFoodsProducts[]) => {
+    this.singleFoodProduct = singleProducts;
+  };
+
+  setIsOpenFoodProductModal = (isOpen: boolean) => {
+    this.isOpenSingleFoodProductModal = isOpen;
   };
 
   reset() {

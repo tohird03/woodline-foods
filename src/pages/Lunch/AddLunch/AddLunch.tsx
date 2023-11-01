@@ -18,7 +18,6 @@ import {useFormik} from 'formik';
 import {IProducts} from '../../../api/foods/types';
 import {IAddFoodProduct} from '../../../api/history/types';
 import {Container} from '../../../components/Container';
-import {ROUTES} from '../../../constants/router';
 import {foodsStore} from '../../../store/foods';
 import {lunchStore} from '../../../store/lunch';
 import {foodStyles} from '../styles';

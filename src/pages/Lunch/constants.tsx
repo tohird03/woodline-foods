@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import {TableColumn} from '../../components/table/types';
 import {getFullDateFormat, uszFormatPrice} from '../../utils/formatTime';
+import {Products} from './Products';
 
 export const lunchColumns: TableColumn[] = [
   {
@@ -47,6 +48,16 @@ export const lunchBaseColumns: TableColumn[] = [
     key: 'createdAt',
     label: 'tableProductDate',
     render: (value) => (getFullDateFormat(value)),
+  },
+  {
+    key: 'percent_cook',
+    label: 'tablePercentCook',
+    render: (value) => `${value}%`,
+  },
+  {
+    key: 'products',
+    label: 'tableFoodProduct',
+    render: (value, record) => <Products product={record?.products} />,
   },
   {
     key: 'action',

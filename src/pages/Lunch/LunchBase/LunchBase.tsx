@@ -9,6 +9,7 @@ import {ROUTES} from '../../../constants/router';
 import {lunchStore} from '../../../store/lunch';
 import {useMediaQuery} from '../../../utils/hooks/useMediaQuery';
 import {lunchBaseColumns} from '../constants';
+import {ProductModal} from '../Products/ProductModal';
 import {LunchBaseAddModal} from './LunchBaseAddModal/LunchBaseAddModal';
 
 export const LunchBase = observer(() => {
@@ -55,6 +56,7 @@ export const LunchBase = observer(() => {
       />
 
       {lunchStore.isOpenLunchModal && <LunchBaseAddModal />}
+      {lunchStore.isOpenSingleFoodProductModal && <ProductModal />}
     </>
   );
 });

@@ -3,6 +3,7 @@ export const ROUTES = {
   login: '/login',
   users: '/users',
   userAnalitic: '/users/:id',
+  userOrders: '/user-orders/:id',
   lunch: '/lunch',
   lunchBase: '/lunch/:id',
   lunchAdd: '/lunch/add/:id',

@@ -23,6 +23,7 @@ import {
   PhoneLogin,
   ProductLogs,
   Products,
+  UserOrders,
   Users,
 } from './lazy';
 import {PrivateRoute} from './PrivateRoute';
@@ -58,6 +59,12 @@ export const Router = observer(({isAuth}: AuthProps) => {
               path: ROUTES.userAnalitic,
               element: (
                 <RoleChecker page={<Suspense fallback={<Loading />}><Analitic /></Suspense>} path={ROUTES.users} />
+              ),
+            },
+            {
+              path: ROUTES.userOrders,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><UserOrders /></Suspense>} path={ROUTES.users} />
               ),
             },
             {

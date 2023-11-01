@@ -33,6 +33,7 @@
   "tableProductOrganisation": "Organisation",
   "tableProductDate": "Created At",
   "tableProductChangeAmount": "Change amount",
+  "tablePercentCook": "Percent cooker",
 
   "tableFoodPhoto": "Photo",
   "tableFoodName": "Name",

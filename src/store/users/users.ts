@@ -5,7 +5,10 @@ import {
   IChangeOrganisation,
   IChangeRole,
   IChangeStatus,
+  IGetUserOrders,
   IOrganisation,
+  IUserOrders,
+  IUserOrdersFoods,
   IUserParams,
   IUsers,
   TransactionParams,
@@ -23,6 +26,12 @@ class UsersStore {
   isOpenBalanceModal = false;
   isOpenChangeRoleModal = false;
   search = '';
+  totalUserOrder = 0;
+  userOrders: IGetUserOrders[] = [];
+  orderPage = 1;
+  orderSize = 10;
+  isOpenOrderProductModal = false;
+  foods: IUserOrdersFoods[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -34,6 +43,16 @@ class UsersStore {
         if (res) {
           this.setUsers(res?.data);
           this.setTotalUsers(res?.totalUsers);
+        }
+      })
+      .catch(addAxiosErrorNotification);
+
+  getUserOrder = (params: IUserOrders) =>
+    usersApi.getUserOrders(params)
+      .then(res => {
+        if (res) {
+          this.setUserOrder(res?.data);
+          this.setTotalUserOrders(res?.totalOrders);
         }
       })
       .catch(addAxiosErrorNotification);
@@ -125,6 +144,14 @@ class UsersStore {
     this.users = users;
   };
 
+  setUserOrder = (orders: IGetUserOrders[]) => {
+    this.userOrders = orders;
+  };
+
+  setTotalUserOrders = (totalOrder: number) => {
+    this.totalUserOrder = totalOrder;
+  };
+
   setTotalUsers = (total: number) => {
     this.totalUsers = total;
   };
@@ -135,6 +162,14 @@ class UsersStore {
 
   setSize = (size: number) => {
     this.size = size;
+  };
+
+  setOrderPage = (page: number) => {
+    this.orderPage = page;
+  };
+
+  setOrderSize = (size: number) => {
+    this.orderSize = size;
   };
 
   setIsOpenOrganisationModal = (isOpen: boolean) => {
@@ -159,6 +194,14 @@ class UsersStore {
 
   setSearch = (search: string) => {
     this.search = search;
+  };
+
+  setIsOpenOrderProductModal = (isOpen: boolean) => {
+    this.isOpenOrderProductModal = isOpen;
+  };
+
+  setFoods = (foods: IUserOrdersFoods[]) => {
+    this.foods = foods;
   };
 
   reset() {

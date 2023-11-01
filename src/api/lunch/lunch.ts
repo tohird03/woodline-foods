@@ -25,7 +25,12 @@ class LunchApi extends Instance {
     this.post(`${Endpoints.Lunchs}/${params?.id}`, params);
 
   addLunchProducts = (params: IAddLunchProducts): Promise<ILunchs> =>
-    this.patch(`${Endpoints.AddLunchProduct}/${params?.id}`, params);
+    this.post(`${Endpoints.AddLunchProduct}/${params?.id}`, {
+      products: params?.products,
+    });
+
+  getSingleLunch = (id: string): Promise<ILunchs> =>
+    this.get(`${Endpoints.GetLunchProducts}/${id}`);
 }
 
 export const lunchApi = new LunchApi(config);

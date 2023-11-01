@@ -21,10 +21,12 @@ export interface IUsers {
   roles: IUserRole[];
   language_code: string;
   createdAt: string;
-  org: {
-    _id: string;
-    name_org: string;
-  };
+  org: IUserOrg;
+}
+
+export interface IUserOrg {
+  _id: string;
+  name_org: string;
 }
 
 export interface IChangeStatus {
@@ -48,6 +50,8 @@ export interface IOrganisation {
 export interface IChangeOrganisation {
   user: string;
   org: string;
+  first_name: string;
+  last_name: string;
 }
 
 export enum TransactionType {
@@ -70,4 +74,45 @@ export interface IChangeRole {
 export enum IUserRole {
   User = 'user',
   Cook = 'cook',
+}
+
+export interface IUserOrders extends IPagination {
+  id: string;
+}
+
+export interface IOrdersUsers {
+  data: IGetUserOrders[];
+  totalOrders: number;
+}
+
+export interface IGetUserOrders {
+  _id: string;
+  total_cost: number;
+  client: {
+    _id: string;
+    first_name: string;
+    last_name: string;
+  };
+  foods: IUserOrdersFoods[];
+  is_canceled: boolean;
+  is_accepted: boolean;
+  org: IUserOrg;
+  createdAt: string;
+  status: IUserOrderStatus;
+}
+
+export interface IUserOrdersFoods {
+  _id: string;
+  food: {
+    _id: string;
+    name: string;
+    cost: string;
+  };
+  amount: number;
+}
+
+export enum IUserOrderStatus {
+  PENDING = 'pending',
+  CANCELED = 'canceled',
+  ACCEPTED = 'accepted',
 }

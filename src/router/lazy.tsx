@@ -17,6 +17,11 @@ export const Analitic = lazy(() =>
     .then(({Analitic}) => ({default: Analitic}))
     .catch(handleCatchChunkError));
 
+export const UserOrders = lazy(() =>
+  import('../pages/Users/UserOrders')
+    .then(({UserOrders}) => ({default: UserOrders}))
+    .catch(handleCatchChunkError));
+
 export const NotFound = lazy(() =>
   import('../pages/NotFound')
     .then(({NotFound}) => ({default: NotFound}))

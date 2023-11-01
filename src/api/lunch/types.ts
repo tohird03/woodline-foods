@@ -8,6 +8,17 @@ export interface ILunchs {
   name: string;
   cost: number;
   org: ILunchOrg;
+  base: {
+    _id: string;
+    name: string;
+  };
+  products: {
+    product: {
+      name: string;
+      _id: string;
+    };
+    amount: number;
+  }[];
 }
 
 export interface ILunchOrg {

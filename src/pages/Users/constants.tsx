@@ -2,21 +2,25 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Box} from '@mui/material';
 import {AreaChartOutlined} from '@ant-design/icons';
-import {IUsers} from '../../api/users/types';
+import {IUserOrderStatus, IUsers} from '../../api/users/types';
+import Label, {LabelProps} from '../../components/label';
 import {TableColumn} from '../../components/table/types';
 import {ROUTES} from '../../constants/router';
+import {getFullDateFormat, uszFormatPrice} from '../../utils/formatTime';
 import {AddBalance} from './AddBalance';
 import {ChangeOrganisation} from './ChangeOrganisation';
 import {ChangeRole} from './ChangeRole';
 import {ChangeVerify} from './ChangeVerify';
 import {UsersStyles} from './styles';
+import {OrderProduct} from './UserOrders/OrderProduct';
 import {UserStatusChange} from './UserStatusChange';
 
 export const usersColumns: TableColumn[] = [
   {
     key: 'first_name',
     label: 'tableUserName',
-    render: (value) => (value || '-'),
+    render: (value, record) => (
+      <Link style={UsersStyles.link} to={`/user-orders/${record?._id}`}>{value}</Link> || '-'),
   },
   {
     key: 'last_name',
@@ -68,5 +72,63 @@ export const usersColumns: TableColumn[] = [
         </Link>
       </Box>
     ),
+  },
+];
+
+export const userOrdersColumns: TableColumn[] = [
+  {
+    key: 'foods',
+    label: 'tableOrderOrder',
+    render: (value, record) => (
+      <OrderProduct foods={record?.foods} />
+    ),
+  },
+  {
+    key: 'total_cost',
+    label: 'tableOrderPrice',
+    render: (value) => (`${uszFormatPrice(parseInt(value, 10))} сум`),
+  },
+  {
+    key: 'createdAt',
+    label: 'tableOrderCreatedAt',
+    render: (value) => (getFullDateFormat(value)),
+  },
+  {
+    key: 'status',
+    label: 'tableOrderStatus',
+    render: (value) => (
+      <Label color={OrderStatusColor[value as IUserOrderStatus]} variant={'outlined'}>
+        {value}
+      </Label>
+    ),
+  },
+];
+
+export const OrderStatusColor: Record<IUserOrderStatus, LabelProps['color']> = {
+  [IUserOrderStatus.ACCEPTED]: 'success',
+  [IUserOrderStatus.CANCELED]: 'error',
+  [IUserOrderStatus.PENDING]: 'primary',
+};
+
+export const orderFoodsColumns: TableColumn[] = [
+  {
+    key: 'index',
+    label: '#',
+    render: (value, record, index) => (index + 1),
+  },
+  {
+    key: 'name',
+    label: 'Name',
+    render: (value, record) => (record?.food?.name || '-'),
+  },
+  {
+    key: 'amount',
+    label: 'Amount',
+    render: (value) => (value),
+  },
+  {
+    key: 'cost',
+    label: 'Cost',
+    render: (value, record) => (`${uszFormatPrice(parseInt(record?.food?.cost, 10))} сум`),
   },
 ];

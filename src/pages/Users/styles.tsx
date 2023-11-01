@@ -47,6 +47,11 @@ export const UsersStyles = {
     flexDirection: 'row',
     alignItems: 'center',
   },
+  link: {
+    fontWeight: 'bold',
+    color: '#4182aa',
+    cursor: 'pointer',
+  },
 };
 
 export const IOSSwitch = styled((props: SwitchProps) => (

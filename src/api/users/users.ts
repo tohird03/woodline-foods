@@ -7,6 +7,8 @@ import {
   IChangeStatus,
   IGetOrganisation,
   IGetUser,
+  IOrdersUsers,
+  IUserOrders,
   IUserParams,
   IUsers,
   TransactionParams,
@@ -30,8 +32,16 @@ class UsersApi extends Instance {
   getOrganisation = (params: IPagination): Promise<IGetOrganisation> =>
     this.get(Endpoints.Organisation, {params});
 
+  getUserOrders = (params: IUserOrders): Promise<IOrdersUsers> =>
+    this.get(`${Endpoints.UserOrders}/${params?.id}`, {params});
+
   changeOrganisation = (params: IChangeOrganisation): Promise<any> =>
-    this.put(`${Endpoints.UserOrganisation}/${params?.user}`, {org: params?.org});
+    this.patch(`${Endpoints.UserEdit}`, {
+      id: params?.user,
+      first_name: params?.first_name,
+      last_name: params?.last_name,
+      org: params?.org,
+    });
 
   changeVerifyUser = (id: string): Promise<any> =>
     this.put(`${Endpoints.UserChangeVerify}/${id}`);
