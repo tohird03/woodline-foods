@@ -1,8 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Box} from '@mui/material';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import {Box, MenuItem} from '@mui/material';
 import {AreaChartOutlined} from '@ant-design/icons';
-import {IUserOrderStatus, IUsers} from '../../api/users/types';
+import {IUserAnaliticType, IUserOrderStatus, IUsers} from '../../api/users/types';
 import Label, {LabelProps} from '../../components/label';
 import {TableColumn} from '../../components/table/types';
 import {ROUTES} from '../../constants/router';
@@ -11,8 +13,10 @@ import {AddBalance} from './AddBalance';
 import {ChangeOrganisation} from './ChangeOrganisation';
 import {ChangeRole} from './ChangeRole';
 import {ChangeVerify} from './ChangeVerify';
+import {Analitic} from './SingleUser/Analitic';
+import {UserOrders} from './SingleUser/UserOrders';
+import {OrderProduct} from './SingleUser/UserOrders/OrderProduct';
 import {UsersStyles} from './styles';
-import {OrderProduct} from './UserOrders/OrderProduct';
 import {UserStatusChange} from './UserStatusChange';
 
 export const usersColumns: TableColumn[] = [
@@ -131,4 +135,25 @@ export const orderFoodsColumns: TableColumn[] = [
     label: 'Cost',
     render: (value, record) => (`${uszFormatPrice(parseInt(record?.food?.cost, 10))} сум`),
   },
+];
+
+export const SingleUserOrder = [
+  {
+    label: 'dashboardCardStatistics',
+    labelId: 0,
+    tab: <UserOrders />,
+    icon: <ListAltIcon />,
+  },
+  {
+    label: 'dashboardTotalTrade',
+    labelId: 1,
+    tab: <Analitic />,
+    icon: <EqualizerIcon />,
+  },
+];
+
+export const timeOptions = [
+  <MenuItem key={IUserAnaliticType.Day} value={IUserAnaliticType.Day}>{IUserAnaliticType.Day}</MenuItem>,
+  <MenuItem key={IUserAnaliticType.Week} value={IUserAnaliticType.Week}>{IUserAnaliticType.Week}</MenuItem>,
+  <MenuItem key={IUserAnaliticType.Month} value={IUserAnaliticType.Month}>{IUserAnaliticType.Month}</MenuItem>,
 ];

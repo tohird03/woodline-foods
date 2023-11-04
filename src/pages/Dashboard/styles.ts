@@ -6,6 +6,7 @@ export const dashboardStyles = {
   },
   filterOrgControl: {
     maxWidth: '270px',
+    marginLeft: '40px',
   },
   chartCard: {
     marginTop: '10px',

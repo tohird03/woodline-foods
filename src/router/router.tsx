@@ -9,7 +9,6 @@ import {
   AddFoods,
   AddLunch,
   Admin,
-  Analitic,
   Dashboard,
   EditFoods,
   Foods,
@@ -23,7 +22,7 @@ import {
   PhoneLogin,
   ProductLogs,
   Products,
-  UserOrders,
+  SingleUser,
   Users,
 } from './lazy';
 import {PrivateRoute} from './PrivateRoute';
@@ -56,15 +55,9 @@ export const Router = observer(({isAuth}: AuthProps) => {
               ),
             },
             {
-              path: ROUTES.userAnalitic,
-              element: (
-                <RoleChecker page={<Suspense fallback={<Loading />}><Analitic /></Suspense>} path={ROUTES.users} />
-              ),
-            },
-            {
               path: ROUTES.userOrders,
               element: (
-                <RoleChecker page={<Suspense fallback={<Loading />}><UserOrders /></Suspense>} path={ROUTES.users} />
+                <RoleChecker page={<Suspense fallback={<Loading />}><SingleUser /></Suspense>} path={ROUTES.users} />
               ),
             },
             {

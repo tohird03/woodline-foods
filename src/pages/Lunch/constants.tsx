@@ -37,7 +37,7 @@ export const lunchBaseColumns: TableColumn[] = [
   {
     key: 'name',
     label: 'tableUserName',
-    render: (value, record) => value,
+    render: (value) => value,
   },
   {
     key: 'cost',

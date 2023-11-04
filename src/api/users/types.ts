@@ -116,3 +116,22 @@ export enum IUserOrderStatus {
   CANCELED = 'canceled',
   ACCEPTED = 'accepted',
 }
+
+export interface IUserAnaliticParams {
+  userId: string;
+  type: IUserAnaliticType;
+}
+
+export enum IUserAnaliticType {
+  Day = 'day',
+  Week = 'week',
+  Month = 'month',
+}
+
+export interface IUserAnaliticData {
+  user: IUsers;
+  data: {
+    label: string;
+    data: number;
+  }[];
+}

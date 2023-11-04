@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {observer} from 'mobx-react';
-import {Modal} from '../../../../../components/Modal';
-import {Table} from '../../../../../components/table';
-import {usersStore} from '../../../../../store/users';
-import {orderFoodsColumns} from '../../../constants';
+import {Modal} from '../../../../../../components/Modal';
+import {Table} from '../../../../../../components/table';
+import {usersStore} from '../../../../../../store/users';
+import {orderFoodsColumns} from '../../../../constants';
 
 const MODAL_WIDTH = 550;
 

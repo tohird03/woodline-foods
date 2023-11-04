@@ -7,6 +7,9 @@ import {
   IChangeStatus,
   IGetUserOrders,
   IOrganisation,
+  IUserAnaliticData,
+  IUserAnaliticParams,
+  IUserAnaliticType,
   IUserOrders,
   IUserOrdersFoods,
   IUserParams,
@@ -32,6 +35,8 @@ class UsersStore {
   orderSize = 10;
   isOpenOrderProductModal = false;
   foods: IUserOrdersFoods[] = [];
+  userAnalitic: IUserAnaliticData | null = null;
+  time: IUserAnaliticType = IUserAnaliticType.Day;
 
   constructor() {
     makeAutoObservable(this);
@@ -140,6 +145,17 @@ class UsersStore {
       })
       .catch(addAxiosErrorNotification);
 
+  getUserAnalitic = (params: IUserAnaliticParams) =>
+    usersApi.getUserAnalitic(params)
+      .then(res => {
+        if (res) {
+          this.setUserAnalitic(res);
+
+          return res;
+        }
+      })
+      .catch(addAxiosErrorNotification);
+
   setUsers = (users: IUsers[]) => {
     this.users = users;
   };
@@ -202,6 +218,14 @@ class UsersStore {
 
   setFoods = (foods: IUserOrdersFoods[]) => {
     this.foods = foods;
+  };
+
+  setUserAnalitic = (userAnalitic: IUserAnaliticData) => {
+    this.userAnalitic = userAnalitic;
+  };
+
+  setTime = (time: IUserAnaliticType) => {
+    this.time = time;
   };
 
   reset() {

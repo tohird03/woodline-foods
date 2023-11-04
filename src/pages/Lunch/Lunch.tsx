@@ -8,7 +8,6 @@ import {lunchStore} from '../../store/lunch';
 import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {AddLunchBaseModal} from './AddLunchBaseModal';
 import {lunchColumns} from './constants';
-import {ProductModal} from './Products/ProductModal';
 
 export const Lunch = observer(() => {
   const {t} = useTranslation();
@@ -33,9 +32,6 @@ export const Lunch = observer(() => {
       size: lunchStore.size,
     });
   }, [lunchStore.page, lunchStore.size]);
-
-  console.log(lunchStore);
-
 
   return (
     <>

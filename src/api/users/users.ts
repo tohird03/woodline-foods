@@ -8,6 +8,8 @@ import {
   IGetOrganisation,
   IGetUser,
   IOrdersUsers,
+  IUserAnaliticData,
+  IUserAnaliticParams,
   IUserOrders,
   IUserParams,
   IUsers,
@@ -51,6 +53,9 @@ class UsersApi extends Instance {
 
   changeRole = (params: IChangeRole): Promise<IUsers> =>
     this.patch(Endpoints.UserRole, params);
+
+  getUserAnalitic = (params: IUserAnaliticParams): Promise<IUserAnaliticData> =>
+    this.get(`${Endpoints.UserAnalitic}/${params?.userId}`, {params: {type: params?.type}});
 }
 
 export const usersApi = new UsersApi(config);

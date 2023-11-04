@@ -1,8 +1,8 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 import {Chip} from '@mui/material';
-import {IUserOrdersFoods} from '../../../../api/users/types';
-import {usersStore} from '../../../../store/users';
+import {IUserOrdersFoods} from '../../../../../api/users/types';
+import {usersStore} from '../../../../../store/users';
 
 type Props = {
   foods: IUserOrdersFoods[];
