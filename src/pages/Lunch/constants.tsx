@@ -57,7 +57,7 @@ export const lunchBaseColumns: TableColumn[] = [
   {
     key: 'products',
     label: 'tableFoodProduct',
-    render: (value, record) => <Products product={record?.products} />,
+    render: (value, record) => <Products lunchId={record?._id} product={record?.products} />,
   },
   {
     key: 'action',

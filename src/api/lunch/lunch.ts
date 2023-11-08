@@ -1,7 +1,16 @@
 import {Endpoints} from '../endpoints';
 import {Instance} from '../instance';
 import {INetworkConfig, IPagination} from '../types';
-import {IAddLunch, IAddLunchBaseParams, IAddLunchProducts, IGetLunchBase, IGetLunchs, ILunchs} from './types';
+import {
+  IAddLunch,
+  IAddLunchBaseParams,
+  IAddLunchProducts,
+  IEditedLunchProducts,
+  IGetLunchBase,
+  IGetLunchs,
+  ILunchs,
+} from './types';
+
 
 const config: INetworkConfig = {
   baseURL: Endpoints.Base,
@@ -31,6 +40,12 @@ class LunchApi extends Instance {
 
   getSingleLunch = (id: string): Promise<ILunchs> =>
     this.get(`${Endpoints.GetLunchProducts}/${id}`);
+
+  editedProduct = (params: IEditedLunchProducts): Promise<ILunchs> =>
+    this.patch(`${Endpoints.AddLunchProduct}/${params?.lunchId}`, {products: params?.products});
+
+  deleteProduct = (id: string): Promise<ILunchs> =>
+    this.delete(`${Endpoints.AddLunchProduct}/${id}`);
 }
 
 export const lunchApi = new LunchApi(config);

@@ -55,3 +55,11 @@ export interface IAddLunchBaseParams {
   name: string;
   cost: number;
 }
+
+export interface IEditedLunchProducts {
+  lunchId: string;
+  products: {
+    product: string;
+    amount: number;
+  }[];
+}

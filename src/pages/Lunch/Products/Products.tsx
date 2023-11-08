@@ -7,12 +7,14 @@ import {foodStyles} from '../styles';
 
 type Props = {
   product: IFoodsProducts[];
+  lunchId: string;
 };
 
-export const Products = observer(({product}: Props) => {
+export const Products = observer(({product, lunchId}: Props) => {
 
   const handleOpenProductModal = () => {
     lunchStore.setSingleFoodProducts(product);
+    lunchStore.setSingleLunchId(lunchId);
     lunchStore.setIsOpenFoodProductModal(true);
   };
 

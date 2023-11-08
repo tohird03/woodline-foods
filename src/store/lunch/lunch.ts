@@ -113,7 +113,7 @@ class LunchStore {
     this.lunchBases = lunchBases;
   };
 
-  setSingleLunchId = (id: string) => {
+  setSingleLunchId = (id: string | null) => {
     this.singleLunchId = id;
   };
 
