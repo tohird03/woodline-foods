@@ -17,7 +17,7 @@ export const productLogsColumns: TableColumn[] = [
         color={record?.type ? 'success': 'error'}
         variant="outlined"
       >
-        {`${record?.type ? '+' : '-'}${record?.amount} ${record?.product?.unit}`}
+        {`${record?.type ? '+' : '-'}${record?.amount} ${record?.product?.unit || ''}`}
       </Label>
     ),
   },

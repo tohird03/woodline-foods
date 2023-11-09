@@ -11,9 +11,22 @@ export const ProductLogs = observer(() => {
   const {t} = useTranslation();
   const isMobile = useMediaQuery('(max-width: 650px)');
 
+  const handleChangePage = (newPage: number) => {
+    productLogsStore.setPage(newPage + 1);
+  };
+
+  const handleChangePerPage = (perPage: number, page: number) => {
+    productLogsStore.setPage(page);
+    productLogsStore.setLimit(perPage);
+  };
+
+
   useEffect(() => {
-    productLogsStore.getProducts();
-  }, []);
+    productLogsStore.getProducts({
+      page: productLogsStore.page,
+      size: productLogsStore.limit,
+    });
+  }, [productLogsStore.page, productLogsStore.limit]);
 
   return (
     <>
@@ -26,7 +39,13 @@ export const ProductLogs = observer(() => {
       <Table
         columns={productLogsColumns}
         data={productLogsStore.productLogs}
-        pagination={false}
+        pagination={{
+          total: productLogsStore.totalProduct,
+          page: productLogsStore.page,
+          size: productLogsStore.limit,
+          handlePageChange: handleChangePage,
+          handleShowSizeChange: handleChangePerPage,
+        }}
         isMobile={isMobile}
       />
     </>

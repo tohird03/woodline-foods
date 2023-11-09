@@ -10,3 +10,8 @@ export interface IGetProductLogs {
   amount: number;
   cost: number;
 }
+
+export interface IProductLogs {
+  data: IGetProductLogs[];
+  totalProductLog: number;
+}

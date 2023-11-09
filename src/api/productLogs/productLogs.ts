@@ -1,7 +1,7 @@
 import {Endpoints} from '../endpoints';
 import {Instance} from '../instance';
-import {INetworkConfig} from '../types';
-import {IGetProductLogs} from './types';
+import {INetworkConfig, IPagination} from '../types';
+import {IProductLogs} from './types';
 
 const config: INetworkConfig = {
   baseURL: Endpoints.Base,
@@ -12,8 +12,8 @@ class ProductLogsApi extends Instance {
     super(config);
   }
 
-  getProductLogs = (): Promise<IGetProductLogs[]> =>
-    this.get(Endpoints.ProductLogs);
+  getProductLogs = (params: IPagination): Promise<IProductLogs> =>
+    this.get(Endpoints.ProductLogs, {params});
 }
 
 export const productLogsApi = new ProductLogsApi(config);
