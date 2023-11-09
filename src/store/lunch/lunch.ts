@@ -28,6 +28,8 @@ class LunchStore {
           this.setLunchs(res?.data);
           this.setTotalLunch(res?.totalLunchBases);
         }
+
+        return res;
       })
       .catch(addAxiosErrorNotification);
 

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useParams} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {CheckOutlined, DeleteOutlined, EditOutlined} from '@ant-design/icons';
 import {Button, InputNumber, Modal, Popconfirm} from 'antd';
@@ -15,6 +16,7 @@ export const ProductModal = observer(() => {
   const [singleEditProduct, setSingleEditProduct] = useState<IFoodsProducts | null>(null);
   const [editSaveProducts, setEditSaveProducts] = useState<IFoodsProducts[]>([]);
   const [editAmount, setEditAmount] = useState(0);
+  const {id} = useParams();
 
   const handleClose = () => {
     lunchStore.setIsOpenFoodProductModal(false);
@@ -75,7 +77,12 @@ export const ProductModal = observer(() => {
       .then(res => {
         if (res) {
           successNotification('Успех обновленных продуктов');
-          handleClose();
+          lunchStore.getLunchBases(id!)
+            .then(res => {
+              if (res) {
+                handleClose();
+              }
+            });
         }
       })
       .catch(addAxiosErrorNotification);

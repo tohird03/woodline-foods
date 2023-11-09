@@ -46,7 +46,7 @@ class LunchApi extends Instance {
     this.patch(`${Endpoints.AddLunchProduct}/${params?.lunchId}`, {products: params?.products});
 
   deleteProduct = (params: IDeletLunchProducts): Promise<ILunchs> =>
-    this.delete(`${Endpoints.GetLunchProducts}/${params?.lunchId}`, {params: {product: params?.productId!}});
+    this.delete(`/lunch/${params?.lunchId}/products/${params?.productId}`);
 }
 
 export const lunchApi = new LunchApi(config);
