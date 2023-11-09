@@ -68,7 +68,10 @@ export const ProductModal = observer(() => {
   };
 
   const handleDeleteProduct = (product: IFoodsProducts) => {
-    lunchApi.deleteProduct(product?.product?._id)
+    lunchApi.deleteProduct({
+      lunchId: lunchStore.singleLunchId!,
+      productId: product?.product?._id,
+    })
       .then(res => {
         if (res) {
           successNotification('Успех обновленных продуктов');

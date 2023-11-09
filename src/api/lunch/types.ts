@@ -63,3 +63,8 @@ export interface IEditedLunchProducts {
     amount: number;
   }[];
 }
+
+export interface IDeletLunchProducts {
+  lunchId: string;
+  productId: string;
+}

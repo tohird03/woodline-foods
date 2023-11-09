@@ -15,15 +15,23 @@ export interface IHistory {
     name_org: string;
   };
   createdAt: string;
-  agree_users: IHistoryUsers[];
-  disagree_users: IHistoryUsers[];
+  candidates: IHistoryUsers[];
 }
 
 export interface IHistoryUsers {
+  lunch: {
+    _id: string;
+    name: string;
+    cost: string;
+  };
+  total: number;
+  user: {
+    _id: string;
+    last_name: string;
+    first_name: string;
+    phone_number: string;
+  };
   _id: string;
-  last_name: string;
-  first_name: string;
-  phone_number: string;
 }
 
 export interface IAddFoodParams {

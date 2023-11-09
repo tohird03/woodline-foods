@@ -18,12 +18,7 @@ export const historyColumns: TableColumn[] = [
   {
     key: 'agree',
     label: 'tableHistoryAgreeUsers',
-    render: (value, record) => <Users users={record?.agree_users as IHistoryUsers[]} type />,
-  },
-  {
-    key: 'disagree',
-    label: 'tableHistoryDisagreeUsers',
-    render: (value, record) => <Users users={record?.disagree_users as IHistoryUsers[]} />,
+    render: (value, record) => <Users users={record?.candidates as IHistoryUsers[]} type />,
   },
   {
     key: 'org',
@@ -41,16 +36,26 @@ export const usersColumns: TableColumn[] = [
   {
     key: 'first_name',
     label: 'tableUserName',
-    render: (value) => (value || '-'),
+    render: (value, record) => (record?.user?.first_name || '-'),
   },
   {
     key: 'last_name',
     label: 'tableUserSurname',
-    render: (value) => (value || '-'),
+    render: (value, record) => (record?.user?.last_name || '-'),
   },
   {
     key: 'phone_number',
     label: 'tableUserPhoneNumber',
-    render: (value) => (value || '-'),
+    render: (value, record) => (record?.user?.phone_number || '-'),
+  },
+  {
+    key: 'lunch',
+    label: 'lunch',
+    render: (value, record) => (record?.lunch?.name || '-'),
+  },
+  {
+    key: 'cost',
+    label: 'tableFoodCost',
+    render: (value, record) => (record?.lunch?.cost),
   },
 ];

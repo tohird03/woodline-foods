@@ -5,6 +5,7 @@ import {
   IAddLunch,
   IAddLunchBaseParams,
   IAddLunchProducts,
+  IDeletLunchProducts,
   IEditedLunchProducts,
   IGetLunchBase,
   IGetLunchs,
@@ -44,8 +45,8 @@ class LunchApi extends Instance {
   editedProduct = (params: IEditedLunchProducts): Promise<ILunchs> =>
     this.patch(`${Endpoints.AddLunchProduct}/${params?.lunchId}`, {products: params?.products});
 
-  deleteProduct = (id: string): Promise<ILunchs> =>
-    this.delete(`${Endpoints.AddLunchProduct}/${id}`);
+  deleteProduct = (params: IDeletLunchProducts): Promise<ILunchs> =>
+    this.delete(`${Endpoints.GetLunchProducts}/${params?.lunchId}`, {params: {product: params?.productId!}});
 }
 
 export const lunchApi = new LunchApi(config);
