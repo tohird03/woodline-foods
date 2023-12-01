@@ -21,7 +21,7 @@ class OrderStore {
       .then(res => {
         if (res?.data) {
           this.setOrders(res?.data);
-          this.setTotalOrder(res?.totalorders);
+          this.setTotalOrder(res?.totalOrders);
         }
       })
       .catch(addAxiosErrorNotification);
