@@ -13,6 +13,7 @@ import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {AddAmountModal} from './AddAmount/AddAmountModal';
 import {AddProduct} from './AddProduct';
 import {productColumns} from './constants';
+import {EditProduct} from './EditProduct/EditProductModal/EditProductModal';
 
 export const Products = observer(() => {
   const {t} = useTranslation();
@@ -79,6 +80,7 @@ export const Products = observer(() => {
 
       {productStore.isOpenProductModal && <AddProduct />}
       {productStore.isOpenAmountModal && <AddAmountModal />}
+      {productStore.isOpenEditProductModal && <EditProduct />}
     </>
   );
 });

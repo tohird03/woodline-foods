@@ -71,7 +71,7 @@ export const AddLunchBaseModal = observer(() => {
         </FormControl>
 
         <Button sx={{width: '100%'}} type="submit" variant="contained">
-        Add new Lunch
+          Add new Lunch
         </Button>
       </form>
     </Modal>

@@ -1,8 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import EditIcon from '@mui/icons-material/Edit';
 import {TableColumn} from '../../components/table/types';
+import { lunchStore } from '../../store/lunch';
 import {getFullDateFormat, uszFormatPrice} from '../../utils/formatTime';
+import { AddLunch } from './AddLunch';
 import {Products} from './Products';
 
 export const lunchColumns: TableColumn[] = [
@@ -62,18 +63,7 @@ export const lunchBaseColumns: TableColumn[] = [
   {
     key: 'action',
     label: 'tableUserChangeOrg',
-    render: (value, record) => (
-      <Link
-        style={{
-          textDecoration: 'none',
-          color: 'black',
-          fontWeight: 'bold',
-        }}
-        to={`/lunch/add/${record?._id}`}
-      >
-        <EditIcon />
-      </Link> || '-'),
-  },
+    render: (value, record) => <AddLunch lunch={record} />},
 ];
 
 export const ADD_LUNCH_MODAL_WIDTH = 400;
