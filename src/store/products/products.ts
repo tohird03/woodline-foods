@@ -3,12 +3,12 @@ import {productApi} from '../../api/products';
 import {
   IAddAmountProduct,
   IAddNewProduct,
+  IEditProduct,
   IGetProductsParams,
   IOrganisation,
   IProducts,
 } from '../../api/products/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
-
 class ProductsStore {
   products: IProducts[] = [];
   totalProducts = 0;
@@ -19,6 +19,8 @@ class ProductsStore {
   isOpenAmountModal = false;
   singleProduct: IProducts | null = null;
   search: string | null = null;
+  isOpenEditProductModal = false;
+  editProductStore: IProducts | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -30,6 +32,19 @@ class ProductsStore {
         if (res) {
           this.setProducts(res?.data);
           this.setTotalProducts(res?.totalProducts);
+        }
+      })
+      .catch(addAxiosErrorNotification);
+
+  editProducts = (params: IEditProduct) =>
+    productApi.updateProduct(params)
+      .then(res => {
+        if (res) {
+          this.getProducts({
+            search: this.search!,
+            page: this.page,
+            size: this.size,
+          });
         }
       })
       .catch(addAxiosErrorNotification);
@@ -74,6 +89,14 @@ class ProductsStore {
         }
       })
       .catch(addAxiosErrorNotification);
+
+  setIsOpenProductEditModal = (isOpen: boolean) => {
+    this.isOpenEditProductModal = isOpen;
+  };
+
+  setEditProduct = (product: IProducts | null) => {
+    this.editProductStore = product;
+  };
 
   setProducts = (products: IProducts[]) => {
     this.products = products;

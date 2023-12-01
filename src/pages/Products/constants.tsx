@@ -4,6 +4,7 @@ import {IProducts, Units} from '../../api/products/types';
 import {TableColumn} from '../../components/table/types';
 import {getFullDateFormat, uszFormatPrice} from '../../utils/formatTime';
 import {AddAmount} from './AddAmount';
+import {EditProduct} from './EditProduct/EditProduct';
 
 export const UnitOption = [
   <MenuItem key={Units.DONA} value={Units.DONA}>{Units.DONA}</MenuItem>,
@@ -41,6 +42,11 @@ export const productColumns: TableColumn[] = [
     key: 'add',
     label: 'tableProductChangeAmount',
     render: (value, record) => <AddAmount product={record as IProducts} />,
+  },
+  {
+    key: 'Action',
+    label: 'Action',
+    render: (value, record) => <EditProduct product={record as IProducts} />,
   },
 ];
 

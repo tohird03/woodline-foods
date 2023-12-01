@@ -21,7 +21,7 @@ export const foodStyles = {
     width: '100%',
   },
   addFoodsProducts: {
-    width: '50%',
+    width: '400px',
     gap: '20px',
     margin: '0 auto',
     display: 'grid',
@@ -30,6 +30,7 @@ export const foodStyles = {
   addFoodsProductBox: {
     display: 'flex',
     flexDirection: 'row !important',
+    alignItems: 'center',
     gap: '10px',
   },
   addFoodFormControl: {

@@ -20,6 +20,7 @@ export const foodStyles = {
   addFoodsProductBox: {
     display: 'flex',
     flexDirection: 'row !important',
+    alignItems: 'center',
     gap: '10px',
   },
   addFoodFormControl: {

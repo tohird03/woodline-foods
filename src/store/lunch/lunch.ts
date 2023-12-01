@@ -1,9 +1,17 @@
 import {makeAutoObservable} from 'mobx';
 import {IFoodsProducts} from '../../api/foods/types';
 import {lunchApi} from '../../api/lunch';
-import {IAddLunch, IAddLunchBaseParams, IAddLunchProducts, IGetLunchBase, ILunchs} from '../../api/lunch/types';
+import {
+  IAddLunch,
+  IAddLunchBaseParams,
+  IAddLunchProducts,
+  IGetLunchBase,
+  ILunchs,
+  ILunchUpdate,
+} from '../../api/lunch/types';
 import {IPagination} from '../../api/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
+
 
 class LunchStore {
   lunchs: ILunchs[] = [];
@@ -16,6 +24,8 @@ class LunchStore {
   isOpenLunchModal = false;
   singleFoodProduct: IFoodsProducts[] = [];
   isOpenSingleFoodProductModal = false;
+  isLunchEditModal = false;
+  singleLunch: IGetLunchBase | null = null;
 
   constructor(){
     makeAutoObservable(this);
@@ -48,16 +58,24 @@ class LunchStore {
       })
       .catch(addAxiosErrorNotification);
 
+  updateLunchProduct = (params: ILunchUpdate) =>
+    lunchApi.updatedLunchProduct(params)
+      .then(res => {
+        successNotification('Success edit new lunch');
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+
   addLunchProducts = (params: IAddLunchProducts) =>
     lunchApi.addLunchProducts(params)
       .then(res => {
-        if (res) {
-          successNotification('Success add lunch products');
-          this.getLunchs({
-            page: this.page,
-            size: this.size,
-          });
-        }
+        successNotification('Success add lunch products');
+        this.getLunchs({
+          page: this.page,
+          size: this.size,
+        });
 
         return res;
       })
@@ -90,6 +108,10 @@ class LunchStore {
         return res;
       })
       .catch(addAxiosErrorNotification);
+
+  setLunchEditModal = (isOpen: boolean) => {
+    this.isLunchEditModal = isOpen;
+  };
 
   setLunchs = (lunchs: ILunchs[]) => {
     this.lunchs = lunchs;
@@ -129,6 +151,10 @@ class LunchStore {
 
   setIsOpenFoodProductModal = (isOpen: boolean) => {
     this.isOpenSingleFoodProductModal = isOpen;
+  };
+
+  setSingleLunch = (singleLunch: IGetLunchBase | null) => {
+    this.singleLunch = singleLunch;
   };
 
   reset() {

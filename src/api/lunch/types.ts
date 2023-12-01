@@ -45,7 +45,7 @@ export interface IGetLunchBase {
   _id: string;
   name: string;
   cost: number;
-  percent__cook: number;
+  percent_cook: number;
   products: IAddFoodProduct[];
   createdAt: string;
 }
@@ -54,6 +54,8 @@ export interface IAddLunchBaseParams {
   id: string;
   name: string;
   cost: number;
+  percent_cook: number;
+  products: IAddFoodProduct[];
 }
 
 export interface IEditedLunchProducts {
@@ -62,6 +64,17 @@ export interface IEditedLunchProducts {
     product: string;
     amount: number;
   }[];
+}
+
+export interface ILunchUpdate {
+  name: string;
+  cost: number;
+  percent_cook: number;
+  products: {
+    product: string;
+    amount: number;
+  }[];
+  id: string;
 }
 
 export interface IDeletLunchProducts {
