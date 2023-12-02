@@ -1,143 +1,19 @@
-/* eslint-disable react/no-array-index-key */
-import React, {useEffect, useMemo, useState} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+/* eslint-disable react/react-in-jsx-scope */
 import {observer} from 'mobx-react';
-import {
-  Box,
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material';
-import {useFormik} from 'formik';
-import {IProducts} from '../../../api/foods/types';
-import {IAddFoodProduct} from '../../../api/history/types';
-import {Container} from '../../../components/Container';
-import {foodsStore} from '../../../store/foods';
+import EditIcon from '@mui/icons-material/Edit';
 import {lunchStore} from '../../../store/lunch';
-import {foodStyles} from '../styles';
 
-export const AddLunch = observer(() => {
-  const [products, setProducts] = useState<IAddFoodProduct[]>([
-    {product: '', amount: 0},
-  ]);
-  const {id} = useParams();
-  const navigate = useNavigate();
+type Props = {
+  lunch: any;
+};
 
-  const formik = useFormik({
-    initialValues: {},
-    onSubmit: () => {
-      lunchStore.addLunchProducts({id: id!, products})
-        .then(res => {
-          if (res) {
-            navigate(-1);
-          }
-        });
-    },
-  });
-
-  const addProduct = () => {
-    setProducts([...products, {product: '', amount: 0}]);
+export const AddLunch = observer(({lunch}: Props) => {
+  const handleOpenAddLunchModal = () => {
+    lunchStore.setIsOpenLunchBaseModal(true);
+    lunchStore.setSingleLunch(lunch);
   };
-
-  const handleProductSelectChange = (event: SelectChangeEvent<string>, index: number) => {
-    const newProducts = [...products];
-
-    newProducts[index].product = event.target.value;
-    setProducts(newProducts);
-  };
-
-  const handleAmountChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    index: number
-  ) => {
-    const newProducts = [...products];
-
-    newProducts[index].amount = parseInt(event.target.value, 10);
-    setProducts(newProducts);
-  };
-
-  const productOptions = useMemo(() => (
-    foodsStore.products.map((product: IProducts) => (
-      <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
-    ))
-  ), [foodsStore.products]);
-
-  useEffect(() => {
-    foodsStore.getProducts();
-
-    return () => {
-      foodsStore.setProducts([]);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!id) {
-      navigate(-1);
-    }
-  }, [id]);
 
   return (
-    <Container>
-      <Stack
-        direction="row"
-        alignItems="center"
-        justifyContent="space-between"
-        mb={2}
-      >
-        <Typography variant="h4" gutterBottom>
-          Add Lunch
-        </Typography>
-      </Stack>
-      <form onSubmit={formik.handleSubmit}>
-        <Box
-          sx={foodStyles.addFoodsWRapper}
-        >
-          <Box sx={foodStyles.addFoodsProducts}>
-            {products.map((product, index) => (
-              <Box sx={foodStyles.addFoodsProductBox} key={index}>
-                <FormControl sx={foodStyles.addFoodFormControl} fullWidth>
-                  <InputLabel>{`Product ${index + 1}`}</InputLabel>
-                  <Select
-                    label={`Product ${index + 1}`}
-                    value={product.product}
-                    onChange={(event) => handleProductSelectChange(event, index)}
-                    required
-                  >
-                    {productOptions}
-                  </Select>
-                </FormControl>
-                <TextField
-                  onChange={(event) => handleAmountChange(event, index)}
-                  value={product.amount}
-                  label={`Amount ${index + 1}`}
-                  type="number"
-                  required
-                  minRows={0}
-                />
-              </Box>
-            ))}
-            <Box sx={{display: 'flex', gap: '10px', flexDirection: {xs: 'column'}}}>
-              <Button
-                type="button"
-                variant="outlined"
-                onClick={addProduct}
-                sx={foodStyles.addFoodsFormBox}
-              >
-                добавить больше продуктов +
-              </Button>
-              <Button sx={{width: '100%'}} type="submit" variant="contained">
-                Add new Lunch
-              </Button>
-            </Box>
-          </Box>
-        </Box>
-      </form>
-    </Container>
+    <EditIcon style={{cursor: 'pointer'}} onClick={handleOpenAddLunchModal} />
   );
 });

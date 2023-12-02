@@ -1,6 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react';
+import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Box,
   Button,
@@ -56,6 +57,13 @@ export const EditFoods = observer(() => {
     setProducts([...products, {product: '', amount: 0}]);
   };
 
+  const removeProduct = (index: number) => {
+    const newProducts = [...products];
+
+    newProducts.splice(index, 1);
+    setProducts(newProducts);
+  };
+
   const handleProductSelectChange = (event: SelectChangeEvent<string>, index: number) => {
     const newProducts = [...products];
 
@@ -69,7 +77,7 @@ export const EditFoods = observer(() => {
   ) => {
     const newProducts = [...products];
 
-    newProducts[index].amount = parseInt(event.target.value, 10);
+    newProducts[index].amount = Number(event.target.value);
     setProducts(newProducts);
   };
 
@@ -150,6 +158,7 @@ export const EditFoods = observer(() => {
                   required
                   minRows={0}
                 />
+                <DeleteIcon onClick={() => removeProduct(index)} style={{color: 'red', cursor: 'pointer'}} />
               </Box>
             ))}
             <Button

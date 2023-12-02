@@ -102,12 +102,12 @@ export const Router = observer(({isAuth}: AuthProps) => {
                 <RoleChecker page={<Suspense fallback={<Loading />}><LunchBase /></Suspense>} path={ROUTES.lunchBase} />
               ),
             },
-            {
-              path: ROUTES.lunchAdd,
-              element: (
-                <RoleChecker page={<Suspense fallback={<Loading />}><AddLunch /></Suspense>} path={ROUTES.lunch} />
-              ),
-            },
+            // {
+            //   path: ROUTES.lunchAdd,
+            //   element: (
+            //     <RoleChecker page={<Suspense fallback={<Loading />}><AddLunch /></Suspense>} path={ROUTES.lunch} />
+            //   ),
+            // },
             {
               path: ROUTES.admins,
               element: (

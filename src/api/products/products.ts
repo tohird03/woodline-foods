@@ -4,6 +4,7 @@ import {INetworkConfig} from '../types';
 import {
   IAddAmountProduct,
   IAddNewProduct,
+  IEditProduct,
   IGetOrganisation,
   IGetProducts,
   IGetProductsParams,
@@ -32,6 +33,9 @@ class ProductApi extends Instance {
 
   addNewProduct = (params: IAddNewProduct): Promise<IProducts> =>
     this.post(Endpoints.Products, params);
+
+  updateProduct = (params: IEditProduct): Promise<any> =>
+    this.patch(`${Endpoints.ProductEdit}/${params?.id}`, params);
 
   productAmountChange = (params: IAddAmountProduct): Promise<IProducts> =>
     this.patch(Endpoints.ProductAmount, params);

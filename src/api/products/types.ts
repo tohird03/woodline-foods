@@ -39,6 +39,12 @@ export interface IAddNewProduct {
   unit: string;
 }
 
+export interface IEditProduct {
+  name: string;
+  unit: string;
+  id: string;
+}
+
 export enum Units {
   KILOGRAM = 'kilogram',
   LITR = 'litr',
