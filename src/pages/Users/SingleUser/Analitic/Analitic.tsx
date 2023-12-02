@@ -18,13 +18,16 @@ export const Analitic = observer(() => {
     usersStore.setTime(event.target.value as IUserAnaliticType);
   };
 
+  console.log(usersStore.userAnalitic?.data);
+
+
   const analiticChartOption = {
     options: {
       chart: {
         id: 'basic-bar',
       },
       xaxis: {
-        categories: usersStore.userAnalitic?.data?.map(date => dateFormat(date?.label)) || [],
+        categories: usersStore.userAnalitic?.data?.map(date => date?.label) || [],
       },
     },
     series: [

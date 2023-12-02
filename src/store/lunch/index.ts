@@ -1,1 +1,1 @@
-export {lunchStore} from './lunch';
+export * from './lunch';

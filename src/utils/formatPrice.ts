@@ -1,5 +1,5 @@
 export const priceFormat = (price: string | number | null) => {
-  if (price) {
+  if (!price) {
     return 0;
   }
 
