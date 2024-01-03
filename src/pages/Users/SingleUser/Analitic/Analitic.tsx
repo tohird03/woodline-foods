@@ -6,7 +6,6 @@ import {observer} from 'mobx-react';
 import {Box, Card, CardHeader, FormControl, InputLabel, Select, SelectChangeEvent} from '@mui/material';
 import {IUserAnaliticType} from '../../../../api/users/types';
 import {usersStore} from '../../../../store/users';
-import {dateFormat} from '../../../../utils/formatTime';
 import {dashboardStyles} from '../../../Dashboard/styles';
 import {timeOptions} from '../../constants';
 
@@ -24,7 +23,7 @@ export const Analitic = observer(() => {
         id: 'basic-bar',
       },
       xaxis: {
-        categories: usersStore.userAnalitic?.data?.map(date => dateFormat(date?.label)) || [],
+        categories: usersStore.userAnalitic?.data?.map(date => date?.label) || [],
       },
     },
     series: [
