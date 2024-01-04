@@ -1,6 +1,6 @@
 export interface IGetOrder {
   data: IOrder[];
-  totalorders: number;
+  totalOrders: number;
 }
 
 export interface IOrder {
