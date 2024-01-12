@@ -163,7 +163,7 @@ module.exports = {
     ],
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/object-curly-spacing': [
-      'warn',
+      'off',
     ],
     '@typescript-eslint/quotes': [
       'error',

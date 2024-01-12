@@ -10,71 +10,127 @@ import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import ReceiptLongSharpIcon from '@mui/icons-material/ReceiptLongSharp';
 import SvgColor from '../../../components/svg-color';
-import {ROUTES} from '../../../constants/router';
+import { ROUTES } from '../../../constants/router';
 
 interface INavbarLinks {
   title: string;
   path: string;
   icon: React.ReactNode;
+  searchTitle: Object;
 }
 
 const icon = (name: string) =>
-  <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{width: 1, height: 1}} />;
+  <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
 
 export const navConfig: INavbarLinks[] = [
   {
     title: 'home',
     path: ROUTES.home,
     icon: <DashboardIcon />,
+    searchTitle: {
+      uz: 'Bosh sahifa',
+      en: 'Dashboard',
+      ru: 'Дaшборд',
+    },
   },
   {
     title: 'admins',
     path: ROUTES.admins,
     icon: <AdminPanelSettingsIcon />,
+    searchTitle: {
+      uz: 'Adminlar',
+      en: 'Admins',
+      ru: 'Админы',
+    },
   },
   {
     title: 'user',
     path: ROUTES.users,
     icon: <GroupIcon />,
+    searchTitle: {
+      uz: 'Foydalanuvchilar',
+      en: 'Users',
+      ru: 'Пользователи',
+    },
   },
   {
     title: 'lunch',
     path: ROUTES.lunch,
     icon: <LunchDiningIcon />,
+    searchTitle: {
+      uz: 'Tushlik',
+      en: 'Lunch',
+      ru: 'Обед',
+    },
   },
   {
     title: 'products',
     path: ROUTES.product,
     icon: icon('ic_cart'),
+    searchTitle: {
+      uz: 'Mahsulotlar',
+      en: 'Products',
+      ru: 'Продукты',
+    },
   },
   {
     title: 'foods',
     path: ROUTES.food,
     icon: <LocalDiningIcon />,
+    searchTitle: {
+      uz: 'Ovqatlar',
+      en: 'Foods',
+      ru: 'Еда',
+    },
   },
   {
     title: 'organisation',
     path: ROUTES.org,
     icon: <AccountTreeIcon />,
+    searchTitle: {
+      uz: 'Tashkilotlar',
+      en: 'Organisations',
+      ru: 'Организация',
+    },
   },
   {
     title: 'order',
     path: ROUTES.order,
     icon: <ReceiptLongSharpIcon />,
+    searchTitle: {
+      uz: 'Buyurtmalar',
+      en: 'Orders',
+      ru: 'Заказы',
+    },
   },
   {
     title: 'lunchHistory',
     path: ROUTES.history,
     icon: <HistoryIcon />,
+    searchTitle: {
+      uz: 'Tushliklar tarixi',
+      en: 'Lunch History',
+      ru: 'История обеда',
+    },
   },
   {
     title: 'payments',
     path: ROUTES.payments,
     icon: <CurrencyExchangeIcon />,
+    searchTitle: {
+      uz: 'To\'lovlar',
+      en: 'Payments',
+      ru: 'Платежи',
+    },
   },
   {
     title: 'productLogs',
     path: ROUTES.productLogs,
     icon: <HistoryToggleOffIcon />,
+    searchTitle: {
+      uz: 'Mahsulotlar tarixi',
+      en: 'Product logs',
+      ru: 'История продукта',
+    },
   },
 ];
