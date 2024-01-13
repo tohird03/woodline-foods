@@ -10,17 +10,23 @@ import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
 import ReceiptLongSharpIcon from '@mui/icons-material/ReceiptLongSharp';
 import SvgColor from '../../../components/svg-color';
-import { ROUTES } from '../../../constants/router';
+import {ROUTES} from '../../../constants/router';
 
-interface INavbarLinks {
+export interface INavbarLinks {
   title: string;
   path: string;
   icon: React.ReactNode;
-  searchTitle: Object;
+  searchTitle: INavbarLang;
+}
+
+export interface INavbarLang {
+  uz: string;
+  ru: string;
+  en: string;
 }
 
 const icon = (name: string) =>
-  <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
+  <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{width: 1, height: 1}} />;
 
 export const navConfig: INavbarLinks[] = [
   {

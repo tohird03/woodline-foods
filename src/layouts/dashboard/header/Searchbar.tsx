@@ -1,18 +1,20 @@
 /* eslint-disable react/function-component-definition */
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button, ClickAwayListener, IconButton, Input, InputAdornment, Slide } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import './searchBar.scss';
+
+import React, {ChangeEvent, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {Button, ClickAwayListener, IconButton, Input, InputAdornment, Slide} from '@mui/material';
+import {styled} from '@mui/material/styles';
 import Iconify from '../../../components/iconify';
 import i18n from '../../../language/i18next';
-import { bgBlur } from '../../../utils/cssStyles';
-import { navConfig } from '../menu/constants';
+import {bgBlur} from '../../../utils/cssStyles';
+import {INavbarLinks, navConfig} from '../menu/constants';
 
 const HEADER_MOBILE = 64;
 const HEADER_DESKTOP = 92;
 
-const StyledSearchbar = styled('div')(({ theme }: any) => ({
-  ...bgBlur({ color: theme.palette.background.default }),
+const StyledSearchbar = styled('div')(({theme}: any) => ({
+  ...bgBlur({color: theme.palette.background.default}),
   top: 0,
   left: 0,
   zIndex: 99,
@@ -33,7 +35,6 @@ const StyledSearchbar = styled('div')(({ theme }: any) => ({
 export default function Searchbar() {
   const [open, setOpen] = useState(false);
   const [searchItem, setSearchItem] = useState<any>([]);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const storedLanguage = localStorage.getItem('lang');
   const navigate = useNavigate();
 
@@ -52,17 +53,23 @@ export default function Searchbar() {
     if (query.trim() === '') {
       setSearchItem([]);
     } else {
-      const results = navConfig.filter((item: any) =>
+      const results = navConfig.filter((item: INavbarLinks) =>
+        //@ts-ignore
         item.searchTitle[lang].toLowerCase().includes(query.toLowerCase()));
 
       setSearchItem(results);
     }
   };
 
-  const handleEnterMenu = (menuItem: any, index: number) => {
+
+  const handleEnterMenu = (menuItem: INavbarLinks) => {
     navigate(menuItem.path);
     handleClose();
-    setHoveredIndex(index);
+  };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setSearchItem(e.target.value);
+    handleSearch(e.target.value);
   };
 
   return (
@@ -81,16 +88,13 @@ export default function Searchbar() {
               fullWidth
               disableUnderline
               placeholder="Search…"
-              onChange={(e: any) => {
-                setSearchItem(e.target.value);
-                handleSearch(e.target.value);
-              }}
+              onChange={handleInputChange}
               startAdornment={
                 <InputAdornment position="start">
-                  <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled', width: 20, height: 20 }} />
+                  <Iconify icon="eva:search-fill" sx={{color: 'text.disabled', width: 20, height: 20}} />
                 </InputAdornment>
               }
-              sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
+              sx={{mr: 1, fontWeight: 'fontWeightBold'}}
             />
             <Button variant="contained" onClick={handleClose}>
               Search
@@ -99,47 +103,15 @@ export default function Searchbar() {
         </Slide>
         {(searchItem.length > 0) && (
           <div
-            style={{
-              width: '99%',
-              display: 'flex',
-              flexDirection: 'column',
-              position: 'absolute',
-              top: '0',
-              left: '0',
-              maxHeight: '350px',
-              overflowY: 'auto',
-              alignSelf: 'center',
-              alignItems: 'center',
-              zIndex: '103',
-              marginTop: '100px',
-              // marginRight: '20px',
-              background: 'white',
-              borderRadius: '10px',
-              color: 'black',
-              padding: '20px',
-              boxShadow: '0px 4px 13.1px 0px rgba(0, 0, 0, 0.15)',
-            }}
+            className="searchedElements"
           >
-            {searchItem.map((result: any, index: number) => (
+            {searchItem.map((result: INavbarLinks) => (
               <div
                 key={result.searchTitle.uz}
-                style={{
-                  width: '98%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '14px 16px',
-                  height: '59px',
-                  cursor: 'pointer',
-                  backgroundColor: index === hoveredIndex ? 'white' : '#F3F3F3',
-                  marginBottom: '5px',
-                  borderRadius: '8px',
-                  border: ' 1px solid #E9EAEB',
-                }}
-                onClick={() => handleEnterMenu(result, index)}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
+                className="searchedDiv"
+                onClick={handleEnterMenu.bind(null, result)}
               >
-                <p style={{ marginRight: '13px' }}>{result.icon}</p>
+                <p style={{marginRight: '13px'}}>{result.icon}</p>
                 <p>
                   {storedLanguage === 'uz'
                     ? result.searchTitle.uz : storedLanguage === 'en'
