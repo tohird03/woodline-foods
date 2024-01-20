@@ -9,6 +9,7 @@ import Iconify from '../../../components/iconify';
 import i18n from '../../../language/i18next';
 import {bgBlur} from '../../../utils/cssStyles';
 import {INavbarLinks, navConfig} from '../menu/constants';
+import { useTranslation } from 'react-i18next';
 
 const HEADER_MOBILE = 64;
 const HEADER_DESKTOP = 92;
@@ -37,6 +38,7 @@ export default function Searchbar() {
   const [searchItem, setSearchItem] = useState<any>([]);
   const storedLanguage = localStorage.getItem('lang');
   const navigate = useNavigate();
+  const {t} = useTranslation();
 
   const handleOpen = () => {
     setOpen(!open);
@@ -87,7 +89,7 @@ export default function Searchbar() {
               autoFocus
               fullWidth
               disableUnderline
-              placeholder="Search…"
+              placeholder={t('searchText')}
               onChange={handleInputChange}
               startAdornment={
                 <InputAdornment position="start">
@@ -97,7 +99,7 @@ export default function Searchbar() {
               sx={{mr: 1, fontWeight: 'fontWeightBold'}}
             />
             <Button variant="contained" onClick={handleClose}>
-              Search
+              {t('searchText')}
             </Button>
           </StyledSearchbar>
         </Slide>

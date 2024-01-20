@@ -35,6 +35,7 @@
   "tableProductDate": "Yaratilgan vaqti",
   "tableProductChangeAmount": "Miqdorni o'zgartirish",
   "tablePercentCook": "Oshpaz ulushi",
+  "tableProductAction": "Harakatlar",
 
   "tableFoodPhoto": "Rasmi",
   "tableFoodName": "Nomi",
@@ -56,6 +57,9 @@
   "tableOrderPrice": "Umumiy narxi",
   "tableOrderCreatedAt": "Yaratilgan vaqti",
   "tableOrderStatus": "Holati",
+  "tableOrderStatusPending": "Kutilyapti",
+  "tableOrderStatusCancelled": "Bekor qilingan",
+  "tableOrderStatusAccepted": "Qabul qilingan",
 
   "dashboardTotalTrade": "Savdo",
   "dashboardTotalCosts": "Xarajatlar",
@@ -63,6 +67,10 @@
   "dashboardCardStatistics": "Barchasi",
   "dashboardFilterOrg": "Tashkilot",
   "dashboardFilterByTime": "Vaqt bo'yicha",
+  "dashboardFilterByDay": "kun",
+  "dashboardFilterByWeek": "hafta",
+  "dashboardFilterByMonth": "oy",
+  "dashboardFilterByYear": "yil",
 
   "tooltipSendNotification": "Botga xabar yuborish",
   "tooltipLanguageSelect": "Tilni o'zgartirish",
@@ -77,5 +85,9 @@
   "tableHistoryDisagreeUsers": "Xohlamaganlar",
 
   "tablePaymentRole": "Rol",
-  "tablePaymentTransaction": "Tranzaksiya"
+  "tablePaymentTransaction": "Tranzaksiya",
+
+  "paginationText": "gacha",
+
+  "searchText": "Qidirish"
 }

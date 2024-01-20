@@ -41,3 +41,8 @@ export enum IOrderStatus {
   CANCELED = 'canceled',
   ACCEPTED = 'accepted',
 }
+export const localizedStatus = {
+  [IOrderStatus.PENDING]: 'tableOrderStatusPending',
+  [IOrderStatus.CANCELED]: 'tableOrderStatusCancelled',
+  [IOrderStatus.ACCEPTED]: 'tableOrderStatusAccepted',
+};

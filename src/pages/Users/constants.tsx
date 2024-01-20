@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -114,6 +115,20 @@ export const OrderStatusColor: Record<IUserOrderStatus, LabelProps['color']> = {
   [IUserOrderStatus.PENDING]: 'primary',
 };
 
+export const UserStatusLabel: React.FC<{status: IUserOrderStatus}> = ({status}) => {
+  const {t} = useTranslation();
+  const localizedStatus = {
+    [IUserOrderStatus.ACCEPTED]: t('tableUserStatusAccepted'),
+    [IUserOrderStatus.CANCELED]: t('tableUserStatusCancelled'),
+    [IUserOrderStatus.PENDING]: t('tableUserStatusPending'),
+  };
+
+  return (
+    <Label color={OrderStatusColor[status]} variant={'outlined'}>
+      {localizedStatus[status]}
+    </Label>
+  );
+};
 export const orderFoodsColumns: TableColumn[] = [
   {
     key: 'index',
