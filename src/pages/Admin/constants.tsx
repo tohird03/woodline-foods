@@ -3,6 +3,7 @@ import {MenuItem} from '@mui/material';
 import {AdminRole} from '../../api/auth/types';
 import {TableColumn} from '../../components/table/types';
 import {getFullDateFormat} from '../../utils/formatTime';
+import {EditAdmin} from './EditAdmin';
 
 export const adminsColumns: TableColumn[] = [
   {
@@ -30,6 +31,16 @@ export const adminsColumns: TableColumn[] = [
     label: 'tableOrderCreatedAt',
     render: (value) => (getFullDateFormat(value) || '-'),
   },
+  // {
+  //   key: 'tableOrderActions',
+  //   label: 'tableUserChangeOrg',
+  //   render: () => (
+  //     <>
+  //       <EditAdmin />
+  //     </>
+  //   ),
+  // },
+
 ];
 
 export const roleOptions = [

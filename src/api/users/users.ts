@@ -5,6 +5,7 @@ import {
   IChangeOrganisation,
   IChangeRole,
   IChangeStatus,
+  IDeleteUser,
   IGetOrganisation,
   IGetUser,
   IOrdersUsers,
@@ -56,6 +57,9 @@ class UsersApi extends Instance {
 
   getUserAnalitic = (params: IUserAnaliticParams): Promise<IUserAnaliticData> =>
     this.get(`${Endpoints.UserAnalitic}/${params?.userId}`, {params: {type: params?.type}});
+
+  deleteUser = (params: IDeleteUser): Promise<IUsers> =>
+    this.delete(`${Endpoints.Users}/${params?.userId}`);
 }
 
 export const usersApi = new UsersApi(config);

@@ -18,4 +18,11 @@ export const ROUTES = {
   payments: '/payments',
   productLogs: '/product-logs',
   foodEdit: '/food/edit',
+  roles: '/role',
+  addRole: '/role',
+  updateRole: '/role/:id',
+  deleteRole: '/role/:id',
+  addRoleModule: '/role/module',
+  updateRoleModule: '/role/module/:id',
+  deleteRoleModule: '/role/module/:id',
 };

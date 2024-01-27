@@ -1,5 +1,6 @@
 import React from 'react';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import AddModeratorIcon from '@mui/icons-material/AddModerator';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -47,6 +48,16 @@ export const navConfig: INavbarLinks[] = [
       uz: 'Adminlar',
       en: 'Admins',
       ru: 'Админы',
+    },
+  },
+  {
+    title: 'roles',
+    path: ROUTES.roles,
+    icon: <AddModeratorIcon />,
+    searchTitle: {
+      uz: 'Rollar',
+      en: 'Roles',
+      ru: 'Роли',
     },
   },
   {

@@ -14,6 +14,7 @@ import {AddBalance} from './AddBalance';
 import {ChangeOrganisation} from './ChangeOrganisation';
 import {ChangeRole} from './ChangeRole';
 import {ChangeVerify} from './ChangeVerify';
+import {DeleteUser} from './DeleteUser';
 import {Analitic} from './SingleUser/Analitic';
 import {UserOrders} from './SingleUser/UserOrders';
 import {OrderProduct} from './SingleUser/UserOrders/OrderProduct';
@@ -75,6 +76,7 @@ export const usersColumns: TableColumn[] = [
         <Link style={{color: '#637381', fontSize: '20px'}} type="text" to={`${ROUTES.users}/${record?._id}`} >
           <AreaChartOutlined />
         </Link>
+        <DeleteUser user={record as IUsers} />
       </Box>
     ),
   },

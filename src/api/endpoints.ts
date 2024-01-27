@@ -29,4 +29,10 @@ export const Endpoints = {
   History: '/trip',
   Payment: '/payment',
   ProductLogs: '/product-log',
+  Roles: '/role',
+  RoleUpdate: '/role/:id',
+  RoleDelete: '/role/:id',
+  RoleModules: '/role/module',
+  RoleModuleUpdate: '/role/module/:id',
+  RoleModuleDelete: '/role/module/:id',
 };
