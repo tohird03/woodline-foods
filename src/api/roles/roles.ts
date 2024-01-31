@@ -1,7 +1,16 @@
 import {Endpoints} from '../endpoints';
 import {Instance} from '../instance';
 import {INetworkConfig} from '../types';
-import {IAddRole, IGetRoleParams, IGetRoles, IRole, IRoleModule, IRoleModules, IUpdateRole} from './types';
+import {
+  IAddModuleAction,
+  IAddRole,
+  IAddRoleModule,
+  IDeleteModuleAction,
+  IGetRoles,
+  IRole,
+  IRoleModule,
+  IUpdateModuleActions,
+  IUpdateRole} from './types';
 
 const config: INetworkConfig = {
   baseURL: '',
@@ -13,8 +22,8 @@ class RoleApi extends Instance {
     super(config);
   }
 
-  getRoles = (params: IGetRoleParams): Promise<IGetRoles> =>
-    this.get(Endpoints.Roles, {params});
+  getRoles = (): Promise<IGetRoles> =>
+    this.get(Endpoints.Roles);
 
   addRole = (params: IAddRole): Promise<IAddRole> =>
     this.post(Endpoints.Roles, params);
@@ -25,10 +34,7 @@ class RoleApi extends Instance {
   updateRole = (params: IUpdateRole): Promise<IRole> =>
     this.put(`${Endpoints.RoleUpdate}/${params._id}`, params);
 
-  getRoleModules = (params: IRoleModules): Promise<IRoleModules> =>
-    this.get(Endpoints.RoleModules, params);
-
-  addRoleModule = (params: IRoleModule): Promise<IRoleModule> =>
+  addRoleModule = (params: IAddRoleModule): Promise<IAddRoleModule> =>
     this.post(Endpoints.RoleModules, params);
 
   updateRoleModule = (params: IRoleModule): Promise<IRoleModule> =>
@@ -36,6 +42,20 @@ class RoleApi extends Instance {
 
   deleteRoleModule = (params: {_id: string}): Promise<IRoleModule> =>
     this.delete(`${Endpoints.RoleModuleDelete}/${params._id}`);
+
+  addModuleAction = (params: IAddModuleAction): Promise<IAddModuleAction> =>
+    this.post(Endpoints.ModuleAction, params);
+
+  deleteModuleAction = (params: IDeleteModuleAction): Promise<IDeleteModuleAction> =>
+    this.delete(Endpoints.ModuleAction, {
+      params: {
+        action_uri: params?.action_uri,
+        module_uri: params?.module_uri,
+      },
+    });
+
+  updateModuleActions = (params: IUpdateModuleActions): Promise<IUpdateModuleActions> =>
+    this.patch(Endpoints.UpdateModuleAction, params);
 }
 
 

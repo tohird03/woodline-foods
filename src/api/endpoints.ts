@@ -35,4 +35,6 @@ export const Endpoints = {
   RoleModules: '/role/module',
   RoleModuleUpdate: '/role/module/:id',
   RoleModuleDelete: '/role/module/:id',
+  ModuleAction: '/role/action',
+  UpdateModuleAction: '/role/action/toggle',
 };

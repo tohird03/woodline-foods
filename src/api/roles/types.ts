@@ -1,5 +1,5 @@
 export interface IGetRoles {
-  data: IRole[];
+  roles: IRole[];
 }
 
 export interface IRole {
@@ -28,13 +28,32 @@ export interface IRoleModule {
   actions: IRoleActions[];
 }
 
+export interface IAddRoleModule{
+  module_uri: string;
+}
+
 export interface IRoleActions{
   _id: string;
   permission: boolean;
   uri: string;
 }
-export interface IGetRoleParams extends IGetRoles{
-  search?: string;
-  data: IRole[];
 
+export interface IUpdateModuleActions{
+  role_id: string;
+  module_id: string;
+  action_id?: string;
+}
+
+export interface IAddModuleAction{
+  module_uri: string;
+  action_uri: string;
+}
+
+export interface IDeleteModuleAction{
+  module_uri: string;
+  action_uri: string;
+}
+
+export interface IGetRoleParams{
+  roles: IRole[];
 }

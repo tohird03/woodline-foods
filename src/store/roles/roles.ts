@@ -1,31 +1,34 @@
-import { makeAutoObservable } from 'mobx';
-import { roleApi } from '../../api/roles';
+import {makeAutoObservable} from 'mobx';
+import {roleApi} from '../../api/roles';
 import {
+  IAddModuleAction,
   IAddRole,
-  IGetRoleParams,
-  IGetRoles,
+  IAddRoleModule,
+  IDeleteModuleAction,
   IRole,
   IRoleModule,
-  IRoleModules,
+  IUpdateModuleActions,
   IUpdateRole,
 } from '../../api/roles/types';
-import { addAxiosErrorNotification, successNotification } from '../../utils/notification';
+import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
 class RolesStore {
-  data: IRole[] = [];
+  roles: IRole[] = [];
   title: string | null = null;
   modules: IRoleModule[] = [];
   isOpenCreateRoleModal = false;
+  isOpenCreateRoleModuleModal = false;
+  isOpenCreateModuleActionModal = false;
   newRoleTitle: string | null = null;
   constructor() {
     makeAutoObservable(this);
   }
 
-  getRoles = (params: IGetRoleParams) =>
-    roleApi.getRoles(params)
+  getRoles = () =>
+    roleApi.getRoles()
       .then(res => {
         if (res) {
-          this.setRoles(res.data);
+          this.setRoles(res.roles);
         }
       })
       .catch(addAxiosErrorNotification);
@@ -35,9 +38,7 @@ class RolesStore {
       .then(res => {
         if (res) {
           successNotification('Role successfully added');
-          this.getRoles({
-            data: [],
-          });
+          this.getRoles();
         }
       })
       .catch(addAxiosErrorNotification);
@@ -51,21 +52,12 @@ class RolesStore {
       })
       .catch(addAxiosErrorNotification);
 
-  getRoleModules = (params: IRoleModules) =>
-    roleApi.getRoleModules(params)
-      .then(res => {
-        if (res) {
-          this.setRoleModule(res.roleModules);
-        }
-      })
-      .catch(addAxiosErrorNotification);
-
-  addRoleModule = (params: IRoleModule) =>
+  addRoleModule = (params: IAddRoleModule) =>
     roleApi.addRoleModule(params)
       .then(res => {
         if (res) {
-          this.setRoleModule([...this.modules, res]);
           successNotification('Role module successfully added');
+          this.getRoles();
         }
       })
       .catch(addAxiosErrorNotification);
@@ -81,25 +73,59 @@ class RolesStore {
       .catch(addAxiosErrorNotification);
 
   deleteRoleModule = (moduleId: string) =>
-    roleApi.deleteRoleModule({ _id: moduleId })
+    roleApi.deleteRoleModule({_id: moduleId})
       .then(res => {
         if (res) {
           this.setRoleModule([...this.modules, res]);
           successNotification('Role module successfully deleted');
+          this.getRoles();
         }
       })
       .catch(addAxiosErrorNotification);
 
-  createRoleModalVisible = (isOpen: boolean) => {
-    this.setCreateRoleModalVisible(isOpen);
-  };
+  addModuleAction = (params: IAddModuleAction) =>
+    roleApi.addModuleAction(params)
+      .then(res => {
+        if (res){
+          successNotification('Module action successfully added');
+          this.getRoles();
+        }
+      })
+      .catch(addAxiosErrorNotification);
+
+  deleteModuleAction = (params: IDeleteModuleAction) =>
+    roleApi.deleteModuleAction(params)
+      .then(res => {
+        if (res){
+          successNotification('Action deleted');
+          this.getRoles();
+        }
+      })
+      .catch(addAxiosErrorNotification);
+
+  updateModuleAction = (params: IUpdateModuleActions) =>
+    roleApi.updateModuleActions(params)
+      .then(res => {
+        if (res){
+          this.getRoles();
+        }
+      })
+      .catch(addAxiosErrorNotification);
 
   setRoles = (role: IRole[]) => {
-    this.data = role;
+    this.roles = role;
   };
 
   setCreateRoleModalVisible = (isOpen: boolean) => {
     this.isOpenCreateRoleModal = isOpen;
+  };
+
+  setCreateRoleModuleModalVisible = (isOpen: boolean) => {
+    this.isOpenCreateRoleModuleModal = isOpen;
+  };
+
+  setCreateModuleActionModalVisible = (isOpen: boolean) => {
+    this.isOpenCreateModuleActionModal = isOpen;
   };
 
   setRoleModule = (roleModules: IRoleModule[]) => {
@@ -111,7 +137,7 @@ class RolesStore {
   };
 
   reset() {
-    this.data = [];
+    this.roles = [];
     this.modules = [];
   }
 }
