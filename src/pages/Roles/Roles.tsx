@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {observer} from 'mobx-react';
 import {CloseOutlined, PlusOutlined} from '@ant-design/icons';
-import {Button, Card, Checkbox, Collapse, Typography} from 'antd';
+import {Button, Card, Checkbox, Collapse, Spin, Typography} from 'antd';
 import {CheckboxChangeEvent} from 'antd/es/checkbox';
 import {IRole, IRoleModule} from '../../api/roles/types';
 import {rolesStore} from '../../store/roles/roles';
 import {CreateRoleModal} from './CreateRole/CreateRoleModal';
 import {CreateModuleActionModal} from './CreateRoleModule/CreateRoleActionModal';
 import {CreateRoleModuleModal} from './CreateRoleModule/CreateRoleModuleModal';
+import {UpdateRoleModuleModal} from './CreateRoleModule/UpdateRoleModuleModal';
 
 
 export const RolesPage = observer(() => {
@@ -38,11 +39,21 @@ export const RolesPage = observer(() => {
       action_id: actionId as string,
     });
 
+    rolesStore.toggleRoleModule({
+      role_id: roleId,
+      module_id: moduleId,
+    });
+
     setCheckedKeys(newCheckedKeys);
   };
   const handleModuleActionClick = (moduleUri: string) => {
     setCurrentModuleUri(moduleUri);
     rolesStore.setCreateModuleActionModalVisible(true);
+  };
+
+  const handleUpdateModule = (moduleUri: string) => {
+    setCurrentModuleUri(moduleUri);
+    rolesStore.setUpdateRoleModuleModalVisible(true);
   };
 
   const createCheckboxHeader = (role: IRole, module: IRoleModule) => (
@@ -57,7 +68,7 @@ export const RolesPage = observer(() => {
           onChange={(e) => onCheckboxChange(role._id, module._id, e)}
           defaultChecked={module.permission}
         />
-        <span style={{marginLeft: 8}}>
+        <span style={{marginLeft: 8}} onClick={() => handleUpdateModule(module.uri)}>
           {module.uri.charAt(0).toUpperCase() + module.uri.slice(1)}
         </span>
       </div>
@@ -87,20 +98,25 @@ export const RolesPage = observer(() => {
         }}
       >
         <Typography.Text style={{fontSize: '25px', fontWeight: 'bold'}}>Roles</Typography.Text>
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          onClick={() => rolesStore.setCreateRoleModuleModalVisible(true)}
-        >
+        <div>
+          <Button
+            icon={<PlusOutlined />}
+            onClick={() => rolesStore.setCreateRoleModuleModalVisible(true)}
+            style={{
+              marginRight: '10px',
+            }}
+            type="primary"
+          >
           Add module
-        </Button>
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          onClick={() => rolesStore.setCreateRoleModalVisible(true)}
-        >
+          </Button>
+          <Button
+            icon={<PlusOutlined />}
+            onClick={() => rolesStore.setCreateRoleModalVisible(true)}
+            type="default"
+          >
           Add Role
-        </Button>
+          </Button>
+        </div>
       </div>
       <div />
       <div>
@@ -130,8 +146,13 @@ export const RolesPage = observer(() => {
               >
                 {role.modules?.map(module => (
                   <Card key={module._id} style={{}}>
-                    <Collapse style={{width: '100%', display: 'flex', gap: '53px', minWidth: '300px'}}>
-
+                    <Collapse
+                      style={{
+                        width: '100%',
+                        display: 'flex',
+                        gap: '53px',
+                        minWidth: '300px'}}
+                    >
                       <Panel
                         header={createCheckboxHeader(role, module)}
                         key={`${role._id}-${module._id}`}
@@ -185,7 +206,6 @@ export const RolesPage = observer(() => {
                 ))}
               </div>
             </div>
-
           ))}
         </Card>
       </div>
@@ -193,6 +213,7 @@ export const RolesPage = observer(() => {
       <CreateRoleModal />
       <CreateRoleModuleModal />
       <CreateModuleActionModal currentModuleUri={currentModuleUri} />
+      <UpdateRoleModuleModal currentModuleUri={currentModuleUri} />
     </div>
   );
 });

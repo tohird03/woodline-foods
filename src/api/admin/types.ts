@@ -23,3 +23,7 @@ export interface IEditAdmin {
   role: string;
 }
 
+export interface IDeleteAdmin {
+  _id: string;
+}
+

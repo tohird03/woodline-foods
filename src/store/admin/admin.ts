@@ -1,12 +1,13 @@
 import {makeAutoObservable} from 'mobx';
 import {adminApi} from '../../api/admin/admin';
-import {IAddAdmin, IAdmins, IEditAdmin} from '../../api/admin/types';
+import {IAddAdmin, IAdmins, IDeleteAdmin, IEditAdmin} from '../../api/admin/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
 class AdminStore {
   admins: IAdmins[] = [];
   isOpenNewAdminModal = false;
   isOpenEditAdminModal = false;
+  isOpenDeleteModal = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -45,6 +46,15 @@ class AdminStore {
         }
       });
 
+  deleteAdmin = (params: IDeleteAdmin) =>
+    adminApi.deleteAdmin(params)
+      .then(res => {
+        if (res) {
+          successNotification('Admin deleted successfully');
+          this.getAdmins();
+        }
+      });
+
 
   setAdmins = (admins: IAdmins[]) => {
     this.admins = admins;
@@ -56,6 +66,10 @@ class AdminStore {
 
   setIsOpenEditAdminModal = (isOpen: boolean) => {
     this.isOpenEditAdminModal = isOpen;
+  };
+
+  setDeleteModalVisible = (isOpen: boolean) => {
+    this.isOpenDeleteModal = isOpen;
   };
 
   reset() {

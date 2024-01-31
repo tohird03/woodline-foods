@@ -28,7 +28,19 @@ export interface IRoleModule {
   actions: IRoleActions[];
 }
 
+export interface IToggleRoleModule{
+  role_id: string;
+  module_id: string;
+}
+export interface IUpdateRoleModule{
+  module_uri: string;
+  new_uri: string;
+}
+
 export interface IAddRoleModule{
+  module_uri: string;
+}
+export interface IDeleteRoleModule{
   module_uri: string;
 }
 

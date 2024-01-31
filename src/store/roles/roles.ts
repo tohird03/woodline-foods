@@ -5,10 +5,13 @@ import {
   IAddRole,
   IAddRoleModule,
   IDeleteModuleAction,
+  IDeleteRoleModule,
   IRole,
   IRoleModule,
+  IToggleRoleModule,
   IUpdateModuleActions,
   IUpdateRole,
+  IUpdateRoleModule,
 } from '../../api/roles/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
@@ -19,12 +22,15 @@ class RolesStore {
   isOpenCreateRoleModal = false;
   isOpenCreateRoleModuleModal = false;
   isOpenCreateModuleActionModal = false;
+  isOpenUpdateRoleModuleModal = false;
+
+  isLoading = false;
   newRoleTitle: string | null = null;
   constructor() {
     makeAutoObservable(this);
   }
 
-  getRoles = () =>
+  getRoles = () => {
     roleApi.getRoles()
       .then(res => {
         if (res) {
@@ -32,8 +38,9 @@ class RolesStore {
         }
       })
       .catch(addAxiosErrorNotification);
+  };
 
-  addRole = (params: IAddRole) =>
+  addRole = (params: IAddRole) => {
     roleApi.addRole(params)
       .then(res => {
         if (res) {
@@ -42,6 +49,7 @@ class RolesStore {
         }
       })
       .catch(addAxiosErrorNotification);
+  };
 
   updateRole = (params: IUpdateRole) =>
     roleApi.updateRole(params)
@@ -62,26 +70,28 @@ class RolesStore {
       })
       .catch(addAxiosErrorNotification);
 
-  updateRoleModule = (params: IRoleModule) =>
+  updateRoleModule = (params: IUpdateRoleModule) =>
     roleApi.updateRoleModule(params)
       .then(res => {
         if (res) {
-          this.setRoleModule([...this.modules, res]);
           successNotification('Role module successfully updated');
-        }
-      })
-      .catch(addAxiosErrorNotification);
-
-  deleteRoleModule = (moduleId: string) =>
-    roleApi.deleteRoleModule({_id: moduleId})
-      .then(res => {
-        if (res) {
-          this.setRoleModule([...this.modules, res]);
-          successNotification('Role module successfully deleted');
           this.getRoles();
         }
       })
       .catch(addAxiosErrorNotification);
+
+  toggleRoleModule = (params: IToggleRoleModule) =>
+    roleApi.toggleRoleModule(params);
+
+  // deleteRoleModule = (params: IDeleteRoleModule) =>
+  //   roleApi.deleteRoleModule(params)
+  //     .then(res => {
+  //       if (res) {
+  //         successNotification('Role module successfully deleted');
+  //         this.getRoles();
+  //       }
+  //     })
+  //     .catch(addAxiosErrorNotification);
 
   addModuleAction = (params: IAddModuleAction) =>
     roleApi.addModuleAction(params)
@@ -104,13 +114,7 @@ class RolesStore {
       .catch(addAxiosErrorNotification);
 
   updateModuleAction = (params: IUpdateModuleActions) =>
-    roleApi.updateModuleActions(params)
-      .then(res => {
-        if (res){
-          this.getRoles();
-        }
-      })
-      .catch(addAxiosErrorNotification);
+    roleApi.updateModuleActions(params);
 
   setRoles = (role: IRole[]) => {
     this.roles = role;
@@ -134,6 +138,14 @@ class RolesStore {
 
   setNewRoleTitle = (roleTitle: string) => {
     this.newRoleTitle = roleTitle;
+  };
+
+  setIsLoading = (isLoading: boolean) => {
+    this.isLoading = isLoading;
+  };
+
+  setUpdateRoleModuleModalVisible = (isOpen: boolean) => {
+    this.isOpenUpdateRoleModuleModal = isOpen;
   };
 
   reset() {

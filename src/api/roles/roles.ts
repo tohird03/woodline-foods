@@ -8,9 +8,10 @@ import {
   IDeleteModuleAction,
   IGetRoles,
   IRole,
-  IRoleModule,
+  IToggleRoleModule,
   IUpdateModuleActions,
-  IUpdateRole} from './types';
+  IUpdateRole,
+  IUpdateRoleModule} from './types';
 
 const config: INetworkConfig = {
   baseURL: '',
@@ -37,11 +38,14 @@ class RoleApi extends Instance {
   addRoleModule = (params: IAddRoleModule): Promise<IAddRoleModule> =>
     this.post(Endpoints.RoleModules, params);
 
-  updateRoleModule = (params: IRoleModule): Promise<IRoleModule> =>
-    this.put(`${Endpoints.RoleModuleUpdate}/${params._id}`, params);
+  updateRoleModule = (params: IUpdateRoleModule): Promise<IUpdateRoleModule> =>
+    this.patch(Endpoints.RoleModuleUpdate, params);
 
-  deleteRoleModule = (params: {_id: string}): Promise<IRoleModule> =>
-    this.delete(`${Endpoints.RoleModuleDelete}/${params._id}`);
+  toggleRoleModule = (params: IToggleRoleModule): Promise<IToggleRoleModule> =>
+    this.patch(Endpoints.RoleModuleToggle, params);
+
+  // deleteRoleModule = (params: IDeleteRoleModule): Promise<IDeleteRoleModule> =>
+  //   this.delete(Endpoints.RoleModuleDelete, params);
 
   addModuleAction = (params: IAddModuleAction): Promise<IAddModuleAction> =>
     this.post(Endpoints.ModuleAction, params);
