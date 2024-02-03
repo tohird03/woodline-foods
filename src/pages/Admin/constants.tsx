@@ -1,11 +1,9 @@
 import React from 'react';
-import {Menu, MenuItem} from '@mui/material';
-import {AdminRole} from '../../api/auth/types';
+import {MenuItem} from '@mui/material';
 import {IRole} from '../../api/roles/types';
 import {TableColumn} from '../../components/table/types';
 import {rolesStore} from '../../store/roles/roles';
 import {getFullDateFormat} from '../../utils/formatTime';
-import {EditAdmin} from './EditAdmin';
 
 export const adminsColumns: TableColumn[] = [
   {
@@ -35,22 +33,3 @@ export const adminsColumns: TableColumn[] = [
   },
 
 ];
-
-// export const roleOptions = [
-//   <MenuItem key={AdminRole.SUPER_ADMIN} value={AdminRole.SUPER_ADMIN}>
-//     {AdminRole.SUPER_ADMIN}
-//   </MenuItem>,
-//   <MenuItem key={AdminRole.STOREKEEPER} value={AdminRole.STOREKEEPER}>
-//     {AdminRole.STOREKEEPER}
-//   </MenuItem>,
-//   <MenuItem key={AdminRole.COOK} value={AdminRole.COOK}>
-//     {AdminRole.COOK}
-//   </MenuItem>,
-// ];
-
-export const roleOptions = rolesStore.roles.map((role: IRole) => (
-  <MenuItem key={role._id} value={role._id}>
-    {role.title}
-  </MenuItem>
-));
-

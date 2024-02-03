@@ -44,6 +44,10 @@ class AdminStore {
           successNotification('Admins edited successfully');
           this.getAdmins();
         }
+      })
+      .catch(addAxiosErrorNotification)
+      .finally(() => {
+        this.setIsOpenEditAdminModal(false);
       });
 
   deleteAdmin = (params: IDeleteAdmin) =>
@@ -53,7 +57,8 @@ class AdminStore {
           successNotification('Admin deleted successfully');
           this.getAdmins();
         }
-      });
+      })
+      .catch(addAxiosErrorNotification);
 
 
   setAdmins = (admins: IAdmins[]) => {

@@ -10,7 +10,8 @@ import {IOrganisation} from '../../../api/products/types';
 import {Modal} from '../../../components/Modal';
 import {adminStore} from '../../../store/admin';
 import {productStore} from '../../../store/products';
-import {roleOptions} from '../constants';
+import { rolesStore } from '../../../store/roles/roles';
+import { IRole } from '../../../api/roles/types';
 
 export const AddAdmin = observer(() => {
   const formik = useFormik({
@@ -44,11 +45,18 @@ export const AddAdmin = observer(() => {
 
   useEffect(() => {
     productStore.getOrganisation();
+    rolesStore.getRoles();
 
     return () => {
       productStore.setOrganisation([]);
     };
   }, []);
+
+  const roleOptions = rolesStore.roles.map((role: IRole) => (
+    <MenuItem key={role._id} value={role._id}>
+      {role.title}
+    </MenuItem>
+  ));
 
   return (
     <Modal

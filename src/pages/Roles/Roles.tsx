@@ -9,43 +9,42 @@ import {CreateRoleModal} from './CreateRole/CreateRoleModal';
 import {CreateModuleActionModal} from './CreateRoleModule/CreateRoleActionModal';
 import {CreateRoleModuleModal} from './CreateRoleModule/CreateRoleModuleModal';
 import {UpdateRoleModuleModal} from './CreateRoleModule/UpdateRoleModuleModal';
-
+import {RoleStyles} from './styles';
 
 export const RolesPage = observer(() => {
   const {Panel} = Collapse;
-  const [checkedKeys, setCheckedKeys] = useState<string[]>([]);
   const [currentModuleUri, setCurrentModuleUri] = useState('');
 
+  const handleAddModule = () => {
+    rolesStore.setCreateRoleModuleModalVisible(true);
+  };
 
-  useEffect(() => {
-    rolesStore.getRoles();
-  }, []);
+  const handleAddRole = () => {
+    rolesStore.setCreateRoleModalVisible(true);
+  };
 
-
-  const onCheckboxChange = (
+  const handleCheckModule = (
     roleId: string,
-    moduleId: string,
-    e: CheckboxChangeEvent,
-    actionId?: string
+    moduleId: string
   ) => {
-    const key = `${roleId}-${moduleId}`;
-    const newCheckedKeys = e.target.checked
-      ? [...checkedKeys, key]
-      : checkedKeys.filter(checkedKey => checkedKey !== key);
-
-    rolesStore.updateModuleAction({
-      role_id: roleId,
-      module_id: moduleId,
-      action_id: actionId as string,
-    });
-
     rolesStore.toggleRoleModule({
       role_id: roleId,
       module_id: moduleId,
     });
-
-    setCheckedKeys(newCheckedKeys);
   };
+
+  const handleCheckAction = (
+    roleId: string,
+    moduleId: string,
+    actionId: string
+  ) => {
+    rolesStore.updateModuleAction({
+      role_id: roleId,
+      module_id: moduleId,
+      action_id: actionId,
+    });
+  };
+
   const handleModuleActionClick = (moduleUri: string) => {
     setCurrentModuleUri(moduleUri);
     rolesStore.setCreateModuleActionModalVisible(true);
@@ -65,16 +64,16 @@ export const RolesPage = observer(() => {
     >
       <div>
         <Checkbox
-          onChange={(e) => onCheckboxChange(role._id, module._id, e)}
+          onChange={handleCheckModule.bind(null, role._id, module._id)}
           defaultChecked={module.permission}
         />
-        <span style={{marginLeft: 8}} onClick={() => handleUpdateModule(module.uri)}>
+        <span style={{marginLeft: 8}} onClick={handleUpdateModule.bind(null, module.uri)}>
           {module.uri.charAt(0).toUpperCase() + module.uri.slice(1)}
         </span>
       </div>
       <Button
         type="primary"
-        onClick={() => handleModuleActionClick(module.uri)}
+        onClick={handleModuleActionClick.bind(null, module.uri)}
         icon={<PlusOutlined />}
       />
     </div>
@@ -87,34 +86,29 @@ export const RolesPage = observer(() => {
     });
   };
 
+  useEffect(() => {
+    rolesStore.getRoles();
+  }, []);
+
   return (
-    <div>
-      <div
-        style={{
-          display: 'flex',
-          width: '100%',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-      >
-        <Typography.Text style={{fontSize: '25px', fontWeight: 'bold'}}>Roles</Typography.Text>
+    <>
+      <div style={RoleStyles?.Wrapper}>
+        <Typography.Text style={RoleStyles.HeaderTitle}>Roles</Typography.Text>
         <div>
           <Button
             icon={<PlusOutlined />}
-            onClick={() => rolesStore.setCreateRoleModuleModalVisible(true)}
-            style={{
-              marginRight: '10px',
-            }}
-            type="primary"
+            onClick={handleAddRole}
+            style={{marginRight: '10px'}}
+            type="default"
           >
-          Add module
+            Add Role
           </Button>
           <Button
             icon={<PlusOutlined />}
-            onClick={() => rolesStore.setCreateRoleModalVisible(true)}
-            type="default"
+            onClick={handleAddModule}
+            type="primary"
           >
-          Add Role
+            Add module
           </Button>
         </div>
       </div>
@@ -145,7 +139,7 @@ export const RolesPage = observer(() => {
                 }}
               >
                 {role.modules?.map(module => (
-                  <Card key={module._id} style={{}}>
+                  <Card key={module._id}>
                     <Collapse
                       style={{
                         width: '100%',
@@ -182,16 +176,14 @@ export const RolesPage = observer(() => {
                               }}
                             >
                               <Checkbox
-                                onChange={(e) => onCheckboxChange(role._id, module._id, e, action._id)}
+                                onChange={handleCheckAction.bind(null, role?._id, module?._id, action?._id)}
                                 defaultChecked={action.permission}
                               >
-                                <div>
-                                  {action.uri}
-                                </div>
+                                {action.uri}
                               </Checkbox>
                               <div>
                                 <CloseOutlined
-                                  onClick={() => handleActionDelete(action.uri, module.uri)}
+                                  onClick={handleActionDelete.bind(null, action.uri, module.uri)}
                                   style={{cursor: 'pointer'}}
                                 />
                               </div>
@@ -214,6 +206,6 @@ export const RolesPage = observer(() => {
       <CreateRoleModuleModal />
       <CreateModuleActionModal currentModuleUri={currentModuleUri} />
       <UpdateRoleModuleModal currentModuleUri={currentModuleUri} />
-    </div>
+    </>
   );
 });

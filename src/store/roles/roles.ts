@@ -83,16 +83,6 @@ class RolesStore {
   toggleRoleModule = (params: IToggleRoleModule) =>
     roleApi.toggleRoleModule(params);
 
-  // deleteRoleModule = (params: IDeleteRoleModule) =>
-  //   roleApi.deleteRoleModule(params)
-  //     .then(res => {
-  //       if (res) {
-  //         successNotification('Role module successfully deleted');
-  //         this.getRoles();
-  //       }
-  //     })
-  //     .catch(addAxiosErrorNotification);
-
   addModuleAction = (params: IAddModuleAction) =>
     roleApi.addModuleAction(params)
       .then(res => {

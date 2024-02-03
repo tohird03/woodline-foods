@@ -1,70 +1,58 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
-  Button,
-  Card,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  FormControl,
-  Select,
+  MenuItem,
   SelectChangeEvent,
 } from '@mui/material';
 import {IEditAdmin} from '../../../../api/admin/types';
 import {adminStore} from '../../../../store/admin';
-import {roleOptions} from '../../constants';
+import { observer } from 'mobx-react';
+import { rolesStore } from '../../../../store/roles/roles';
+import { IRole } from '../../../../api/roles/types';
+import { Modal, Select } from 'antd';
 
 interface EditAdminModalProps {
   adminId: string;
 }
 
-export const EditAdminModal: React.FC<EditAdminModalProps> = ({adminId}) => {
-  const [editedRole, setEditedRole] = useState<IEditAdmin | string>('');
+export const EditAdminModal: React.FC<EditAdminModalProps> = observer(({adminId}) => {
+  const [editedRole, setEditedRole] = useState<any>(null);
 
   const handleCancel = () => {
     adminStore.setIsOpenEditAdminModal(false);
   };
 
   const handleEdit = () => {
-    adminStore.setIsOpenEditAdminModal(false);
     adminStore.editAdmin({
       _id: adminId,
-      role: editedRole as string,
+      role: editedRole,
     });
   };
 
-  const handleChange = (e: SelectChangeEvent<typeof editedRole>) => {
-    setEditedRole(e.target.value);
+  const handleChange = (value: string) => {
+    setEditedRole(value);
   };
 
+  const roleOptions = rolesStore.roles.map((role: IRole) => ({ value: role?._id, label: role?.title }));
+
+  useEffect(() => {
+    rolesStore.getRoles();
+  }, []);
+
   return (
-    <Dialog
-      onClose={handleCancel}
+    <Modal
+      onCancel={handleCancel}
+      onOk={handleEdit}
       open={adminStore.isOpenEditAdminModal}
+      title="Выберите роль"
+      width={400}
     >
-      <DialogTitle>Edit Admin Role</DialogTitle>
-      <DialogContent>
-        <Card>
-          <FormControl fullWidth>
-            <Select
-              onChange={handleChange}
-              value={editedRole}
-              placeholder="Tanlang"
-              required
-            >
-              {roleOptions}
-            </Select>
-          </FormControl>
-        </Card>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleCancel} color="secondary">
-          Cancel
-        </Button>
-        <Button onClick={handleEdit} color="primary">
-          Edit
-        </Button>
-      </DialogActions>
-    </Dialog>
+      <Select
+        onChange={handleChange}
+        value={editedRole}
+        placeholder="Выберите роль"
+        style={{width: '100%'}}
+        options={roleOptions}
+      />
+    </Modal>
   );
-};
+});

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Modal} from 'antd';
 import {adminStore} from '../../../store/admin';
+import { Typography } from '@mui/material';
 
 interface DeleteAdminProps {
   adminId: string;
@@ -18,14 +19,14 @@ const DeleteAdmin: React.FC<DeleteAdminProps> = ({adminId}) => {
     adminStore.setDeleteModalVisible(false);
   };
 
-  const handleCancel = (): void => {
+  const handleCancel = () => {
     adminStore.setDeleteModalVisible(false);
   };
 
   const modalFooter = (
     <div>
-      <Button onClick={handleCancel}>No</Button>
-      <Button type="primary" onClick={handleOk}>Yes</Button>
+      <Button onClick={handleCancel}>Нет</Button>
+      <Button type="primary" danger onClick={handleOk}>Да</Button>
     </div>
   );
 
@@ -38,7 +39,7 @@ const DeleteAdmin: React.FC<DeleteAdminProps> = ({adminId}) => {
         onCancel={handleCancel}
         footer={modalFooter}
       >
-        <p>Rostan ham ushbu adminni ochirmoqchimisz?</p>
+        <Typography>Rostan ham ushbu adminni ochirmoqchimisz?</Typography>
       </Modal>
     </div>
   );
