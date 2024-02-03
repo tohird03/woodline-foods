@@ -26,8 +26,10 @@ class UsersStore {
   page = 1;
   size = 10;
   singleUser: IUsers | null = null;
+  singleUserId: string | null = null;
   isOpenBalanceModal = false;
   isOpenChangeRoleModal = false;
+  isOpenDeleteUserModal = false;
   search = '';
   totalUserOrder = 0;
   userOrders: IGetUserOrders[] = [];
@@ -160,6 +162,10 @@ class UsersStore {
     this.users = users;
   };
 
+  setSingleUserId = (id: string | null) => {
+    this.singleUserId = id;
+  };
+
   setUserOrder = (orders: IGetUserOrders[]) => {
     this.userOrders = orders;
   };
@@ -206,6 +212,10 @@ class UsersStore {
 
   setIsOpenChangeRoleModal = (isOpen: boolean) => {
     this.isOpenChangeRoleModal = isOpen;
+  };
+
+  setIsOpenDeleteUserModal = (isOpen: boolean) => {
+    this.isOpenDeleteUserModal = isOpen;
   };
 
   setSearch = (search: string) => {

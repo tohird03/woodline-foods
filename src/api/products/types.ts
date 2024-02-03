@@ -1,3 +1,4 @@
+import { IRole } from '../roles/types';
 import {IPagination} from '../types';
 
 export interface IGetProducts {

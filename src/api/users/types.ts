@@ -5,6 +5,10 @@ export interface IGetUser {
   totalUsers: number;
 }
 
+export interface IDeleteUser {
+  userId: string | null;
+}
+
 export interface IUserParams extends IPagination {
   search?: string;
 }

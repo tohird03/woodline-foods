@@ -10,3 +10,9 @@ export enum FilterTime {
   MONTH = 'month',
   YEAR = 'year',
 }
+export const localizedStrings = {
+  [FilterTime.DAY]: 'dashboardFilterByDay',
+  [FilterTime.WEEK]: 'dashboardFilterByWeek',
+  [FilterTime.MONTH]: 'dashboardFilterByMonth',
+  [FilterTime.YEAR]: 'dashboardFilterByYear',
+};

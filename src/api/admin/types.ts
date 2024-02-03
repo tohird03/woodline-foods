@@ -17,3 +17,13 @@ export interface IAddAdmin {
   org: string;
   role: string;
 }
+
+export interface IEditAdmin {
+  _id: string;
+  role: string;
+}
+
+export interface IDeleteAdmin {
+  _id: string;
+}
+

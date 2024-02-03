@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -13,6 +14,7 @@ import {AddBalance} from './AddBalance';
 import {ChangeOrganisation} from './ChangeOrganisation';
 import {ChangeRole} from './ChangeRole';
 import {ChangeVerify} from './ChangeVerify';
+import {DeleteUser} from './DeleteUser';
 import {Analitic} from './SingleUser/Analitic';
 import {UserOrders} from './SingleUser/UserOrders';
 import {OrderProduct} from './SingleUser/UserOrders/OrderProduct';
@@ -74,6 +76,7 @@ export const usersColumns: TableColumn[] = [
         <Link style={{color: '#637381', fontSize: '20px'}} type="text" to={`${ROUTES.users}/${record?._id}`} >
           <AreaChartOutlined />
         </Link>
+        <DeleteUser user={record as IUsers} />
       </Box>
     ),
   },
@@ -114,6 +117,20 @@ export const OrderStatusColor: Record<IUserOrderStatus, LabelProps['color']> = {
   [IUserOrderStatus.PENDING]: 'primary',
 };
 
+export const UserStatusLabel: React.FC<{status: IUserOrderStatus}> = ({status}) => {
+  const {t} = useTranslation();
+  const localizedStatus = {
+    [IUserOrderStatus.ACCEPTED]: t('tableUserStatusAccepted'),
+    [IUserOrderStatus.CANCELED]: t('tableUserStatusCancelled'),
+    [IUserOrderStatus.PENDING]: t('tableUserStatusPending'),
+  };
+
+  return (
+    <Label color={OrderStatusColor[status]} variant={'outlined'}>
+      {localizedStatus[status]}
+    </Label>
+  );
+};
 export const orderFoodsColumns: TableColumn[] = [
   {
     key: 'index',

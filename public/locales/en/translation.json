@@ -7,6 +7,7 @@
   "order": "Orders",
   "lunch": "Lunch",
   "lunchBase": "Lunch base",
+  "payments": "Payments",
   "lunchHistory": "Lunch History",
   "productLogs": "Product logs",
 
@@ -34,6 +35,8 @@
   "tableProductDate": "Created At",
   "tableProductChangeAmount": "Change amount",
   "tablePercentCook": "Percent cooker",
+  "tableProductAction": "Action",
+
 
   "tableFoodPhoto": "Photo",
   "tableFoodName": "Name",
@@ -55,6 +58,9 @@
   "tableOrderPrice": "Total price",
   "tableOrderCreatedAt": "Created at",
   "tableOrderStatus": "Status",
+  "tableOrderStatusPending": "Pending",
+  "tableOrderStatusCancelled": "Cancelled",
+  "tableOrderStatusAccepted": "Accepted",
 
   "dashboardTotalTrade": "Sales",
   "dashboardTotalCosts": "Cost",
@@ -62,6 +68,10 @@
   "dashboardCardStatistics": "All",
   "dashboardFilterOrg": "Organisation",
   "dashboardFilterByTime": "By time",
+  "dashboardFilterByDay": "day",
+  "dashboardFilterByWeek": "week",
+  "dashboardFilterByMonth": "month",
+  "dashboardFilterByYear": "year",
 
   "tooltipSendNotification": "Send a notification to a bot",
   "tooltipLanguageSelect": "Change the language",
@@ -76,5 +86,9 @@
   "tableHistoryDisagreeUsers": "Disagree users",
 
   "tablePaymentRole": "Role",
-  "tablePaymentTransaction": "Transaction"
+  "tablePaymentTransaction": "Transaction",
+
+  "paginationText": "from",
+  
+  "searchText": "Search"
 }
