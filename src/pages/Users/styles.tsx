@@ -1,6 +1,6 @@
 import React from 'react';
-import {Switch, SwitchProps} from '@mui/material';
-import {styled} from '@mui/material/styles';
+import { Switch, SwitchProps } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 export const UsersStyles = {
   fullWidth: {
@@ -34,6 +34,7 @@ export const UsersStyles = {
   },
   changeOrgFormControl: {
     margin: '10px 0',
+    width: '200px',
   },
   changeVerifyConfirm: {
     display: 'flex',
@@ -56,7 +57,7 @@ export const UsersStyles = {
 
 export const IOSSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
-))(({theme}) => ({
+))(({ theme }) => ({
   width: 42,
   height: 20,
   padding: 0,

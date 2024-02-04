@@ -1,6 +1,6 @@
-import {makeAutoObservable} from 'mobx';
-import {IPagination} from '../../api/types';
-import {usersApi} from '../../api/users';
+import { makeAutoObservable } from 'mobx';
+import { IPagination } from '../../api/types';
+import { usersApi } from '../../api/users';
 import {
   IChangeOrganisation,
   IChangeRole,
@@ -16,7 +16,7 @@ import {
   IUsers,
   TransactionParams,
 } from '../../api/users/types';
-import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
+import { addAxiosErrorNotification, successNotification } from '../../utils/notification';
 
 class UsersStore {
   users: IUsers[] = [];
@@ -39,6 +39,9 @@ class UsersStore {
   foods: IUserOrdersFoods[] = [];
   userAnalitic: IUserAnaliticData | null = null;
   time: IUserAnaliticType = IUserAnaliticType.Day;
+  start: string | null = null;
+  end: string | null = null;
+  org: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -236,6 +239,18 @@ class UsersStore {
 
   setTime = (time: IUserAnaliticType) => {
     this.time = time;
+  };
+
+  setStart = (startDate: string | null) => {
+    this.start = startDate;
+  };
+
+  setEnd = (endDate: string | null) => {
+    this.end = endDate;
+  };
+
+  setOrg = (org: string | null) => {
+    this.org = org;
   };
 
   reset() {

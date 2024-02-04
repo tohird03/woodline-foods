@@ -8,6 +8,7 @@ export const Endpoints = {
   UserChangeVerify: '/user/verify',
   UserOrders: '/order/user',
   UserAnalitic: '/order/spent',
+  UserOrderAnalitic: '/order/total-spent',
   UserPayment: '/user/payment',
   UserRole: '/user/role',
   Products: '/product',

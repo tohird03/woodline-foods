@@ -1,6 +1,6 @@
-import {Endpoints} from '../endpoints';
-import {Instance} from '../instance';
-import {INetworkConfig, IPagination} from '../types';
+import { Endpoints } from '../endpoints';
+import { Instance } from '../instance';
+import { INetworkConfig, IPagination } from '../types';
 import {
   IChangeOrganisation,
   IChangeRole,
@@ -27,16 +27,16 @@ class UsersApi extends Instance {
   }
 
   getUsers = (params: IUserParams): Promise<IGetUser> =>
-    this.get(Endpoints.Users, {params});
+    this.get(Endpoints.Users, { params });
 
   changeUserStatus = (params: IChangeStatus): Promise<null> =>
-    this.put(`${Endpoints.UserStatus}/${params?.id}`, {is_active: params?.is_active});
+    this.put(`${Endpoints.UserStatus}/${params?.id}`, { is_active: params?.is_active });
 
   getOrganisation = (params: IPagination): Promise<IGetOrganisation> =>
-    this.get(Endpoints.Organisation, {params});
+    this.get(Endpoints.Organisation, { params });
 
   getUserOrders = (params: IUserOrders): Promise<IOrdersUsers> =>
-    this.get(`${Endpoints.UserOrders}/${params?.id}`, {params});
+    this.get(`${Endpoints.UserOrders}/${params?.id}`, { params });
 
   changeOrganisation = (params: IChangeOrganisation): Promise<any> =>
     this.patch(`${Endpoints.UserEdit}`, {
@@ -56,7 +56,10 @@ class UsersApi extends Instance {
     this.patch(Endpoints.UserRole, params);
 
   getUserAnalitic = (params: IUserAnaliticParams): Promise<IUserAnaliticData> =>
-    this.get(`${Endpoints.UserAnalitic}/${params?.userId}`, {params: {type: params?.type}});
+    this.get(Endpoints.UserOrderAnalitic, {
+      params:
+        { user: params?.user, start: params?.start, end: params?.end, org: params?.org },
+    });
 
   deleteUser = (params: IDeleteUser): Promise<IUsers> =>
     this.delete(`${Endpoints.Users}/${params?.userId}`);
