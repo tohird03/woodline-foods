@@ -9,6 +9,7 @@ export const Endpoints = {
   UserOrders: '/order/user',
   UserAnalitic: '/order/spent',
   UserOrderAnalitic: '/order/total-spent',
+  UserPaymentAnalitic: '/payment/spents',
   UserPayment: '/user/payment',
   UserRole: '/user/role',
   Products: '/product',

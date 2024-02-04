@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import {Box, MenuItem} from '@mui/material';
-import {AreaChartOutlined} from '@ant-design/icons';
+import {AreaChartOutlined, DollarOutlined, PayCircleOutlined} from '@ant-design/icons';
 import {IUserAnaliticType, IUserOrderStatus, IUsers} from '../../api/users/types';
 import Label, {LabelProps} from '../../components/label';
 import {TableColumn} from '../../components/table/types';
@@ -20,6 +20,7 @@ import {UserOrders} from './SingleUser/UserOrders';
 import {OrderProduct} from './SingleUser/UserOrders/OrderProduct';
 import {UsersStyles} from './styles';
 import {UserStatusChange} from './UserStatusChange';
+import { PaymentAnalitic } from './SingleUser/PaymentAnalitic';
 
 export const usersColumns: TableColumn[] = [
   {
@@ -166,6 +167,12 @@ export const SingleUserOrder = [
     labelId: 1,
     tab: <Analitic />,
     icon: <EqualizerIcon />,
+  },
+  {
+    label: 'dashboardTotalTrade',
+    labelId: 1,
+    tab: <PaymentAnalitic />,
+    icon: <DollarOutlined />,
   },
 ];
 

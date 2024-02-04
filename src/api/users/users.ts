@@ -61,6 +61,12 @@ class UsersApi extends Instance {
         { user: params?.user, start: params?.start, end: params?.end, org: params?.org },
     });
 
+  getUserPaymentAnalitic = (params: IUserAnaliticParams): Promise<IUserAnaliticData> =>
+    this.get(Endpoints.UserPaymentAnalitic, {
+      params:
+        { user: params?.user, start: params?.start, end: params?.end, org: params?.org },
+    });
+
   deleteUser = (params: IDeleteUser): Promise<IUsers> =>
     this.delete(`${Endpoints.Users}/${params?.userId}`);
 }
