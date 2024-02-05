@@ -14,22 +14,7 @@ export const NavSection = ({...other}: any) => {
   const {authStore} = useStores();
   const {t} = useTranslation();
 
-  // MENU ROLE CHECKER
-  const filteredNavConfig = navConfig.filter((item) => {
-    if (authStore?.staffInfo?.admin?.role[0] === AdminRole.STOREKEEPER) {
-      return item.path === ROUTES.product;
-    } else if (authStore?.staffInfo?.admin?.role[0] === AdminRole.COOK) {
-      return item.path === ROUTES.order || item.path === ROUTES.lunch;
-    }
-
-    return true;
-  });
-
-  if (filteredNavConfig.length === 0) {
-    return null;
-  }
-
-  const translatedNavConfig = filteredNavConfig.map((item) => ({
+  const translatedNavConfig = navConfig.map((item) => ({
     ...item,
     title: t(item.title),
   }));
