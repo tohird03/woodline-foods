@@ -1,6 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 import {AnalyticsType, FilterTime} from '../../api/dashboard/types';
 
+
 class DashboardStore {
   org = 'all';
   type: AnalyticsType = AnalyticsType.Trade;

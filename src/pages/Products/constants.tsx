@@ -45,7 +45,7 @@ export const productColumns: TableColumn[] = [
   },
   {
     key: 'Action',
-    label: 'Action',
+    label: 'tableProductAction',
     render: (value, record) => <EditProduct product={record as IProducts} />,
   },
 ];

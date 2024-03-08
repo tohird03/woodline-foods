@@ -41,3 +41,4 @@ export enum IOrderStatus {
   CANCELED = 'canceled',
   ACCEPTED = 'accepted',
 }
+

@@ -1,8 +1,12 @@
-import {IPagination} from '../types';
+import { IPagination } from '../types';
 
 export interface IGetUser {
   data: IUsers[];
   totalUsers: number;
+}
+
+export interface IDeleteUser {
+  userId: string | null;
 }
 
 export interface IUserParams extends IPagination {
@@ -118,8 +122,10 @@ export enum IUserOrderStatus {
 }
 
 export interface IUserAnaliticParams {
-  userId: string;
-  type: IUserAnaliticType;
+  user: string;
+  start?: string;
+  end?: string;
+  org?: string;
 }
 
 export enum IUserAnaliticType {
@@ -129,9 +135,15 @@ export enum IUserAnaliticType {
 }
 
 export interface IUserAnaliticData {
-  user: IUsers;
+  user: IAnaliticUser;
   data: {
     label: string;
     data: number;
   }[];
+}
+
+export interface IAnaliticUser {
+  id: string;
+  fullName: string;
+  phoneNumber: string;
 }

@@ -7,11 +7,11 @@ import DashboardLayout from '../layouts/dashboard';
 import SimpleLayout from '../layouts/simple';
 import {
   AddFoods,
-  AddLunch,
   Admin,
   Dashboard,
   EditFoods,
   Foods,
+  GetRoles,
   History,
   Lunch,
   LunchBase,
@@ -58,6 +58,18 @@ export const Router = observer(({isAuth}: AuthProps) => {
               path: ROUTES.userOrders,
               element: (
                 <RoleChecker page={<Suspense fallback={<Loading />}><SingleUser /></Suspense>} path={ROUTES.users} />
+              ),
+            },
+            {
+              path: ROUTES.roles,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><GetRoles /></Suspense>} path={ROUTES.roles} />
+              ),
+            },
+            {
+              path: ROUTES.updateRole,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><GetRoles /></Suspense>} path={ROUTES.roles} />
               ),
             },
             {

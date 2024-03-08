@@ -7,6 +7,7 @@
   "order": "Заказы",
   "lunch": "Обед",
   "lunchBase": "Обеденная база",
+  "payments": "Платежи",
   "lunchHistory": "История обеда",
   "productLogs": "История продукта",
 
@@ -34,6 +35,7 @@
   "tableProductDate": "Создан в",
   "tableProductChangeAmount": "Изменить сумму",
   "tablePercentCook": "Процент приготовления",
+  "tableProductAction": "Изменить",
 
   "tableFoodPhoto": "Фото",
   "tableFoodName": "Имя",
@@ -55,13 +57,20 @@
   "tableOrderPrice": "Итоговая цена",
   "tableOrderCreatedAt": "Создан в",
   "tableOrderStatus": "Положение дел",
+  "tableOrderStatusPending": "Ожидаемый",
+  "tableOrderStatusCancelled": "Отменен",
+  "tableOrderStatusAccepted": "Принятый",
 
   "dashboardTotalTrade": "Распродажа",
   "dashboardTotalCosts": "Cтоимость",
   "dashboardTotalBenefit": "Прибыль",
   "dashboardCardStatistics": "Все",
   "dashboardFilterOrg": "Организация",
-  "dashboardFilterByTime": "По времени",
+  "dashboardFilterByTime": "По времени", 
+  "dashboardFilterByDay": "день",
+  "dashboardFilterByWeek": "неделя",
+  "dashboardFilterByMonth": "месяц",
+  "dashboardFilterByYear": "год",
 
   "tooltipSendNotification": "Отправить уведомление боту",
   "tooltipLanguageSelect": "Изменить язык",
@@ -76,5 +85,10 @@
   "tableHistoryDisagreeUsers": "Не согласны пользователи",
 
   "tablePaymentRole": "Роль",
-  "tablePaymentTransaction": "Сделка"
+  "tablePaymentTransaction": "Сделка",
+
+  "paginationText": "от",
+
+  "searchText": "Искать"
+
 }

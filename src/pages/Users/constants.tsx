@@ -1,9 +1,10 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import {Box, MenuItem} from '@mui/material';
-import {AreaChartOutlined} from '@ant-design/icons';
+import {AreaChartOutlined, DollarOutlined, PayCircleOutlined} from '@ant-design/icons';
 import {IUserAnaliticType, IUserOrderStatus, IUsers} from '../../api/users/types';
 import Label, {LabelProps} from '../../components/label';
 import {TableColumn} from '../../components/table/types';
@@ -13,11 +14,13 @@ import {AddBalance} from './AddBalance';
 import {ChangeOrganisation} from './ChangeOrganisation';
 import {ChangeRole} from './ChangeRole';
 import {ChangeVerify} from './ChangeVerify';
+import {DeleteUser} from './DeleteUser';
 import {Analitic} from './SingleUser/Analitic';
 import {UserOrders} from './SingleUser/UserOrders';
 import {OrderProduct} from './SingleUser/UserOrders/OrderProduct';
 import {UsersStyles} from './styles';
 import {UserStatusChange} from './UserStatusChange';
+import { PaymentAnalitic } from './SingleUser/PaymentAnalitic';
 
 export const usersColumns: TableColumn[] = [
   {
@@ -74,6 +77,7 @@ export const usersColumns: TableColumn[] = [
         <Link style={{color: '#637381', fontSize: '20px'}} type="text" to={`${ROUTES.users}/${record?._id}`} >
           <AreaChartOutlined />
         </Link>
+        <DeleteUser user={record as IUsers} />
       </Box>
     ),
   },
@@ -114,6 +118,20 @@ export const OrderStatusColor: Record<IUserOrderStatus, LabelProps['color']> = {
   [IUserOrderStatus.PENDING]: 'primary',
 };
 
+export const UserStatusLabel: React.FC<{status: IUserOrderStatus}> = ({status}) => {
+  const {t} = useTranslation();
+  const localizedStatus = {
+    [IUserOrderStatus.ACCEPTED]: t('tableUserStatusAccepted'),
+    [IUserOrderStatus.CANCELED]: t('tableUserStatusCancelled'),
+    [IUserOrderStatus.PENDING]: t('tableUserStatusPending'),
+  };
+
+  return (
+    <Label color={OrderStatusColor[status]} variant={'outlined'}>
+      {localizedStatus[status]}
+    </Label>
+  );
+};
 export const orderFoodsColumns: TableColumn[] = [
   {
     key: 'index',
@@ -149,6 +167,12 @@ export const SingleUserOrder = [
     labelId: 1,
     tab: <Analitic />,
     icon: <EqualizerIcon />,
+  },
+  {
+    label: 'dashboardTotalTrade',
+    labelId: 1,
+    tab: <PaymentAnalitic />,
+    icon: <DollarOutlined />,
   },
 ];
 

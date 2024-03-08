@@ -3,6 +3,7 @@ import {IconButton, InputAdornment, OutlinedInput, Toolbar, Tooltip} from '@mui/
 import {alpha, styled} from '@mui/material/styles';
 import Iconify from '../../../components/iconify';
 import {ISearchHeadProps} from '../types';
+import { useTranslation } from 'react-i18next';
 
 const StyledRoot = styled(Toolbar)(({theme}) => ({
   height: 96,
@@ -29,6 +30,7 @@ const StyledSearch = styled(OutlinedInput)(({theme}: any) => ({
 
 export const SearchHead = ({onFilterName}: ISearchHeadProps) => {
   const [filterName, setFilterName] = useState('');
+  const {t} = useTranslation();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilterName(event.target.value);
@@ -40,7 +42,7 @@ export const SearchHead = ({onFilterName}: ISearchHeadProps) => {
       <StyledSearch
         value={filterName}
         onChange={handleSearchChange}
-        placeholder="Search"
+        placeholder={t('searchText')}
         startAdornment={
           <InputAdornment position="start">
             <Iconify icon="eva:search-fill" sx={{color: 'text.disabled', width: 20, height: 20}} />

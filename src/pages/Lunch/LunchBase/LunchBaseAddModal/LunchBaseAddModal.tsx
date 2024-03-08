@@ -99,7 +99,7 @@ export const LunchBaseAddModal = observer(() => {
       const selectedProduct = foodsStore.products.find(p => p._id === product.product);
 
       if (selectedProduct) {
-        return total + selectedProduct.cost * product.amount;
+        return total + (selectedProduct.cost * product.amount);
       }
 
       return total;
