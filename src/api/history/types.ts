@@ -45,4 +45,5 @@ export interface IAddFoodParams {
 export interface IAddFoodProduct {
   product: string;
   amount: number;
+  id?: string;
 }

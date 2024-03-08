@@ -81,3 +81,17 @@ export interface IDeletLunchProducts {
   lunchId: string;
   productId: string;
 }
+
+export interface ILunchsProduct {
+  _id: string;
+  name: string;
+  cost: number;
+  products: {
+    product: {
+      name: string;
+      _id: string;
+    };
+    amount: number;
+  }[];
+  percent_cook: number;
+}

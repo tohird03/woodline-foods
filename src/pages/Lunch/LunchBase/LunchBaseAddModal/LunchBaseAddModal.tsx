@@ -81,7 +81,7 @@ export const LunchBaseAddModal = observer(() => {
 
   const productOptions = useMemo(() => (
     foodsStore.products.map((product: IProducts) => (
-      <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
+      <MenuItem key={product?._id} value={product?.name}>{product?.name}</MenuItem>
     ))
   ), [foodsStore.products]);
 
@@ -172,7 +172,7 @@ export const LunchBaseAddModal = observer(() => {
         percent_cook: lunchStore.singleLunch.percent_cook || 0,
       });
       const initialProducts = lunchStore.singleLunch.products.map(product => ({
-        product: product.product,
+        product: product.product?.name,
         amount: product.amount,
       }));
 
@@ -265,9 +265,10 @@ export const LunchBaseAddModal = observer(() => {
                         <InputLabel>{`Product ${index + 1}`}</InputLabel>
                         <Select
                           label={`Product ${index + 1}`}
-                          value={product.product}
+                          value={product?.product}
                           onChange={(event) => handleProductSelectChange(event, index)}
                           required
+                          defaultValue={product.product}
                         >
                           {productOptions}
                         </Select>
