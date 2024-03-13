@@ -55,7 +55,7 @@ class UsersStore {
     usersApi.getUsers(params)
       .then(res => {
         if (res) {
-          this.setUsers(res?.data);
+          this.setUsers(res?.userList);
           this.setTotalUsers(res?.totalUsers);
         }
       })

@@ -1,5 +1,5 @@
 export interface IGetOrganisation {
-  data: IOrganisation[];
+  orgList: IOrganisation[];
   totalOrgs: number;
 }
 
@@ -21,6 +21,7 @@ export enum Category {
 }
 
 export interface IChangeGroupForm {
+  name_org: string;
   group_a_id: string;
   group_b_id: string;
   trip_timeout?: number;

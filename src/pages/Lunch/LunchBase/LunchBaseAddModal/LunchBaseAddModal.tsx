@@ -80,9 +80,13 @@ export const LunchBaseAddModal = observer(() => {
   });
 
   const productOptions = useMemo(() => (
-    foodsStore.products.map((product: IProducts) => (
-      <MenuItem key={product?._id} value={product?.name}>{product?.name}</MenuItem>
-    ))
+    (foodsStore.products && foodsStore.products.length > 0) ? (
+      foodsStore.products.map((product: IProducts) => (
+        <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
+      ))
+    ) : (
+      <MenuItem value="" disabled>No Product</MenuItem>
+    )
   ), [foodsStore.products]);
 
   const addProduct = () => {
@@ -181,18 +185,19 @@ export const LunchBaseAddModal = observer(() => {
   }, [lunchStore.singleLunch, foodsStore.products]);
 
   useEffect(() => {
-    const calculatedBodyProductPrice = products.reduce((total, product) => {
-      const selectedProduct = foodsStore.products.find(p => p._id === product.product);
+    if (foodsStore.products) {
+      const calculatedBodyProductPrice = products.reduce((total, product) => {
+        const selectedProduct = foodsStore.products.find(p => p._id === product.product);
 
-      return selectedProduct ? total + (selectedProduct.cost * product.amount) : total;
-    }, 0);
+        return selectedProduct ? total + (selectedProduct.cost * product.amount) : total;
+      }, 0);
 
-    setBodyProductPrice(calculatedBodyProductPrice);
+      setBodyProductPrice(calculatedBodyProductPrice);
+    }
 
     const calculatedPercentage = (formik.values.percent_cook / 100) * formik.values.cost;
 
     setProductPercentage(calculatedPercentage);
-
     setTotalProductPrice(formik.values.cost);
   }, [formik.values, products, foodsStore.products]);
 

@@ -4,9 +4,9 @@ import {Endpoints} from './endpoints';
 import {INetworkConfig, TMethod} from './types';
 
 const stage = {
-  apiUrl: 'https://bot.woodlines.shop',
+  // apiUrl: 'https://bot.woodlines.shop',
   // apiUrl: 'https://food.mirabdulloh.uz',
-  // apiUrl: 'http://192.168.1.140:3000',
+  apiUrl: 'http://85.193.87.181:3030',
 };
 
 export class Instance {

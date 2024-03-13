@@ -54,7 +54,7 @@ class FoodsStore {
     foodsApi.getProducts()
       .then(res => {
         if (res) {
-          this.setProducts(res?.data);
+          this.setProducts(res?.productList);
         }
 
         return res;

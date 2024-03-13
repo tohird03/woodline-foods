@@ -6,6 +6,7 @@ import {IOrganisation} from '../../../api/foods/types';
 import {Modal} from '../../../components/Modal';
 import {foodsStore} from '../../../store/foods';
 import {lunchStore} from '../../../store/lunch';
+import {productStore} from '../../../store/products';
 import {lunchStyles} from '../styles';
 
 export const AddLunchBaseModal = observer(() => {
@@ -27,13 +28,18 @@ export const AddLunchBaseModal = observer(() => {
   };
 
   const organisationOptions = useMemo(() => (
-    foodsStore.organisations.map((org: IOrganisation) => (
-      <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
-    ))
-  ), [foodsStore.organisations]);
+    (productStore.organisations && productStore.organisations.length > 0) ? (
+      productStore.organisations.map((org: IOrganisation) => (
+        <MenuItem key={org._id} value={org._id}>{org.name_org}</MenuItem>
+      ))
+    ) : (
+      <MenuItem value="" disabled>No Organisations</MenuItem>
+    )
+  ), [productStore.organisations]);
+
 
   useEffect(() => {
-    foodsStore.getOrganisation();
+    productStore.getOrganisation();
 
     return () => {
       foodsStore.setOrganisation([]);

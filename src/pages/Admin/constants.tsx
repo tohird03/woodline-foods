@@ -24,7 +24,7 @@ export const adminsColumns: TableColumn[] = [
   {
     key: 'balance',
     label: 'dashboardFilterOrg',
-    render: (value, record) => (record?.org?.name_org || '-'),
+    render: (value, record) => (record?.org || '-'),
   },
   {
     key: 'createdAt',

@@ -21,6 +21,7 @@ import {foodsApi} from '../../../api/foods';
 import {IAddFoodProduct, IOrganisation, IProducts} from '../../../api/foods/types';
 import {ROUTES} from '../../../constants/router';
 import {foodsStore} from '../../../store/foods';
+import {productStore} from '../../../store/products';
 import {useMediaQuery} from '../../../utils/hooks/useMediaQuery';
 import {addAxiosErrorNotification, successNotification} from '../../../utils/notification';
 import {CategoryOption} from '../constants';
@@ -82,10 +83,16 @@ export const AddFoods = observer(() => {
   };
 
   const organisationOptions = useMemo(() => (
-    foodsStore.organisations.map((org: IOrganisation) => (
-      <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
-    ))
-  ), [foodsStore.organisations]);
+    (productStore.organisations && productStore.organisations.length > 0) ? (
+      productStore.organisations.map((org: IOrganisation) => (
+        <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
+      ))
+    ) : (
+      <MenuItem value="" disabled>No Organization</MenuItem>
+    )
+
+  ), [productStore.organisations]);
+
 
   const productOptions = useMemo(() => (
     foodsStore.products.map((product: IProducts) => (
@@ -94,7 +101,7 @@ export const AddFoods = observer(() => {
   ), [foodsStore.products]);
 
   useEffect(() => {
-    foodsStore.getOrganisation();
+    productStore.getOrganisation();
     foodsStore.getProducts();
 
     return () => {
@@ -172,10 +179,10 @@ export const AddFoods = observer(() => {
             <FormControl fullWidth>
               <InputLabel>Organisation</InputLabel>
               <Select
-                name="org"
-                label="Organisation"
                 onChange={formik.handleChange}
                 value={formik.values.org}
+                name="org"
+                label="Organisation"
                 required
               >
                 {organisationOptions}
