@@ -3,11 +3,18 @@ import {resetStores, store} from '../store/store';
 import {Endpoints} from './endpoints';
 import {INetworkConfig, TMethod} from './types';
 
-const stage = {
-  // apiUrl: 'https://bot.woodlines.shop',
-  // apiUrl: 'https://food.mirabdulloh.uz',
-  apiUrl: 'http://85.193.87.181:3030',
+export const stageBranch = process.env.REACT_APP_STAGE || 'dev';
+
+const apiUrls: any = {
+  dev: {
+    apiUrl: 'https://bot.mydevops.uz',
+  },
+  prod: {
+    apiUrl: 'https://bot.woodlines.shop',
+  },
 };
+
+const stage = apiUrls[stageBranch];
 
 export class Instance {
   protected readonly instance: AxiosInstance;

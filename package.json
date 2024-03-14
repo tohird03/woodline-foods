@@ -21,6 +21,7 @@
     "antd": "5.9.4",
     "axios": "1.5.1",
     "change-case": "5.0.1",
+    "cross-env": "^7.0.3",
     "date-fns": "2.30.0",
     "dayjs": "1.11.10",
     "firebase": "10.4.0",
@@ -55,8 +56,9 @@
     "web-vitals": "3.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "cross-env REACT_APP_STAGE=dev react-scripts start",
+    "build:dev": "cross-env REACT_APP_STAGE=dev react-scripts build",
+    "build": "cross-env REACT_APP_STAGE=prod react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint:watch": "eslint --fix --ext .js,.jsx --ignore-path .gitignore ."
