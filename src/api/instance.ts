@@ -3,7 +3,7 @@ import {resetStores, store} from '../store/store';
 import {Endpoints} from './endpoints';
 import {INetworkConfig, TMethod} from './types';
 
-export const stageBranch = process.env.NEXT_PUBLIC_STAGE || 'dev';
+export const stageBranch = process.env.REACT_APP_STAGE || 'dev';
 
 const apiUrls: any = {
   dev: {
