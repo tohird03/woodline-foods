@@ -57,7 +57,7 @@
   },
   "scripts": {
     "start": "react-scripts start cross-env REACT_APP_STAGE=dev",
-    "build": "react-scripts build cross-env REACT_APP_STAGE=dev",
+    "build": "react-scripts build cross-env REACT_APP_STAGE=prod",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint:watch": "eslint --fix --ext .js,.jsx --ignore-path .gitignore ."
