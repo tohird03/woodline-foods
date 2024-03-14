@@ -1,5 +1,5 @@
 import React from 'react';
-import {sentenceCase} from 'change-case';
+import {useTranslation} from 'react-i18next';
 import {IOrderStatus} from '../../api/order/types';
 import Label, {LabelProps} from '../../components/label';
 import {TableColumn} from '../../components/table/types';
@@ -32,11 +32,7 @@ export const ordersColumn: TableColumn[] = [
   {
     key: 'status',
     label: 'tableOrderStatus',
-    render: (value) => (
-      <Label color={OrderStatusColor[value as IOrderStatus]} variant={'outlined'}>
-        {sentenceCase(value)}
-      </Label>
-    ),
+    render: (value) => <OrderStatusLabel status={value as IOrderStatus} />,
   },
 ];
 
@@ -67,4 +63,19 @@ export const OrderStatusColor: Record<IOrderStatus, LabelProps['color']> = {
   [IOrderStatus.ACCEPTED]: 'success',
   [IOrderStatus.CANCELED]: 'error',
   [IOrderStatus.PENDING]: 'primary',
+};
+
+const OrderStatusLabel: React.FC<{status: IOrderStatus}> = ({status}) => {
+  const {t} = useTranslation();
+  const localizedStatus = {
+    [IOrderStatus.ACCEPTED]: t('tableOrderStatusAccepted'),
+    [IOrderStatus.CANCELED]: t('tableOrderStatusCancelled'),
+    [IOrderStatus.PENDING]: t('tableOrderStatusPending'),
+  };
+
+  return (
+    <Label color={OrderStatusColor[status]} variant={'outlined'}>
+      {localizedStatus[status]}
+    </Label>
+  );
 };

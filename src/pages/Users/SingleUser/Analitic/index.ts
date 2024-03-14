@@ -1,0 +1,1 @@
+export {Analitic} from './Analitic';

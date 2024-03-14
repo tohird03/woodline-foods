@@ -4,23 +4,26 @@ import {useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {
   Button,
-  Container,
   Stack,
   Typography,
 } from '@mui/material';
+import {SearchOutlined} from '@ant-design/icons';
 import Iconify from '../../components/iconify';
 import {Table} from '../../components/table';
 import {ROUTES} from '../../constants/router';
 import {foodsStore} from '../../store/foods';
+import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
+import {ImgUploadModal} from '../ImgUploadModal';
 import {foodsColumns} from './constants';
 import {ProductModal} from './Products/ProductModal';
 
 export const Foods = observer(() => {
   const navigate = useNavigate();
   const {t} = useTranslation();
+  const isMobile = useMediaQuery('(max-width: 650px)');
 
   const handleSearchFood = (value: string) => {
-    // TODO
+    foodsStore.setSearch(value);
   };
 
   const handleAddNewFood = () => {
@@ -31,8 +34,8 @@ export const Foods = observer(() => {
     foodsStore.setPage(newPage + 1);
   };
 
-  const handleChangePerPage = (perPage: number) => {
-    foodsStore.setPage(1);
+  const handleChangePerPage = (perPage: number, page: number) => {
+    foodsStore.setPage(page);
     foodsStore.setSize(perPage);
   };
 
@@ -40,48 +43,50 @@ export const Foods = observer(() => {
     foodsStore.getFoods({
       page: foodsStore.page,
       size: foodsStore.size,
+      search: foodsStore.search!,
     });
-  }, [foodsStore.page, foodsStore.size]);
+  }, [foodsStore.page, foodsStore.size, foodsStore.search]);
 
   return (
     <>
-      <Container>
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          mb={1}
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        mb={1}
+      >
+        <Typography
+          variant="h4"
+          gutterBottom
         >
-          <Typography
-            variant="h4"
-            gutterBottom
-          >
-            {t('foods')}
-          </Typography>
-          <Button
-            variant="contained"
-            startIcon={<Iconify icon="eva:plus-fill" />}
-            onClick={handleAddNewFood}
-          >
-            {t('newFood')}
-          </Button>
-        </Stack>
+          {t('foods')}
+        </Typography>
+        <Button
+          variant="contained"
+          startIcon={<Iconify icon="eva:plus-fill" />}
+          onClick={handleAddNewFood}
+        >
+          {t('newFood')}
+        </Button>
+      </Stack>
 
-        <Table
-          columns={foodsColumns}
-          data={foodsStore.foods}
-          onFilterSearch={handleSearchFood}
-          pagination={{
-            total: foodsStore.totalFoods,
-            page: foodsStore.page,
-            size: foodsStore.size,
-            handlePageChange: handleChangePage,
-            handleShowSizeChange: handleChangePerPage,
-          }}
-        />
-      </Container>
+      <Table
+        columns={foodsColumns}
+        data={foodsStore.foods}
+        onFilterSearch={handleSearchFood}
+        pagination={{
+          total: foodsStore.totalFoods,
+          page: foodsStore.page,
+          size: foodsStore.size,
+          handlePageChange: handleChangePage,
+          handleShowSizeChange: handleChangePerPage,
+        }}
+        isMobile={isMobile}
+        searchSuffix={<SearchOutlined />}
+      />
 
       {foodsStore.isOpenSingleFoodProductModal && <ProductModal />}
+      {foodsStore.isOpenImgUpload && <ImgUploadModal />}
     </>
   );
 });

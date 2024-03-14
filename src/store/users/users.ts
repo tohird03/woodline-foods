@@ -1,8 +1,22 @@
-import {makeAutoObservable} from 'mobx';
-import {IPagination} from '../../api/types';
-import {usersApi} from '../../api/users';
-import {IChangeOrganisation, IChangeStatus, IOrganisation, IUsers, TransactionParams} from '../../api/users/types';
-import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
+import { makeAutoObservable } from 'mobx';
+import { IPagination } from '../../api/types';
+import { usersApi } from '../../api/users';
+import {
+  IChangeOrganisation,
+  IChangeRole,
+  IChangeStatus,
+  IGetUserOrders,
+  IOrganisation,
+  IUserAnaliticData,
+  IUserAnaliticParams,
+  IUserAnaliticType,
+  IUserOrders,
+  IUserOrdersFoods,
+  IUserParams,
+  IUsers,
+  TransactionParams,
+} from '../../api/users/types';
+import { addAxiosErrorNotification, successNotification } from '../../utils/notification';
 
 class UsersStore {
   users: IUsers[] = [];
@@ -12,18 +26,47 @@ class UsersStore {
   page = 1;
   size = 10;
   singleUser: IUsers | null = null;
+  singleUserId: string | null = null;
   isOpenBalanceModal = false;
+  isOpenChangeRoleModal = false;
+  isOpenDeleteUserModal = false;
+  search = '';
+  totalUserOrder = 0;
+  userOrders: IGetUserOrders[] = [];
+  orderPage = 1;
+  orderSize = 10;
+  isOpenOrderProductModal = false;
+  foods: IUserOrdersFoods[] = [];
+  userAnalitic: IUserAnaliticData | null = null;
+  userPaymentAnalitic: IUserAnaliticData | null = null;
+  time: IUserAnaliticType = IUserAnaliticType.Day;
+  start: string | null = null;
+  end: string | null = null;
+  org: string | null = null;
+  startPay: string | null = null;
+  endPay: string | null = null;
+  orgPay: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  getUsers = (params: IPagination) =>
+  getUsers = (params: IUserParams) =>
     usersApi.getUsers(params)
       .then(res => {
         if (res) {
-          this.setUsers(res?.data);
+          this.setUsers(res?.userList);
           this.setTotalUsers(res?.totalUsers);
+        }
+      })
+      .catch(addAxiosErrorNotification);
+
+  getUserOrder = (params: IUserOrders) =>
+    usersApi.getUserOrders(params)
+      .then(res => {
+        if (res) {
+          this.setUserOrder(res?.data);
+          this.setTotalUserOrders(res?.totalOrders);
         }
       })
       .catch(addAxiosErrorNotification);
@@ -95,8 +138,58 @@ class UsersStore {
       })
       .catch(addAxiosErrorNotification);
 
+  changeRole = (params: IChangeRole) =>
+    usersApi.changeRole(params)
+      .then(res => {
+        if (res) {
+          successNotification('Success user change role');
+          this.getUsers({
+            page: this.page,
+            size: this.size,
+          });
+          this.setSingleUser(res);
+
+          return res;
+        }
+      })
+      .catch(addAxiosErrorNotification);
+
+  getUserAnalitic = (params: IUserAnaliticParams) =>
+    usersApi.getUserAnalitic(params)
+      .then(res => {
+        if (res) {
+          this.setUserAnalitic(res);
+
+          return res;
+        }
+      })
+      .catch(addAxiosErrorNotification);
+
+  getUserPaymentAnalitic = (params: IUserAnaliticParams) =>
+    usersApi.getUserPaymentAnalitic(params)
+      .then(res => {
+        if (res) {
+          this.setUserPaymentAnalitic(res);
+
+          return res;
+        }
+      })
+      .catch(addAxiosErrorNotification);
+
   setUsers = (users: IUsers[]) => {
     this.users = users;
+  };
+
+  setSingleUserId = (id: string | null) => {
+    this.singleUserId = id;
+  };
+
+  setUserOrder = (orders: IGetUserOrders[]) => {
+    this.userOrders = orders;
+  };
+
+  setTotalUserOrders = (totalOrder: number) => {
+    this.totalUserOrder = totalOrder;
   };
 
   setTotalUsers = (total: number) => {
@@ -109,6 +202,14 @@ class UsersStore {
 
   setSize = (size: number) => {
     this.size = size;
+  };
+
+  setOrderPage = (page: number) => {
+    this.orderPage = page;
+  };
+
+  setOrderSize = (size: number) => {
+    this.orderSize = size;
   };
 
   setIsOpenOrganisationModal = (isOpen: boolean) => {
@@ -125,6 +226,62 @@ class UsersStore {
 
   setIsOpenBalanceModal = (isOpen: boolean) => {
     this.isOpenBalanceModal = isOpen;
+  };
+
+  setIsOpenChangeRoleModal = (isOpen: boolean) => {
+    this.isOpenChangeRoleModal = isOpen;
+  };
+
+  setIsOpenDeleteUserModal = (isOpen: boolean) => {
+    this.isOpenDeleteUserModal = isOpen;
+  };
+
+  setSearch = (search: string) => {
+    this.search = search;
+  };
+
+  setIsOpenOrderProductModal = (isOpen: boolean) => {
+    this.isOpenOrderProductModal = isOpen;
+  };
+
+  setFoods = (foods: IUserOrdersFoods[]) => {
+    this.foods = foods;
+  };
+
+  setUserAnalitic = (userAnalitic: IUserAnaliticData) => {
+    this.userAnalitic = userAnalitic;
+  };
+
+  setUserPaymentAnalitic = (userAnalitic: IUserAnaliticData) => {
+    this.userPaymentAnalitic = userAnalitic;
+  };
+
+  setTime = (time: IUserAnaliticType) => {
+    this.time = time;
+  };
+
+  setStart = (startDate: string | null) => {
+    this.start = startDate;
+  };
+
+  setEnd = (endDate: string | null) => {
+    this.end = endDate;
+  };
+
+  setOrg = (org: string | null) => {
+    this.org = org;
+  };
+
+  setStartPay = (startDate: string | null) => {
+    this.startPay = startDate;
+  };
+
+  setEndPay = (endDate: string | null) => {
+    this.endPay = endDate;
+  };
+
+  setOrgPay = (org: string | null) => {
+    this.orgPay = org;
   };
 
   reset() {

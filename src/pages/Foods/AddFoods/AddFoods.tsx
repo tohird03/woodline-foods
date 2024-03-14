@@ -2,6 +2,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react';
+import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Box,
   Button,
@@ -20,6 +21,8 @@ import {foodsApi} from '../../../api/foods';
 import {IAddFoodProduct, IOrganisation, IProducts} from '../../../api/foods/types';
 import {ROUTES} from '../../../constants/router';
 import {foodsStore} from '../../../store/foods';
+import {productStore} from '../../../store/products';
+import {useMediaQuery} from '../../../utils/hooks/useMediaQuery';
 import {addAxiosErrorNotification, successNotification} from '../../../utils/notification';
 import {CategoryOption} from '../constants';
 import {foodStyles} from '../styles';
@@ -29,6 +32,7 @@ export const AddFoods = observer(() => {
     {product: '', amount: 0},
   ]);
   const navigate = useNavigate();
+  const isMobile = useMediaQuery('(max-width: 650px)');
 
   const formik = useFormik({
     initialValues: {
@@ -54,6 +58,13 @@ export const AddFoods = observer(() => {
     setProducts([...products, {product: '', amount: 0}]);
   };
 
+  const removeProduct = (index: number) => {
+    const newProducts = [...products];
+
+    newProducts.splice(index, 1);
+    setProducts(newProducts);
+  };
+
   const handleProductSelectChange = (event: SelectChangeEvent<string>, index: number) => {
     const newProducts = [...products];
 
@@ -67,15 +78,21 @@ export const AddFoods = observer(() => {
   ) => {
     const newProducts = [...products];
 
-    newProducts[index].amount = parseInt(event.target.value, 10);
+    newProducts[index].amount = Number(event.target.value);
     setProducts(newProducts);
   };
 
   const organisationOptions = useMemo(() => (
-    foodsStore.organisations.map((org: IOrganisation) => (
-      <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
-    ))
-  ), [foodsStore.organisations]);
+    (productStore.organisations && productStore.organisations.length > 0) ? (
+      productStore.organisations.map((org: IOrganisation) => (
+        <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
+      ))
+    ) : (
+      <MenuItem value="" disabled>No Organization</MenuItem>
+    )
+
+  ), [productStore.organisations]);
+
 
   const productOptions = useMemo(() => (
     foodsStore.products.map((product: IProducts) => (
@@ -84,7 +101,7 @@ export const AddFoods = observer(() => {
   ), [foodsStore.products]);
 
   useEffect(() => {
-    foodsStore.getOrganisation();
+    productStore.getOrganisation();
     foodsStore.getProducts();
 
     return () => {
@@ -106,7 +123,9 @@ export const AddFoods = observer(() => {
         </Typography>
       </Stack>
       <form onSubmit={formik.handleSubmit}>
-        <Box sx={foodStyles.addFoodsWRapper}>
+        <Box
+          sx={foodStyles.addFoodsWRapper}
+        >
           <Box sx={foodStyles.addFoodsProducts}>
             {products.map((product, index) => (
               <Box sx={foodStyles.addFoodsProductBox} key={index}>
@@ -129,6 +148,7 @@ export const AddFoods = observer(() => {
                   required
                   minRows={0}
                 />
+                <DeleteIcon onClick={() => removeProduct(index)} style={{color: 'red', cursor: 'pointer'}} />
               </Box>
             ))}
             <Button
@@ -159,10 +179,10 @@ export const AddFoods = observer(() => {
             <FormControl fullWidth>
               <InputLabel>Organisation</InputLabel>
               <Select
-                name="org"
-                label="Organisation"
                 onChange={formik.handleChange}
                 value={formik.values.org}
+                name="org"
+                label="Organisation"
                 required
               >
                 {organisationOptions}
@@ -180,11 +200,18 @@ export const AddFoods = observer(() => {
                 {CategoryOption}
               </Select>
             </FormControl>
-            <Button type="submit" variant="contained">
-              Add new Food
-            </Button>
+            {!isMobile && (
+              <Button type="submit" variant="contained">
+                Add new Food
+              </Button>
+            )}
           </Box>
         </Box>
+        {isMobile && (
+          <Button sx={{width: '100%'}} type="submit" variant="contained">
+            Add new Food
+          </Button>
+        )}
       </form>
     </Container>
   );

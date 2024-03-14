@@ -2,10 +2,10 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import {observer} from 'mobx-react';
 import {Box, Card, CardHeader} from '@mui/material';
-import {useChart} from '../../../components/chart';
-import {dashboardStore} from '../../../store/dashboard';
-import {CHART_COLOR, CHART_HEIGHT} from '../constants';
-import {dashboardStyles} from '../styles';
+import {useChart} from '../../../../components/chart';
+import {dashboardStore} from '../../../../store/dashboard';
+import {CHART_COLOR, CHART_DATA, CHART_HEIGHT} from '../../constants';
+import {dashboardStyles} from '../../styles';
 
 export const Chart = observer(() => {
   const chartOptions = useChart({
@@ -16,23 +16,23 @@ export const Chart = observer(() => {
         name: 'Team A',
         type: 'area',
         fill: 'gradient',
-        data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
+        data: CHART_DATA[dashboardStore.type],
       },
     ],
     colors: [CHART_COLOR[dashboardStore.type]],
     xaxis: {
       categories: [
-        '01/10/2003',
-        '01/11/2003',
-        '01/12/2003',
-        '01/13/2003',
-        '01/14/2003',
-        '01/15/2003',
-        '01/16/2003',
-        '01/17/2003',
-        '01/18/2003',
-        '01/19/2003',
-        '01/20/2003',
+        '10/10/2022',
+        '10/11/2022',
+        '10/12/2022',
+        '10/13/2022',
+        '10/14/2022',
+        '10/15/2022',
+        '10/16/2022',
+        '10/17/2022',
+        '10/18/2022',
+        '10/19/2022',
+        '10/20/2022',
       ],
     },
     tooltip: {

@@ -1,3 +1,5 @@
+import {IPagination} from '../types';
+
 export interface IGetFoods {
   data: IFoods[];
   totalFoods: number;
@@ -8,7 +10,10 @@ export interface IFoods {
   name: string;
   cost: number;
   products: IFoodsProducts[];
-  org: string;
+  org: {
+    name_org: string;
+    _id: string;
+  };
   category: string;
   createdAt: string;
   img: string;
@@ -52,7 +57,7 @@ export interface IAddFoodProduct {
 }
 
 export interface IGetProducts {
-  data: IProducts[];
+  productList: IProducts[];
   totalProducts: number;
 }
 
@@ -68,4 +73,19 @@ export interface IProducts {
   };
   createdAt: string;
   cost: number;
+  is_deleted: boolean;
+}
+
+export interface IImgChange {
+  food: string;
+  image: string;
+}
+
+export interface IGetFoodsParams extends IPagination {
+  search?: string;
+}
+
+export interface IChangeVerify {
+  id: string;
+  status: boolean;
 }

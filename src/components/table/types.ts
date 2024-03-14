@@ -4,6 +4,10 @@ export interface ITableProps {
   pagination: ITablePaginationProps | false;
   onFilterSearch?: (value: string) => void;
   min?: boolean;
+  isMobile?: boolean;
+  searchPlaceholder?: string;
+  searchPrefex?: React.ReactNode;
+  searchSuffix?: React.ReactNode;
 }
 
 export interface ITableHead {
@@ -15,7 +19,7 @@ export interface ITablePaginationProps {
   size: number;
   total: number;
   handlePageChange?: (newPage: number) => void;
-  handleShowSizeChange?: (perPage: number) => void;
+  handleShowSizeChange?: (perPage: number, page: number) => void;
 }
 
 export interface DataRow {
@@ -29,6 +33,7 @@ export interface TableColumn {
   align?: 'right' | 'center' | 'left';
   render?: (value: string, row: DataRow, index: number) => React.ReactNode;
   tLabel?: string;
+  bgColor?: string;
 }
 
 export interface ITableBody {

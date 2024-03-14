@@ -1,7 +1,8 @@
 import React from 'react';
 import {MenuItem} from '@mui/material';
-import {AdminRole} from '../../api/auth/types';
+import {IRole} from '../../api/roles/types';
 import {TableColumn} from '../../components/table/types';
+import {rolesStore} from '../../store/roles/roles';
 import {getFullDateFormat} from '../../utils/formatTime';
 
 export const adminsColumns: TableColumn[] = [
@@ -23,23 +24,12 @@ export const adminsColumns: TableColumn[] = [
   {
     key: 'balance',
     label: 'dashboardFilterOrg',
-    render: (value, record) => (record?.org?.name_org || '-'),
+    render: (value, record) => (record?.org || '-'),
   },
   {
     key: 'createdAt',
     label: 'tableOrderCreatedAt',
     render: (value) => (getFullDateFormat(value) || '-'),
   },
-];
 
-export const roleOptions = [
-  <MenuItem key={AdminRole.SUPER_ADMIN} value={AdminRole.SUPER_ADMIN}>
-    {AdminRole.SUPER_ADMIN}
-  </MenuItem>,
-  <MenuItem key={AdminRole.STOREKEEPER} value={AdminRole.STOREKEEPER}>
-    {AdminRole.STOREKEEPER}
-  </MenuItem>,
-  <MenuItem key={AdminRole.COOK} value={AdminRole.COOK}>
-    {AdminRole.COOK}
-  </MenuItem>,
 ];

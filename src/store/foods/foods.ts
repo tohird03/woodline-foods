@@ -1,8 +1,15 @@
 import {makeAutoObservable} from 'mobx';
 import {foodsApi} from '../../api/foods';
-import {IFoods, IFoodsProducts, IOrganisation, IProducts} from '../../api/foods/types';
-import {IPagination} from '../../api/types';
-import {addAxiosErrorNotification} from '../../utils/notification';
+import {
+  IChangeVerify,
+  IFoods,
+  IFoodsProducts,
+  IGetFoodsParams,
+  IImgChange,
+  IOrganisation,
+  IProducts,
+} from '../../api/foods/types';
+import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
 class FoodsStore {
   foods: IFoods[] = [];
@@ -13,12 +20,16 @@ class FoodsStore {
   products: IProducts[] = [];
   singleFoodProduct: IFoodsProducts[] = [];
   isOpenSingleFoodProductModal = false;
+  isOpenImgUpload = false;
+  foodId: string | null = null;
+  search: string | null = null;
+  singleFood: IFoods | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  getFoods = (params: IPagination) =>
+  getFoods = (params: IGetFoodsParams) =>
     foodsApi.getFoods(params)
       .then(res => {
         if (res) {
@@ -43,7 +54,37 @@ class FoodsStore {
     foodsApi.getProducts()
       .then(res => {
         if (res) {
-          this.setProducts(res?.data);
+          this.setProducts(res?.productList);
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+  imgChangeFood = (params: IImgChange) =>
+    foodsApi.imgChangeFood(params)
+      .then(res => {
+        if (res) {
+          this.getFoods({
+            page: this.page,
+            size: this.size,
+          });
+          this.setIsOpenImgUpload(false);
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+  changeVerify = (params: IChangeVerify) =>
+    foodsApi.changeVerify(params)
+      .then(res => {
+        if (res) {
+          successNotification('Success change is active');
+          this.getFoods({
+            page: this.page,
+            size: this.size,
+          });
         }
 
         return res;
@@ -80,6 +121,22 @@ class FoodsStore {
 
   setIsOpenFoodProductModal = (isOpen: boolean) => {
     this.isOpenSingleFoodProductModal = isOpen;
+  };
+
+  setIsOpenImgUpload = (isOpen: boolean) => {
+    this.isOpenImgUpload = isOpen;
+  };
+
+  setFoodId = (id: string | null) => {
+    this.foodId = id;
+  };
+
+  setSearch = (search: string) => {
+    this.search = search;
+  };
+
+  setSingleFood = (singleFood: IFoods) => {
+    this.singleFood = singleFood;
   };
 
   reset() {

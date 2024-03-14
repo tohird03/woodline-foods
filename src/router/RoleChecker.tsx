@@ -10,17 +10,34 @@ type Props = {
   path: string;
 };
 
-export const RoleChecker = observer(({page, path}: Props) => {
-  const {authStore} = useStores();
-  const userRole = authStore?.staffInfo?.admin?.role[0];
+// export const RoleChecker = observer(({page, path}: Props) => {
+//   const {authStore} = useStores();
+//   // const userRole = authStore?.staffInfo?.admin?.role?[0];
 
-  if (userRole === AdminRole.COOK && (path === ROUTES.order || path === ROUTES.lunch)) {
-    return page;
-  } else if (userRole === AdminRole.STOREKEEPER && path === ROUTES.product) {
-    return page;
-  } else if (userRole === AdminRole.SUPER_ADMIN) {
-    return page;
-  } else {
-    return <NotFound />;
-  }
-});
+//   // if (userRole === AdminRole.COOK && (path === ROUTES.order || path === ROUTES.lunch)) {
+//   //   return page;
+//   // } else if (userRole === AdminRole.STOREKEEPER && path === ROUTES.product) {
+//   //   return page;
+//   // } else if (userRole === AdminRole.SUPER_ADMIN) {
+//   //   return page;
+//   // } else {
+//   //   return <NotFound />;
+//   // }
+
+//   return page;
+// });
+export const RoleChecker = observer(({page, path}: Props) => page);
+//   {// const {authStore} = useStores();
+
+//   // const userRole = authStore?.staffInfo?.admin?.role[0];
+
+//   // if (userRole === AdminRole.COOK && (path === ROUTES.order || path === ROUTES.lunch)) {
+//   //   return page;
+//   // } else if (userRole === AdminRole.STOREKEEPER && path === ROUTES.product) {
+//   //   return page;
+//   // } else if (userRole === AdminRole.SUPER_ADMIN) {
+//   //   return page;
+//   // } else {
+//   //   return <NotFound />;
+//   // }
+// });

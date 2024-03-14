@@ -1,10 +1,15 @@
 import React from 'react';
-import {Avatar, MenuItem, Stack} from '@mui/material';
-import {sentenceCase} from 'change-case';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import {MenuItem} from '@mui/material';
+import {Image} from 'antd';
+import {IFoods, IProducts} from '../../api/foods/types';
 import {Category} from '../../api/organisation/types';
 import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
+import {uszFormatPrice} from '../../utils/formatTime';
+import {Action} from './Action';
 import {Products} from './Products';
+import {UserStatusChange} from './UserStatusChange';
 
 export const CategoryOption = [
   <MenuItem key={Category.DESSERT} value={Category.DESSERT}>{Category.DESSERT}</MenuItem>,
@@ -18,9 +23,16 @@ export const foodsColumns: TableColumn[] = [
     label: 'tableFoodPhoto',
     align: 'center',
     render: (value) => (
-      <Stack sx={{width: '100%'}} direction="row" alignItems="center" spacing={2}>
-        <Avatar sx={{margin: '0 auto !important'}} alt={value} src={value} />
-      </Stack>
+      <Image
+        style={{borderRadius: '50%'}}
+        width={50} height={50}
+        alt={value}
+        src={value}
+        preview={{
+          forceRender: false,
+          mask: <RemoveRedEyeOutlinedIcon fontSize="small" />,
+        }}
+      />
     ),
   },
   {
@@ -42,15 +54,28 @@ export const foodsColumns: TableColumn[] = [
   {
     key: 'cost',
     label: 'tableFoodCost',
+    render: (value, record) => <span>{`${uszFormatPrice(record?.cost)} сум`}</span>,
   },
   {
     key: 'category',
     label: 'tableFoodCategory',
     render: (value) => (
       <Label color="success" variant={'outlined'}>
-        {sentenceCase(value)}
+        {value}
       </Label>
     ),
+  },
+  {
+    key: 'is_active',
+    label: 'tableUserChangeActive',
+    render: (value, record) => (
+      <UserStatusChange food={record as IProducts} />
+    ),
+  },
+  {
+    key: 'img',
+    label: 'Action',
+    render: (value, record) => <Action food={record as IFoods} />,
   },
 ];
 

@@ -1,0 +1,36 @@
+.searchedElements {
+    width: 99%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: '0';
+    max-height: 350px;
+    overflow-y: auto;
+    align-self: center;
+    align-items: center;
+    z-index: 103;
+    margin-top: 100px;
+    background: white;
+    border-radius: 10px;
+    color: black;
+    padding: 20px;
+    box-shadow: 0px 4px 13.1px 0px rgba(0, 0, 0, 0.15);
+
+    .searchedDiv {
+        width: 98%;
+        display: flex;
+        align-items: center;
+        padding: 14px 16px;
+        height: 59px;
+        cursor: pointer;
+        background-color: #F3F3F3;
+        margin-bottom: 5px;
+        border-radius: 8px;
+        border: 1px solid #E9EAEB;
+    }
+
+    .searched-div:hover {
+        background-color: white;
+    }
+}

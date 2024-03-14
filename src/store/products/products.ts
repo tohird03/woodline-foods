@@ -1,10 +1,14 @@
 import {makeAutoObservable} from 'mobx';
-import {IOrganisation} from '../../api/organisation/types';
 import {productApi} from '../../api/products';
-import {IAddAmountProduct, IAddNewProduct, IProducts} from '../../api/products/types';
-import {IPagination} from '../../api/types';
+import {
+  IAddAmountProduct,
+  IAddNewProduct,
+  IEditProduct,
+  IGetProductsParams,
+  IOrganisation,
+  IProducts,
+} from '../../api/products/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
-
 class ProductsStore {
   products: IProducts[] = [];
   totalProducts = 0;
@@ -14,17 +18,33 @@ class ProductsStore {
   size = 10;
   isOpenAmountModal = false;
   singleProduct: IProducts | null = null;
+  search: string | null = null;
+  isOpenEditProductModal = false;
+  editProductStore: IProducts | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  getProducts = (params: IPagination) =>
+  getProducts = (params: IGetProductsParams) =>
     productApi.getProducts(params)
       .then(res => {
         if (res) {
-          this.setProducts(res?.data);
+          this.setProducts(res?.productList);
           this.setTotalProducts(res?.totalProducts);
+        }
+      })
+      .catch(addAxiosErrorNotification);
+
+  editProducts = (params: IEditProduct) =>
+    productApi.updateProduct(params)
+      .then(res => {
+        if (res) {
+          this.getProducts({
+            search: this.search!,
+            page: this.page,
+            size: this.size,
+          });
         }
       })
       .catch(addAxiosErrorNotification);
@@ -33,7 +53,7 @@ class ProductsStore {
     productApi.getOrganisation()
       .then(res => {
         if (res) {
-          this.setOrganisation(res?.data);
+          this.setOrganisation(res?.orgList);
         }
 
         return res;
@@ -70,6 +90,14 @@ class ProductsStore {
       })
       .catch(addAxiosErrorNotification);
 
+  setIsOpenProductEditModal = (isOpen: boolean) => {
+    this.isOpenEditProductModal = isOpen;
+  };
+
+  setEditProduct = (product: IProducts | null) => {
+    this.editProductStore = product;
+  };
+
   setProducts = (products: IProducts[]) => {
     this.products = products;
   };
@@ -100,6 +128,10 @@ class ProductsStore {
 
   setSingleProduct = (singleProduct: IProducts | null) => {
     this.singleProduct = singleProduct;
+  };
+
+  setSearch = (search: string) => {
+    this.search = search;
   };
 
   reset() {

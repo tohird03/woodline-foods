@@ -6,12 +6,16 @@
   "organisation": "Организация",
   "order": "Заказы",
   "lunch": "Обед",
+  "lunchBase": "Обеденная база",
+  "payments": "Платежи",
   "lunchHistory": "История обеда",
+  "productLogs": "История продукта",
 
   "newProduct": "Новый продукт",
   "newFood": "Новый еда",
   "newOrganisation": "Новые организации",
   "newLunch": "Новые Обед",
+  "newLunchBase": "Новая обеденная база",
   "newAdmin": "Новый администратор",
 
   "tableUserName": "Имя",
@@ -30,6 +34,8 @@
   "tableProductOrganisation": "Организация",
   "tableProductDate": "Создан в",
   "tableProductChangeAmount": "Изменить сумму",
+  "tablePercentCook": "Процент приготовления",
+  "tableProductAction": "Изменить",
 
   "tableFoodPhoto": "Фото",
   "tableFoodName": "Имя",
@@ -41,27 +47,48 @@
   "tableOrgName": "Имя",
   "tableOrgCreatedAt": "Создан в",
   "tableOrgStatus": "Положение дел",
+  "tableOrdGroupAId": "ИД группы А",
+  "tableOrdGroupBId": "ИД группы Б",
+  "tableOrdChangeGroup": "Изменить группу",
+  "tableOrgTripTimeOut": "Время истекло",
 
   "tableOrderUser": "Пользователь",
   "tableOrderOrder": "Заказ",
   "tableOrderPrice": "Итоговая цена",
   "tableOrderCreatedAt": "Создан в",
   "tableOrderStatus": "Положение дел",
+  "tableOrderStatusPending": "Ожидаемый",
+  "tableOrderStatusCancelled": "Отменен",
+  "tableOrderStatusAccepted": "Принятый",
 
-  "dashboardTotalTrade": "Общая распродажа",
-  "dashboardTotalCosts": "Общая стоимость",
-  "dashboardTotalBenefit": "Общая прибыль",
+  "dashboardTotalTrade": "Распродажа",
+  "dashboardTotalCosts": "Cтоимость",
+  "dashboardTotalBenefit": "Прибыль",
+  "dashboardCardStatistics": "Все",
   "dashboardFilterOrg": "Организация",
-  "dashboardFilterByTime": "По времени",
+  "dashboardFilterByTime": "По времени", 
+  "dashboardFilterByDay": "день",
+  "dashboardFilterByWeek": "неделя",
+  "dashboardFilterByMonth": "месяц",
+  "dashboardFilterByYear": "год",
 
   "tooltipSendNotification": "Отправить уведомление боту",
   "tooltipLanguageSelect": "Изменить язык",
   "tooltipLogoutBtn": "Выйти",
+  "tooltipQrBtn": "QR Code",
 
   "admins": "Админы",
   "adminsPassword": "Пароль",
 
   "tableHistoryMeal": "Еда",
   "tableHistoryAgreeUsers": "Согласитесь пользователи",
-  "tableHistoryDisagreeUsers": "Не согласны пользователи"
+  "tableHistoryDisagreeUsers": "Не согласны пользователи",
+
+  "tablePaymentRole": "Роль",
+  "tablePaymentTransaction": "Сделка",
+
+  "paginationText": "от",
+
+  "searchText": "Искать"
+
 }

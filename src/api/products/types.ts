@@ -1,5 +1,8 @@
+import {IRole} from '../roles/types';
+import {IPagination} from '../types';
+
 export interface IGetProducts {
-  data: IProducts[];
+  productList: IProducts[];
   totalProducts: number;
 }
 
@@ -18,7 +21,7 @@ export interface IProducts {
 }
 
 export interface IGetOrganisation {
-  data: IOrganisation[];
+  orgList: IOrganisation[];
   totalOrgs: number;
 }
 
@@ -37,6 +40,12 @@ export interface IAddNewProduct {
   unit: string;
 }
 
+export interface IEditProduct {
+  name: string;
+  unit: string;
+  id: string;
+}
+
 export enum Units {
   KILOGRAM = 'kilogram',
   LITR = 'litr',
@@ -47,4 +56,9 @@ export interface IAddAmountProduct {
   product: string;
   amount: number;
   type: boolean;
+  cost: number;
+}
+
+export interface IGetProductsParams extends IPagination {
+  search?: string;
 }

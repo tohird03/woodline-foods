@@ -40,15 +40,7 @@ export const PhoneLogin = observer(() => {
             setAccessToken(res.token);
             setStaff(res);
 
-            const role = res?.admin?.role[0];
-
-            if (role === AdminRole.COOK) {
-              navigate(ROUTES.lunch);
-            } else if (role === AdminRole.STOREKEEPER) {
-              navigate(ROUTES.product);
-            } else if (role === AdminRole.SUPER_ADMIN) {
-              navigate(ROUTES.home);
-            }
+            navigate(ROUTES.home);
 
             successNotification(`Welcome to ${res.admin?.fullname}`);
           }

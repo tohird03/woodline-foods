@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {observer} from 'mobx-react';
 import {Box, Button} from '@mui/material';
-import {sentenceCase} from 'change-case';
 import {IUsers} from '../../../api/users/types';
 import Label from '../../../components/label';
 import {Modal} from '../../../components/Modal';
@@ -41,7 +40,7 @@ export const ChangeVerify = observer(({user}: Props) => {
         color={isVerifyColor}
         variant="outlined"
       >
-        {sentenceCase(isVerifyText)}
+        {isVerifyText}
       </Label>
 
       <Modal

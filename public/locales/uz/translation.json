@@ -6,12 +6,16 @@
   "organisation": "Tashkilotlar",
   "order": "Buyurtmalar",
   "lunch": "Tushlik",
+  "lunchBase": "Yangi tushlik bazasi",
+  "payments": "To'lovlar",
   "lunchHistory": "Tushliklar tarixi",
+  "productLogs": "Mahsulotlar tarixi",
 
   "newProduct": "Yangi mahsulot",
   "newFood": "Yangi ovqat",
   "newOrganisation": "Yangi tashkilot",
   "newLunch": "Yangi Tushlik",
+  "newLunchBase": "Yangi Tushlik Bazasi",
   "newAdmin": "Yangi admin",
 
   "tableUserName": "Ism",
@@ -30,6 +34,8 @@
   "tableProductOrganisation": "Tashkiloti",
   "tableProductDate": "Yaratilgan vaqti",
   "tableProductChangeAmount": "Miqdorni o'zgartirish",
+  "tablePercentCook": "Oshpaz ulushi",
+  "tableProductAction": "Harakatlar",
 
   "tableFoodPhoto": "Rasmi",
   "tableFoodName": "Nomi",
@@ -41,27 +47,47 @@
   "tableOrgName": "Nomi",
   "tableOrgCreatedAt": "Yaratilgan vaqti",
   "tableOrgStatus": "Holati",
+  "tableOrdGroupAId": "A guruh id",
+  "tableOrdGroupBId": "B guruh id",
+  "tableOrdChangeGroup": "Guruhni o'zgartirish",
+  "tableOrgTripTimeOut": "Tugash vaqti",
 
   "tableOrderUser": "Foydalanuvchi",
   "tableOrderOrder": "Buyurtma",
   "tableOrderPrice": "Umumiy narxi",
   "tableOrderCreatedAt": "Yaratilgan vaqti",
   "tableOrderStatus": "Holati",
+  "tableOrderStatusPending": "Kutilyapti",
+  "tableOrderStatusCancelled": "Bekor qilingan",
+  "tableOrderStatusAccepted": "Qabul qilingan",
 
-  "dashboardTotalTrade": "Jami savdo",
-  "dashboardTotalCosts": "Jami xarajatlar",
-  "dashboardTotalBenefit": "Jami foyda",
+  "dashboardTotalTrade": "Savdo",
+  "dashboardTotalCosts": "Xarajatlar",
+  "dashboardTotalBenefit": "Foyda",
+  "dashboardCardStatistics": "Barchasi",
   "dashboardFilterOrg": "Tashkilot",
   "dashboardFilterByTime": "Vaqt bo'yicha",
+  "dashboardFilterByDay": "kun",
+  "dashboardFilterByWeek": "hafta",
+  "dashboardFilterByMonth": "oy",
+  "dashboardFilterByYear": "yil",
 
   "tooltipSendNotification": "Botga xabar yuborish",
   "tooltipLanguageSelect": "Tilni o'zgartirish",
   "tooltipLogoutBtn": "Chiqish",
+  "tooltipQrBtn": "QR Code",
 
   "admins": "Adminlar",
   "adminsPassword": "Parol",
 
   "tableHistoryMeal": "Ovqat",
   "tableHistoryAgreeUsers": "Xohlovchilar",
-  "tableHistoryDisagreeUsers": "Xohlamaganlar"
+  "tableHistoryDisagreeUsers": "Xohlamaganlar",
+
+  "tablePaymentRole": "Rol",
+  "tablePaymentTransaction": "Tranzaksiya",
+
+  "paginationText": "gacha",
+
+  "searchText": "Qidirish"
 }

@@ -14,6 +14,7 @@ export interface INetworkConfig {
   headers?: any;
   timeout?: number;
 }
+
 export type TNetworkError = {
   status?: number;
   message: string;

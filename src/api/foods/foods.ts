@@ -1,7 +1,16 @@
 import {Endpoints} from '../endpoints';
 import {Instance} from '../instance';
-import {INetworkConfig, IPagination} from '../types';
-import {IAddFoodParams, IGetFoods, IGetOrganisation, IGetProducts} from './types';
+import {INetworkConfig} from '../types';
+import {
+  IAddFoodParams,
+  IChangeVerify,
+  IFoods,
+  IGetFoods,
+  IGetFoodsParams,
+  IGetOrganisation,
+  IGetProducts,
+  IImgChange,
+} from './types';
 
 const config: INetworkConfig = {
   baseURL: Endpoints.Base,
@@ -12,7 +21,7 @@ class FoodsApi extends Instance {
     super(config);
   }
 
-  getFoods = (params: IPagination): Promise<IGetFoods> =>
+  getFoods = (params: IGetFoodsParams): Promise<IGetFoods> =>
     this.get(Endpoints.Foods, {params});
 
   getOrganisation = (): Promise<IGetOrganisation> =>
@@ -33,6 +42,15 @@ class FoodsApi extends Instance {
 
   addFoods = (params: any): Promise<IAddFoodParams> =>
     this.post(Endpoints.Foods, params);
+
+  imgChangeFood = (params: IImgChange): Promise<IFoods> =>
+    this.patch(Endpoints.Foods, params);
+
+  changeVerify = (params: IChangeVerify): Promise<IFoods> =>
+    this.patch(`${Endpoints.Foods}/${params?.id}`, params);
+
+  changeFoods = (params: any): Promise<IFoods> =>
+    this.patch(`${Endpoints.FoodUpdate}/${params?.id}`, params);
 }
 
 export const foodsApi = new FoodsApi(config);

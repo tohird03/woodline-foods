@@ -1,0 +1,1 @@
+export {PaymentAnalitic} from './PaymentAnalitic';

@@ -1,6 +1,6 @@
 export interface IGetOrder {
   data: IOrder[];
-  totalorders: number;
+  totalOrders: number;
 }
 
 export interface IOrder {
@@ -41,3 +41,4 @@ export enum IOrderStatus {
   CANCELED = 'canceled',
   ACCEPTED = 'accepted',
 }
+

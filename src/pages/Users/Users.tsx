@@ -2,29 +2,36 @@ import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
 import {
-  Container,
   Stack,
   Typography,
 } from '@mui/material';
+import {SearchOutlined} from '@ant-design/icons';
 import {Table} from '../../components/table';
 import {usersStore} from '../../store/users';
+import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {AddBalanceModal} from './AddBalance/AddBalanceModal';
 import {ChangeOrganisationModal} from './ChangeOrganisation/ChangeOrganisationModal';
+import {ChangeRoleModal} from './ChangeRole/ChangeRoleModal';
 import {usersColumns} from './constants';
+import {DeleteUser} from './DeleteUser/DeleteUser';
+import DeleteUserModal from './DeleteUser/DeleteUserModal/DeleteUserModal';
 
 export const Users = observer(() => {
   const {t} = useTranslation();
+  const isMobile = useMediaQuery('(max-width: 650px)');
+
+  console.log(process.env.NEXT_PUBLIC_STAGE);
 
   const handleSearchUsers = (value: string) => {
-    // TODO
+    usersStore.setSearch(value);
   };
 
   const handleChangePage = (newPage: number) => {
     usersStore.setPage(newPage + 1);
   };
 
-  const handleChangePerPage = (perPage: number) => {
-    usersStore.setPage(1);
+  const handleChangePerPage = (perPage: number, page: number) => {
+    usersStore.setPage(page);
     usersStore.setSize(perPage);
   };
 
@@ -32,34 +39,38 @@ export const Users = observer(() => {
     usersStore.getUsers({
       page: usersStore.page,
       size: usersStore.size,
+      search: usersStore.search,
     });
-  }, [usersStore.page, usersStore.size]);
+  }, [usersStore.page, usersStore.size, usersStore.search]);
 
   return (
     <>
-      <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
-          <Typography variant="h4" gutterBottom>
-            {t('user')}
-          </Typography>
-        </Stack>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
+        <Typography variant="h4" gutterBottom>
+          {t('user')}
+        </Typography>
+      </Stack>
 
-        <Table
-          columns={usersColumns}
-          data={usersStore.users}
-          onFilterSearch={handleSearchUsers}
-          pagination={{
-            total: usersStore.totalUsers,
-            page: usersStore.page,
-            size: usersStore.size,
-            handlePageChange: handleChangePage,
-            handleShowSizeChange: handleChangePerPage,
-          }}
-        />
-      </Container>
+      <Table
+        columns={usersColumns}
+        data={usersStore.users}
+        onFilterSearch={handleSearchUsers}
+        pagination={{
+          total: usersStore.totalUsers,
+          page: usersStore.page,
+          size: usersStore.size,
+          handlePageChange: handleChangePage,
+          handleShowSizeChange: handleChangePerPage,
+        }}
+        isMobile={isMobile}
+        searchPlaceholder="Search user"
+        searchSuffix={<SearchOutlined />}
+      />
 
       {usersStore.isOpenOrganisationModal && <ChangeOrganisationModal />}
       {usersStore.isOpenBalanceModal && <AddBalanceModal />}
+      {usersStore.isOpenChangeRoleModal && <ChangeRoleModal />}
+      {<DeleteUserModal />}
     </>
   );
 });

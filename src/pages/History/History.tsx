@@ -1,15 +1,18 @@
 import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
-import {Container, Stack, Typography} from '@mui/material';
+import {Stack, Typography} from '@mui/material';
 import {Table} from '../../components/table';
 import {historyStore} from '../../store/history';
+import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {historyColumns} from './constants';
+import {UsersModal} from './Users/UsersModal';
 
 export const History = observer(() => {
   const {t} = useTranslation();
+  const isMobile = useMediaQuery('(max-width: 650px)');
 
-  const handleSearchUsers = (value: string) => {
+  const handleSearchUsers = () => {
     // TODO
   };
 
@@ -17,8 +20,8 @@ export const History = observer(() => {
     historyStore.setPage(newPage + 1);
   };
 
-  const handleChangePerPage = (perPage: number) => {
-    historyStore.setPage(1);
+  const handleChangePerPage = (perPage: number, page: number) => {
+    historyStore.setPage(page);
     historyStore.setSize(perPage);
   };
 
@@ -30,7 +33,7 @@ export const History = observer(() => {
   }, [historyStore.page, historyStore.size]);
 
   return (
-    <Container>
+    <>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
         <Typography variant="h4" gutterBottom>
           {t('lunchHistory')}
@@ -48,7 +51,10 @@ export const History = observer(() => {
           handlePageChange: handleChangePage,
           handleShowSizeChange: handleChangePerPage,
         }}
+        isMobile={isMobile}
       />
-    </Container>
+
+      {historyStore.isOpenUsersModal && <UsersModal />}
+    </>
   );
 });

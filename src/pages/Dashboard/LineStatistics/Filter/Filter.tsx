@@ -9,11 +9,11 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
-import {FilterTime} from '../../../api/dashboard/types';
-import {IOrganisation} from '../../../api/products/types';
-import {dashboardStore} from '../../../store/dashboard';
-import {productStore} from '../../../store/products';
-import {dashboardStyles} from '../styles';
+import {FilterTime, localizedStrings} from '../../../../api/dashboard/types';
+import {IOrganisation} from '../../../../api/products/types';
+import {dashboardStore} from '../../../../store/dashboard';
+import {productStore} from '../../../../store/products';
+import {dashboardStyles} from '../../styles';
 
 export const Filter = observer(() => {
   const {t} = useTranslation();
@@ -36,11 +36,11 @@ export const Filter = observer(() => {
   ), [productStore.organisations]);
 
   const timeOptions = useMemo(() => ([
-    <MenuItem key={FilterTime.DAY} value={FilterTime.DAY}>{FilterTime.DAY}</MenuItem>,
-    <MenuItem key={FilterTime.WEEK} value={FilterTime.WEEK}>{FilterTime.WEEK}</MenuItem>,
-    <MenuItem key={FilterTime.MONTH} value={FilterTime.MONTH}>{FilterTime.MONTH}</MenuItem>,
-    <MenuItem key={FilterTime.YEAR} value={FilterTime.YEAR}>{FilterTime.YEAR}</MenuItem>,
-  ]), []);
+    <MenuItem key={FilterTime.DAY} value={FilterTime.DAY}>{t(localizedStrings[FilterTime.DAY])}</MenuItem>,
+    <MenuItem key={FilterTime.WEEK} value={FilterTime.WEEK}>{t(localizedStrings[FilterTime.WEEK])}</MenuItem>,
+    <MenuItem key={FilterTime.MONTH} value={FilterTime.MONTH}>{t(localizedStrings[FilterTime.MONTH])}</MenuItem>,
+    <MenuItem key={FilterTime.YEAR} value={FilterTime.YEAR}>{t(localizedStrings[FilterTime.YEAR])}</MenuItem>,
+  ]), [t]);
 
   useEffect(() => {
     productStore.getOrganisation();

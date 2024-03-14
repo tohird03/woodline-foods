@@ -2,7 +2,7 @@ import React, {useEffect, useMemo} from 'react';
 import {observer} from 'mobx-react';
 import {Button, FormControl, InputLabel, MenuItem, Select, TextField} from '@mui/material';
 import {useFormik} from 'formik';
-import {IOrganisation} from '../../../api/organisation/types';
+import {IOrganisation} from '../../../api/products/types';
 import {Modal} from '../../../components/Modal';
 import {productStore} from '../../../store/products';
 import {MODAL_WIDTH, UnitOption} from '../constants';

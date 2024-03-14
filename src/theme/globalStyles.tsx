@@ -50,6 +50,17 @@ const GlobalStyles = () => {
           maxWidth: '300px',
           wordBreak: 'break-all',
         },
+        '.ant-image-mask': {
+          borderRadius: '50%',
+        },
+        'MuiTab-root': {
+          hight: '20px !import',
+        },
+        '.ant-modal-body': {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
       }}
     />
   );

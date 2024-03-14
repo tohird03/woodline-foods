@@ -6,12 +6,16 @@
   "organisation": "Organisations",
   "order": "Orders",
   "lunch": "Lunch",
+  "lunchBase": "Lunch base",
+  "payments": "Payments",
   "lunchHistory": "Lunch History",
+  "productLogs": "Product logs",
 
   "newProduct": "New Product",
   "newFood": "New Food",
   "newOrganisation": "New Organisation",
   "newLunch": "New lunch",
+  "newLunchBase": "New lunch base",
   "newAdmin": "New Admin",
 
   "tableUserName": "Name",
@@ -30,6 +34,9 @@
   "tableProductOrganisation": "Organisation",
   "tableProductDate": "Created At",
   "tableProductChangeAmount": "Change amount",
+  "tablePercentCook": "Percent cooker",
+  "tableProductAction": "Action",
+
 
   "tableFoodPhoto": "Photo",
   "tableFoodName": "Name",
@@ -41,27 +48,47 @@
   "tableOrgName": "Name",
   "tableOrgCreatedAt": "Created At",
   "tableOrgStatus": "Status",
+  "tableOrdGroupAId": "Group A ID",
+  "tableOrdGroupBId": "Group B ID",
+  "tableOrdChangeGroup": "Change group",
+  "tableOrgTripTimeOut": "Time is up",
 
   "tableOrderUser": "User",
   "tableOrderOrder": "Order",
   "tableOrderPrice": "Total price",
   "tableOrderCreatedAt": "Created at",
   "tableOrderStatus": "Status",
+  "tableOrderStatusPending": "Pending",
+  "tableOrderStatusCancelled": "Cancelled",
+  "tableOrderStatusAccepted": "Accepted",
 
-  "dashboardTotalTrade": "Total sales",
-  "dashboardTotalCosts": "Total cost",
-  "dashboardTotalBenefit": "Total profit",
+  "dashboardTotalTrade": "Sales",
+  "dashboardTotalCosts": "Cost",
+  "dashboardTotalBenefit": "Profit",
+  "dashboardCardStatistics": "All",
   "dashboardFilterOrg": "Organisation",
   "dashboardFilterByTime": "By time",
+  "dashboardFilterByDay": "day",
+  "dashboardFilterByWeek": "week",
+  "dashboardFilterByMonth": "month",
+  "dashboardFilterByYear": "year",
 
   "tooltipSendNotification": "Send a notification to a bot",
   "tooltipLanguageSelect": "Change the language",
   "tooltipLogoutBtn": "Logout",
+  "tooltipQrBtn": "QR Code",
 
   "admins": "Admins",
   "adminsPassword": "Password",
 
   "tableHistoryMeal": "Food",
   "tableHistoryAgreeUsers": "Agree users",
-  "tableHistoryDisagreeUsers": "Disagree users"
+  "tableHistoryDisagreeUsers": "Disagree users",
+
+  "tablePaymentRole": "Role",
+  "tablePaymentTransaction": "Transaction",
+
+  "paginationText": "from",
+  
+  "searchText": "Search"
 }

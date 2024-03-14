@@ -9,14 +9,20 @@ import {
   AddFoods,
   Admin,
   Dashboard,
+  EditFoods,
   Foods,
+  GetRoles,
   History,
   Lunch,
+  LunchBase,
   NotFound,
   Order,
   Organisation,
+  Payments,
   PhoneLogin,
+  ProductLogs,
   Products,
+  SingleUser,
   Users,
 } from './lazy';
 import {PrivateRoute} from './PrivateRoute';
@@ -32,10 +38,9 @@ export const Router = observer(({isAuth}: AuthProps) => {
       children: [
         {
           path: ROUTES.home,
-          element: <Suspense fallback={<Loading />}><DashboardLayout /></Suspense>,
+          element: <DashboardLayout />,
           children: [
             {
-              path: ROUTES.home,
               element: (
                 <RoleChecker
                   page={<Suspense fallback={<Loading />}><Dashboard /></Suspense>}
@@ -47,6 +52,24 @@ export const Router = observer(({isAuth}: AuthProps) => {
               path: ROUTES.users,
               element: (
                 <RoleChecker page={<Suspense fallback={<Loading />}><Users /></Suspense>} path={ROUTES.users} />
+              ),
+            },
+            {
+              path: ROUTES.userOrders,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><SingleUser /></Suspense>} path={ROUTES.users} />
+              ),
+            },
+            {
+              path: ROUTES.roles,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><GetRoles /></Suspense>} path={ROUTES.roles} />
+              ),
+            },
+            {
+              path: ROUTES.updateRole,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><GetRoles /></Suspense>} path={ROUTES.roles} />
               ),
             },
             {
@@ -86,6 +109,18 @@ export const Router = observer(({isAuth}: AuthProps) => {
               ),
             },
             {
+              path: ROUTES.lunchBase,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><LunchBase /></Suspense>} path={ROUTES.lunchBase} />
+              ),
+            },
+            // {
+            //   path: ROUTES.lunchAdd,
+            //   element: (
+            //     <RoleChecker page={<Suspense fallback={<Loading />}><AddLunch /></Suspense>} path={ROUTES.lunch} />
+            //   ),
+            // },
+            {
               path: ROUTES.admins,
               element: (
                 <RoleChecker page={<Suspense fallback={<Loading />}><Admin /></Suspense>} path={ROUTES.admins} />
@@ -95,6 +130,24 @@ export const Router = observer(({isAuth}: AuthProps) => {
               path: ROUTES.history,
               element: (
                 <RoleChecker page={<Suspense fallback={<Loading />}><History /></Suspense>} path={ROUTES.admins} />
+              ),
+            },
+            {
+              path: ROUTES.payments,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><Payments /></Suspense>} path={ROUTES.admins} />
+              ),
+            },
+            {
+              path: ROUTES.productLogs,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><ProductLogs /></Suspense>} path={ROUTES.admins} />
+              ),
+            },
+            {
+              path: ROUTES.foodEdit,
+              element: (
+                <RoleChecker page={<Suspense fallback={<Loading />}><EditFoods /></Suspense>} path={ROUTES.admins} />
               ),
             },
           ],
