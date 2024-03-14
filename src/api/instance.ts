@@ -7,7 +7,7 @@ export const stageBranch = process.env.REACT_APP_STAGE || 'dev';
 
 const apiUrls: any = {
   dev: {
-    apiUrl: 'http://85.193.87.181:3030',
+    apiUrl: 'https://bot.mydevops.uz',
   },
   prod: {
     apiUrl: 'https://bot.woodlines.shop',
