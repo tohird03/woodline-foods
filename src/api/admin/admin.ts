@@ -1,7 +1,7 @@
 import {Endpoints} from '../endpoints';
 import {Instance} from '../instance';
 import {INetworkConfig} from '../types';
-import {IAddAdmin, IAdmins, IDeleteAdmin, IEditAdmin} from './types';
+import {IAddAdmin, IAdminGet, IAdmins, IDeleteAdmin, IEditAdmin} from './types';
 
 const config: INetworkConfig = {
   baseURL: Endpoints.Base,
@@ -12,7 +12,7 @@ class AdminApi extends Instance {
     super(config);
   }
 
-  getAdmins = (): Promise<IAdmins[]> =>
+  getAdmins = (): Promise<IAdminGet> =>
     this.get(Endpoints.Admins);
 
   addAdmins = (params: IAddAdmin): Promise<IAdmins> =>

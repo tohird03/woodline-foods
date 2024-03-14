@@ -28,6 +28,7 @@ interface IFormValues {
   name: string;
   cost: number;
   percent_cook: number;
+  lunchbase: string;
 }
 
 export const LunchBaseAddModal = observer(() => {
@@ -50,6 +51,7 @@ export const LunchBaseAddModal = observer(() => {
       name: '',
       cost: 0,
       percent_cook: 0,
+      lunchbase: '',
     },
     onSubmit: (values) => {
       if (lunchStore.singleLunch) {
@@ -57,6 +59,7 @@ export const LunchBaseAddModal = observer(() => {
           ...values,
           products,
           id: lunchStore.singleLunch?._id!,
+          lunchbase: id!,
         })
           .then(() => {
             lunchStore.getLunchBases(id!);
@@ -70,6 +73,8 @@ export const LunchBaseAddModal = observer(() => {
 
       lunchStore.addLunchBase({
         ...values,
+        lunchbase: id!,
+        org: '65f18126ee40d8f2e55dea59',
         products,
         id: id!,
       }).finally(() => {
@@ -80,9 +85,13 @@ export const LunchBaseAddModal = observer(() => {
   });
 
   const productOptions = useMemo(() => (
-    foodsStore.products.map((product: IProducts) => (
-      <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
-    ))
+    (foodsStore.products && foodsStore.products.length > 0) ? (
+      foodsStore.products.map((product: IProducts) => (
+        <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
+      ))
+    ) : (
+      <MenuItem value="" disabled>No Product</MenuItem>
+    )
   ), [foodsStore.products]);
 
   const addProduct = () => {
@@ -170,9 +179,10 @@ export const LunchBaseAddModal = observer(() => {
         name: lunchStore.singleLunch.name || '',
         cost: lunchStore.singleLunch.cost || 0,
         percent_cook: lunchStore.singleLunch.percent_cook || 0,
+        lunchbase: '',
       });
       const initialProducts = lunchStore.singleLunch.products.map(product => ({
-        product: product.product,
+        product: product.product?.name,
         amount: product.amount,
       }));
 
@@ -181,18 +191,19 @@ export const LunchBaseAddModal = observer(() => {
   }, [lunchStore.singleLunch, foodsStore.products]);
 
   useEffect(() => {
-    const calculatedBodyProductPrice = products.reduce((total, product) => {
-      const selectedProduct = foodsStore.products.find(p => p._id === product.product);
+    if (foodsStore.products) {
+      const calculatedBodyProductPrice = products.reduce((total, product) => {
+        const selectedProduct = foodsStore.products.find(p => p._id === product.product);
 
-      return selectedProduct ? total + (selectedProduct.cost * product.amount) : total;
-    }, 0);
+        return selectedProduct ? total + (selectedProduct.cost * product.amount) : total;
+      }, 0);
 
-    setBodyProductPrice(calculatedBodyProductPrice);
+      setBodyProductPrice(calculatedBodyProductPrice);
+    }
 
     const calculatedPercentage = (formik.values.percent_cook / 100) * formik.values.cost;
 
     setProductPercentage(calculatedPercentage);
-
     setTotalProductPrice(formik.values.cost);
   }, [formik.values, products, foodsStore.products]);
 
@@ -265,9 +276,10 @@ export const LunchBaseAddModal = observer(() => {
                         <InputLabel>{`Product ${index + 1}`}</InputLabel>
                         <Select
                           label={`Product ${index + 1}`}
-                          value={product.product}
+                          value={product?.product}
                           onChange={(event) => handleProductSelectChange(event, index)}
                           required
+                          defaultValue={product.product}
                         >
                           {productOptions}
                         </Select>

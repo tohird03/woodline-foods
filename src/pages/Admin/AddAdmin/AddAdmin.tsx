@@ -7,11 +7,11 @@ import {observer} from 'mobx-react';
 import {Button, FormControl, InputLabel, MenuItem, Select} from '@mui/material';
 import {useFormik} from 'formik';
 import {IOrganisation} from '../../../api/products/types';
+import {IRole} from '../../../api/roles/types';
 import {Modal} from '../../../components/Modal';
 import {adminStore} from '../../../store/admin';
 import {productStore} from '../../../store/products';
-import { rolesStore } from '../../../store/roles/roles';
-import { IRole } from '../../../api/roles/types';
+import {rolesStore} from '../../../store/roles/roles';
 
 export const AddAdmin = observer(() => {
   const formik = useFormik({
@@ -38,9 +38,14 @@ export const AddAdmin = observer(() => {
   };
 
   const organisationOptions = useMemo(() => (
-    productStore.organisations.map((org: IOrganisation) => (
-      <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
-    ))
+    (productStore.organisations && productStore.organisations.length > 0) ? (
+      productStore.organisations.map((org: IOrganisation) => (
+        <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
+      ))
+    ) : (
+      <MenuItem value="" disabled>No Organization</MenuItem>
+    )
+
   ), [productStore.organisations]);
 
   useEffect(() => {
@@ -132,7 +137,7 @@ export const AddAdmin = observer(() => {
           className="form__otp-submit"
           type="submit"
         >
-          Login
+          Add
         </Button>
       </form>
     </Modal>

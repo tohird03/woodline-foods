@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {observer} from 'mobx-react';
-import {Button, Form, InputNumber} from 'antd';
+import {Button, Form, Input, InputNumber} from 'antd';
 import {useForm} from 'antd/es/form/Form';
 import {IChangeGroupForm} from '../../../../api/organisation/types';
 import {Modal} from '../../../../components/Modal';
@@ -53,6 +53,15 @@ export const ChangeGroupModal = observer(() => {
         form={form}
         onFinish={handleFormFinish}
       >
+        <Form.Item
+          label={t('tableOrgName')}
+          name="name_org"
+        >
+          <Input
+            style={{width: '100%'}}
+            placeholder={t('tableOrgName')}
+          />
+        </Form.Item>
         <Form.Item
           label={t('tableOrdGroupAId')}
           name="group_a_id"

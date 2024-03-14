@@ -72,10 +72,15 @@ export const AddLunchModal = observer(() => {
   };
 
   const productOptions = useMemo(() => (
-    foodsStore.products.map((product: IProducts) => (
-      <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
-    ))
+    (foodsStore.products && foodsStore.products.length > 0) ? (
+      foodsStore.products.map((product: IProducts) => (
+        <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
+      ))
+    ) : (
+      <MenuItem value="" disabled>No Product</MenuItem>
+    )
   ), [foodsStore.products]);
+
 
   useEffect(() => {
     foodsStore.getProducts();

@@ -7,6 +7,7 @@ import {
   IAddLunchProducts,
   IGetLunchBase,
   ILunchs,
+  ILunchsProduct,
   ILunchUpdate,
 } from '../../api/lunch/types';
 import {IPagination} from '../../api/types';
@@ -25,7 +26,7 @@ class LunchStore {
   singleFoodProduct: IFoodsProducts[] = [];
   isOpenSingleFoodProductModal = false;
   isLunchEditModal = false;
-  singleLunch: IGetLunchBase | null = null;
+  singleLunch: ILunchsProduct | null = null;
 
   constructor(){
     makeAutoObservable(this);
@@ -153,7 +154,7 @@ class LunchStore {
     this.isOpenSingleFoodProductModal = isOpen;
   };
 
-  setSingleLunch = (singleLunch: IGetLunchBase | null) => {
+  setSingleLunch = (singleLunch: ILunchsProduct | null) => {
     this.singleLunch = singleLunch;
   };
 

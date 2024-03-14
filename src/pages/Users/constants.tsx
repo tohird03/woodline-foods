@@ -16,11 +16,11 @@ import {ChangeRole} from './ChangeRole';
 import {ChangeVerify} from './ChangeVerify';
 import {DeleteUser} from './DeleteUser';
 import {Analitic} from './SingleUser/Analitic';
+import {PaymentAnalitic} from './SingleUser/PaymentAnalitic';
 import {UserOrders} from './SingleUser/UserOrders';
 import {OrderProduct} from './SingleUser/UserOrders/OrderProduct';
 import {UsersStyles} from './styles';
 import {UserStatusChange} from './UserStatusChange';
-import { PaymentAnalitic } from './SingleUser/PaymentAnalitic';
 
 export const usersColumns: TableColumn[] = [
   {

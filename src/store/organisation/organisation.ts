@@ -21,7 +21,7 @@ class OrganisationStore {
     organisationApi.getOrganisation(params)
       .then(res => {
         if (res) {
-          this.setOrganisation(res?.data);
+          this.setOrganisation(res?.orgList);
           this.setTotalOrg(res?.totalOrgs);
         }
 

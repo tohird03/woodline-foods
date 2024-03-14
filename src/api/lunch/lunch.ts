@@ -33,9 +33,11 @@ class LunchApi extends Instance {
 
   addLunchBase = (params: IAddLunchBaseParams) =>
     this.post(`${Endpoints.Lunchs}/${params?.id}`, {
-      cost: params?.cost,
       name: params?.name,
-      percent_cook: params?.percent_cook,
+      cost: params?.cost,
+      lunchbase: params?.lunchbase,
+      // percent_cook: params?.percent_cook,
+      org: params?.org,
       products: params?.products,
     });
 

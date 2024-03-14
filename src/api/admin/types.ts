@@ -1,5 +1,8 @@
 import {AdminRole} from '../auth/types';
 
+export interface IAdminGet {
+  adminList: IAdmins[];
+}
 export interface IAdmins {
   _id: string;
   fullName: string;
@@ -20,6 +23,10 @@ export interface IAddAdmin {
 
 export interface IEditAdmin {
   _id: string;
+  phone_number: string;
+  fullname: string;
+  password: string;
+  org: string;
   role: string;
 }
 
