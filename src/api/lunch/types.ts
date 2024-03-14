@@ -51,10 +51,12 @@ export interface IGetLunchBase {
 }
 
 export interface IAddLunchBaseParams {
-  id: string;
+  id?: string;
+  lunchbase: string;
   name: string;
   cost: number;
-  percent_cook: number;
+  // percent_cook: number;
+  org: string;
   products: IAddFoodProduct[];
 }
 
@@ -70,6 +72,7 @@ export interface ILunchUpdate {
   name: string;
   cost: number;
   percent_cook: number;
+  lunchbase: string;
   products: {
     product: string;
     amount: number;

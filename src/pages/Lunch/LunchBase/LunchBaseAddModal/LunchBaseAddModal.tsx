@@ -28,6 +28,7 @@ interface IFormValues {
   name: string;
   cost: number;
   percent_cook: number;
+  lunchbase: string;
 }
 
 export const LunchBaseAddModal = observer(() => {
@@ -50,6 +51,7 @@ export const LunchBaseAddModal = observer(() => {
       name: '',
       cost: 0,
       percent_cook: 0,
+      lunchbase: '',
     },
     onSubmit: (values) => {
       if (lunchStore.singleLunch) {
@@ -57,6 +59,7 @@ export const LunchBaseAddModal = observer(() => {
           ...values,
           products,
           id: lunchStore.singleLunch?._id!,
+          lunchbase: id!,
         })
           .then(() => {
             lunchStore.getLunchBases(id!);
@@ -70,6 +73,8 @@ export const LunchBaseAddModal = observer(() => {
 
       lunchStore.addLunchBase({
         ...values,
+        lunchbase: id!,
+        org: '65f18126ee40d8f2e55dea59',
         products,
         id: id!,
       }).finally(() => {
@@ -174,6 +179,7 @@ export const LunchBaseAddModal = observer(() => {
         name: lunchStore.singleLunch.name || '',
         cost: lunchStore.singleLunch.cost || 0,
         percent_cook: lunchStore.singleLunch.percent_cook || 0,
+        lunchbase: '',
       });
       const initialProducts = lunchStore.singleLunch.products.map(product => ({
         product: product.product?.name,
