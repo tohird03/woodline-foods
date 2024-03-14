@@ -14,6 +14,7 @@ const apiUrls: any = {
   },
 };
 
+
 const stage = apiUrls[stageBranch];
 
 export class Instance {
