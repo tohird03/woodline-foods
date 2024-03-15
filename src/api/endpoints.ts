@@ -1,7 +1,7 @@
 export const Endpoints = {
   Base: '/',
-  Users: '/user',
-  // Users: '/user/search-pagination',
+  // Users: '/user',
+  Users: '/user/search-pagination',
   UsersMessage: '/user/send-message',
   UserStatus: '/user',
   UserEdit: '/user/edit-info',

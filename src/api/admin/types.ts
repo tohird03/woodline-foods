@@ -5,11 +5,14 @@ export interface IAdminGet {
 }
 export interface IAdmins {
   _id: string;
-  fullName: string;
+  fullname: string;
   password: string;
-  org: string;
-  role: AdminRole[];
-  phoneNumber: string;
+  org: {
+    id: string;
+    name_org: string;
+  };
+  // role: AdminRole[];
+  phone_number: string;
   createdAt: string;
 }
 

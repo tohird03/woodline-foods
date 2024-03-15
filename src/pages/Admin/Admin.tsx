@@ -60,12 +60,12 @@ export const Admin = observer(() => {
               label: 'tableUserChangeOrg',
               render: (text, record) => (
                 <>
-                  <IconButton onClick={() => handleEditAdmin(record._id)}>
+                  <IconButton onClick={() => handleEditAdmin(record?._id)}>
                     <Edit />
                   </IconButton>
                   <IconButton>
                     <DeleteOutlined
-                      onClick={() => handleDeleteAdmin(record._id)}
+                      onClick={() => handleDeleteAdmin(record?._id)}
                       style={{color: 'red'}}
                     />
                   </IconButton>
@@ -73,7 +73,7 @@ export const Admin = observer(() => {
               ),
             },
           ]}
-        data={adminStore.admins}
+        data={adminStore?.admins || []}
         pagination={false}
         isMobile={isMobile}
       />
