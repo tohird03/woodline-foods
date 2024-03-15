@@ -17,7 +17,7 @@ class AdminStore {
     adminApi.getAdmins()
       .then(res => {
         if (res) {
-          this.setAdmins(res.adminList);
+          this.setAdmins(res);
         }
 
         return res;
