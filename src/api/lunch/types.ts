@@ -41,6 +41,10 @@ export interface IAddFoodProduct {
   amount: number;
 }
 
+export interface IGetLunchList {
+  lunchList: IGetLunchBase[];
+}
+
 export interface IGetLunchBase {
   _id: string;
   name: string;
@@ -56,6 +60,7 @@ export interface IAddLunchBaseParams {
   name: string;
   cost: number;
   // percent_cook: number;
+  // is_active?: boolean;
   org: string;
   products: IAddFoodProduct[];
 }
@@ -70,10 +75,11 @@ export interface IEditedLunchProducts {
 
 export interface ILunchUpdate {
   name: string;
-  cost: number;
-  percent_cook: number;
-  lunchbase: string;
-  products: {
+  cost?: number;
+  percent_cook?: number;
+  lunchbase?: string;
+  org?: string;
+  products?: {
     product: string;
     amount: number;
   }[];
@@ -88,13 +94,35 @@ export interface IDeletLunchProducts {
 export interface ILunchsProduct {
   _id: string;
   name: string;
-  cost: number;
-  products: {
+  cost?: number;
+  org?: string;
+  products?: {
     product: {
       name: string;
       _id: string;
     };
     amount: number;
   }[];
-  percent_cook: number;
+}
+
+
+// "_id": "65e67d344fc3b0e4c08f4963",
+// "name": "0.5 osh",
+// "cost": 4500,
+// "base": "65e67ca04fc3b0e4c08f4944",
+// "org": {
+//     "_id": "65e67c164fc3b0e4c08f4924",
+//     "name_org": "O'rtasaroy"
+// },
+// "percent_cook": 0,
+// "is_active": true,
+// "products": []
+
+export interface IGetOneLunch {
+  products: IGetOneLunchProducts[];
+}
+
+export interface IGetOneLunchProducts {
+  product: string;
+  amount: number;
 }

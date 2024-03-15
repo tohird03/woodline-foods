@@ -6,6 +6,8 @@ import {
   IAddLunchBaseParams,
   IAddLunchProducts,
   IGetLunchBase,
+  IGetOneLunch,
+  IGetOneLunchProducts,
   ILunchs,
   ILunchsProduct,
   ILunchUpdate,
@@ -27,6 +29,8 @@ class LunchStore {
   isOpenSingleFoodProductModal = false;
   isLunchEditModal = false;
   singleLunch: ILunchsProduct | null = null;
+  lunchBaseProductAddEditModal = false;
+  lunchOneProduct: IGetOneLunchProducts[] = [];
 
   constructor(){
     makeAutoObservable(this);
@@ -82,11 +86,22 @@ class LunchStore {
       })
       .catch(addAxiosErrorNotification);
 
-  getLunchBases = (id: string) =>
-    lunchApi.getLunchBase(id)
+  getLunchBases = () =>
+    lunchApi.getLunchBase()
       .then(res => {
         if (res) {
-          this.setLunchBases(res);
+          this.setLunchBases(res.lunchList);
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+  getOneLunchProduct = (id: string) =>
+    lunchApi.getOneLunch(id)
+      .then((res) => {
+        if (res) {
+          this.setLunchOneProduct(res?.products);
         }
 
         return res;
@@ -103,12 +118,20 @@ class LunchStore {
       .then(res => {
         if (res) {
           successNotification('Success add new lunch');
-          this.getLunchBases(this.singleLunchId!);
+          // this.getLunchBases(this.singleLunchId!);
         }
 
         return res;
       })
       .catch(addAxiosErrorNotification);
+
+  setLunchOneProduct = (lunchOneProduct: IGetOneLunchProducts[]) => {
+    this.lunchOneProduct = lunchOneProduct;
+  };
+
+  setLunchBaseProductAddEditModal = (isOpen: boolean) => {
+    this.lunchBaseProductAddEditModal = isOpen;
+  };
 
   setLunchEditModal = (isOpen: boolean) => {
     this.isLunchEditModal = isOpen;

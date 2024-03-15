@@ -39,7 +39,7 @@ export interface IChangeStatus {
 }
 
 export interface IGetOrganisation {
-  data: IOrganisation[];
+  orgList: IOrganisation[];
   totalOrgs: number;
 }
 

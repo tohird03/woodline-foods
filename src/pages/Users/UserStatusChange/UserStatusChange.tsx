@@ -17,10 +17,10 @@ export const UserStatusChange = observer(({user}: UserProps) => {
 
     setLoading(true);
 
-    usersStore.userStatusChange({
-      id: user?._id,
-      is_active: newValue,
-    })
+    const newActiveStatus = !user.is_active;
+
+
+    usersStore.userStatusChange(user?._id, newActiveStatus)
       .finally(() => {
         setLoading(false);
       });

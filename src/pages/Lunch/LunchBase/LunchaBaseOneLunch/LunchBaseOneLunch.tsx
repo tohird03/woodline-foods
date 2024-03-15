@@ -3,69 +3,67 @@ import {useTranslation} from 'react-i18next';
 import {useNavigate, useParams} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {Button, Stack, Typography} from '@mui/material';
-import Iconify from '../../../components/iconify';
-import {Table} from '../../../components/table';
-import {ROUTES} from '../../../constants/router';
-import {lunchStore} from '../../../store/lunch';
-import {useMediaQuery} from '../../../utils/hooks/useMediaQuery';
-import {AddLunchModal} from '../AddLunch/AddLunchModal/AddLunchModal';
-import {lunchBaseColumns} from '../constants';
-import {ProductModal} from '../Products/ProductModal';
-import {LunchBaseAddModal} from './LunchBaseAddModal/LunchBaseAddModal';
+import Iconify from '../../../../components/iconify/Iconify';
+import {Table} from '../../../../components/table';
+import {ROUTES} from '../../../../constants/router';
+import {lunchStore} from '../../../../store/lunch';
+import {useMediaQuery} from '../../../../utils/hooks/useMediaQuery';
+// import {ProductModal} from '../Products/ProductModal';
+import {lunchProductColumn} from './constant';
 
-export const LunchBase = observer(() => {
+export const LunchBaseProduct = observer(() => {
   const {t} = useTranslation();
   const isMobile = useMediaQuery('(max-width: 650px)');
   const {id} = useParams();
-  const navigate = useNavigate();
 
-  const handleAddLunchBase = () => {
-    lunchStore.setSingleLunchId(id!);
-    lunchStore.setIsOpenLunchBaseModal(true);
-    lunchStore.setSingleLunch(null);
-  };
+  // const handleAddLunchBase = () => {
+  //   lunchStore.setSingleLunchId(id!);
+  //   lunchStore.setIsOpenLunchBaseModal(true);
+  //   lunchStore.setSingleLunch(null);
+  // };
 
   // const handleAddLunchBaseProductModal = () => {
   //   lunchStore.setLunchBaseProductAddEditModal(true);
   // };
 
   useEffect(() => {
-    if (!id) {
-      navigate(ROUTES.lunch);
+    // if (!id) {
+    //   navigate(ROUTES.lunch);
 
-      return;
-    }
+    //   return;
+    // }
 
-    lunchStore.getLunchBases();
-  }, [id]);
+    // lunchStore.getLunchBases();
+    lunchStore.getOneLunchProduct(id!);
+  }, []);
 
   return (
     <>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
         <Typography variant="h4" gutterBottom>
-          {t('lunch')}
+          Lunch Product
         </Typography>
         <div style={{display: 'flex', gap: '10px'}}>
-          <Button
+          {/* <Button
             variant="contained"
             startIcon={<Iconify icon="eva:plus-fill" />}
             onClick={handleAddLunchBase}
           >
             {t('newLunch')}
-          </Button>
+          </Button> */}
         </div>
       </Stack>
 
       <Table
-        columns={lunchBaseColumns}
+        columns={lunchProductColumn}
         data={lunchStore.lunchBases}
         pagination={false}
         isMobile={isMobile}
       />
 
-      {lunchStore.isOpenLunchModal && <LunchBaseAddModal />}
+      {/* {lunchStore.isOpenLunchModal && <LunchBaseAddModal />}
       {lunchStore.isOpenSingleFoodProductModal && <ProductModal />}
-      {lunchStore.isLunchEditModal && <AddLunchModal /> }
+      {lunchStore.isLunchEditModal && <AddLunchModal /> } */}
     </>
   );
 });

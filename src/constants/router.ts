@@ -6,6 +6,7 @@ export const ROUTES = {
   userOrders: '/user-orders/:id',
   lunch: '/lunch',
   lunchBase: '/lunch/:id',
+  LunchBaseProduct: '/lunch/product/:id',
   lunchAdd: '/lunch/add/:id',
   product: '/product',
   food: '/food',

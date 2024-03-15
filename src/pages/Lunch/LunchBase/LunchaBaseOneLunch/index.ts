@@ -1,0 +1,1 @@
+export {LunchBaseProduct} from './LunchBaseOneLunch';

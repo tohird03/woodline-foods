@@ -8,7 +8,9 @@ import {
   IDeletLunchProducts,
   IEditedLunchProducts,
   IGetLunchBase,
+  IGetLunchList,
   IGetLunchs,
+  IGetOneLunch,
   ILunchs,
   ILunchUpdate,
 } from './types';
@@ -25,19 +27,23 @@ class LunchApi extends Instance {
   getLunchs = (params: IPagination): Promise<IGetLunchs> =>
     this.get(Endpoints.Lunch, {params});
 
+  getOneLunch = (id: string): Promise<IGetOneLunch> =>
+    this.get(`lunch/${id}`);
+
   addLunch = (params: IAddLunch): Promise<ILunchs> =>
     this.post(Endpoints.Lunch, params);
 
-  getLunchBase = (id: string): Promise<IGetLunchBase[]> =>
-    this.get(`${Endpoints.Lunchs}/${id}`);
+  getLunchBase = (): Promise<IGetLunchList> =>
+    this.get(`${Endpoints.Lunchs}`);
 
   addLunchBase = (params: IAddLunchBaseParams) =>
-    this.post(`${Endpoints.Lunchs}/${params?.id}`, {
+    this.post(`${Endpoints.Lunchs}`, {
       name: params?.name,
       cost: params?.cost,
       lunchbase: params?.lunchbase,
+      org: '65f18126ee40d8f2e55dea59',
+      // id: params?.id,
       // percent_cook: params?.percent_cook,
-      org: params?.org,
       products: params?.products,
     });
 
@@ -53,11 +59,11 @@ class LunchApi extends Instance {
     this.patch(`${Endpoints.AddLunchProduct}/${params?.lunchId}`, {products: params?.products});
 
   updatedLunchProduct = (params: ILunchUpdate): Promise<ILunchs> =>
-    this.patch(`${Endpoints.LunchUpdate}/${params.id}`, {
-      products: params?.products,
+    this.patch(`lunch/${params.id}`, {
       name: params?.name,
-      cost: params?.cost,
-      percent_cook: params?.percent_cook,
+      // products: params?.products,
+      // cost: params?.cost,
+      // percent_cook: params?.percent_cook,
     });
 
   deleteProduct = (params: IDeletLunchProducts): Promise<ILunchs> =>
