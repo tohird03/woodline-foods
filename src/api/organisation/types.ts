@@ -1,5 +1,5 @@
 export interface IGetOrganisation {
-  orgList: IOrganisation[];
+  data: IOrganisation[];
   totalOrgs: number;
 }
 
