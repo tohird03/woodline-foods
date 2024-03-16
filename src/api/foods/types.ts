@@ -30,7 +30,7 @@ export interface IFoodsProducts {
 }
 
 export interface IGetOrganisation {
-  data: IOrganisation[];
+  orgList: IOrganisation[];
   totalOrgs: number;
 }
 

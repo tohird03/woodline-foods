@@ -1,7 +1,7 @@
 export const Endpoints = {
   Base: '/',
   // Users: '/user',
-  Users: '/user/search-pagination',
+  Users: '/user',
   UsersMessage: '/user/send-message',
   UserStatus: '/user',
   UserEdit: '/user/edit-info',
@@ -17,7 +17,7 @@ export const Endpoints = {
   ProductEdit: '/product/update',
   ProductAmount: '/product/amount',
   Foods: '/food',
-  FoodUpdate: '/food/update',
+  FoodUpdate: '/food',
   Organisation: '/org',
   OrganisationGroup: '/org',
   Order: '/order',

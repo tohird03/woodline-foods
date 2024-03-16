@@ -2,7 +2,7 @@ import {IRole} from '../roles/types';
 import {IPagination} from '../types';
 
 export interface IGetProducts {
-  data: IProducts[];
+  productList: IProducts[];
   totalProducts: number;
 }
 

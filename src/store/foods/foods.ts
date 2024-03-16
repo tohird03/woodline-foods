@@ -43,7 +43,7 @@ class FoodsStore {
     foodsApi.getOrganisation()
       .then(res => {
         if (res) {
-          this.setOrganisation(res?.data);
+          this.setOrganisation(res?.orgList);
         }
 
         return res;

@@ -82,15 +82,27 @@ export const EditFoods = observer(() => {
   };
 
   const organisationOptions = useMemo(() => (
-    foodsStore.organisations.map((org: IOrganisation) => (
-      <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
-    ))
+    (foodsStore.organisations?.length > 0
+      ? (
+        foodsStore.organisations.map((org: IOrganisation) => (
+          <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
+        ))
+      )
+      : (
+        <MenuItem value="" disabled>No Organization</MenuItem>
+      )
+    )
   ), [foodsStore.organisations]);
 
   const productOptions = useMemo(() => (
-    foodsStore.products.map((product: IProducts) => (
-      <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
-    ))
+    (foodsStore.products?.length > 0 ? (
+      foodsStore.products.map((product: IProducts) => (
+        <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
+      ))
+    )
+      : (<MenuItem value="" disabled>No Product</MenuItem>
+      )
+    )
   ), [foodsStore.products]);
 
   useEffect(() => {
@@ -101,10 +113,12 @@ export const EditFoods = observer(() => {
     foodsStore.getOrganisation();
     foodsStore.getProducts();
 
-    const products = foodsStore?.singleFood?.products?.map(product => ({
-      product: product?._id,
-      amount: product?.amount,
-    }));
+    const products = foodsStore.singleFood && Array.isArray(foodsStore.singleFood.products)
+      ? foodsStore.singleFood.products.map(product => ({
+        product: product._id,
+        amount: product.amount,
+      }))
+      : [];
 
     formik.setFieldValue('name', foodsStore?.singleFood?.name);
     formik.setFieldValue('cost', foodsStore?.singleFood?.cost);
