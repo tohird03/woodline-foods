@@ -26,7 +26,9 @@ export const ChangeVerify = observer(({user}: Props) => {
   };
 
   const handleRegisterUser = () => {
-    usersStore.changeUserVerify(user?._id)
+    const newVerifyStatus = !user.is_verified;
+
+    usersStore.changeUserVerify(user._id, newVerifyStatus)
       .finally(() => {
         handleClose();
       });

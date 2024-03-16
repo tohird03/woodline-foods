@@ -12,6 +12,7 @@ type UserProps = {
 export const DeleteUser = observer(({user}: UserProps) => {
   const handleModalOpen = () => {
     usersStore.setSingleUser(user);
+    usersStore.setSingleUserId(user._id);
     usersStore.setIsOpenDeleteUserModal(true);
   };
 

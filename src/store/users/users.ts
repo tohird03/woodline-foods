@@ -1,6 +1,6 @@
-import { makeAutoObservable } from 'mobx';
-import { IPagination } from '../../api/types';
-import { usersApi } from '../../api/users';
+import {makeAutoObservable} from 'mobx';
+import {IPagination} from '../../api/types';
+import {usersApi} from '../../api/users';
 import {
   IChangeOrganisation,
   IChangeRole,
@@ -16,7 +16,7 @@ import {
   IUsers,
   TransactionParams,
 } from '../../api/users/types';
-import { addAxiosErrorNotification, successNotification } from '../../utils/notification';
+import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
 class UsersStore {
   users: IUsers[] = [];
@@ -55,7 +55,7 @@ class UsersStore {
     usersApi.getUsers(params)
       .then(res => {
         if (res) {
-          this.setUsers(res?.userList);
+          this.setUsers(res?.data);
           this.setTotalUsers(res?.totalUsers);
         }
       })
@@ -71,8 +71,8 @@ class UsersStore {
       })
       .catch(addAxiosErrorNotification);
 
-  userStatusChange = (params: IChangeStatus) =>
-    usersApi.changeUserStatus(params)
+  userStatusChange = (id: string, isActive: boolean) =>
+    usersApi.changeUserStatus(id, isActive)
       .then((res) => {
         successNotification('Success status change');
         this.getUsers({
@@ -84,11 +84,11 @@ class UsersStore {
       })
       .catch(addAxiosErrorNotification);
 
-  getOrganisation = (params: IPagination) =>
-    usersApi.getOrganisation(params)
+  getOrganisation = () =>
+    usersApi.getOrganisation()
       .then(res => {
         if (res) {
-          this.setOrganisation(res?.data);
+          this.setOrganisation(res?.orgList);
         }
 
         return res;
@@ -109,8 +109,22 @@ class UsersStore {
       })
       .catch(addAxiosErrorNotification);
 
-  changeUserVerify = (id: string) =>
-    usersApi.changeVerifyUser(id)
+  // changeUserVerify = (id: string) =>
+  //   usersApi.changeVerifyUser(id)
+  //     .then(res => {
+  //       successNotification('Success user verify');
+
+  //       this.getUsers({
+  //         page: this.page,
+  //         size: this.size,
+  //       });
+
+  //       return res;
+  //     })
+  //     .catch(addAxiosErrorNotification);
+
+  changeUserVerify = (id: string, isVerified: boolean) =>
+    usersApi.changeVerifyUser(id, isVerified)
       .then(res => {
         successNotification('Success user verify');
 
@@ -122,6 +136,7 @@ class UsersStore {
         return res;
       })
       .catch(addAxiosErrorNotification);
+
 
   addBalance = (params: TransactionParams) =>
     usersApi.addBalance(params)

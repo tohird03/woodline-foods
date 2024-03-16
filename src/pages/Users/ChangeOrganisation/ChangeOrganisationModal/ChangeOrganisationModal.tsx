@@ -46,10 +46,7 @@ export const ChangeOrganisationModal = observer(() => {
   [usersStore.organisations]);
 
   useEffect(() => {
-    usersStore.getOrganisation({
-      page: 1,
-      size: 1000,
-    });
+    usersStore.getOrganisation();
 
     return () => {
       usersStore.setOrganisation([]);

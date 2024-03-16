@@ -28,6 +28,12 @@ const DeleteUserModal = observer(() => {
       })
       .then(res => {
         if (res) {
+          usersStore.getUsers({
+            page: usersStore.page,
+            size: usersStore.size,
+            search: usersStore.search,
+          });
+
           successNotification('User successfully deleted');
           handleClose();
         }

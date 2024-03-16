@@ -38,8 +38,17 @@ export const lunchBaseColumns: TableColumn[] = [
   {
     key: 'name',
     label: 'tableUserName',
-    render: (value) => value,
-  },
+    render: (value, record) => (
+      <Link
+        style={{
+          textDecoration: 'none',
+          color: 'black',
+          fontWeight: 'bold',
+        }}
+        to={`/lunch/product/${record?._id}`}
+      >
+        {value}
+      </Link> || '-')},
   {
     key: 'cost',
     label: 'tableProductCost',
@@ -50,11 +59,11 @@ export const lunchBaseColumns: TableColumn[] = [
     label: 'tableProductDate',
     render: (value) => (getFullDateFormat(value)),
   },
-  {
-    key: 'percent_cook',
-    label: 'tablePercentCook',
-    render: (value) => `${value}%`,
-  },
+  // {
+  //   key: 'percent_cook',
+  //   label: 'tablePercentCook',
+  //   render: (value) => `${value}%`,
+  // },
   {
     key: 'products',
     label: 'tableFoodProduct',

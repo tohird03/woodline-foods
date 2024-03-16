@@ -1,7 +1,7 @@
 import {IPagination} from '../types';
 
 export interface IGetUser {
-  userList: IUsers[];
+  data: IUsers[];
   totalUsers: number;
 }
 
@@ -39,7 +39,7 @@ export interface IChangeStatus {
 }
 
 export interface IGetOrganisation {
-  data: IOrganisation[];
+  orgList: IOrganisation[];
   totalOrgs: number;
 }
 

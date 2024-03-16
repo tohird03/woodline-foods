@@ -102,3 +102,8 @@ export const EditFoods = lazy(() =>
   import('../pages/Foods/EditFoods')
     .then(({EditFoods}) => ({default: EditFoods}))
     .catch(handleCatchChunkError));
+
+export const LunchBaseProduct = lazy(() =>
+  import('../pages/Lunch/LunchBase/LunchaBaseOneLunch')
+    .then(({LunchBaseProduct}) => ({default: LunchBaseProduct}))
+    .catch(handleCatchChunkError));

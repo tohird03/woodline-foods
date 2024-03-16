@@ -30,7 +30,7 @@ class ProductsStore {
     productApi.getProducts(params)
       .then(res => {
         if (res) {
-          this.setProducts(res?.productList);
+          this.setProducts(res?.data);
           this.setTotalProducts(res?.totalProducts);
         }
       })
@@ -53,7 +53,7 @@ class ProductsStore {
     productApi.getOrganisation()
       .then(res => {
         if (res) {
-          this.setOrganisation(res?.orgList);
+          this.setOrganisation(res?.data);
         }
 
         return res;

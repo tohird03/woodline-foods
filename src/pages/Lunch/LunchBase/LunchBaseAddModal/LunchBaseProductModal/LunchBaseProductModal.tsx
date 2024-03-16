@@ -16,13 +16,13 @@ import {
   TextField,
 } from '@mui/material';
 import {useFormik} from 'formik';
-import {IOrganisation, IProducts} from '../../../../api/foods/types';
-import {IAddFoodProduct} from '../../../../api/history/types';
-import {Modal} from '../../../../components/Modal';
-import {foodsStore} from '../../../../store/foods';
-import {lunchStore} from '../../../../store/lunch';
-import {productStore} from '../../../../store/products';
-import {foodStyles, lunchStyles} from '../../styles';
+import {IOrganisation, IProducts} from '../../../../../api/foods/types';
+import {IAddFoodProduct} from '../../../../../api/history/types';
+import {Modal} from '../../../../../components/Modal';
+import {foodsStore} from '../../../../../store/foods';
+import {lunchStore} from '../../../../../store/lunch';
+import {productStore} from '../../../../../store/products';
+import {foodStyles, lunchStyles} from '../../../styles';
 
 
 interface IFormValues {
@@ -31,11 +31,10 @@ interface IFormValues {
   org: string;
 }
 
-export const LunchBaseAddModal = observer(() => {
+export const LunchBaseProductAddModal = observer(() => {
   const [products, setProducts] = useState<IAddFoodProduct[]>([{product: '', amount: 0}]);
   const [bodyProductPrice, setBodyProductPrice] = useState(0);
   const [totalProductPrice, setTotalProductPrice] = useState(0);
-  const [productPercentage, setProductPercentage] = useState(0);
   const {id} = useParams();
 
   useEffect(() => {
@@ -117,7 +116,7 @@ export const LunchBaseAddModal = observer(() => {
 
 
   const handleClose = () => {
-    lunchStore.setIsOpenLunchBaseModal(false);
+    lunchStore.setLunchBaseProductAddEditModal(false);
   };
 
   const handleProductSelectChange = (event: SelectChangeEvent<string>, index: number) => {
@@ -187,16 +186,6 @@ export const LunchBaseAddModal = observer(() => {
     }
   }, [lunchStore.singleLunch, foodsStore.products]);
 
-  const organisationOptions = useMemo(() => (
-    (productStore.organisations && productStore.organisations.length > 0) ? (
-      productStore.organisations.map((org: IOrganisation) => (
-        <MenuItem key={org._id} value={org._id}>{org.name_org}</MenuItem>
-      ))
-    ) : (
-      <MenuItem value="" disabled>No Organisations</MenuItem>
-    )
-  ), [productStore.organisations]);
-
 
   useEffect(() => {
     if (foodsStore.products) {
@@ -218,53 +207,13 @@ export const LunchBaseAddModal = observer(() => {
 
   return (
     <Modal
-      open={lunchStore.isOpenLunchModal}
+      open={lunchStore.lunchBaseProductAddEditModal}
       onButtonClose={handleClose}
       width={1000}
-      title={lunchStore.singleLunch ? 'Save' : 'Add new Lunch'}
+      title={lunchStore.singleLunch ? 'Save' : 'Add new Product'}
     >
       <form onSubmit={formik.handleSubmit}>
         <div style={{display: 'flex', justifyContent: 'space-around'}}>
-          <div>
-            <TextField
-              sx={lunchStyles.addLunchTextFeild}
-              label="Add lunch name"
-              name="name"
-              onChange={formik.handleChange}
-              value={formik.values.name}
-              required
-            />
-
-            <TextField
-              label="Напишите стоимость обед"
-              value={formik.values.cost}
-              type="number"
-              onChange={(event) => handleProductTotalChange(event)}
-              inputProps={{min: 0}}
-              minRows={0}
-              required
-              name="cost"
-              sx={lunchStyles.addLunchTextFeild}
-            />
-
-            {/* <TextField
-              label="процент для повара"
-              // value={formik.values.percent_cook}
-              type="number"
-              onChange={(event) => handleProductPercentageChange(event)}
-              inputProps={{min: 0}}
-              minRows={0}
-              required
-              name="percent_cook"
-              sx={lunchStyles.addLunchTextFeild}
-            /> */}
-
-            <div>
-              <h3>Общая стоимость обед: {totalProductPrice}</h3>
-              {/* <h3>Доля повара: {productPercentage}</h3> */}
-              <h3>Цена тела: {bodyProductPrice}</h3>
-            </div>
-          </div>
           <div>
             <Container>
               <Box sx={foodStyles.addFoodsWRapper}>
@@ -309,19 +258,6 @@ export const LunchBaseAddModal = observer(() => {
                       )}
                     </Box>
                   ))}
-                  <FormControl sx={lunchStyles.addLunchOrgFormControl} fullWidth>
-                    <InputLabel>Organisation</InputLabel>
-                    <Select
-                      name="org"
-                      label="Organisation"
-                      onChange={formik.handleChange}
-                      value={formik.values.org}
-                      required
-                    >
-                      {organisationOptions}
-                    </Select>
-                  </FormControl>
-
                 </Box>
               </Box>
             </Container>

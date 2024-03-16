@@ -52,7 +52,7 @@ export const usersColumns: TableColumn[] = [
   {
     key: 'org',
     label: 'tableUserOrganisation',
-    render: (value, record) => (record?.org?.name_org || '-'),
+    render: (value, record) => (record?.org || '-'),
   },
   {
     key: 'is_verified',

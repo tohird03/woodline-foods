@@ -1,7 +1,7 @@
 import {IPagination} from '../types';
 
 export interface IGetFoods {
-  data: IFoods[];
+  foodList: IFoods[];
   totalFoods: number;
 }
 
@@ -57,7 +57,7 @@ export interface IAddFoodProduct {
 }
 
 export interface IGetProducts {
-  productList: IProducts[];
+  data: IProducts[];
   totalProducts: number;
 }
 

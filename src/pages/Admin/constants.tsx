@@ -9,7 +9,7 @@ export const adminsColumns: TableColumn[] = [
   {
     key: 'fullname',
     label: 'tableUserName',
-    render: (value) => (value || '-'),
+    render: (value, record) => (value || '-'),
   },
   {
     key: 'phone_number',
@@ -24,12 +24,11 @@ export const adminsColumns: TableColumn[] = [
   {
     key: 'balance',
     label: 'dashboardFilterOrg',
-    render: (value, record) => (record?.org || '-'),
+    render: (value, record) => (record?.org?.name_org || '-'),
   },
   {
     key: 'createdAt',
     label: 'tableOrderCreatedAt',
     render: (value) => (getFullDateFormat(value) || '-'),
   },
-
 ];

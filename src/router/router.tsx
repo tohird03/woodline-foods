@@ -15,6 +15,7 @@ import {
   History,
   Lunch,
   LunchBase,
+  LunchBaseProduct,
   NotFound,
   Order,
   Organisation,
@@ -148,6 +149,18 @@ export const Router = observer(({isAuth}: AuthProps) => {
               path: ROUTES.foodEdit,
               element: (
                 <RoleChecker page={<Suspense fallback={<Loading />}><EditFoods /></Suspense>} path={ROUTES.admins} />
+              ),
+            },
+            {
+              path: ROUTES.LunchBaseProduct,
+              element: (
+                <RoleChecker
+                  page={
+                    <Suspense fallback={<Loading />}>
+                      <LunchBaseProduct />
+                    </Suspense>
+                  } path={ROUTES.admins}
+                />
               ),
             },
           ],

@@ -29,11 +29,17 @@ class UsersApi extends Instance {
   getUsers = (params: IUserParams): Promise<IGetUser> =>
     this.get(Endpoints.Users, {params});
 
-  changeUserStatus = (params: IChangeStatus): Promise<null> =>
-    this.put(`${Endpoints.UserStatus}/${params?.id}`, {is_active: params?.is_active});
+  // changeUserStatus = (params: IChangeStatus): Promise<null> =>
+  //   this.put(`${Endpoints.UserStatus}/${params?.id}`, {is_active: params?.is_active});
 
-  getOrganisation = (params: IPagination): Promise<IGetOrganisation> =>
-    this.get(Endpoints.Organisation, {params});
+  changeUserStatus = (id: string, isActive: boolean): Promise<any> =>
+    this.patch(`${Endpoints.UserStatus}/${id}`, {
+      is_active: isActive,
+    });
+
+
+  getOrganisation = (): Promise<IGetOrganisation> =>
+    this.get(Endpoints.Organisation);
 
   getUserOrders = (params: IUserOrders): Promise<IOrdersUsers> =>
     this.get(`${Endpoints.UserOrders}/${params?.id}`, {params});
@@ -46,8 +52,13 @@ class UsersApi extends Instance {
       org: params?.org,
     });
 
-  changeVerifyUser = (id: string): Promise<any> =>
-    this.put(`${Endpoints.UserChangeVerify}/${id}`);
+  // changeVerifyUser = (id: string): Promise<any> =>
+  //   this.put(`${Endpoints.UserChangeVerify}/${id}`);
+
+  changeVerifyUser = (id: string, isVerified: boolean): Promise<any> =>
+    this.patch(`${Endpoints.UserChangeVerify}/${id}`, {
+      is_verified: isVerified,
+    });
 
   addBalance = (params: TransactionParams): Promise<any> =>
     this.patch(Endpoints.UserPayment, params);

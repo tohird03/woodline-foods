@@ -77,7 +77,7 @@ export const ProductModal = observer(() => {
       .then(res => {
         if (res) {
           successNotification('Успех обновленных продуктов');
-          lunchStore.getLunchBases(id!)
+          lunchStore.getLunchBases()
             .then(res => {
               if (res) {
                 handleClose();
