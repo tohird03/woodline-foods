@@ -53,7 +53,7 @@ class ProductsStore {
     productApi.getOrganisation()
       .then(res => {
         if (res) {
-          this.setOrganisation(res?.orgList);
+          this.setOrganisation(res?.data);
         }
 
         return res;
