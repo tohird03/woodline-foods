@@ -1,23 +1,23 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import Chart from 'react-apexcharts';
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { observer } from 'mobx-react';
-import { Box, Card, CardHeader, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { IOrganisation, IUserAnaliticType } from '../../../../api/users/types';
-import { usersStore } from '../../../../store/users';
-import { dashboardStyles } from '../../../Dashboard/styles';
-import { timeOptions } from '../../constants';
-import { DatePicker, DatePickerProps } from 'antd';
-import dayjs, { Dayjs } from 'dayjs';
-import { RangePickerProps } from 'antd/es/date-picker';
-import { UsersStyles } from '../../styles';
+import {useTranslation} from 'react-i18next';
+import {useParams} from 'react-router-dom';
+import {observer} from 'mobx-react';
+import {Box, Card, CardHeader, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
+import {DatePicker, DatePickerProps} from 'antd';
+import {RangePickerProps} from 'antd/es/date-picker';
+import dayjs, {Dayjs} from 'dayjs';
+import {IOrganisation, IUserAnaliticType} from '../../../../api/users/types';
+import {usersStore} from '../../../../store/users';
+import {dashboardStyles} from '../../../Dashboard/styles';
+import {timeOptions} from '../../constants';
+import {UsersStyles} from '../../styles';
 
 type RangeValue = [Dayjs, Dayjs] | null;
 
 export const Analitic = observer(() => {
-  const { id } = useParams();
-  const { t } = useTranslation();
+  const {id} = useParams();
+  const {t} = useTranslation();
 
   const handleTimeChange = (event: SelectChangeEvent<string>) => {
     usersStore.setTime(event.target.value as IUserAnaliticType);
@@ -84,10 +84,7 @@ export const Analitic = observer(() => {
   ), [usersStore.organisations]);
 
   useEffect(() => {
-    usersStore.getOrganisation({
-      page: 1,
-      size: 1000,
-    });
+    usersStore.getOrganisation();
 
     return () => {
       usersStore.setOrganisation([]);
@@ -114,7 +111,7 @@ export const Analitic = observer(() => {
           gap: '20px',
         }}
       >
-        <DatePicker.RangePicker style={{ marginLeft: '40px' }} onChange={handleDateChange} />
+        <DatePicker.RangePicker style={{marginLeft: '40px'}} onChange={handleDateChange} />
 
         <FormControl sx={UsersStyles.changeOrgFormControl}>
           <InputLabel>Organisation</InputLabel>
