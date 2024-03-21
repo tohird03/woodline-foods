@@ -10,6 +10,7 @@ export const ROUTES = {
   lunchAdd: '/lunch/add/:id',
   product: '/product',
   food: '/food',
+  foodProduct: '/food/product/:id',
   addFood: '/food/add',
   org: '/organisation',
   order: '/order',
@@ -26,4 +27,6 @@ export const ROUTES = {
   addRoleModule: '/role/module',
   updateRoleModule: '/role/module/:id',
   deleteRoleModule: '/role/module/:id',
+  mealPoll: '/meal-poll',
+  mealPollOne: '/meal-poll/:id',
 };

@@ -20,6 +20,7 @@ export const Endpoints = {
   FoodUpdate: '/food',
   Organisation: '/org',
   OrganisationGroup: '/org',
+  OrganizationDelete: '/org',
   Order: '/order',
   Lunch: '/lunch-base',
   Lunchs: '/lunch',
@@ -42,4 +43,5 @@ export const Endpoints = {
   RoleModuleToggle: '/role/module/toggle',
   ModuleAction: '/role/action',
   UpdateModuleAction: '/role/action/toggle',
+  MealPoll: '/meal-poll',
 };

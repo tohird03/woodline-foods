@@ -21,7 +21,7 @@ export interface IProducts {
 }
 
 export interface IGetOrganisation {
-  data: IOrganisation[];
+  orgList: IOrganisation[];
   totalOrgs: number;
 }
 

@@ -61,7 +61,9 @@ export const LunchBaseAddModal = observer(() => {
           lunchbase: id!,
         })
           .then(() => {
-            lunchStore.getLunchBases();
+            lunchStore.getLunchBases({
+              lunchbase: id!,
+            });
           })
           .finally(() => {
             handleClose();
@@ -220,13 +222,14 @@ export const LunchBaseAddModal = observer(() => {
     <Modal
       open={lunchStore.isOpenLunchModal}
       onButtonClose={handleClose}
-      width={1000}
+      width={600}
       title={lunchStore.singleLunch ? 'Save' : 'Add new Lunch'}
     >
       <form onSubmit={formik.handleSubmit}>
-        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
           <div>
             <TextField
+              style={{marginTop: '10px'}}
               sx={lunchStyles.addLunchTextFeild}
               label="Add lunch name"
               name="name"
@@ -260,13 +263,13 @@ export const LunchBaseAddModal = observer(() => {
             /> */}
 
             <div>
-              <h3>Общая стоимость обед: {totalProductPrice}</h3>
+              {/* <h3>Общая стоимость обед: {totalProductPrice}</h3> */}
               {/* <h3>Доля повара: {productPercentage}</h3> */}
-              <h3>Цена тела: {bodyProductPrice}</h3>
+              {/* <h3>Цена тела: {bodyProductPrice}</h3> */}
             </div>
           </div>
           <div>
-            <Container>
+            {/* <Container>
               <Box sx={foodStyles.addFoodsWRapper}>
                 <Box sx={foodStyles.addFoodsProducts}>
                   <Box sx={{display: 'flex', gap: '10px', flexDirection: {xs: 'column'}}}>
@@ -324,7 +327,7 @@ export const LunchBaseAddModal = observer(() => {
 
                 </Box>
               </Box>
-            </Container>
+            </Container> */}
           </div>
         </div>
         <Button sx={{width: '100%'}} type="submit" variant="contained">

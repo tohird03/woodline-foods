@@ -55,12 +55,13 @@ export const LunchBaseProductAddModal = observer(() => {
       if (lunchStore.singleLunch) {
         lunchStore.updateLunchProduct({
           ...values,
-          products,
           id: lunchStore.singleLunch?._id!,
           lunchbase: id!,
         })
           .then(() => {
-            lunchStore.getLunchBases();
+            lunchStore.getLunchBases({
+              lunchbase: id!,
+            });
           })
           .finally(() => {
             handleClose();

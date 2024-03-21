@@ -31,7 +31,7 @@ export const productColumns: TableColumn[] = [
   {
     key: 'org',
     label: 'tableProductOrganisation',
-    render: (value, record) => (record?.org|| '-'),
+    render: (value, record) => (record?.org?.name_org || '-'),
   },
   {
     key: 'createdAt',

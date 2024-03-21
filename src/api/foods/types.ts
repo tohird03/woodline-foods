@@ -57,7 +57,7 @@ export interface IAddFoodProduct {
 }
 
 export interface IGetProducts {
-  data: IProducts[];
+  productList: IProducts[];
   totalProducts: number;
 }
 
@@ -88,4 +88,35 @@ export interface IGetFoodsParams extends IPagination {
 export interface IChangeVerify {
   id: string;
   status: boolean;
+}
+
+export interface IGetOneFood {
+  _id: string;
+  name: string;
+  cost: number;
+  img: string;
+  products: IGetOneFoodProduct[];
+  org: {
+    _id: string;
+    name_org: string;
+  };
+}
+
+export interface IGetOneFoodProduct {
+  id?: string;
+  product: {
+    _id: string;
+    name: string;
+    cost: number;
+  };
+  amount: number;
+  _id: string;
+}
+
+
+export interface IAddOneFoodProduct {
+  id?: string;
+  _id?: string;
+  product: string;
+  amount: number;
 }

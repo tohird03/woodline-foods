@@ -36,7 +36,9 @@ export const LunchBase = observer(() => {
       return;
     }
 
-    lunchStore.getLunchBases();
+    lunchStore.getLunchBases({
+      lunchbase: id,
+    });
   }, [id]);
 
   return (

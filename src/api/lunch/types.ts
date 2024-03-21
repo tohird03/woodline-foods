@@ -8,6 +8,7 @@ export interface ILunchs {
   name: string;
   cost: number;
   org: ILunchOrg;
+  is_active: boolean;
   base: {
     _id: string;
     name: string;
@@ -19,6 +20,11 @@ export interface ILunchs {
     };
     amount: number;
   }[];
+}
+
+export interface ILunchEdit {
+  id?: string;
+  name: string;
 }
 
 export interface ILunchOrg {
@@ -45,13 +51,25 @@ export interface IGetLunchList {
   lunchList: IGetLunchBase[];
 }
 
+export interface IGetLunchBaseListParams {
+  id?: string | any;
+  lunchbase: string;
+}
+
 export interface IGetLunchBase {
   _id: string;
   name: string;
   cost: number;
   percent_cook: number;
+  is_active: boolean;
   products: IAddFoodProduct[];
   createdAt: string;
+}
+
+export interface IChangeVerify {
+  _id?: string;
+  id?: string;
+  is_active: boolean;
 }
 
 export interface IAddLunchBaseParams {
@@ -119,10 +137,24 @@ export interface ILunchsProduct {
 // "products": []
 
 export interface IGetOneLunch {
+  name: string;
   products: IGetOneLunchProducts[];
 }
 
 export interface IGetOneLunchProducts {
+  _id: string;
+  id?: string;
+  product: {
+    name: string;
+    _id: string;
+  };
+  amount: number;
+}
+
+
+export interface IAddOneLunchProduct {
+  id?: string;
+  _id?: string;
   product: string;
   amount: number;
 }
