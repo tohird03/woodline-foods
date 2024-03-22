@@ -9,6 +9,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import LunchDiningIcon from '@mui/icons-material/LunchDining';
+import PollIcon from '@mui/icons-material/Poll';
 import ReceiptLongSharpIcon from '@mui/icons-material/ReceiptLongSharp';
 import SvgColor from '../../../components/svg-color';
 import {ROUTES} from '../../../constants/router';
@@ -108,6 +109,16 @@ export const navConfig: INavbarLinks[] = [
       uz: 'Tashkilotlar',
       en: 'Organisations',
       ru: 'Организация',
+    },
+  },
+  {
+    title: 'Meal Poll',
+    path: ROUTES.mealPoll,
+    icon: <PollIcon />,
+    searchTitle: {
+      uz: 'Ovqatlanish so\'rovi',
+      en: 'Meal Poll',
+      ru: 'Опрос о питании',
     },
   },
   {

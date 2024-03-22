@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import {MenuItem} from '@mui/material';
 import {Image} from 'antd';
@@ -38,12 +39,23 @@ export const foodsColumns: TableColumn[] = [
   {
     key: 'name',
     label: 'tableFoodName',
+    render: (value, record) => (
+      <Link
+        style={{
+          textDecoration: 'none',
+          color: 'black',
+          fontWeight: 'bold',
+        }}
+        to={`/food/product/${record?._id}`}
+      >
+        {value}
+      </Link> || '-'),
   },
   {
     key: 'org',
     label: 'tableFoodOrg',
     render: (value, record) => (
-      record?.org?.name_org
+      record?.org
     ),
   },
   {

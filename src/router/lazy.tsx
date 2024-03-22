@@ -107,3 +107,13 @@ export const LunchBaseProduct = lazy(() =>
   import('../pages/Lunch/LunchBase/LunchaBaseOneLunch')
     .then(({LunchBaseProduct}) => ({default: LunchBaseProduct}))
     .catch(handleCatchChunkError));
+
+export const FoodsOneFood = lazy(() =>
+  import('../pages/Foods/FoodsOneFood')
+    .then(({FoodsOneFood}) => ({default: FoodsOneFood}))
+    .catch(handleCatchChunkError));
+
+export const MealPoll = lazy(() =>
+  import('../pages/MealPoll')
+    .then(({MealPoll}) => ({default: MealPoll}))
+    .catch(handleCatchChunkError));

@@ -2,7 +2,7 @@ import {IRole} from '../roles/types';
 import {IPagination} from '../types';
 
 export interface IGetProducts {
-  data: IProducts[];
+  productList: IProducts[];
   totalProducts: number;
 }
 
@@ -21,7 +21,7 @@ export interface IProducts {
 }
 
 export interface IGetOrganisation {
-  data: IOrganisation[];
+  orgList: IOrganisation[];
   totalOrgs: number;
 }
 

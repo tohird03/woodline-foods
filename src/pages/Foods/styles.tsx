@@ -7,6 +7,7 @@ export const foodStyles = {
     display: 'flex',
     flexDirection: {xs: 'column !important', md: 'row !important'},
     gap: '20px',
+    justifyContent: 'center',
     alignItems: 'flex-start',
     marginBottom: '30px',
     width: '100%',
