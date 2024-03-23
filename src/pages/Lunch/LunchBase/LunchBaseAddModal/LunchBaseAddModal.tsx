@@ -32,14 +32,14 @@ interface IFormValues {
 }
 
 export const LunchBaseAddModal = observer(() => {
-  const [products, setProducts] = useState<IAddFoodProduct[]>([{product: '', amount: 0}]);
+  const [products, setProducts] = useState<IAddFoodProduct[]>([]);
   const [bodyProductPrice, setBodyProductPrice] = useState(0);
   const [totalProductPrice, setTotalProductPrice] = useState(0);
   const [productPercentage, setProductPercentage] = useState(0);
   const {id} = useParams();
 
   useEffect(() => {
-    foodsStore.getProducts();
+    foodsStore.getProducts('');
 
     return () => {
       foodsStore.setProducts([]);
@@ -78,6 +78,9 @@ export const LunchBaseAddModal = observer(() => {
         lunchbase: id!,
         id: id!,
       }).finally(() => {
+        lunchStore.getLunchBases({
+          lunchbase: id!,
+        });
         handleClose();
       });
 
@@ -249,6 +252,19 @@ export const LunchBaseAddModal = observer(() => {
               name="cost"
               sx={lunchStyles.addLunchTextFeild}
             />
+
+            <FormControl sx={lunchStyles.addLunchOrgFormControl} fullWidth>
+              <InputLabel>Organisation</InputLabel>
+              <Select
+                name="org"
+                label="Organisation"
+                onChange={formik.handleChange}
+                value={formik.values.org}
+                required
+              >
+                {organisationOptions}
+              </Select>
+            </FormControl>
 
             {/* <TextField
               label="процент для повара"

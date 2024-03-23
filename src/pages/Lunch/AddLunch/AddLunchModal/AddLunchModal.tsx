@@ -83,7 +83,7 @@ export const AddLunchModal = observer(() => {
 
 
   useEffect(() => {
-    foodsStore.getProducts();
+    foodsStore.getProducts('');
 
     return () => {
       foodsStore.setProducts([]);

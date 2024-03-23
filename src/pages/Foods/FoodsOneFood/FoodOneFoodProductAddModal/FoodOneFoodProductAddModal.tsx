@@ -60,14 +60,21 @@ export const AddFoodProduct = observer(() => {
   };
 
   useEffect(() => {
-    productStore.getOrganisation();
-    foodsStore.getProducts();
+
+    foodsStore.getOneFood(id!)
+      .then((food) => {
+        if (food && food?.org?._id) {
+          foodsStore.getProducts(food?.org?._id);
+        }
+      });
+
 
     return () => {
       foodsStore.setProducts([]);
       foodsStore.setOrganisation([]);
     };
-  }, []);
+  }, [id]);
+
 
   return (
     <Modal

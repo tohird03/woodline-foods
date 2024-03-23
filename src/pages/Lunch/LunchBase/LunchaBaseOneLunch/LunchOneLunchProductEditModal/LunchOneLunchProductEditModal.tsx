@@ -64,7 +64,7 @@ export const EditLunchProduct = observer(() => {
 
   useEffect(() => {
     productStore.getProducts({});
-    foodsStore.getProducts();
+    foodsStore.getProducts('');
   }, []);
 
   return (

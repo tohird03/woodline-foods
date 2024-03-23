@@ -37,11 +37,12 @@ class FoodsApi extends Instance {
       },
     });
 
-  getProducts = (): Promise<IGetProducts> =>
+  getProducts = (orgId: string): Promise<IGetProducts> =>
     this.get(Endpoints.Products, {
       params: {
         page: 1,
         size: 1000,
+        org: orgId,
       },
     });
 

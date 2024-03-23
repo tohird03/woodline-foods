@@ -64,8 +64,6 @@ class LunchApi extends Instance {
       cost: params?.cost,
       lunchbase: params?.lunchbase,
       org: params?.org,
-      // id: params?.id,
-      // percent_cook: params?.percent_cook,
       products: params?.products,
     });
 

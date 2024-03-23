@@ -77,8 +77,6 @@ export interface IAddLunchBaseParams {
   lunchbase: string;
   name: string;
   cost: number;
-  // percent_cook: number;
-  // is_active?: boolean;
   org: string;
   products: IAddFoodProduct[];
 }
@@ -138,6 +136,10 @@ export interface ILunchsProduct {
 
 export interface IGetOneLunch {
   name: string;
+  org: {
+    _id: string;
+    name_org: string;
+  };
   products: IGetOneLunchProducts[];
 }
 

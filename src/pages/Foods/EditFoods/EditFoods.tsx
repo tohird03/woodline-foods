@@ -112,7 +112,7 @@ export const EditFoods = observer(() => {
     }
 
     foodsStore.getOrganisation();
-    foodsStore.getProducts();
+    foodsStore.getProducts('');
 
     const products = foodsStore.singleFood && Array.isArray(foodsStore.singleFood.products)
       ? foodsStore.singleFood.products.map(product => ({

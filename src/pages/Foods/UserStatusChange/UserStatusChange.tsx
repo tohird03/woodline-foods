@@ -19,7 +19,7 @@ export const UserStatusChange = observer(({food}: UserProps) => {
 
     foodsStore.changeVerify({
       id: food?._id,
-      status: !newValue,
+      is_private: newValue,
     })
       .finally(() => {
         setLoading(false);

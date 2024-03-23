@@ -14,6 +14,7 @@ export interface IProducts {
   img: string;
   unit: string;
   org: {
+    _id: string;
     name_org: string;
   };
   createdAt: string;
