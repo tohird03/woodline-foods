@@ -67,8 +67,8 @@ class FoodsStore {
       })
       .catch(addAxiosErrorNotification);
 
-  getProducts = () =>
-    foodsApi.getProducts()
+  getProducts = (orgId: string) =>
+    foodsApi.getProducts(orgId)
       .then(res => {
         if (res) {
           this.setProducts(res?.productList);
@@ -112,6 +112,8 @@ class FoodsStore {
     this.foods = foods;
   };
 
+  // getProductsByOrganisation = (organisationId: string) =>
+  //   this.products.filter(product => product?.org?._id === organisationId);
 
   setIsOneFoodProductEditModal = (isOpen: boolean) => {
     this.isOneFoodProductEditModal = isOpen;

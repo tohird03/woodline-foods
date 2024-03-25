@@ -17,6 +17,7 @@ import {lunchApi} from '../../../../../api/lunch';
 import {IAddOneLunchProduct} from '../../../../../api/lunch/types';
 import {IProducts} from '../../../../../api/products/types';
 import {Modal} from '../../../../../components/Modal';
+import {foodsStore} from '../../../../../store/foods';
 import {lunchStore} from '../../../../../store/lunch';
 import {productStore} from '../../../../../store/products';
 import {addAxiosErrorNotification, successNotification} from '../../../../../utils/notification';
@@ -54,7 +55,7 @@ export const AddLunchProduct = observer(() => {
     },
   });
 
-  const productOptions = productStore.products.map((product: IProducts) => (
+  const productOptions = foodsStore.products.map((product: IProducts) => (
     <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
   ));
 
@@ -63,7 +64,12 @@ export const AddLunchProduct = observer(() => {
   };
 
   useEffect(() => {
-    productStore.getProducts({});
+    lunchStore.getOneLunchProduct(id!)
+      .then((lunchOrgId) => {
+        if (lunchOrgId && lunchOrgId?.org?._id) {
+          foodsStore.getProducts(lunchOrgId?.org?._id);
+        }
+      });
   }, []);
 
   return (

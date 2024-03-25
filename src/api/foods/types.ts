@@ -69,6 +69,7 @@ export interface IProducts {
   img: string;
   unit: string;
   org: {
+    _id: string;
     name_org: string;
   };
   createdAt: string;
@@ -87,7 +88,7 @@ export interface IGetFoodsParams extends IPagination {
 
 export interface IChangeVerify {
   id: string;
-  status: boolean;
+  is_private: boolean;
 }
 
 export interface IGetOneFood {

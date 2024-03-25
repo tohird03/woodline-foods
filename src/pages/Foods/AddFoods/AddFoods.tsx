@@ -102,7 +102,7 @@ export const AddFoods = observer(() => {
 
   useEffect(() => {
     productStore.getOrganisation();
-    foodsStore.getProducts();
+    foodsStore.getProducts('');
 
     return () => {
       foodsStore.setProducts([]);

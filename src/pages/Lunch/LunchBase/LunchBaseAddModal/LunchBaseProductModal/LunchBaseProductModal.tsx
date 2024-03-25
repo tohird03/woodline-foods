@@ -38,7 +38,7 @@ export const LunchBaseProductAddModal = observer(() => {
   const {id} = useParams();
 
   useEffect(() => {
-    foodsStore.getProducts();
+    foodsStore.getProducts('');
 
     return () => {
       foodsStore.setProducts([]);
