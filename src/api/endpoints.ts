@@ -28,7 +28,7 @@ export const Endpoints = {
   LunchUpdate: '/lunch/update',
   AddLunchProduct: '/lunch/product',
   GetLunchProducts: '/lunch/products',
-  Login: '/admin/login',
+  Login: '/auth/login',
   Admins: '/admin',
   AdminDelete: '/admin',
   History: '/trip',
