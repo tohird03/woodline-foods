@@ -11,11 +11,13 @@ import {
   Dashboard,
   EditFoods,
   Foods,
+  FoodsOneFood,
   GetRoles,
   History,
   Lunch,
   LunchBase,
   LunchBaseProduct,
+  MealPoll,
   NotFound,
   Order,
   Organisation,
@@ -158,6 +160,30 @@ export const Router = observer(({isAuth}: AuthProps) => {
                   page={
                     <Suspense fallback={<Loading />}>
                       <LunchBaseProduct />
+                    </Suspense>
+                  } path={ROUTES.admins}
+                />
+              ),
+            },
+            {
+              path: ROUTES.foodProduct,
+              element: (
+                <RoleChecker
+                  page={
+                    <Suspense fallback={<Loading />}>
+                      <FoodsOneFood />
+                    </Suspense>
+                  } path={ROUTES.admins}
+                />
+              ),
+            },
+            {
+              path: ROUTES.mealPoll,
+              element: (
+                <RoleChecker
+                  page={
+                    <Suspense fallback={<Loading />}>
+                      <MealPoll />
                     </Suspense>
                   } path={ROUTES.admins}
                 />

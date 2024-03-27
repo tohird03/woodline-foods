@@ -5,9 +5,12 @@ import {
   IAddLunch,
   IAddLunchBaseParams,
   IAddLunchProducts,
+  IChangeVerify,
   IGetLunchBase,
+  IGetLunchBaseListParams,
   IGetOneLunch,
   IGetOneLunchProducts,
+  ILunchEdit,
   ILunchs,
   ILunchsProduct,
   ILunchUpdate,
@@ -31,6 +34,11 @@ class LunchStore {
   singleLunch: ILunchsProduct | null = null;
   lunchBaseProductAddEditModal = false;
   lunchOneProduct: IGetOneLunchProducts[] = [];
+  isOneLunchProductAddModal= false;
+  isSingleLunchProduct: IGetOneLunchProducts | null = null;
+  isOneLunchProductEditModal = false;
+  isOpenEditLunchModal = false;
+  isSingleEditLunch: ILunchs | null = null;
 
   constructor(){
     makeAutoObservable(this);
@@ -53,6 +61,21 @@ class LunchStore {
       .then(res => {
         if (res) {
           successNotification('Success add new lunch');
+          this.getLunchs({
+            page: this.page,
+            size: this.size,
+          });
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+  editLunchs = (params: ILunchEdit) =>
+    lunchApi.editLunch(params)
+      .then(res => {
+        if (res) {
+          successNotification('Success update');
           this.getLunchs({
             page: this.page,
             size: this.size,
@@ -86,8 +109,8 @@ class LunchStore {
       })
       .catch(addAxiosErrorNotification);
 
-  getLunchBases = () =>
-    lunchApi.getLunchBase()
+  getLunchBases = (params: IGetLunchBaseListParams) =>
+    lunchApi.getLunchBase(params)
       .then(res => {
         if (res) {
           this.setLunchBases(res.lunchList);
@@ -124,6 +147,66 @@ class LunchStore {
         return res;
       })
       .catch(addAxiosErrorNotification);
+
+  changeVerify = (params: IChangeVerify) =>
+    lunchApi.changeVerify(params)
+      .then(res => {
+        if (res) {
+          successNotification('Success change is active');
+          // this.getLunchBases({
+          //   lunchbase:
+          // });
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+  changeVerifyBase = (params: IChangeVerify) =>
+    lunchApi.changeVerifyBase(params)
+      .then(res => {
+        if (res) {
+          successNotification('Success change is active');
+          // this.getLunchBases({
+          //   lunchbase:
+          // });
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+
+  getOneLunch = (id: string) =>
+    lunchApi.getOneLunch(id)
+      .then((res) => {
+        if (res) {
+          this.setLunchOneProduct(res.products);
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+  setIsOpenEditLunchModal = (isOpen: boolean) => {
+    this.isOpenEditLunchModal = isOpen;
+  };
+
+  setIsSingleEditLunch = (isSingle: ILunchs | null) => {
+    this.isSingleEditLunch = isSingle;
+  };
+
+  setIsOneLunchProductAddModal = (isOpen: boolean) => {
+    this.isOneLunchProductAddModal = isOpen;
+  };
+
+  setIsSingleLunchProduct = (singleProduct: IGetOneLunchProducts | null) => {
+    this.isSingleLunchProduct = singleProduct;
+  };
+
+  setIsOneLunchProductEditModal = (isOpen: boolean) => {
+    this.isOneLunchProductEditModal = isOpen;
+  };
 
   setLunchOneProduct = (lunchOneProduct: IGetOneLunchProducts[]) => {
     this.lunchOneProduct = lunchOneProduct;

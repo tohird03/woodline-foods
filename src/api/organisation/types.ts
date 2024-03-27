@@ -1,5 +1,5 @@
 export interface IGetOrganisation {
-  data: IOrganisation[];
+  orgList: IOrganisation[];
   totalOrgs: number;
 }
 
@@ -9,6 +9,13 @@ export interface IOrganisation {
   is_active: boolean;
   is_deleted: boolean;
   createdAt: string;
+  group_a_id: number;
+  group_b_id: number;
+  trip_timeout: number;
+}
+
+export interface IAddOrganization {
+  name_org: string;
   group_a_id: number;
   group_b_id: number;
   trip_timeout: number;

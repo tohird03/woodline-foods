@@ -22,8 +22,10 @@ import {ROUTES} from '../../../constants/router';
 import {foodsStore} from '../../../store/foods';
 import {useMediaQuery} from '../../../utils/hooks/useMediaQuery';
 import {addAxiosErrorNotification, successNotification} from '../../../utils/notification';
+import {ImgUploadModal} from '../../ImgUploadModal';
 import {CategoryOption} from '../constants';
 import {foodStyles} from '../styles';
+import {UserStatusChange} from '../UserStatusChange';
 
 export const EditFoods = observer(() => {
   const [products, setProducts] = useState<IAddFoodProduct[]>([
@@ -42,7 +44,6 @@ export const EditFoods = observer(() => {
     onSubmit: values => {
       foodsApi.changeFoods({
         ...values,
-        products,
         id: foodsStore?.singleFood?._id,
       })
         .then(() => {
@@ -53,45 +54,57 @@ export const EditFoods = observer(() => {
     },
   });
 
-  const addProduct = () => {
-    setProducts([...products, {product: '', amount: 0}]);
-  };
+  // const addProduct = () => {
+  //   setProducts([...products, {product: '', amount: 0}]);
+  // };
 
-  const removeProduct = (index: number) => {
-    const newProducts = [...products];
+  // const removeProduct = (index: number) => {
+  //   const newProducts = [...products];
 
-    newProducts.splice(index, 1);
-    setProducts(newProducts);
-  };
+  //   newProducts.splice(index, 1);
+  //   setProducts(newProducts);
+  // };
 
-  const handleProductSelectChange = (event: SelectChangeEvent<string>, index: number) => {
-    const newProducts = [...products];
+  // const handleProductSelectChange = (event: SelectChangeEvent<string>, index: number) => {
+  //   const newProducts = [...products];
 
-    newProducts[index].product = event.target.value;
-    setProducts(newProducts);
-  };
+  //   newProducts[index].product = event.target.value;
+  //   setProducts(newProducts);
+  // };
 
-  const handleAmountChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    index: number
-  ) => {
-    const newProducts = [...products];
+  // const handleAmountChange = (
+  //   event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  //   index: number
+  // ) => {
+  //   const newProducts = [...products];
 
-    newProducts[index].amount = Number(event.target.value);
-    setProducts(newProducts);
-  };
+  //   newProducts[index].amount = Number(event.target.value);
+  //   setProducts(newProducts);
+  // };
 
   const organisationOptions = useMemo(() => (
-    foodsStore.organisations.map((org: IOrganisation) => (
-      <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
-    ))
+    (foodsStore.organisations?.length > 0
+      ? (
+        foodsStore.organisations.map((org: IOrganisation) => (
+          <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
+        ))
+      )
+      : (
+        <MenuItem value="" disabled>No Organization</MenuItem>
+      )
+    )
   ), [foodsStore.organisations]);
 
-  const productOptions = useMemo(() => (
-    foodsStore.products.map((product: IProducts) => (
-      <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
-    ))
-  ), [foodsStore.products]);
+  // const productOptions = useMemo(() => (
+  //   (foodsStore.products?.length > 0 ? (
+  //     foodsStore.products.map((product: IProducts) => (
+  //       <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
+  //     ))
+  //   )
+  //     : (<MenuItem value="" disabled>No Product</MenuItem>
+  //     )
+  //   )
+  // ), [foodsStore.products]);
 
   useEffect(() => {
     if (!foodsStore?.singleFood) {
@@ -99,12 +112,14 @@ export const EditFoods = observer(() => {
     }
 
     foodsStore.getOrganisation();
-    foodsStore.getProducts();
+    foodsStore.getProducts('');
 
-    const products = foodsStore?.singleFood?.products?.map(product => ({
-      product: product?._id,
-      amount: product?.amount,
-    }));
+    const products = foodsStore.singleFood && Array.isArray(foodsStore.singleFood.products)
+      ? foodsStore.singleFood.products.map(product => ({
+        product: product._id,
+        amount: product.amount,
+      }))
+      : [];
 
     formik.setFieldValue('name', foodsStore?.singleFood?.name);
     formik.setFieldValue('cost', foodsStore?.singleFood?.cost);
@@ -118,6 +133,11 @@ export const EditFoods = observer(() => {
       foodsStore.setOrganisation([]);
     };
   }, []);
+
+  const handleImgUpload = () => {
+    // foodsStore.setFoodId(food?._id);
+    foodsStore.setIsOpenImgUpload(true);
+  };
 
   return (
     <Container>
@@ -135,7 +155,7 @@ export const EditFoods = observer(() => {
         <Box
           sx={foodStyles.addFoodsWRapper}
         >
-          <Box sx={foodStyles.addFoodsProducts}>
+          {/* <Box sx={foodStyles.addFoodsProducts}>
             {products?.map((product, index) => (
               <Box sx={foodStyles.addFoodsProductBox} key={index}>
                 <FormControl sx={foodStyles.addFoodFormControl} fullWidth>
@@ -169,7 +189,7 @@ export const EditFoods = observer(() => {
             >
               добавить больше продуктов +
             </Button>
-          </Box>
+          </Box> */}
           <Box sx={foodStyles.addFoodsLeftWrapper}>
             <TextField
               onChange={formik.handleChange}
@@ -186,7 +206,7 @@ export const EditFoods = observer(() => {
               name="cost"
               required
             />
-            <FormControl fullWidth>
+            {/* <FormControl fullWidth>
               <InputLabel>Organisation</InputLabel>
               <Select
                 name="org"
@@ -197,7 +217,7 @@ export const EditFoods = observer(() => {
               >
                 {organisationOptions}
               </Select>
-            </FormControl>
+            </FormControl> */}
             <FormControl fullWidth>
               <InputLabel>Category</InputLabel>
               <Select
@@ -210,6 +230,16 @@ export const EditFoods = observer(() => {
                 {CategoryOption}
               </Select>
             </FormControl>
+            {/* <FormControl fullWidth>
+              <InputLabel>Category</InputLabel>
+              <UserStatusChange food={} />
+            </FormControl> */}
+            {/* <FormControl fullWidth>
+              <InputLabel>Category</InputLabel>
+              <div>
+                <Button onClick={handleImgUpload}>Img Change</Button>
+              </div>
+            </FormControl> */}
             {!isMobile && (
               <Button type="submit" variant="contained">
                 Update Food
@@ -223,6 +253,7 @@ export const EditFoods = observer(() => {
           </Button>
         )}
       </form>
+      {foodsStore.isOpenImgUpload && <ImgUploadModal />}
     </Container>
   );
 });

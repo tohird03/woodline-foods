@@ -8,6 +8,7 @@ import {lunchStore} from '../../store/lunch';
 import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {AddLunchBaseModal} from './AddLunchBaseModal';
 import {lunchColumns} from './constants';
+import {EditLunchBaseModal} from './EditLunchBaseModal';
 
 export const Lunch = observer(() => {
   const {t} = useTranslation();
@@ -62,6 +63,7 @@ export const Lunch = observer(() => {
       />
 
       {lunchStore.isOpenAddLunchModal && <AddLunchBaseModal />}
+      {lunchStore.isOpenEditLunchModal && <EditLunchBaseModal />}
     </>
   );
 });

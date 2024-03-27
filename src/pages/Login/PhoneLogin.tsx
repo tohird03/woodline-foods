@@ -27,13 +27,13 @@ export const PhoneLogin = observer(() => {
 
   const formik = useFormik({
     initialValues: {
-      phone_number: '',
+      phoneNumber: '',
       password: '',
     },
     onSubmit: values => {
       authStore.login({
         ...values,
-        phone_number: values.phone_number?.slice(4)?.split(' ').join(''),
+        phoneNumber: values.phoneNumber?.slice(4)?.split(' ').join(''),
       })
         .then(res => {
           if (res?.token && res?.admin) {
@@ -78,9 +78,9 @@ export const PhoneLogin = observer(() => {
               <PhoneInput
                 country={'uz'}
                 onChange={formik.handleChange}
-                value={formik.values.phone_number}
+                value={formik.values.phoneNumber}
                 inputProps={{
-                  name: 'phone_number',
+                  name: 'phoneNumber',
                   required: true,
                   autoFocus: true,
                   onChange: formik.handleChange,

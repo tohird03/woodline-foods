@@ -1,10 +1,12 @@
 import {makeAutoObservable} from 'mobx';
 import {foodsApi} from '../../api/foods';
 import {
+  IAddOneFoodProduct,
   IChangeVerify,
   IFoods,
   IFoodsProducts,
   IGetFoodsParams,
+  IGetOneFoodProduct,
   IImgChange,
   IOrganisation,
   IProducts,
@@ -24,6 +26,10 @@ class FoodsStore {
   foodId: string | null = null;
   search: string | null = null;
   singleFood: IFoods | null = null;
+  getOneFoodProduct: IGetOneFoodProduct[] = [];
+  isOneFoodProductAddModal= false;
+  isOneFoodProductEditModal = false;
+  isSingleFoodProduct: IGetOneFoodProduct | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -39,22 +45,33 @@ class FoodsStore {
       })
       .catch(addAxiosErrorNotification);
 
-  getOrganisation = () =>
-    foodsApi.getOrganisation()
-      .then(res => {
+  getOneFood = (id: string) =>
+    foodsApi.getFoodOne(id)
+      .then((res) => {
         if (res) {
-          this.setOrganisation(res?.data);
+          this.setOneFoodProduct(res.products);
         }
 
         return res;
       })
       .catch(addAxiosErrorNotification);
 
-  getProducts = () =>
-    foodsApi.getProducts()
+  getOrganisation = () =>
+    foodsApi.getOrganisation()
       .then(res => {
         if (res) {
-          this.setProducts(res?.data);
+          this.setOrganisation(res?.orgList);
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+  getProducts = (orgId: string) =>
+    foodsApi.getProducts(orgId)
+      .then(res => {
+        if (res) {
+          this.setProducts(res?.productList);
         }
 
         return res;
@@ -93,6 +110,25 @@ class FoodsStore {
 
   setFoods = (foods: IFoods[]) => {
     this.foods = foods;
+  };
+
+  // getProductsByOrganisation = (organisationId: string) =>
+  //   this.products.filter(product => product?.org?._id === organisationId);
+
+  setIsOneFoodProductEditModal = (isOpen: boolean) => {
+    this.isOneFoodProductEditModal = isOpen;
+  };
+
+  setIsSingleFoodProduct = (singleProduct: IGetOneFoodProduct | null) => {
+    this.isSingleFoodProduct = singleProduct;
+  };
+
+  setIsOneFoodProductAddModal = (isOpen: boolean) => {
+    this.isOneFoodProductAddModal = isOpen;
+  };
+
+  setOneFoodProduct = (oneFoodProduct: IGetOneFoodProduct[]) => {
+    this.getOneFoodProduct = oneFoodProduct;
   };
 
   setTotalFoods = (total: number) => {

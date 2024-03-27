@@ -30,7 +30,7 @@ export interface IFoodsProducts {
 }
 
 export interface IGetOrganisation {
-  data: IOrganisation[];
+  orgList: IOrganisation[];
   totalOrgs: number;
 }
 
@@ -57,7 +57,7 @@ export interface IAddFoodProduct {
 }
 
 export interface IGetProducts {
-  data: IProducts[];
+  productList: IProducts[];
   totalProducts: number;
 }
 
@@ -69,6 +69,7 @@ export interface IProducts {
   img: string;
   unit: string;
   org: {
+    _id: string;
     name_org: string;
   };
   createdAt: string;
@@ -87,5 +88,36 @@ export interface IGetFoodsParams extends IPagination {
 
 export interface IChangeVerify {
   id: string;
-  status: boolean;
+  is_private: boolean;
+}
+
+export interface IGetOneFood {
+  _id: string;
+  name: string;
+  cost: number;
+  img: string;
+  products: IGetOneFoodProduct[];
+  org: {
+    _id: string;
+    name_org: string;
+  };
+}
+
+export interface IGetOneFoodProduct {
+  id?: string;
+  product: {
+    _id: string;
+    name: string;
+    cost: number;
+  };
+  amount: number;
+  _id: string;
+}
+
+
+export interface IAddOneFoodProduct {
+  id?: string;
+  _id?: string;
+  product: string;
+  amount: number;
 }
