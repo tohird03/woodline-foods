@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import {MenuItem} from '@mui/material';
 import {Image} from 'antd';
@@ -22,12 +23,12 @@ export const foodsColumns: TableColumn[] = [
     key: 'img',
     label: 'tableFoodPhoto',
     align: 'center',
-    render: (value) => (
+    render: (value, record) => (
       <Image
         style={{borderRadius: '50%'}}
         width={50} height={50}
-        alt={value}
-        src={value}
+        alt={record?.img}
+        src={record?.img}
         preview={{
           forceRender: false,
           mask: <RemoveRedEyeOutlinedIcon fontSize="small" />,
@@ -38,6 +39,17 @@ export const foodsColumns: TableColumn[] = [
   {
     key: 'name',
     label: 'tableFoodName',
+    render: (value, record) => (
+      <Link
+        style={{
+          textDecoration: 'none',
+          color: 'black',
+          fontWeight: 'bold',
+        }}
+        to={`/food/product/${record?._id}`}
+      >
+        {value}
+      </Link> || '-'),
   },
   {
     key: 'org',

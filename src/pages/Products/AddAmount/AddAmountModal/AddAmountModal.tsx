@@ -10,17 +10,16 @@ import {productStore} from '../../../../store/products';
 import {productStyles} from '../../styles';
 
 export const AddAmountModal = observer(() => {
-  const isAdminStorekeeper = authStore.staffInfo?.admin?.role?.includes(AdminRole.STOREKEEPER);
   const formik = useFormik({
     initialValues: {
       amount: 0,
-      type: null,
+      type: TransactionType.ADD,
       cost: 0,
     },
     onSubmit: (values) => {
       productStore.productAmountChange({
         ...values,
-        type: isAdminStorekeeper ? true : values.type === TransactionType.ADD,
+        type: values?.type === TransactionType.ADD ? true : false,
         product: productStore.singleProduct?._id!,
       })
         .finally(() => {
@@ -62,21 +61,19 @@ export const AddAmountModal = observer(() => {
           type="number"
           required
         />
-        {!isAdminStorekeeper && (
-          <FormControl sx={productStyles.addBalanceFormControl} fullWidth>
-            <InputLabel>Type</InputLabel>
-            <Select
-              onChange={formik.handleChange}
-              label="Type"
-              name="type"
-              value={formik.values.type}
-              required
-            >
-              <MenuItem value={TransactionType.ADD}>Plus</MenuItem>
-              <MenuItem value={TransactionType.SUBTRACT}>Minus</MenuItem>
-            </Select>
-          </FormControl>
-        )}
+        <FormControl sx={productStyles.addBalanceFormControl} fullWidth>
+          <InputLabel>Type</InputLabel>
+          <Select
+            onChange={formik.handleChange}
+            label="Type"
+            name="type"
+            value={formik.values.type}
+            required
+          >
+            <MenuItem value={TransactionType.ADD}>Plus</MenuItem>
+            <MenuItem value={TransactionType.SUBTRACT}>Minus</MenuItem>
+          </Select>
+        </FormControl>
 
         <Button
           sx={productStyles.addBalanceSubmitBtn}

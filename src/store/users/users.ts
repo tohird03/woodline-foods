@@ -55,8 +55,8 @@ class UsersStore {
     usersApi.getUsers(params)
       .then(res => {
         if (res) {
-          this.setUsers(res?.data);
-          this.setTotalUsers(res?.totalUsers);
+          this.setUsers(res?.userList);
+          this.setTotalUsers(res?.count);
         }
       })
       .catch(addAxiosErrorNotification);

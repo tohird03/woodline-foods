@@ -32,14 +32,14 @@ interface IFormValues {
 }
 
 export const LunchBaseAddModal = observer(() => {
-  const [products, setProducts] = useState<IAddFoodProduct[]>([{product: '', amount: 0}]);
+  const [products, setProducts] = useState<IAddFoodProduct[]>([]);
   const [bodyProductPrice, setBodyProductPrice] = useState(0);
   const [totalProductPrice, setTotalProductPrice] = useState(0);
   const [productPercentage, setProductPercentage] = useState(0);
   const {id} = useParams();
 
   useEffect(() => {
-    foodsStore.getProducts();
+    foodsStore.getProducts('');
 
     return () => {
       foodsStore.setProducts([]);
@@ -61,7 +61,9 @@ export const LunchBaseAddModal = observer(() => {
           lunchbase: id!,
         })
           .then(() => {
-            lunchStore.getLunchBases();
+            lunchStore.getLunchBases({
+              lunchbase: id!,
+            });
           })
           .finally(() => {
             handleClose();
@@ -76,6 +78,9 @@ export const LunchBaseAddModal = observer(() => {
         lunchbase: id!,
         id: id!,
       }).finally(() => {
+        lunchStore.getLunchBases({
+          lunchbase: id!,
+        });
         handleClose();
       });
 
@@ -220,13 +225,14 @@ export const LunchBaseAddModal = observer(() => {
     <Modal
       open={lunchStore.isOpenLunchModal}
       onButtonClose={handleClose}
-      width={1000}
+      width={600}
       title={lunchStore.singleLunch ? 'Save' : 'Add new Lunch'}
     >
       <form onSubmit={formik.handleSubmit}>
-        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
           <div>
             <TextField
+              style={{marginTop: '10px'}}
               sx={lunchStyles.addLunchTextFeild}
               label="Add lunch name"
               name="name"
@@ -247,6 +253,19 @@ export const LunchBaseAddModal = observer(() => {
               sx={lunchStyles.addLunchTextFeild}
             />
 
+            <FormControl sx={lunchStyles.addLunchOrgFormControl} fullWidth>
+              <InputLabel>Organisation</InputLabel>
+              <Select
+                name="org"
+                label="Organisation"
+                onChange={formik.handleChange}
+                value={formik.values.org}
+                required
+              >
+                {organisationOptions}
+              </Select>
+            </FormControl>
+
             {/* <TextField
               label="процент для повара"
               // value={formik.values.percent_cook}
@@ -260,13 +279,13 @@ export const LunchBaseAddModal = observer(() => {
             /> */}
 
             <div>
-              <h3>Общая стоимость обед: {totalProductPrice}</h3>
+              {/* <h3>Общая стоимость обед: {totalProductPrice}</h3> */}
               {/* <h3>Доля повара: {productPercentage}</h3> */}
-              <h3>Цена тела: {bodyProductPrice}</h3>
+              {/* <h3>Цена тела: {bodyProductPrice}</h3> */}
             </div>
           </div>
           <div>
-            <Container>
+            {/* <Container>
               <Box sx={foodStyles.addFoodsWRapper}>
                 <Box sx={foodStyles.addFoodsProducts}>
                   <Box sx={{display: 'flex', gap: '10px', flexDirection: {xs: 'column'}}}>
@@ -324,7 +343,7 @@ export const LunchBaseAddModal = observer(() => {
 
                 </Box>
               </Box>
-            </Container>
+            </Container> */}
           </div>
         </div>
         <Button sx={{width: '100%'}} type="submit" variant="contained">

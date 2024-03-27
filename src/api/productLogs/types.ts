@@ -13,5 +13,5 @@ export interface IGetProductLogs {
 
 export interface IProductLogs {
   data: IGetProductLogs[];
-  totalProductLog: number;
+  count: number;
 }

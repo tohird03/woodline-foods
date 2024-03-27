@@ -4,6 +4,7 @@ import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
 import {getFullDateFormat} from '../../utils/formatTime';
 import {ChangeGroup} from './ChangeGroup';
+import {OrganizationAction} from './OrganizationAction/OrganizationAction';
 
 export const organisationColumns: TableColumn[] = [
   {
@@ -44,6 +45,11 @@ export const organisationColumns: TableColumn[] = [
     key: 'createdAt',
     label: 'tableOrdChangeGroup',
     render: (value, record) => <ChangeGroup organisation={record as IOrganisation} />,
+  },
+  {
+    key: 'Action',
+    label: 'Action',
+    render: (value, record) => <OrganizationAction org={record as IOrganisation} />,
   },
 ];
 

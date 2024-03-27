@@ -29,9 +29,17 @@ export const AddProduct = observer(() => {
   };
 
   const organisationOptions = useMemo(() => (
-    productStore?.organisations?.map((org: IOrganisation) => (
-      <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
-    ))
+    (
+      productStore.organisations?.length > 0
+        ? (
+          productStore.organisations.map((org: IOrganisation) => (
+            <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
+          ))
+        )
+        : (
+          <MenuItem value="" disabled>No Organization</MenuItem>
+        )
+    )
   ), [productStore.organisations]);
 
   useEffect(() => {

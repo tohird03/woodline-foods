@@ -39,6 +39,10 @@ class ProductApi extends Instance {
 
   productAmountChange = (params: IAddAmountProduct): Promise<IProducts> =>
     this.patch(Endpoints.ProductAmount, params);
+
+  deleteProduct = (id: string): Promise<IProducts> =>
+    this.delete(`/product/${id}`);
+
 }
 
 export const productApi = new ProductApi(config);

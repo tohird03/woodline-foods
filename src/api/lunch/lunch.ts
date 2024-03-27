@@ -5,13 +5,18 @@ import {
   IAddLunch,
   IAddLunchBaseParams,
   IAddLunchProducts,
+  IAddOneLunchProduct,
+  IChangeVerify,
   IDeletLunchProducts,
   IEditedLunchProducts,
   IGetLunchBase,
+  IGetLunchBaseListParams,
   IGetLunchList,
   IGetLunchs,
   IGetOneLunch,
+  ILunchEdit,
   ILunchs,
+  ILunchsProduct,
   ILunchUpdate,
 } from './types';
 
@@ -33,17 +38,32 @@ class LunchApi extends Instance {
   addLunch = (params: IAddLunch): Promise<ILunchs> =>
     this.post(Endpoints.Lunch, params);
 
-  getLunchBase = (): Promise<IGetLunchList> =>
-    this.get(`${Endpoints.Lunchs}`);
+  editLunch = (params: ILunchEdit): Promise<ILunchs> =>
+    this.patch(`${Endpoints.Lunch}/${params.id}`, params);
+
+  getLunchBase = (params: IGetLunchBaseListParams): Promise<IGetLunchList> =>
+    this.get(`${Endpoints.Lunchs}`, {params});
+
+
+  changeVerify = (params: IChangeVerify): Promise<IGetLunchBase> =>
+    this.patch(`${Endpoints.Lunchs}/${params?._id}`, params);
+
+  changeVerifyBase = (params: IChangeVerify): Promise<ILunchs> =>
+    this.patch(`lunch-base/${params?.id}`, params);
+
+
+  deleteLunchBase = (id: string): Promise<ILunchsProduct> =>
+    this.delete(`${Endpoints.Lunchs}/${id}`);
+
+  deleteLunch = (id: string): Promise<ILunchs> =>
+    this.delete(`lunch-base/${id}`);
 
   addLunchBase = (params: IAddLunchBaseParams) =>
     this.post(`${Endpoints.Lunchs}`, {
       name: params?.name,
       cost: params?.cost,
       lunchbase: params?.lunchbase,
-      org: '65f18126ee40d8f2e55dea59',
-      // id: params?.id,
-      // percent_cook: params?.percent_cook,
+      org: params?.org,
       products: params?.products,
     });
 
@@ -68,6 +88,23 @@ class LunchApi extends Instance {
 
   deleteProduct = (params: IDeletLunchProducts): Promise<ILunchs> =>
     this.delete(`/lunch/${params?.lunchId}/products/${params?.productId}`);
+
+  addOneLunchProduct = (params: IAddOneLunchProduct): Promise<IAddOneLunchProduct> =>
+    this.post(`/lunch/products/${params.id}`, {
+      id: params.id,
+      product: params.product,
+      amount: params.amount,
+    });
+
+  updateLunchProduct = (params: IAddOneLunchProduct): Promise<IAddOneLunchProduct> =>
+    this.patch(`lunch/products/${params.id}`, {
+      product: params.product,
+      amount: params.amount,
+    });
+
+  deleteLunchProduct = (id: string, product: string): Promise<IAddOneLunchProduct> =>
+    this.delete(`lunch/products/${id}/${product}`);
+
 }
 
 export const lunchApi = new LunchApi(config);

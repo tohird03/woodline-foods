@@ -2,7 +2,7 @@ import {IPagination} from '../types';
 
 export interface IGetProducts {
   productList: IProducts[];
-  totalProducts: number;
+  count: number;
 }
 
 export interface IProducts {
@@ -13,6 +13,7 @@ export interface IProducts {
   img: string;
   unit: string;
   org: {
+    _id: string;
     name_org: string;
   };
   createdAt: string;

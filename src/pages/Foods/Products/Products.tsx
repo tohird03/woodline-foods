@@ -20,7 +20,7 @@ export const Products = observer(({product}: Props) => {
     <Chip
       color="primary"
       sx={foodStyles.orderProductChip}
-      onClick={handleOpenProductModal}
+      // onClick={handleOpenProductModal}
       label={product?.length || 0}
     />
   );

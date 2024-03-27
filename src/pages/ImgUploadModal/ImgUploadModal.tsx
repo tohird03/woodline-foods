@@ -70,7 +70,7 @@ export const ImgUploadModal = observer(() => {
       await getDownloadURL(imageRef).then(async (url) => {
         foodsStore.imgChangeFood({
           food: foodsStore.foodId!,
-          image: url,
+          img: url,
         })
           .finally(() => {
             setFileUploadLoading(false);

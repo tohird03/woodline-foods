@@ -1,14 +1,11 @@
 export interface ILogin {
-  phone_number: string;
+  phoneNumber: string;
   password: string;
 }
 
 export interface ILoginResponse {
-  token: string;
-  admin: {
-    fullname: string;
-    role: AdminRole[];
-  };
+  accessToken: string;
+  refreshToken: string;
 }
 
 export enum AdminRole {

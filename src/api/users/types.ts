@@ -1,8 +1,8 @@
 import {IPagination} from '../types';
 
 export interface IGetUser {
-  data: IUsers[];
-  totalUsers: number;
+  userList: IUsers[];
+  count: number;
 }
 
 export interface IDeleteUser {

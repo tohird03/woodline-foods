@@ -1,6 +1,6 @@
 import {makeAutoObservable} from 'mobx';
 import {organisationApi} from '../../api/organisation';
-import {IChangeGroup, IOrganisation} from '../../api/organisation/types';
+import {IAddOrganization, IChangeGroup, IOrganisation} from '../../api/organisation/types';
 import {IPagination} from '../../api/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
 
@@ -22,14 +22,14 @@ class OrganisationStore {
       .then(res => {
         if (res) {
           this.setOrganisation(res?.orgList);
-          this.setTotalOrg(res?.totalOrgs);
+          this.setTotalOrg(res?.count);
         }
 
         return res;
       })
       .catch(addAxiosErrorNotification);
 
-  addOrganisation = (params: string) =>
+  addOrganisation = (params: IAddOrganization) =>
     organisationApi.addOrganisation(params)
       .then(res => {
         if (res) {
