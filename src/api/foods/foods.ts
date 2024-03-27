@@ -66,7 +66,7 @@ class FoodsApi extends Instance {
     });
 
   imgChangeFood = (params: IImgChange): Promise<IFoods> =>
-    this.patch(Endpoints.Foods, params);
+    this.patch(`${Endpoints.Foods}/${params.food}`, params);
 
   changeVerify = (params: IChangeVerify): Promise<IFoods> =>
     this.patch(`${Endpoints.Foods}/${params?.id}`, params);

@@ -1,5 +1,5 @@
 export interface ILogin {
-  phone_number: string;
+  phoneNumber: string;
   password: string;
 }
 
