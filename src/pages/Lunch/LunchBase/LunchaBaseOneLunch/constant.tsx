@@ -1,5 +1,3 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
 import {TableColumn} from '../../../../components/table/types';
 
 export const lunchProductColumn: TableColumn[] = [

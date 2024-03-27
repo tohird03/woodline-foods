@@ -125,4 +125,5 @@ export interface IGetOneLunch {
 export interface IGetOneLunchProducts {
   product: string;
   amount: number;
+  _id: string;
 }

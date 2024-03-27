@@ -29,7 +29,7 @@ export const AddProduct = observer(() => {
   };
 
   const organisationOptions = useMemo(() => (
-    productStore.organisations.map((org: IOrganisation) => (
+    productStore?.organisations?.map((org: IOrganisation) => (
       <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
     ))
   ), [productStore.organisations]);
