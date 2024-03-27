@@ -6,7 +6,7 @@ import {
   IFoods,
   IFoodsProducts,
   IGetFoodsParams,
-  IGetOneFoodProduct,
+  IGetOneFoodProductObj,
   IImgChange,
   IOrganisation,
   IProducts,
@@ -26,10 +26,10 @@ class FoodsStore {
   foodId: string | null = null;
   search: string | null = null;
   singleFood: IFoods | null = null;
-  getOneFoodProduct: IGetOneFoodProduct[] = [];
+  getOneFoodProduct: IGetOneFoodProductObj[] = [];
   isOneFoodProductAddModal= false;
   isOneFoodProductEditModal = false;
-  isSingleFoodProduct: IGetOneFoodProduct | null = null;
+  isSingleFoodProduct: IGetOneFoodProductObj | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -49,7 +49,7 @@ class FoodsStore {
     foodsApi.getFoodOne(id)
       .then((res) => {
         if (res) {
-          this.setOneFoodProduct(res.products);
+          this.setOneFoodProduct(res?.products);
         }
 
         return res;
@@ -119,7 +119,7 @@ class FoodsStore {
     this.isOneFoodProductEditModal = isOpen;
   };
 
-  setIsSingleFoodProduct = (singleProduct: IGetOneFoodProduct | null) => {
+  setIsSingleFoodProduct = (singleProduct: IGetOneFoodProductObj | null) => {
     this.isSingleFoodProduct = singleProduct;
   };
 
@@ -127,7 +127,7 @@ class FoodsStore {
     this.isOneFoodProductAddModal = isOpen;
   };
 
-  setOneFoodProduct = (oneFoodProduct: IGetOneFoodProduct[]) => {
+  setOneFoodProduct = (oneFoodProduct: IGetOneFoodProductObj[]) => {
     this.getOneFoodProduct = oneFoodProduct;
   };
 

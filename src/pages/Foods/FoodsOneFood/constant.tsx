@@ -1,6 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {IAddOneFoodProduct, IGetOneFoodProduct} from '../../../api/foods/types';
+import {IGetOneFoodProductObj} from '../../../api/foods/types';
 import {TableColumn} from '../../../components/table/types';
 import {OneFoodProductAction} from './FoodsOneFoodAction/FoodsOneFoodAction';
 
@@ -8,24 +7,17 @@ export const foodColumn: TableColumn[] = [
   {
     key: 'product',
     label: 'tableUserName',
-    render: (value, record) => {
-      if (Array?.isArray(record?.products)) {
-        return record?.products?.map((product) =>
-          product?.product?.name);
-      }
-
-      return '-';
-    },
+    render: (value, record) => record?.product?.name,
   },
   {
     key: 'amount',
     label: 'Amount',
-    render: (value, record) => (record?.products?.amount || '-'),
+    render: (value, record) => (record?.amount || '-'),
   },
   {
     key: 'action',
     label: 'Action',
-    render: (value, record) => <OneFoodProductAction product={record as IGetOneFoodProduct} />,
+    render: (value, record) => <OneFoodProductAction product={record as IGetOneFoodProductObj} />,
   },
 ];
 
