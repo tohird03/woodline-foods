@@ -13,14 +13,11 @@ import {AddBalanceModal} from './AddBalance/AddBalanceModal';
 import {ChangeOrganisationModal} from './ChangeOrganisation/ChangeOrganisationModal';
 import {ChangeRoleModal} from './ChangeRole/ChangeRoleModal';
 import {usersColumns} from './constants';
-import {DeleteUser} from './DeleteUser/DeleteUser';
 import DeleteUserModal from './DeleteUser/DeleteUserModal/DeleteUserModal';
 
 export const Users = observer(() => {
   const {t} = useTranslation();
   const isMobile = useMediaQuery('(max-width: 650px)');
-
-  console.log(process.env.NEXT_PUBLIC_STAGE);
 
   const handleSearchUsers = (value: string) => {
     usersStore.setSearch(value);

@@ -36,13 +36,12 @@ export const PhoneLogin = observer(() => {
         phoneNumber: values.phoneNumber?.slice(4)?.split(' ').join(''),
       })
         .then(res => {
-          if (res?.token && res?.admin) {
-            setAccessToken(res.token);
-            setStaff(res);
+          if (res?.accessToken) {
+            setAccessToken(res?.accessToken);
 
             navigate(ROUTES.home);
 
-            successNotification(`Welcome to ${res.admin?.fullname}`);
+            successNotification('Welcome to');
           }
         });
     },

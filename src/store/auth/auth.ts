@@ -15,8 +15,8 @@ class AuthStore {
   login = (params: ILogin) =>
     authApi.login(params)
       .then(res => {
-        if (res?.token && res?.admin) {
-          this.setToken(res?.token);
+        if (res?.accessToken) {
+          this.setToken(res?.accessToken);
           this.setStaffInfo(res);
           this.setIsAuth(true);
         }

@@ -31,7 +31,7 @@ class ProductsStore {
       .then(res => {
         if (res) {
           this.setProducts(res?.productList);
-          this.setTotalProducts(res?.totalProducts);
+          this.setTotalProducts(res?.count);
         }
       })
       .catch(addAxiosErrorNotification);

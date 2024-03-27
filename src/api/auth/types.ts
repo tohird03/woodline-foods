@@ -4,11 +4,8 @@ export interface ILogin {
 }
 
 export interface ILoginResponse {
-  token: string;
-  admin: {
-    fullname: string;
-    role: AdminRole[];
-  };
+  accessToken: string;
+  refreshToken: string;
 }
 
 export enum AdminRole {

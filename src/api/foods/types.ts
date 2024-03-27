@@ -2,7 +2,7 @@ import {IPagination} from '../types';
 
 export interface IGetFoods {
   foodList: IFoods[];
-  totalFoods: number;
+  count: number;
 }
 
 export interface IFoods {
@@ -79,7 +79,7 @@ export interface IProducts {
 
 export interface IImgChange {
   food: string;
-  image: string;
+  img: string;
 }
 
 export interface IGetFoodsParams extends IPagination {

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {
   Box,
@@ -25,7 +25,6 @@ import {foodStyles} from '../../../styles';
 
 export const EditLunchProduct = observer(() => {
   const {id} = useParams();
-  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {

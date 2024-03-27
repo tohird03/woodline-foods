@@ -140,23 +140,22 @@ export interface IGetOneLunch {
     _id: string;
     name_org: string;
   };
-  products: IGetOneLunchProducts[];
+  products: IOneProduct[];
 }
 
-export interface IGetOneLunchProducts {
-  _id: string;
-  id?: string;
+export interface IOneProduct {
   product: {
     name: string;
     _id: string;
+    cost: number;
   };
   amount: number;
+  _id: string;
 }
 
 
 export interface IAddOneLunchProduct {
   id?: string;
-  _id?: string;
   product: string;
   amount: number;
 }

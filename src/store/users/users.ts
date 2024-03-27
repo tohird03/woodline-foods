@@ -56,7 +56,7 @@ class UsersStore {
       .then(res => {
         if (res) {
           this.setUsers(res?.userList);
-          this.setTotalUsers(res?.totalUsers);
+          this.setTotalUsers(res?.count);
         }
       })
       .catch(addAxiosErrorNotification);

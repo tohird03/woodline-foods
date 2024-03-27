@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {useParams} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {Button, Stack, Typography} from '@mui/material';
-import Iconify from '../../../../components/iconify/Iconify';
+import Iconify from '../../../../components/iconify';
 import {Table} from '../../../../components/table';
 import {lunchStore} from '../../../../store/lunch';
 import {useMediaQuery} from '../../../../utils/hooks/useMediaQuery';
@@ -12,7 +12,6 @@ import {AddLunchProduct} from './LunchOneLunchProductAddModal';
 import {EditLunchProduct} from './LunchOneLunchProductEditModal';
 
 export const LunchBaseProduct = observer(() => {
-  const {t} = useTranslation();
   const isMobile = useMediaQuery('(max-width: 650px)');
   const {id} = useParams();
 
@@ -31,6 +30,7 @@ export const LunchBaseProduct = observer(() => {
         <Typography variant="h4" gutterBottom>
           Lunch Product
         </Typography>
+
         <div style={{display: 'flex', gap: '10px'}}>
           <Button
             variant="contained"
@@ -44,10 +44,11 @@ export const LunchBaseProduct = observer(() => {
 
       <Table
         columns={lunchProductColumn}
-        data={lunchStore.lunchOneProduct}
+        data={lunchStore?.lunchOneProduct || []}
         pagination={false}
         isMobile={isMobile}
       />
+
       {lunchStore.isOneLunchProductAddModal && <AddLunchProduct /> }
       {lunchStore.isOneLunchProductEditModal && <EditLunchProduct /> }
     </>

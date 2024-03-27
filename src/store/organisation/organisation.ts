@@ -22,7 +22,7 @@ class OrganisationStore {
       .then(res => {
         if (res) {
           this.setOrganisation(res?.orgList);
-          this.setTotalOrg(res?.totalOrgs);
+          this.setTotalOrg(res?.count);
         }
 
         return res;

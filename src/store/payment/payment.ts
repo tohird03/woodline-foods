@@ -21,7 +21,7 @@ class PaymentsStore {
       .then(res => {
         if (res) {
           this.setPayments(res?.data);
-          this.setTotalPayments(res?.totalPayments);
+          this.setTotalPayments(res?.count);
         }
       })
       .catch(addAxiosErrorNotification);

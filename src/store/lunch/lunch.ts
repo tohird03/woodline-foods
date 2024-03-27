@@ -9,11 +9,11 @@ import {
   IGetLunchBase,
   IGetLunchBaseListParams,
   IGetOneLunch,
-  IGetOneLunchProducts,
   ILunchEdit,
   ILunchs,
   ILunchsProduct,
   ILunchUpdate,
+  IOneProduct,
 } from '../../api/lunch/types';
 import {IPagination} from '../../api/types';
 import {addAxiosErrorNotification, successNotification} from '../../utils/notification';
@@ -33,9 +33,9 @@ class LunchStore {
   isLunchEditModal = false;
   singleLunch: ILunchsProduct | null = null;
   lunchBaseProductAddEditModal = false;
-  lunchOneProduct: IGetOneLunchProducts[] = [];
+  lunchOneProduct: IOneProduct[] = [];
   isOneLunchProductAddModal= false;
-  isSingleLunchProduct: IGetOneLunchProducts | null = null;
+  isSingleLunchProduct: IOneProduct | null = null;
   isOneLunchProductEditModal = false;
   isOpenEditLunchModal = false;
   isSingleEditLunch: ILunchs | null = null;
@@ -200,7 +200,7 @@ class LunchStore {
     this.isOneLunchProductAddModal = isOpen;
   };
 
-  setIsSingleLunchProduct = (singleProduct: IGetOneLunchProducts | null) => {
+  setIsSingleLunchProduct = (singleProduct: IOneProduct | null) => {
     this.isSingleLunchProduct = singleProduct;
   };
 
@@ -208,7 +208,7 @@ class LunchStore {
     this.isOneLunchProductEditModal = isOpen;
   };
 
-  setLunchOneProduct = (lunchOneProduct: IGetOneLunchProducts[]) => {
+  setLunchOneProduct = (lunchOneProduct: IOneProduct[]) => {
     this.lunchOneProduct = lunchOneProduct;
   };
 

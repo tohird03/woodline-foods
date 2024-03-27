@@ -16,13 +16,13 @@ import {
   TextField,
 } from '@mui/material';
 import {useFormik} from 'formik';
-import {IOrganisation, IProducts} from '../../../../../api/foods/types';
+import {IProducts} from '../../../../../api/foods/types';
 import {IAddFoodProduct} from '../../../../../api/history/types';
 import {Modal} from '../../../../../components/Modal';
 import {foodsStore} from '../../../../../store/foods';
 import {lunchStore} from '../../../../../store/lunch';
 import {productStore} from '../../../../../store/products';
-import {foodStyles, lunchStyles} from '../../../styles';
+import {foodStyles} from '../../../styles';
 
 
 interface IFormValues {
@@ -83,13 +83,9 @@ export const LunchBaseProductAddModal = observer(() => {
   });
 
   const productOptions = useMemo(() => (
-    (foodsStore.products && foodsStore.products.length > 0) ? (
-      foodsStore.products.map((product: IProducts) => (
-        <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
-      ))
-    ) : (
-      <MenuItem value="" disabled>No Product</MenuItem>
-    )
+    foodsStore?.products?.map((product: IProducts) => (
+      <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
+    ))
   ), [foodsStore.products]);
 
   const addProduct = () => {
@@ -126,7 +122,7 @@ export const LunchBaseProductAddModal = observer(() => {
     newProducts[index].product = event.target.value;
     setProducts(newProducts);
 
-    handleFormSelectProductChange(event);
+    handleFormSelectProductChange();
   };
 
   const handleAmountChange = (
@@ -138,10 +134,10 @@ export const LunchBaseProductAddModal = observer(() => {
     newProducts[index].amount = Number(event.target.value);
     setProducts(newProducts);
 
-    handleFormSelectProductChange(event);
+    handleFormSelectProductChange();
   };
 
-  const handleFormSelectProductChange = (event: any) => {
+  const handleFormSelectProductChange = () => {
     const bodyProductPrice = products.reduce((total, product) => {
       const selectedProduct = foodsStore.products.find(p => p._id === product.product);
 
@@ -155,22 +151,6 @@ export const LunchBaseProductAddModal = observer(() => {
     setBodyProductPrice(bodyProductPrice);
   };
 
-  const handleProductTotalChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    formik.handleChange(event);
-
-    setTotalProductPrice(parseFloat(event.target.value) || 0);
-  };
-
-  // const handleProductPercentageChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-  //   formik.handleChange(event);
-
-  //   const productPercentage = parseFloat(event.target.value) || 0;
-
-  //   const amountToChange = (productPercentage / 100) * totalProductPrice;
-
-  //   setProductPercentage(amountToChange);
-  // };
-
   useEffect(() => {
     if (lunchStore.singleLunch) {
       formik.setValues({
@@ -178,12 +158,6 @@ export const LunchBaseProductAddModal = observer(() => {
         cost: lunchStore.singleLunch.cost || 0,
         org: lunchStore.singleLunch.org || '',
       });
-      // const initialProducts = lunchStore?.singleLunch?.products?.map(product => ({
-      //   product: product.product?.name,
-      //   amount: product.amount,
-      // })) || [];
-
-      // setProducts(initialProducts);
     }
   }, [lunchStore.singleLunch, foodsStore.products]);
 
@@ -199,9 +173,6 @@ export const LunchBaseProductAddModal = observer(() => {
       setBodyProductPrice(calculatedBodyProductPrice);
     }
 
-    // const calculatedPercentage = (formik.values.percent_cook / 100) * formik.values.cost;
-
-    // setProductPercentage(calculatedPercentage);
     setTotalProductPrice(formik.values.cost);
     productStore.getOrganisation();
   }, [formik.values, products, foodsStore.products]);

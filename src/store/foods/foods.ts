@@ -40,7 +40,7 @@ class FoodsStore {
       .then(res => {
         if (res) {
           this.setFoods(res?.foodList);
-          this.setTotalFoods(res?.totalFoods);
+          this.setTotalFoods(res?.count);
         }
       })
       .catch(addAxiosErrorNotification);

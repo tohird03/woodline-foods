@@ -1,9 +1,8 @@
-import {IRole} from '../roles/types';
 import {IPagination} from '../types';
 
 export interface IGetProducts {
   productList: IProducts[];
-  totalProducts: number;
+  count: number;
 }
 
 export interface IProducts {

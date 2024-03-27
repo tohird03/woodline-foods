@@ -64,7 +64,7 @@ export const Organisation = observer(() => {
 
       <Table
         columns={organisationColumns}
-        data={organisationStore.organisations}
+        data={organisationStore?.organisations || []}
         onFilterSearch={handleSearchProduct}
         pagination={{
           total: organisationStore.totalOrgs,

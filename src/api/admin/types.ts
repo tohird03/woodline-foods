@@ -1,5 +1,3 @@
-import {AdminRole} from '../auth/types';
-
 export interface IAdminGet {
   adminList: IAdmins[];
 }

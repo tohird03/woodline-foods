@@ -1,6 +1,6 @@
 export interface IGetOrganisation {
   orgList: IOrganisation[];
-  totalOrgs: number;
+  count: number;
 }
 
 export interface IOrganisation {

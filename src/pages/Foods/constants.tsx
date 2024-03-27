@@ -23,12 +23,12 @@ export const foodsColumns: TableColumn[] = [
     key: 'img',
     label: 'tableFoodPhoto',
     align: 'center',
-    render: (value) => (
+    render: (value, record) => (
       <Image
         style={{borderRadius: '50%'}}
         width={50} height={50}
-        alt={value}
-        src={value}
+        alt={record?.img}
+        src={record?.img}
         preview={{
           forceRender: false,
           mask: <RemoveRedEyeOutlinedIcon fontSize="small" />,

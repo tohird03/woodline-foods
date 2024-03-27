@@ -2,7 +2,7 @@ import {IPagination} from '../types';
 
 export interface IGetUser {
   userList: IUsers[];
-  totalUsers: number;
+  count: number;
 }
 
 export interface IDeleteUser {

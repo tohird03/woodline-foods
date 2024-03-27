@@ -19,7 +19,7 @@ class ProductLogsStore {
       .then(res => {
         if (res) {
           this.setProductsLogs(res?.data);
-          this.setTotal(res?.totalProductLog);
+          this.setTotal(res?.count);
         }
       })
       .catch(addAxiosErrorNotification);

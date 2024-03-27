@@ -1,6 +1,6 @@
 export interface IGetPayments {
   data: IPayments[];
-  totalPayments: number;
+  count: number;
 }
 
 export interface IPayments {
