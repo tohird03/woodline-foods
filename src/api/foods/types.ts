@@ -96,15 +96,14 @@ export interface IGetOneFood {
   name: string;
   cost: number;
   img: string;
-  products: IGetOneFoodProduct[];
+  products: IGetOneFoodProductObj[];
   org: {
     _id: string;
     name_org: string;
   };
 }
 
-export interface IGetOneFoodProduct {
-  id?: string;
+export interface IGetOneFoodProductObj {
   product: {
     _id: string;
     name: string;
