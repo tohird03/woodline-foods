@@ -57,7 +57,7 @@ export interface IAddFoodProduct {
 }
 
 export interface IGetProducts {
-  data: IProducts[];
+  productList: IProducts[];
   totalProducts: number;
 }
 

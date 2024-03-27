@@ -1,15 +1,11 @@
-import React from 'react';
-import {MenuItem} from '@mui/material';
-import {IRole} from '../../api/roles/types';
 import {TableColumn} from '../../components/table/types';
-import {rolesStore} from '../../store/roles/roles';
 import {getFullDateFormat} from '../../utils/formatTime';
 
 export const adminsColumns: TableColumn[] = [
   {
     key: 'fullname',
     label: 'tableUserName',
-    render: (value, record) => (value || '-'),
+    render: (value) => (value || '-'),
   },
   {
     key: 'phone_number',
@@ -24,7 +20,7 @@ export const adminsColumns: TableColumn[] = [
   {
     key: 'balance',
     label: 'dashboardFilterOrg',
-    render: (value, record) => (record?.org?.name_org || '-'),
+    render: (value, record) => (record?.org || '-'),
   },
   {
     key: 'createdAt',

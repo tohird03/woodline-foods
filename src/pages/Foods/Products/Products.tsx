@@ -21,7 +21,7 @@ export const Products = observer(({product}: Props) => {
       color="primary"
       sx={foodStyles.orderProductChip}
       onClick={handleOpenProductModal}
-      label={product?.length}
+      label={product?.length || 0}
     />
   );
 });

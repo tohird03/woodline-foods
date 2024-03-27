@@ -41,11 +41,11 @@ export const NotificationsPopover = observer(() => {
       size: 1000,
     })
       .then(res => {
-        if (res?.data) {
+        if (res?.orgList) {
           setOrganisationOption([
             <MenuItem key="all" value="all">All</MenuItem>,
             ...(
-              res.data?.map((org: IOrganisation) => (
+              res?.orgList?.map((org: IOrganisation) => (
                 <MenuItem key={org?._id} value={org?._id}>{org?.name_org}</MenuItem>
               )) || []
             ),

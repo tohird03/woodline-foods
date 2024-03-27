@@ -43,7 +43,7 @@ export const foodsColumns: TableColumn[] = [
     key: 'org',
     label: 'tableFoodOrg',
     render: (value, record) => (
-      record?.org?.name_org
+      record?.org
     ),
   },
   {
