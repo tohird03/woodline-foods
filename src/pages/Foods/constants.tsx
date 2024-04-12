@@ -55,7 +55,7 @@ export const foodsColumns: TableColumn[] = [
     key: 'org',
     label: 'tableFoodOrg',
     render: (value, record) => (
-      record?.org
+      record?.org?.name_org
     ),
   },
   {
@@ -71,9 +71,9 @@ export const foodsColumns: TableColumn[] = [
   {
     key: 'category',
     label: 'tableFoodCategory',
-    render: (value) => (
+    render: (value, record) => (
       <Label color="success" variant={'outlined'}>
-        {value}
+        {record?.category}
       </Label>
     ),
   },
