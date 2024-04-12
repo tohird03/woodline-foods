@@ -11,7 +11,7 @@ export const Endpoints = {
   UserAnalitic: '/order/spent',
   UserOrderAnalitic: '/order/total-spent',
   UserPaymentAnalitic: '/payment/spents',
-  UserPayment: '/user/payment',
+  UserPayment: '/user/balance',
   UserRole: '/user/role',
   Products: '/product',
   ProductEdit: '/product/update',

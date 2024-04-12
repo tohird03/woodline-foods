@@ -61,7 +61,10 @@ class UsersApi extends Instance {
     });
 
   addBalance = (params: TransactionParams): Promise<any> =>
-    this.patch(Endpoints.UserPayment, params);
+    this.patch(`${Endpoints.UserPayment}/${params?.user}`, {
+      type: params?.type,
+      amount: params?.amount,
+    });
 
   changeRole = (params: IChangeRole): Promise<IUsers> =>
     this.patch(Endpoints.UserRole, params);
