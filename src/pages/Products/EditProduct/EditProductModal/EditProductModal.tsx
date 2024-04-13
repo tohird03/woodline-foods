@@ -19,7 +19,7 @@ import {Modal} from '../../../../components/Modal';
 import {productStore} from '../../../../store/products';
 import {foodStyles} from '../../../Lunch/styles';
 import {UnitOption} from '../../constants';
-import { productStyles } from '../../styles';
+import {productStyles} from '../../styles';
 
 export const EditProduct = observer(() => {
 

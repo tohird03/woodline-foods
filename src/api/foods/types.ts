@@ -10,10 +10,7 @@ export interface IFoods {
   name: string;
   cost: number;
   products: IFoodsProducts[];
-  org: {
-    name_org: string;
-    _id: string;
-  };
+  org: string;
   category: string;
   createdAt: string;
   img: string;

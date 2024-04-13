@@ -1,7 +1,6 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react';
-import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Box,
   Button,
@@ -9,14 +8,13 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  SelectChangeEvent,
   Stack,
   TextField,
   Typography,
 } from '@mui/material';
 import {useFormik} from 'formik';
 import {foodsApi} from '../../../api/foods';
-import {IAddFoodProduct, IOrganisation, IProducts} from '../../../api/foods/types';
+import {IOrganisation} from '../../../api/foods/types';
 import {Container} from '../../../components/Container';
 import {ROUTES} from '../../../constants/router';
 import {foodsStore} from '../../../store/foods';
@@ -25,12 +23,8 @@ import {addAxiosErrorNotification, successNotification} from '../../../utils/not
 import {ImgUploadModal} from '../../ImgUploadModal';
 import {CategoryOption} from '../constants';
 import {foodStyles} from '../styles';
-import {UserStatusChange} from '../UserStatusChange';
 
 export const EditFoods = observer(() => {
-  const [products, setProducts] = useState<IAddFoodProduct[]>([
-    {product: '', amount: 0},
-  ]);
   const navigate = useNavigate();
   const isMobile = useMediaQuery('(max-width: 650px)');
 
@@ -54,34 +48,6 @@ export const EditFoods = observer(() => {
     },
   });
 
-  // const addProduct = () => {
-  //   setProducts([...products, {product: '', amount: 0}]);
-  // };
-
-  // const removeProduct = (index: number) => {
-  //   const newProducts = [...products];
-
-  //   newProducts.splice(index, 1);
-  //   setProducts(newProducts);
-  // };
-
-  // const handleProductSelectChange = (event: SelectChangeEvent<string>, index: number) => {
-  //   const newProducts = [...products];
-
-  //   newProducts[index].product = event.target.value;
-  //   setProducts(newProducts);
-  // };
-
-  // const handleAmountChange = (
-  //   event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  //   index: number
-  // ) => {
-  //   const newProducts = [...products];
-
-  //   newProducts[index].amount = Number(event.target.value);
-  //   setProducts(newProducts);
-  // };
-
   const organisationOptions = useMemo(() => (
     (foodsStore.organisations?.length > 0
       ? (
@@ -95,17 +61,6 @@ export const EditFoods = observer(() => {
     )
   ), [foodsStore.organisations]);
 
-  // const productOptions = useMemo(() => (
-  //   (foodsStore.products?.length > 0 ? (
-  //     foodsStore.products.map((product: IProducts) => (
-  //       <MenuItem key={product?._id} value={product?._id}>{product?.name}</MenuItem>
-  //     ))
-  //   )
-  //     : (<MenuItem value="" disabled>No Product</MenuItem>
-  //     )
-  //   )
-  // ), [foodsStore.products]);
-
   useEffect(() => {
     if (!foodsStore?.singleFood) {
       navigate(ROUTES.food);
@@ -114,19 +69,9 @@ export const EditFoods = observer(() => {
     foodsStore.getOrganisation();
     foodsStore.getProducts('');
 
-    const products = foodsStore.singleFood && Array.isArray(foodsStore.singleFood.products)
-      ? foodsStore.singleFood.products.map(product => ({
-        product: product._id,
-        amount: product.amount,
-      }))
-      : [];
-
     formik.setFieldValue('name', foodsStore?.singleFood?.name);
     formik.setFieldValue('cost', foodsStore?.singleFood?.cost);
-    formik.setFieldValue('org', foodsStore?.singleFood?.org?._id);
     formik.setFieldValue('category', foodsStore?.singleFood?.category);
-
-    setProducts(products as unknown as IAddFoodProduct[]);
 
     return () => {
       foodsStore.setProducts([]);
@@ -134,10 +79,13 @@ export const EditFoods = observer(() => {
     };
   }, []);
 
-  const handleImgUpload = () => {
-    // foodsStore.setFoodId(food?._id);
-    foodsStore.setIsOpenImgUpload(true);
-  };
+  useEffect(() => {
+    if (foodsStore.organisations) {
+      const findSingleFoodOrg = foodsStore.organisations?.find(org => org?.name_org === foodsStore?.singleFood?.org);
+
+      formik.setFieldValue('org', findSingleFoodOrg?._id);
+    }
+  }, [foodsStore.organisations]);
 
   return (
     <Container>
@@ -155,41 +103,6 @@ export const EditFoods = observer(() => {
         <Box
           sx={foodStyles.addFoodsWRapper}
         >
-          {/* <Box sx={foodStyles.addFoodsProducts}>
-            {products?.map((product, index) => (
-              <Box sx={foodStyles.addFoodsProductBox} key={index}>
-                <FormControl sx={foodStyles.addFoodFormControl} fullWidth>
-                  <InputLabel>{`Product ${index + 1}`}</InputLabel>
-                  <Select
-                    label={`Product ${index + 1}`}
-                    value={product.product}
-                    defaultValue={product.product}
-                    onChange={(event) => handleProductSelectChange(event, index)}
-                    required
-                  >
-                    {productOptions}
-                  </Select>
-                </FormControl>
-                <TextField
-                  onChange={(event) => handleAmountChange(event, index)}
-                  value={product.amount}
-                  label={`Amount ${index + 1}`}
-                  type="number"
-                  required
-                  minRows={0}
-                />
-                <DeleteIcon onClick={() => removeProduct(index)} style={{color: 'red', cursor: 'pointer'}} />
-              </Box>
-            ))}
-            <Button
-              type="button"
-              variant="outlined"
-              onClick={addProduct}
-              sx={foodStyles.addFoodsFormBox}
-            >
-              добавить больше продуктов +
-            </Button>
-          </Box> */}
           <Box sx={foodStyles.addFoodsLeftWrapper}>
             <TextField
               onChange={formik.handleChange}
@@ -206,7 +119,7 @@ export const EditFoods = observer(() => {
               name="cost"
               required
             />
-            {/* <FormControl fullWidth>
+            <FormControl fullWidth>
               <InputLabel>Organisation</InputLabel>
               <Select
                 name="org"
@@ -217,12 +130,12 @@ export const EditFoods = observer(() => {
               >
                 {organisationOptions}
               </Select>
-            </FormControl> */}
+            </FormControl>
             <FormControl fullWidth>
               <InputLabel>Category</InputLabel>
               <Select
                 name="category"
-                label="Organisation"
+                label="Category"
                 onChange={formik.handleChange}
                 value={formik.values.category}
                 required
@@ -230,16 +143,6 @@ export const EditFoods = observer(() => {
                 {CategoryOption}
               </Select>
             </FormControl>
-            {/* <FormControl fullWidth>
-              <InputLabel>Category</InputLabel>
-              <UserStatusChange food={} />
-            </FormControl> */}
-            {/* <FormControl fullWidth>
-              <InputLabel>Category</InputLabel>
-              <div>
-                <Button onClick={handleImgUpload}>Img Change</Button>
-              </div>
-            </FormControl> */}
             {!isMobile && (
               <Button type="submit" variant="contained">
                 Update Food
