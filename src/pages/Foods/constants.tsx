@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import {MenuItem} from '@mui/material';
+import {Chip, MenuItem} from '@mui/material';
 import {Image} from 'antd';
 import {IFoods, IProducts} from '../../api/foods/types';
 import {Category} from '../../api/organisation/types';
@@ -10,6 +10,7 @@ import {TableColumn} from '../../components/table/types';
 import {uszFormatPrice} from '../../utils/formatTime';
 import {Action} from './Action';
 import {Products} from './Products';
+import {foodStyles} from './styles';
 import {UserStatusChange} from './UserStatusChange';
 
 export const CategoryOption = [
@@ -61,7 +62,13 @@ export const foodsColumns: TableColumn[] = [
   {
     key: 'products',
     label: 'tableFoodProduct',
-    render: (value, record) => <Products product={record?.products} />,
+    render: (value, record) => (
+      <Chip
+        color="primary"
+        sx={foodStyles.orderProductChip}
+        label={record?.products || 0}
+      />
+    ),
   },
   {
     key: 'cost',
