@@ -78,15 +78,13 @@ class ProductsStore {
 
   productAmountChange = (params: IAddAmountProduct) =>
     productApi.productAmountChange(params)
-      .then(res => {
-        if (res) {
-          successNotification('Success change amount');
+      .then(() => {
+        successNotification('Success change amount');
 
-          this.getProducts({
-            page: this.page,
-            size: this.size,
-          });
-        }
+        this.getProducts({
+          page: this.page,
+          size: this.size,
+        });
       })
       .catch(addAxiosErrorNotification);
 

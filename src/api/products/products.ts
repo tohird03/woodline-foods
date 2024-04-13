@@ -38,7 +38,7 @@ class ProductApi extends Instance {
     this.patch(`${Endpoints.ProductEdit}/${params?.id}`, params);
 
   productAmountChange = (params: IAddAmountProduct): Promise<IProducts> =>
-    this.patch(Endpoints.ProductAmount, params);
+    this.patch(`${Endpoints.ProductAmount}/${params?.product}`, params);
 
   deleteProduct = (id: string): Promise<IProducts> =>
     this.delete(`/product/${id}`);

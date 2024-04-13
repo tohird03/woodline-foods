@@ -2,10 +2,8 @@ import React, {useEffect} from 'react';
 import {observer} from 'mobx-react';
 import {Button, FormControl, InputLabel, MenuItem, Select, TextField} from '@mui/material';
 import {useFormik} from 'formik';
-import {AdminRole} from '../../../../api/auth/types';
 import {TransactionType} from '../../../../api/users/types';
 import {Modal} from '../../../../components/Modal';
-import {authStore} from '../../../../store/auth';
 import {productStore} from '../../../../store/products';
 import {productStyles} from '../../styles';
 
