@@ -1,5 +1,5 @@
 export interface IGetOrder {
-  data: IOrder[];
+  orderList: IOrder[];
   totalOrders: number;
 }
 
