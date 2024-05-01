@@ -19,7 +19,7 @@ class OrderStore {
   getOrder = (params: IPagination) =>
     orderApi.getOrder(params)
       .then(res => {
-        if (res?.data) {
+        if (res?.orderList) {
           this.setOrders(res?.orderList);
           this.setTotalOrder(res?.totalOrders);
         }
