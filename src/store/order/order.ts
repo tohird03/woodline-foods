@@ -20,7 +20,7 @@ class OrderStore {
     orderApi.getOrder(params)
       .then(res => {
         if (res?.data) {
-          this.setOrders(res?.data);
+          this.setOrders(res?.orderList);
           this.setTotalOrder(res?.totalOrders);
         }
       })
