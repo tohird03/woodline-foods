@@ -14,6 +14,7 @@ import {ROUTES} from '../../constants/router';
 import {foodsStore} from '../../store/foods';
 import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {ImgUploadModal} from '../ImgUploadModal';
+import {AddProductToFoodModal} from './AddproductToFoodModal';
 import {foodsColumns} from './constants';
 import {ProductModal} from './Products/ProductModal';
 
@@ -87,6 +88,7 @@ export const Foods = observer(() => {
 
       {foodsStore.isOpenSingleFoodProductModal && <ProductModal />}
       {foodsStore.isOpenImgUpload && <ImgUploadModal />}
+      {foodsStore.isOpenAddProductToFoodModal && <AddProductToFoodModal />}
     </>
   );
 });

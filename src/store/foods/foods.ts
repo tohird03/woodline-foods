@@ -1,7 +1,7 @@
 import {makeAutoObservable} from 'mobx';
 import {foodsApi} from '../../api/foods';
 import {
-  IAddOneFoodProduct,
+  IAddFoodProduct,
   IChangeVerify,
   IFoods,
   IFoodsProducts,
@@ -30,6 +30,7 @@ class FoodsStore {
   isOneFoodProductAddModal= false;
   isOneFoodProductEditModal = false;
   isSingleFoodProduct: IGetOneFoodProductObj | null = null;
+  isOpenAddProductToFoodModal = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -108,6 +109,21 @@ class FoodsStore {
       })
       .catch(addAxiosErrorNotification);
 
+  addProductToFood = (params: IAddFoodProduct) =>
+    foodsApi.addProductToFood(params)
+      .then(res => {
+        if (res) {
+          successNotification('Success change is active');
+          this.getFoods({
+            page: this.page,
+            size: this.size,
+          });
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
   setFoods = (foods: IFoods[]) => {
     this.foods = foods;
   };
@@ -171,8 +187,12 @@ class FoodsStore {
     this.search = search;
   };
 
-  setSingleFood = (singleFood: IFoods) => {
+  setSingleFood = (singleFood: IFoods | null) => {
     this.singleFood = singleFood;
+  };
+
+  setIsOpenAddProductToFoodModal = (isOpenAddProductToFoodModal: boolean) => {
+    this.isOpenAddProductToFoodModal = isOpenAddProductToFoodModal;
   };
 
   reset() {
