@@ -3,13 +3,13 @@ import {resetStores, store} from '../store/store';
 import {Endpoints} from './endpoints';
 import {INetworkConfig, TMethod} from './types';
 
-export const stageBranch = process.env.REACT_APP_STAGE || 'test';
+export const stageBranch = process.env.REACT_APP_STAGE || 'dev';
 
 const apiUrls: any = {
-  test: {
+  dev: {
     apiUrl: 'https://bot.woodlines1.shop',
   },
-  dev: {
+  prod: {
     apiUrl: 'https://bot.woodlines.shop',
   },
 };
