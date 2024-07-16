@@ -51,6 +51,7 @@ export interface IAddFoodParams {
 export interface IAddFoodProduct {
   product: string;
   amount: number;
+  foodId?: string;
 }
 
 export interface IGetProducts {
@@ -71,7 +72,7 @@ export interface IProducts {
   };
   createdAt: string;
   cost: number;
-  is_deleted: boolean;
+  is_private: boolean;
 }
 
 export interface IImgChange {

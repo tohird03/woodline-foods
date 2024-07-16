@@ -5,11 +5,11 @@ import {IProducts} from '../../../api/foods/types';
 import {foodsStore} from '../../../store/foods';
 import {IOSSwitch} from '../styles';
 
-type UserProps = {
+type Params = {
   food: IProducts;
 };
 
-export const UserStatusChange = observer(({food}: UserProps) => {
+export const UserStatusChange = observer(({food}: Params) => {
   const [loading, setLoading] = useState(false);
 
   const handleCheckVerify = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +19,7 @@ export const UserStatusChange = observer(({food}: UserProps) => {
 
     foodsStore.changeVerify({
       id: food?._id,
-      is_private: newValue,
+      is_private: !newValue,
     })
       .finally(() => {
         setLoading(false);
@@ -32,7 +32,7 @@ export const UserStatusChange = observer(({food}: UserProps) => {
       label=""
       control={
         <IOSSwitch
-          defaultChecked={!food?.is_deleted}
+          defaultChecked={!food?.is_private}
           onChange={handleCheckVerify}
           disabled={loading}
         />}

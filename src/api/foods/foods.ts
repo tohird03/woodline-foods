@@ -3,6 +3,7 @@ import {Instance} from '../instance';
 import {INetworkConfig} from '../types';
 import {
   IAddFoodParams,
+  IAddFoodProduct,
   IAddOneFoodProduct,
   IChangeVerify,
   IFoods,
@@ -74,8 +75,8 @@ class FoodsApi extends Instance {
   changeFoods = (params: any): Promise<IFoods> =>
     this.patch(`${Endpoints.FoodUpdate}/${params?.id}`, params);
 
-  // deleteLunchBase= (id: string): Promise<ILunchsProduct> =>
-  // this.delete(`${Endpoints.Lunchs}/${id}`);
+  addProductToFood = (params: IAddFoodProduct): Promise<IFoods> =>
+    this.post(`${Endpoints.FoodProducts}/${params?.foodId}`, params);
 
   deleteFood = (id: string): Promise<IFoods> =>
     this.delete(`food/${id}`);
