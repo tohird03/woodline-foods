@@ -24,7 +24,7 @@ export const EditProduct = observer(({product}: Props) => {
       .then(res => {
         if (res) {
           successNotification('Успех обновленных');
-          productApi.getProducts({
+          productStore.getProducts({
             page: productStore.page,
             size: productStore.size,
             search: productStore.search!,
