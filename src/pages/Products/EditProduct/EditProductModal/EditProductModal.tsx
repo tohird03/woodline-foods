@@ -1,8 +1,6 @@
 /* eslint-disable react/no-array-index-key */
-import React, {useEffect, useMemo, useState} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import React from 'react';
 import {observer} from 'mobx-react';
-import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Box,
   Button,

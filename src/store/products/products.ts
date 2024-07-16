@@ -40,6 +40,7 @@ class ProductsStore {
     productApi.updateProduct(params)
       .then(res => {
         if (res) {
+          successNotification('Success update product!');
           this.getProducts({
             search: this.search!,
             page: this.page,
