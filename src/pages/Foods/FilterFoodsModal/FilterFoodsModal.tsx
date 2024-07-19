@@ -74,7 +74,7 @@ export const FoodsFilter = observer(() => {
     <Modal
       open={foodsStore.isOpenFilterModal}
       onButtonClose={handleClose}
-      title="Change balance"
+      title="Filter"
     >
       <form
         style={{

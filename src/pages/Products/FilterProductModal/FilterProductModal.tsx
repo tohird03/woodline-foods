@@ -70,7 +70,7 @@ export const FilterProductModal = observer(() => {
     <Modal
       open={productStore.isOpenFilterModal}
       onButtonClose={handleClose}
-      title="Change balance"
+      title="Filter"
     >
       <form
         style={{
