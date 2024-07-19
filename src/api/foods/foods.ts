@@ -24,8 +24,18 @@ class FoodsApi extends Instance {
     super(config);
   }
 
-  getFoods = (params: IGetFoodsParams): Promise<IGetFoods> =>
-    this.get(Endpoints.Foods, {params});
+  getFoods = (params: IGetFoodsParams): Promise<IGetFoods> => {
+    const orgParam = params.org ? JSON.stringify(params.org) : undefined;
+    const category = params.category ? JSON.stringify(params.category) : undefined;
+
+    return this.get(`${Endpoints.Foods}`, {
+      params: {
+        ...params,
+        org: orgParam,
+        category,
+      },
+    });
+  };
 
   getFoodOne = (id: string): Promise<IGetOneFood> =>
     this.get(`${Endpoints.Foods}/${id}`);
