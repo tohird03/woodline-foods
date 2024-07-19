@@ -21,6 +21,8 @@ class ProductsStore {
   search: string | null = null;
   isOpenEditProductModal = false;
   editProductStore: IProducts | null = null;
+  isOpenFilterModal = false;
+  filterProducts: IGetProductsParams | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -131,6 +133,14 @@ class ProductsStore {
 
   setSearch = (search: string) => {
     this.search = search;
+  };
+
+  setIsOpenFilterModal = (isOpen: boolean) => {
+    this.isOpenFilterModal = isOpen;
+  };
+
+  setFilterProducts = (filterProducts: IGetProductsParams | null) => {
+    this.filterProducts = filterProducts;
   };
 
   reset() {

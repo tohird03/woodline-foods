@@ -1,0 +1,1 @@
+export {FoodsFilter} from './FilterFoodsModal';

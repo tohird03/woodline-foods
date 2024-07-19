@@ -16,6 +16,7 @@ import {useMediaQuery} from '../../utils/hooks/useMediaQuery';
 import {ImgUploadModal} from '../ImgUploadModal';
 import {AddProductToFoodModal} from './AddproductToFoodModal';
 import {foodsColumns} from './constants';
+import {FoodsFilter} from './FilterFoodsModal';
 import {ProductModal} from './Products/ProductModal';
 
 export const Foods = observer(() => {
@@ -29,6 +30,10 @@ export const Foods = observer(() => {
 
   const handleAddNewFood = () => {
     navigate(ROUTES.addFood);
+  };
+
+  const handleOpenFilter = () => {
+    foodsStore.setIsOpenFilterModal(true);
   };
 
   const handleChangePage = (newPage: number) => {
@@ -45,8 +50,9 @@ export const Foods = observer(() => {
       page: foodsStore.page,
       size: foodsStore.size,
       search: foodsStore.search!,
+      ...foodsStore.filterFoods,
     });
-  }, [foodsStore.page, foodsStore.size, foodsStore.search]);
+  }, [foodsStore.page, foodsStore.size, foodsStore.search, foodsStore.filterFoods]);
 
   return (
     <>
@@ -75,6 +81,7 @@ export const Foods = observer(() => {
         columns={foodsColumns}
         data={foodsStore.foods}
         onFilterSearch={handleSearchFood}
+        onOpenFilter={handleOpenFilter}
         pagination={{
           total: foodsStore.totalFoods,
           page: foodsStore.page,
@@ -89,6 +96,7 @@ export const Foods = observer(() => {
       {foodsStore.isOpenSingleFoodProductModal && <ProductModal />}
       {foodsStore.isOpenImgUpload && <ImgUploadModal />}
       {foodsStore.isOpenAddProductToFoodModal && <AddProductToFoodModal />}
+      {foodsStore.isOpenFilterModal && <FoodsFilter />}
     </>
   );
 });

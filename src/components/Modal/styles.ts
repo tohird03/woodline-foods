@@ -5,6 +5,7 @@ import {dialogTitleClasses} from '@mui/material/DialogTitle';
 
 export const styles = {
   dialog: (width?: number, fullHeight?: boolean) => ({
+    zIndex: '1000',
     [`& .${dialogClasses.paper}`]: {
       width: width ? `${width}px` : '400px',
       maxWidth: 'none',

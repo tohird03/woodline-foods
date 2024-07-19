@@ -3,6 +3,7 @@ export interface ITableProps {
   columns: TableColumn[];
   pagination: ITablePaginationProps | false;
   onFilterSearch?: (value: string) => void;
+  onOpenFilter?: () => void;
   min?: boolean;
   isMobile?: boolean;
   searchPlaceholder?: string;
@@ -50,4 +51,5 @@ export type LabelType = {
 
 export interface ISearchHeadProps {
   onFilterName: (value: string) => void;
+  onOpenFilter?: () => void;
 }

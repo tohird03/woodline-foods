@@ -1,0 +1,33 @@
+.custom-select {
+  position: relative;
+  width: 200px;
+}
+
+.custom-select__selected {
+  border: 1px solid #ccc;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.custom-select__options {
+  position: absolute;
+  border: 1px solid #ccc;
+  background: white;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.custom-select__option {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.custom-select__option:hover {
+  background-color: #f0f0f0;
+}
+
+.custom-select__option.selected {
+  background-color: #d0d0d0;
+}

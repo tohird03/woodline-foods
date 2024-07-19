@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {IconButton, InputAdornment, OutlinedInput, Toolbar, Tooltip} from '@mui/material';
 import {alpha, styled} from '@mui/material/styles';
 import Iconify from '../../../components/iconify';
 import {ISearchHeadProps} from '../types';
-import { useTranslation } from 'react-i18next';
 
 const StyledRoot = styled(Toolbar)(({theme}) => ({
   height: 96,
@@ -28,7 +28,7 @@ const StyledSearch = styled(OutlinedInput)(({theme}: any) => ({
   },
 }));
 
-export const SearchHead = ({onFilterName}: ISearchHeadProps) => {
+export const SearchHead = ({onFilterName, onOpenFilter}: ISearchHeadProps) => {
   const [filterName, setFilterName] = useState('');
   const {t} = useTranslation();
 
@@ -51,7 +51,7 @@ export const SearchHead = ({onFilterName}: ISearchHeadProps) => {
       />
 
       <Tooltip title="Filter list">
-        <IconButton>
+        <IconButton onClick={onOpenFilter}>
           <Iconify icon="ic:round-filter-list" />
         </IconButton>
       </Tooltip>

@@ -31,6 +31,8 @@ class FoodsStore {
   isOneFoodProductEditModal = false;
   isSingleFoodProduct: IGetOneFoodProductObj | null = null;
   isOpenAddProductToFoodModal = false;
+  isOpenFilterModal = false;
+  filterFoods: IGetFoodsParams | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -193,6 +195,14 @@ class FoodsStore {
 
   setIsOpenAddProductToFoodModal = (isOpenAddProductToFoodModal: boolean) => {
     this.isOpenAddProductToFoodModal = isOpenAddProductToFoodModal;
+  };
+
+  setIsOpenFilterModal = (isOpen: boolean) => {
+    this.isOpenFilterModal = isOpen;
+  };
+
+  setFilterFoods = (filterFoods: IGetFoodsParams | null) => {
+    this.filterFoods = filterFoods;
   };
 
   reset() {

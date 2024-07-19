@@ -8,6 +8,7 @@ export const Table = ({
   columns,
   pagination,
   onFilterSearch,
+  onOpenFilter,
   min,
   isMobile = false,
   searchPlaceholder,
@@ -22,6 +23,7 @@ export const Table = ({
           columns={columns}
           pagination={pagination}
           onFilterSearch={onFilterSearch}
+          onOpenFilter={onOpenFilter}
           searchPlaceholder={searchPlaceholder}
           searchPrefex={searchPrefex}
           searchSuffix={searchSuffix}
@@ -34,6 +36,7 @@ export const Table = ({
           pagination={pagination}
           onFilterSearch={onFilterSearch}
           min={min}
+          onOpenFilter={onOpenFilter}
         />
       )
     }

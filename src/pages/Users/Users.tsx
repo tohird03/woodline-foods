@@ -14,6 +14,7 @@ import {ChangeOrganisationModal} from './ChangeOrganisation/ChangeOrganisationMo
 import {ChangeRoleModal} from './ChangeRole/ChangeRoleModal';
 import {usersColumns} from './constants';
 import DeleteUserModal from './DeleteUser/DeleteUserModal/DeleteUserModal';
+import {UserFilterModal} from './UserFilterModal';
 
 export const Users = observer(() => {
   const {t} = useTranslation();
@@ -21,6 +22,10 @@ export const Users = observer(() => {
 
   const handleSearchUsers = (value: string) => {
     usersStore.setSearch(value);
+  };
+
+  const handleOpenFilter = () => {
+    usersStore.setIsOpenFilterModal(true);
   };
 
   const handleChangePage = (newPage: number) => {
@@ -37,8 +42,9 @@ export const Users = observer(() => {
       page: usersStore.page,
       size: usersStore.size,
       search: usersStore.search,
+      ...usersStore.filterUser,
     });
-  }, [usersStore.page, usersStore.size, usersStore.search]);
+  }, [usersStore.page, usersStore.size, usersStore.search, usersStore.filterUser]);
 
   return (
     <>
@@ -52,6 +58,7 @@ export const Users = observer(() => {
         columns={usersColumns}
         data={usersStore.users}
         onFilterSearch={handleSearchUsers}
+        onOpenFilter={handleOpenFilter}
         pagination={{
           total: usersStore.totalUsers,
           page: usersStore.page,
@@ -67,7 +74,8 @@ export const Users = observer(() => {
       {usersStore.isOpenOrganisationModal && <ChangeOrganisationModal />}
       {usersStore.isOpenBalanceModal && <AddBalanceModal />}
       {usersStore.isOpenChangeRoleModal && <ChangeRoleModal />}
-      {<DeleteUserModal />}
+      {usersStore.isOpenDeleteUserModal && <DeleteUserModal />}
+      {usersStore.isOpenFilterModal && <UserFilterModal />}
     </>
   );
 });

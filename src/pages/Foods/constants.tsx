@@ -9,7 +9,6 @@ import Label from '../../components/label';
 import {TableColumn} from '../../components/table/types';
 import {uszFormatPrice} from '../../utils/formatTime';
 import {Action} from './Action';
-import {Products} from './Products';
 import {foodStyles} from './styles';
 import {UserStatusChange} from './UserStatusChange';
 
@@ -17,6 +16,26 @@ export const CategoryOption = [
   <MenuItem key={Category.DESSERT} value={Category.DESSERT}>{Category.DESSERT}</MenuItem>,
   <MenuItem key={Category.DRINKS} value={Category.DRINKS}>{Category.DRINKS}</MenuItem>,
   <MenuItem key={Category.SNAKCS} value={Category.SNAKCS}>{Category.SNAKCS}</MenuItem>,
+];
+
+export const categoryFilterOptions = [
+  {
+    value: Category.DESSERT,
+    label: Category.DESSERT,
+  },
+  {
+    value: Category.DRINKS,
+    label: Category.DRINKS,
+  },
+  {
+    value: Category.SNAKCS,
+    label: Category.SNAKCS,
+  },
+];
+
+export const activeOptions = [
+  <MenuItem key="true" value="true">Active</MenuItem>,
+  <MenuItem key="false" value="false">Disactive</MenuItem>,
 ];
 
 export const foodsColumns: TableColumn[] = [

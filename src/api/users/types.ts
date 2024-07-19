@@ -11,6 +11,9 @@ export interface IDeleteUser {
 
 export interface IUserParams extends IPagination {
   search?: string;
+  org?: string[];
+  verified?: boolean;
+  active?: boolean;
 }
 
 export interface IUsers {
