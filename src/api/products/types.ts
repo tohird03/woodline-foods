@@ -61,4 +61,7 @@ export interface IAddAmountProduct {
 
 export interface IGetProductsParams extends IPagination {
   search?: string;
+  org?: string[];
+  startDate?: string;
+  endDate?: string;
 }

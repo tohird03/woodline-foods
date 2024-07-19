@@ -20,8 +20,17 @@ class ProductApi extends Instance {
     super(config);
   }
 
-  getProducts = (params: IGetProductsParams): Promise<IGetProducts> =>
-    this.get(Endpoints.Products, {params});
+  getProducts = (params: IGetProductsParams): Promise<IGetProducts> => {
+
+    const orgParam = params.org ? JSON.stringify(params.org) : undefined;
+
+    return this.get(`${Endpoints.Products}`, {
+      params: {
+        ...params,
+        org: orgParam,
+      },
+    });
+  };
 
   getOrganisation = (): Promise<IGetOrganisation> =>
     this.get(Endpoints.Organisation, {

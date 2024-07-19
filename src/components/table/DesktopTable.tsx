@@ -13,6 +13,7 @@ export const DesktopTable = (props: ITableProps) => {
     data = [],
     pagination,
     onFilterSearch,
+    onOpenFilter,
     min,
   } = props;
   const handlePaginationPageChange = (event: unknown, newPage: number) => {
@@ -34,8 +35,8 @@ export const DesktopTable = (props: ITableProps) => {
   return (
     <Card>
       {
-        onFilterSearch && (
-          <SearchHead onFilterName={handleSearch} />
+        (onFilterSearch || onOpenFilter) && (
+          <SearchHead onOpenFilter={onOpenFilter} onFilterName={handleSearch} />
         )
       }
 

@@ -1,7 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import {useTranslation} from 'react-i18next';
+import {IconButton, Tooltip} from '@mui/material';
 import {Card, Divider, Input, Pagination, PaginationProps} from 'antd';
+import Iconify from '../iconify';
 // @ts-ignore
 import styles from './datatable.module.css';
 import {NoData} from './NoData';
@@ -13,6 +15,7 @@ export const MobileTable = (props: ITableProps) => {
     data = [],
     pagination,
     onFilterSearch,
+    onOpenFilter,
     searchPlaceholder,
     searchPrefex,
     searchSuffix,
@@ -32,7 +35,8 @@ export const MobileTable = (props: ITableProps) => {
 
   return (
     <div className={styles.card_wrapper}>
-      {onFilterSearch &&
+      <div style={{display: 'flex', alignItems: 'center', gap: '5px', justifyContent: 'space-between'}}>
+        {onFilterSearch &&
         <Input
           size="large"
           placeholder={searchPlaceholder || 'Search'}
@@ -40,7 +44,14 @@ export const MobileTable = (props: ITableProps) => {
           suffix={searchSuffix}
           onChange={handleSearch}
         />
-      }
+        }
+
+        <Tooltip title="Filter list">
+          <IconButton onClick={onOpenFilter}>
+            <Iconify icon="ic:round-filter-list" />
+          </IconButton>
+        </Tooltip>
+      </div>
       {data?.length > 0
         ? data?.map((d, dIndex) => (
           <Card

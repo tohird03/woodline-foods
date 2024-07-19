@@ -82,6 +82,9 @@ export interface IImgChange {
 
 export interface IGetFoodsParams extends IPagination {
   search?: string;
+  active?: boolean;
+  org?: string[];
+  category?: string[];
 }
 
 export interface IChangeVerify {

@@ -46,6 +46,8 @@ class UsersStore {
   startPay: string | null = null;
   endPay: string | null = null;
   orgPay: string | null = null;
+  isOpenFilterModal = false;
+  filterUser: IUserParams | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -297,6 +299,14 @@ class UsersStore {
 
   setOrgPay = (org: string | null) => {
     this.orgPay = org;
+  };
+
+  setIsOpenFilterModal = (isOpen: boolean) => {
+    this.isOpenFilterModal = isOpen;
+  };
+
+  setFilterUser = (filterUser: IUserParams | null) => {
+    this.filterUser = filterUser;
   };
 
   reset() {

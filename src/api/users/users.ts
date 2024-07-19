@@ -26,8 +26,17 @@ class UsersApi extends Instance {
     super(config);
   }
 
-  getUsers = (params: IUserParams): Promise<IGetUser> =>
-    this.get(Endpoints.Users, {params});
+  getUsers = (params: IUserParams): Promise<IGetUser> => {
+    const orgParam = params.org ? JSON.stringify(params.org) : undefined;
+
+    return this.get(`${Endpoints.Users}`, {
+      params: {
+        ...params,
+        org: orgParam,
+      },
+    });
+  };
+
 
   // changeUserStatus = (params: IChangeStatus): Promise<null> =>
   //   this.put(`${Endpoints.UserStatus}/${params?.id}`, {is_active: params?.is_active});

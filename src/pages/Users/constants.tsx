@@ -181,3 +181,12 @@ export const timeOptions = [
   <MenuItem key={IUserAnaliticType.Week} value={IUserAnaliticType.Week}>{IUserAnaliticType.Week}</MenuItem>,
   <MenuItem key={IUserAnaliticType.Month} value={IUserAnaliticType.Month}>{IUserAnaliticType.Month}</MenuItem>,
 ];
+
+export const verifyOptions = [
+  <MenuItem key="true" value="true">Verify</MenuItem>,
+  <MenuItem key="false" value="false">Not Verify</MenuItem>,
+];
+export const activeOptions = [
+  <MenuItem key="true" value="true">Active</MenuItem>,
+  <MenuItem key="false" value="false">Disactive</MenuItem>,
+];

@@ -14,6 +14,7 @@ import {AddAmountModal} from './AddAmount/AddAmountModal';
 import {AddProduct} from './AddProduct';
 import {productColumns} from './constants';
 import {EditProduct} from './EditProduct/EditProductModal/EditProductModal';
+import {FilterProductModal} from './FilterProductModal';
 
 export const Products = observer(() => {
   const {t} = useTranslation();
@@ -21,6 +22,10 @@ export const Products = observer(() => {
 
   const handleSearchProduct = (value: string) => {
     productStore.setSearch(value);
+  };
+
+  const handleOpenFilter = () => {
+    productStore.setIsOpenFilterModal(true);
   };
 
   const handleChangePage = (newPage: number) => {
@@ -41,8 +46,9 @@ export const Products = observer(() => {
       page: productStore.page,
       size: productStore.size,
       search: productStore.search!,
+      ...productStore.filterProducts,
     });
-  }, [productStore.page, productStore.size, productStore.search]);
+  }, [productStore.page, productStore.size, productStore.search, productStore.filterProducts]);
 
   return (
     <>
@@ -68,6 +74,7 @@ export const Products = observer(() => {
         columns={productColumns}
         data={productStore.products}
         onFilterSearch={handleSearchProduct}
+        onOpenFilter={handleOpenFilter}
         pagination={{
           total: productStore.totalProducts,
           page: productStore.page,
@@ -81,6 +88,7 @@ export const Products = observer(() => {
       {productStore.isOpenProductModal && <AddProduct />}
       {productStore.isOpenAmountModal && <AddAmountModal />}
       {productStore.isOpenEditProductModal && <EditProduct />}
+      {productStore.isOpenFilterModal && <FilterProductModal />}
     </>
   );
 });
