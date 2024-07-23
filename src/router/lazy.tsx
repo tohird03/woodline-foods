@@ -7,6 +7,16 @@ const handleCatchChunkError = () => {
   return {default: Loading};
 };
 
+export const Dashboard = lazy(() =>
+  import('../pages/Dashboard')
+    .then(({Dashboard}) => ({default: Dashboard}))
+    .catch(handleCatchChunkError));
+
+export const AnaliticProduct = lazy(() =>
+  import('../pages/Dashboard')
+    .then(({AnaliticProduct}) => ({default: AnaliticProduct}))
+    .catch(handleCatchChunkError));
+
 export const Users = lazy(() =>
   import('../pages/Users')
     .then(({Users}) => ({default: Users}))
@@ -56,11 +66,6 @@ export const GetRoles = lazy(() =>
 export const AddFoods = lazy(() =>
   import('../pages/Foods/AddFoods')
     .then(({AddFoods}) => ({default: AddFoods}))
-    .catch(handleCatchChunkError));
-
-export const Dashboard = lazy(() =>
-  import('../pages/Dashboard')
-    .then(({Dashboard}) => ({default: Dashboard}))
     .catch(handleCatchChunkError));
 
 export const Lunch = lazy(() =>

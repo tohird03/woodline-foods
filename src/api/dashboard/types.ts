@@ -16,3 +16,29 @@ export const localizedStrings = {
   [FilterTime.MONTH]: 'dashboardFilterByMonth',
   [FilterTime.YEAR]: 'dashboardFilterByYear',
 };
+
+export interface IDailyProductsSum {
+  today: IProductSum;
+  yesterday: IProductSum;
+}
+
+export interface IProductSum {
+  date: string;
+  income: number;
+  expense: number;
+}
+
+
+export interface IProductAnalitic {
+  _id: string;
+}
+
+export interface IProductAnaliticParams {
+  date?: string;
+  type: EAnaliticType;
+}
+
+export enum EAnaliticType {
+  Income = 'income',
+  Expense = 'expense',
+}

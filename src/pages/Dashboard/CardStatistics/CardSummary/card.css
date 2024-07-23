@@ -1,0 +1,21 @@
+.card__body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-radius: 8px;
+  /* color: white; */
+}
+
+.card__income {
+  margin-bottom: 15px;
+  background-color: rgb(5, 159, 10, 0.3);
+}
+
+.card__expense {
+  background-color: rgb(255, 54, 54, 0.3);
+}
+
+.card__title {
+  font-size: 18px;
+}

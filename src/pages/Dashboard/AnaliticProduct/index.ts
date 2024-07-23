@@ -1,2 +1,1 @@
 export {AnaliticProduct} from './AnaliticProduct';
-export {Dashboard} from './Dashboard';

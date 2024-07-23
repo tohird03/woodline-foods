@@ -1,6 +1,8 @@
 export const Endpoints = {
   Base: '/',
   // Users: '/user',
+  DailyAnalitic: '/analitics/products/sum',
+  AnaliticProducts: '/analitics/products',
   Users: '/user',
   UsersMessage: '/user/send-message',
   UserStatus: '/user',

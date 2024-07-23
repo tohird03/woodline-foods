@@ -8,12 +8,12 @@ import {DashboardTabs} from './constants';
 export const Dashboard = observer(() => {
   const isMobile = useMediaQuery('(max-width: 650px)');
 
-  const handleTabChange = (labelId: number) => {
+  const handleTabChange = (labelId: string | number) => {
     if (!labelId) {
       return;
     }
 
-    dashboardStore.setType(labelId);
+    dashboardStore.setType(parseInt(String(labelId), 10));
   };
 
   return (

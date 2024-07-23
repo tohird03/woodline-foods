@@ -1,38 +1,42 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
+import {observer} from 'mobx-react';
 import {Grid} from '@mui/material';
-import {DollarOutlined, OrderedListOutlined, TransactionOutlined} from '@ant-design/icons';
-import {CardSummary} from '../../../components/CardSummary';
+import {dashboardStore} from '../../../store/dashboard';
+import {dateFormat} from '../../../utils/formatTime';
+import {CardSummary} from './CardSummary';
 
-export const CardStatistics = () => {
+export const CardStatistics = observer(() => {
   const {t} = useTranslation();
+
+  useEffect(() => {
+    dashboardStore.getDailyAnalitic();
+  }, []);
 
   return (
     <Grid pb={3} container spacing={3}>
       <Grid item xs={12} sm={6} md={4}>
         <CardSummary
-          title={t('dashboardTotalTrade')}
-          total={5869453921}
+          title={`Вчера ${dateFormat(dashboardStore?.dailyAnalitic?.yesterday?.date!)}`}
+          titleInCome={'Доход'}
+          totalInCome={dashboardStore?.dailyAnalitic?.yesterday?.income || 0}
+          titleExpense={'Расход'}
+          totalExpense={dashboardStore?.dailyAnalitic?.yesterday?.expense || 0}
           color="warning"
-          icon={<TransactionOutlined style={{fontSize: '24px'}} />}
+          type="yesterday"
         />
       </Grid>
       <Grid item xs={12} sm={6} md={4}>
         <CardSummary
-          title={t('dashboardTotalCosts')}
-          total={2869453921}
+          title={`Сегодня ${dateFormat(dashboardStore?.dailyAnalitic?.today?.date!)}`}
+          titleInCome={'Доход'}
+          totalInCome={dashboardStore?.dailyAnalitic?.today?.income || 0}
+          titleExpense={'Расход'}
+          totalExpense={dashboardStore?.dailyAnalitic?.today?.expense || 0}
           color="error"
-          icon={<OrderedListOutlined style={{fontSize: '24px'}} />}
-        />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardSummary
-          title={t('dashboardTotalBenefit')}
-          total={1479962900}
-          color="success"
-          icon={<DollarOutlined style={{fontSize: '24px'}} />}
+          type="today"
         />
       </Grid>
     </Grid>
   );
-};
+});

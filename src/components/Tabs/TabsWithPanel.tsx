@@ -7,7 +7,7 @@ import {TabsWithPanelStyles} from './styles';
 export interface ITabs {
   label: string;
   tab?: ReactNode;
-  labelId?: number;
+  labelId: string | number;
   icon?: React.ReactNode;
 }
 
@@ -15,7 +15,7 @@ export type Props = {
   tabs: ITabs[];
   activeTabIndex?: number;
   onChange?: (activeTabindex: Props['activeTabIndex']) => void;
-  onTabChange?: (labelId: number) => void;
+  onTabChange?: (labelId: number | string) => void;
   isMobile?: boolean;
 };
 
@@ -31,10 +31,11 @@ export const TabsWithPanel = ({tabs, activeTabIndex, onChange, onTabChange, isMo
   const handleSegmentChange = (value: string | number) => {
     setActiveIndex(Number(value));
     onChange?.(Number(value));
-    onTabChange?.(Number(value));
+
+    onTabChange?.(value);
   };
 
-  const handleTabClick = (id: number) => {
+  const handleTabClick = (id: string | number) => {
     onTabChange?.(id);
   };
 
@@ -57,7 +58,7 @@ export const TabsWithPanel = ({tabs, activeTabIndex, onChange, onTabChange, isMo
                   key={label}
                   label={t(label)}
                   icon={icon! as React.ReactElement}
-                  onClick={handleTabClick.bind(null, Number(labelId))}
+                  onClick={handleTabClick.bind(null, labelId)}
                   iconPosition="start"
                 />
               ))}
