@@ -92,4 +92,17 @@ export class Instance {
 
     return data;
   }
+
+  public async getExel(url: string, params?: any) {
+    const {data} = await this.instance.get(url, {
+      ...params,
+      responseType: 'arraybuffer',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      },
+      baseURL: `${stage.apiUrl}${this.baseURL}`});
+
+    return data;
+  }
 }

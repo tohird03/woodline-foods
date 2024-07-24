@@ -17,6 +17,9 @@ class DashboadApi extends Instance {
 
   getAllAnaliticProducts = (params: IProductAnaliticParams): Promise<IProductAnalitic[]> =>
     this.get(Endpoints.AnaliticProducts, {params});
+
+  getAllAnaliticProductsExel = (params: IProductAnaliticParams): Promise<any> =>
+    this.getExel(Endpoints.AnaliticProductsExel, {params});
 }
 
 export const dashboardApi = new DashboadApi(config);

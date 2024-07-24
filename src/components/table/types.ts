@@ -9,6 +9,7 @@ export interface ITableProps {
   searchPlaceholder?: string;
   searchPrefex?: React.ReactNode;
   searchSuffix?: React.ReactNode;
+  loading?: boolean;
 }
 
 export interface ITableHead {

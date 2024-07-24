@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Table as MuiTable, TableContainer, TablePagination} from '@mui/material';
+import {Card, Skeleton, Table as MuiTable, TableContainer, TablePagination, TableRow} from '@mui/material';
 import {getPaginationCount} from './constants';
 import {NoData} from './NoData';
 import {SearchHead} from './SearchHead';
@@ -15,6 +15,7 @@ export const DesktopTable = (props: ITableProps) => {
     onFilterSearch,
     onOpenFilter,
     min,
+    loading,
   } = props;
   const handlePaginationPageChange = (event: unknown, newPage: number) => {
     if (pagination && pagination.handlePageChange) {
@@ -42,13 +43,33 @@ export const DesktopTable = (props: ITableProps) => {
 
       <TableContainer>
         <MuiTable sx={min ? {} : {minWidth: 800}}>
-          <TableHead columns={columns} />
-          {
-            data?.length > 0
-              ? <TableBody sx={min ? {} : {minWidth: 800}} data={data} columns={columns} />
-              : <NoData column={columns} />
+          {loading && <TableHead columns={columns} />}
+          {!loading && (
+            <>
+              <TableHead columns={columns} />
+              {
+                data?.length > 0
+                  ? <TableBody sx={min ? {} : {minWidth: 800}} data={data} columns={columns} />
+                  : <NoData column={columns} />
+              }
+            </>
+          )
           }
         </MuiTable>
+        {loading && (
+          <>
+            <Skeleton sx={{marginBottom: '2px'}} variant="rounded" width="100%" height={40} />
+            <Skeleton sx={{marginBottom: '2px'}} variant="rounded" width="100%" height={40} />
+            <Skeleton sx={{marginBottom: '2px'}} variant="rounded" width="100%" height={40} />
+            <Skeleton sx={{marginBottom: '2px'}} variant="rounded" width="100%" height={40} />
+            <Skeleton sx={{marginBottom: '2px'}} variant="rounded" width="100%" height={40} />
+            <Skeleton sx={{marginBottom: '2px'}} variant="rounded" width="100%" height={40} />
+            <Skeleton sx={{marginBottom: '2px'}} variant="rounded" width="100%" height={40} />
+            <Skeleton sx={{marginBottom: '2px'}} variant="rounded" width="100%" height={40} />
+            <Skeleton sx={{marginBottom: '2px'}} variant="rounded" width="100%" height={40} />
+          </>
+        )
+        }
       </TableContainer>
 
       {

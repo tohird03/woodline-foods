@@ -14,6 +14,7 @@ export const Table = ({
   searchPlaceholder,
   searchPrefex,
   searchSuffix,
+  loading,
 }: ITableProps) => (
   <>
     {isMobile
@@ -37,6 +38,7 @@ export const Table = ({
           onFilterSearch={onFilterSearch}
           min={min}
           onOpenFilter={onOpenFilter}
+          loading={loading}
         />
       )
     }

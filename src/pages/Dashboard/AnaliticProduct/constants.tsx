@@ -39,7 +39,7 @@ export const AnaliticTabs = [
     icon: <VerticalAlignBottomOutlined />,
   },
   {
-    label: 'dashboardTotalTrade',
+    label: 'Расходы',
     labelId: EAnaliticType.Expense,
     icon: <VerticalAlignTopOutlined />,
   },

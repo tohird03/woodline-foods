@@ -4,16 +4,16 @@ import {ITableBody, TableColumn} from '../types';
 
 export const TableBody = ({data, columns, sx}: ITableBody) => (
   <MuiTableBody sx={sx}>
-    {data?.map((row: any, index: number) => (
+    {data?.map((row: any, indexRow: number) => (
       <TableRow
         hover
-        key={row?._id}
+        key={`${row?._id}-${indexRow + 1}`}
         tabIndex={-1}
         role="checkbox"
       >
-        {columns?.map((column: TableColumn) => (
+        {columns?.map((column: TableColumn, index: number) => (
           <TableCell
-            key={column?.key}
+            key={`${row?.id}-${index + 1}`}
             align={column?.align || 'center'}
             component="th"
             scope="row"

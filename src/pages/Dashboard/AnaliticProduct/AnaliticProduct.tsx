@@ -1,29 +1,54 @@
 import React, {useEffect, useState} from 'react';
-import {useTranslation} from 'react-i18next';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {
+  Button,
   Stack,
   Typography,
 } from '@mui/material';
+import {CloudDownloadOutlined} from '@ant-design/icons';
 import {DatePicker, DatePickerProps} from 'antd';
 import dayjs from 'dayjs';
+import {dashboardApi} from '../../../api/dashboard';
 import {EAnaliticType} from '../../../api/dashboard/types';
+import Iconify from '../../../components/iconify';
 import {Table} from '../../../components/table';
 import {TabsWithPanel} from '../../../components/Tabs';
 import {dashboardStore} from '../../../store/dashboard';
 import {useMediaQuery} from '../../../utils/hooks/useMediaQuery';
+import {addAxiosErrorNotification} from '../../../utils/notification';
 import {analiticColumns, AnaliticTabs} from './constants';
 
 export const AnaliticProduct = observer(() => {
-  const {t} = useTranslation();
   const isMobile = useMediaQuery('(max-width: 650px)');
-  const [filterDate, setFilterDate] = useState<string | null>();
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [downloadLoading, setDownLoadLoading] = useState(false);
 
   const date = queryParams.get('date');
+
+  const handleDownloadExel = () => {
+    dashboardApi.getAllAnaliticProductsExel({
+      date: date!,
+      type: dashboardStore.productAnaliticTab,
+    })
+      .then(res => {
+        const blob = new Blob([res], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+
+        a.href = url;
+        a.download = 'products.xlsx';
+        a.click();
+        URL.revokeObjectURL(url);
+      })
+      .catch(addAxiosErrorNotification)
+      .finally(() => {
+        setDownLoadLoading(false);
+      });
+  };
 
   const handleTabChange = (labelId: string | number) => {
     if (!labelId) {
@@ -42,10 +67,14 @@ export const AnaliticProduct = observer(() => {
   };
 
   useEffect(() => {
+    setLoading(true);
     dashboardStore.getProductAnalitic({
       date: date!,
       type: dashboardStore.productAnaliticTab,
-    });
+    })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [dashboardStore.productAnaliticTab, date]);
 
   return (
@@ -62,6 +91,13 @@ export const AnaliticProduct = observer(() => {
         >
           Действия
         </Typography>
+        <Button
+          variant="contained"
+          startIcon={<CloudDownloadOutlined />}
+          onClick={handleDownloadExel}
+        >
+          Скачать Excel
+        </Button>
       </Stack>
 
       <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
@@ -81,9 +117,10 @@ export const AnaliticProduct = observer(() => {
 
       <Table
         columns={analiticColumns}
-        data={dashboardStore.productAnalitic}
+        data={dashboardStore?.productAnalitic}
         pagination={false}
         isMobile={isMobile}
+        loading={loading}
       />
 
       {/* {foodsStore.isOpenFilterModal && <FoodsFilter />} */}
