@@ -17,7 +17,7 @@ class DashboardStore {
   time: FilterTime = FilterTime.DAY;
   dailyAnalitic: IDailyProductsSum | null = null;
   productAnalitic: IProductAnalitic[] = [];
-  productAnaliticTab: EAnaliticType = EAnaliticType.Income;
+  productAnaliticTab: EAnaliticType = EAnaliticType.Expense;
 
   constructor() {
     makeAutoObservable(this);

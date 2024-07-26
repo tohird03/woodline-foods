@@ -18,10 +18,10 @@ export const CardStatistics = observer(() => {
       <Grid item xs={12} sm={6} md={4}>
         <CardSummary
           title={`Вчера ${dateFormat(dashboardStore?.dailyAnalitic?.yesterday?.date!)}`}
-          titleInCome={'Доход'}
-          totalInCome={dashboardStore?.dailyAnalitic?.yesterday?.income || 0}
+          titleInCome={'Приход'}
+          totalInCome={dashboardStore?.dailyAnalitic?.yesterday?.expense || 0}
           titleExpense={'Расход'}
-          totalExpense={dashboardStore?.dailyAnalitic?.yesterday?.expense || 0}
+          totalExpense={dashboardStore?.dailyAnalitic?.yesterday?.income || 0}
           color="warning"
           type="yesterday"
         />
@@ -29,10 +29,10 @@ export const CardStatistics = observer(() => {
       <Grid item xs={12} sm={6} md={4}>
         <CardSummary
           title={`Сегодня ${dateFormat(dashboardStore?.dailyAnalitic?.today?.date!)}`}
-          titleInCome={'Доход'}
-          totalInCome={dashboardStore?.dailyAnalitic?.today?.income || 0}
+          titleInCome={'Приход'}
+          totalInCome={dashboardStore?.dailyAnalitic?.today?.expense || 0}
           titleExpense={'Расход'}
-          totalExpense={dashboardStore?.dailyAnalitic?.today?.expense || 0}
+          totalExpense={dashboardStore?.dailyAnalitic?.today?.income || 0}
           color="error"
           type="today"
         />

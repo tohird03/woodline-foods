@@ -27,20 +27,20 @@ export const analiticColumns: TableColumn[] = [
   },
   {
     key: 'Итого',
-    label: 'tableProductCost',
+    label: 'Итоговая цена',
     render: (value, record) => (`${uszFormatPrice(record?.cost * record?.amount)} сум`),
   },
 ];
 
 export const AnaliticTabs = [
   {
-    label: 'Доход',
-    labelId: EAnaliticType.Income,
+    label: 'Приход',
+    labelId: EAnaliticType.Expense,
     icon: <VerticalAlignBottomOutlined />,
   },
   {
     label: 'Расходы',
-    labelId: EAnaliticType.Expense,
+    labelId: EAnaliticType.Income,
     icon: <VerticalAlignTopOutlined />,
   },
 ];

@@ -11,7 +11,6 @@ import {DatePicker, DatePickerProps} from 'antd';
 import dayjs from 'dayjs';
 import {dashboardApi} from '../../../api/dashboard';
 import {EAnaliticType} from '../../../api/dashboard/types';
-import Iconify from '../../../components/iconify';
 import {Table} from '../../../components/table';
 import {TabsWithPanel} from '../../../components/Tabs';
 import {dashboardStore} from '../../../store/dashboard';
@@ -25,7 +24,6 @@ export const AnaliticProduct = observer(() => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const [loading, setLoading] = useState<boolean>(false);
-  const [downloadLoading, setDownLoadLoading] = useState(false);
 
   const date = queryParams.get('date');
 
@@ -44,10 +42,7 @@ export const AnaliticProduct = observer(() => {
         a.click();
         URL.revokeObjectURL(url);
       })
-      .catch(addAxiosErrorNotification)
-      .finally(() => {
-        setDownLoadLoading(false);
-      });
+      .catch(addAxiosErrorNotification);
   };
 
   const handleTabChange = (labelId: string | number) => {
@@ -122,8 +117,6 @@ export const AnaliticProduct = observer(() => {
         isMobile={isMobile}
         loading={loading}
       />
-
-      {/* {foodsStore.isOpenFilterModal && <FoodsFilter />} */}
     </>
   );
 });
