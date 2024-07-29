@@ -1,4 +1,5 @@
 import {makeAutoObservable} from 'mobx';
+import dayjs from 'dayjs';
 import {dashboardApi} from '../../api/dashboard';
 import {
   AnalyticsType,
@@ -13,6 +14,11 @@ import {addAxiosErrorNotification} from '../../utils/notification';
 
 class DashboardStore {
   org = 'all';
+  productOrg: string | null = null;
+  pageNumber = 1;
+  pageSize = 10;
+  startDate: string = dayjs().format('YYYY-MM-DD');
+  endDate: string = dayjs().format('YYYY-MM-DD');
   type: AnalyticsType = AnalyticsType.Trade;
   time: FilterTime = FilterTime.DAY;
   dailyAnalitic: IDailyProductsSum | null = null;
@@ -44,6 +50,26 @@ class DashboardStore {
         return res;
       })
       .catch(addAxiosErrorNotification);
+
+  setProductOrg = (productOrg: string | null) => {
+    this.productOrg = productOrg;
+  };
+
+  setPageNumber = (pageNumber: number) => {
+    this.pageNumber = pageNumber;
+  };
+
+  setPageSize = (pageSize: number) => {
+    this.pageSize = pageSize;
+  };
+
+  setStartDate = (startDate: string) => {
+    this.startDate = startDate;
+  };
+
+  setEndDate = (endDate: string) => {
+    this.endDate = endDate;
+  };
 
   setDailyAnalitic = (analitic: IDailyProductsSum | null) => {
     this.dailyAnalitic = analitic;

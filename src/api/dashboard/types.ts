@@ -34,8 +34,10 @@ export interface IProductAnalitic {
 }
 
 export interface IProductAnaliticParams {
-  date?: string;
   type: EAnaliticType;
+  startDate?: string;
+  endDate?: string;
+  org?: string;
 }
 
 export enum EAnaliticType {

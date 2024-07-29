@@ -1,19 +1,13 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import Chart from 'react-apexcharts';
-import {useTranslation} from 'react-i18next';
 import {useParams} from 'react-router-dom';
 import {observer} from 'mobx-react';
 import {Box, Card, CardHeader, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
-import {DatePicker, DatePickerProps} from 'antd';
-import {RangePickerProps} from 'antd/es/date-picker';
-import dayjs, {Dayjs} from 'dayjs';
-import {IOrganisation, IUserAnaliticType} from '../../../../api/users/types';
+import {DatePicker} from 'antd';
+import {IOrganisation} from '../../../../api/users/types';
 import {usersStore} from '../../../../store/users';
 import {dashboardStyles} from '../../../Dashboard/styles';
-import {timeOptions} from '../../constants';
 import {UsersStyles} from '../../styles';
-
-type RangeValue = [Dayjs, Dayjs] | null;
 
 export const PaymentAnalitic = observer(() => {
   const {id} = useParams();
@@ -48,7 +42,7 @@ export const PaymentAnalitic = observer(() => {
     },
   };
 
-  const handleDateChange = (values: any, formatString: [string, string]) => {
+  const handleDateChange = (values: any) => {
     if (values) {
       usersStore.setStartPay(values[0]);
       usersStore.setEndPay(values[1]);

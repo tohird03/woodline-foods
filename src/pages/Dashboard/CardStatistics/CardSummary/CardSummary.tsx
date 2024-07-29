@@ -4,20 +4,10 @@ import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import CountUp from 'react-countup';
 import {useNavigate} from 'react-router-dom';
+import {observer} from 'mobx-react';
 import {Card, Typography} from '@mui/material';
-import {alpha, styled} from '@mui/material/styles';
 import {ROUTES} from '../../../../constants/router';
-
-const StyledIcon = styled('div')(({theme}) => ({
-  margin: 'auto',
-  display: 'flex',
-  borderRadius: '50%',
-  alignItems: 'center',
-  width: theme.spacing(8),
-  height: theme.spacing(8),
-  justifyContent: 'center',
-  marginBottom: theme.spacing(3),
-}));
+import {dashboardStore} from '../../../../store/dashboard';
 
 type Props = {
   title: string;
@@ -34,7 +24,7 @@ type Props = {
 
 const formatter = (value: number) => <CountUp duration={2} end={value} separator=" " />;
 
-export const CardSummary = ({
+export const CardSummary = observer(({
   title,
   titleInCome,
   totalInCome,
@@ -59,14 +49,10 @@ export const CardSummary = ({
 
     const date = type === 'today' ? todayString : yesterdayString;
 
-    const params = new URLSearchParams({
-      date,
-    });
+    dashboardStore.setStartDate(date);
+    dashboardStore.setEndDate(date);
 
-    navigate({
-      pathname: ROUTES.productSumAnalitic,
-      search: `?${params.toString()}`,
-    });
+    navigate(ROUTES.productSumAnalitic);
   };
 
   return (
@@ -100,4 +86,4 @@ export const CardSummary = ({
       </div>
     </Card>
   );
-};
+});

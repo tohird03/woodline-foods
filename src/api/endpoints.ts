@@ -18,7 +18,7 @@ export const Endpoints = {
   UserRole: '/user/role',
   Products: '/product',
   ProductEdit: '/product',
-  ProductAmount: '/product/amount',
+  ProductAmount: '/product',
   Foods: '/food',
   FoodUpdate: '/food',
   FoodProducts: '/food/products',
