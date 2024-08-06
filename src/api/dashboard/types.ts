@@ -1,3 +1,5 @@
+import { IPagination } from '../types';
+
 export enum AnalyticsType {
   Trade = 1,
   Cost = 2,
@@ -28,9 +30,25 @@ export interface IProductSum {
   expense: number;
 }
 
+export interface IUsersDailyProductsSum {
+  today: IUsersProductSum;
+  yesterday: IUsersProductSum;
+}
+
+export interface IUsersProductSum {
+  date: string;
+  payment: number;
+  expence: number;
+}
 
 export interface IProductAnalitic {
   _id: string;
+  name: string;
+  amount: number;
+  cost: number;
+  unit: string;
+  org: string;
+  createdAt: string;
 }
 
 export interface IProductAnaliticParams {
@@ -38,6 +56,30 @@ export interface IProductAnaliticParams {
   startDate?: string;
   endDate?: string;
   org?: string;
+}
+
+export interface IUsersAnaliticData {
+  totalCount: number;
+  orders: IUsersAnalitic[];
+}
+
+export interface IUsersAnalitic {
+  _id: string;
+  total_cost: number;
+  createdAt: string;
+  clientDetails: {
+    first_name: string;
+    last_name: string;
+    phone_number: string;
+  };
+}
+
+export interface IUsersAnaliticParams {
+  type: EAnaliticType;
+  startDate?: string;
+  endDate?: string;
+  pageSize?: number;
+  pageNumber?: number;
 }
 
 export enum EAnaliticType {

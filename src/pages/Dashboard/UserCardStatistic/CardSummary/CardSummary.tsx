@@ -49,10 +49,10 @@ export const CardSummary = observer(({
 
     const date = type === 'today' ? todayString : yesterdayString;
 
-    dashboardStore.setStartDate(date);
-    dashboardStore.setEndDate(date);
+    dashboardStore.setUsersStartDate(date);
+    dashboardStore.setUsersEndDate(date);
 
-    navigate(ROUTES.productSumAnalitic);
+    navigate(ROUTES.usersSumAnalitic);
   };
 
   return (

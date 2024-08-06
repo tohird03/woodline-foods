@@ -72,7 +72,7 @@ module.exports = {
     '@typescript-eslint/default-param-last': [
       'error',
     ],
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 1,
     '@typescript-eslint/keyword-spacing': 'error',
     '@typescript-eslint/lines-between-class-members': [
       'error',
@@ -161,7 +161,7 @@ module.exports = {
         allowShortCircuit: true,
       },
     ],
-    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-var-requires': 1,
     '@typescript-eslint/object-curly-spacing': [
       'warn',
     ],

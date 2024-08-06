@@ -17,6 +17,11 @@ export const AnaliticProduct = lazy(() =>
     .then(({AnaliticProduct}) => ({default: AnaliticProduct}))
     .catch(handleCatchChunkError));
 
+export const AnaliticUsers = lazy(() =>
+  import('../pages/Dashboard')
+    .then(({AnaliticUsers}) => ({default: AnaliticUsers}))
+    .catch(handleCatchChunkError));
+
 export const Users = lazy(() =>
   import('../pages/Users')
     .then(({Users}) => ({default: Users}))

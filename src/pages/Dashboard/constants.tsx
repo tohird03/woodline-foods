@@ -3,10 +3,17 @@ import {DollarOutlined, OrderedListOutlined, PicCenterOutlined, TransactionOutli
 import {AnalyticsType} from '../../api/dashboard/types';
 import {CardStatistics} from './CardStatistics';
 import {LineStatistics} from './LineStatistics';
+import { UserCardStatistics } from './UserCardStatistic';
 
 export const DashboardTabs = [
   {
-    label: 'dashboardCardStatistics',
+    label: 'Аналитика пользователей',
+    labelId: 0,
+    tab: <UserCardStatistics />,
+    icon: <PicCenterOutlined />,
+  },
+  {
+    label: 'Аналитика продукта',
     labelId: 0,
     tab: <CardStatistics />,
     icon: <PicCenterOutlined />,

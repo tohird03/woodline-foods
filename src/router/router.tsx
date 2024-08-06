@@ -9,6 +9,7 @@ import {
   AddFoods,
   Admin,
   AnaliticProduct,
+  AnaliticUsers,
   Dashboard,
   EditFoods,
   Foods,
@@ -61,6 +62,18 @@ export const Router = observer(({isAuth}: AuthProps) => {
                       <AnaliticProduct />
                     </Suspense>
                   } path={ROUTES.productSumAnalitic}
+                />
+              ),
+            },
+            {
+              path: ROUTES.usersSumAnalitic,
+              element: (
+                <RoleChecker
+                  page={
+                    <Suspense fallback={<Loading />}>
+                      <AnaliticUsers />
+                    </Suspense>
+                  } path={ROUTES.usersSumAnalitic}
                 />
               ),
             },

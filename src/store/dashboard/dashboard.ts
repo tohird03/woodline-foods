@@ -8,6 +8,9 @@ import {
   IDailyProductsSum,
   IProductAnalitic,
   IProductAnaliticParams,
+  IUsersAnalitic,
+  IUsersAnaliticParams,
+  IUsersDailyProductsSum,
 } from '../../api/dashboard/types';
 import {addAxiosErrorNotification} from '../../utils/notification';
 
@@ -25,6 +28,16 @@ class DashboardStore {
   productAnalitic: IProductAnalitic[] = [];
   productAnaliticTab: EAnaliticType = EAnaliticType.Expense;
 
+  usersDailyAnalitic: IUsersDailyProductsSum | null = null;
+  usersStartDate: string = dayjs().format('YYYY-MM-DD');
+  usersEndDate: string = dayjs().format('YYYY-MM-DD');
+  usersType: AnalyticsType = AnalyticsType.Trade;
+  usersAnaliticTab: EAnaliticType = EAnaliticType.Expense;
+  usersAnalitic: IUsersAnalitic[] = [];
+  totalUsersAnalitic = 0;
+  usersAnaliticPageNumber = 1;
+  usersAnaliticPageSize = 10;
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -40,11 +53,34 @@ class DashboardStore {
       })
       .catch(addAxiosErrorNotification);
 
+  getUsersDailyAnalitic = () =>
+    dashboardApi.getUsersDailyStatistic()
+      .then(res => {
+        if (res) {
+          this.setUsersDailyAnalitic(res);
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
   getProductAnalitic = (params: IProductAnaliticParams) =>
     dashboardApi.getAllAnaliticProducts(params)
       .then(res => {
         if (res) {
           this.setProductAnalitic(res);
+        }
+
+        return res;
+      })
+      .catch(addAxiosErrorNotification);
+
+  getUsersAnalitic = (params: IUsersAnaliticParams) =>
+    dashboardApi.getAllAnaliticUsers(params)
+      .then(res => {
+        if (res) {
+          this.setUsersAnalitic(res?.orders);
+          this.setTotalUsersAnalitic(res?.totalCount);
         }
 
         return res;
@@ -71,12 +107,32 @@ class DashboardStore {
     this.endDate = endDate;
   };
 
+  setUsersStartDate = (usersStartDate: string) => {
+    this.usersStartDate = usersStartDate;
+  };
+
+  setUsersEndDate = (usersEndDate: string) => {
+    this.usersEndDate = usersEndDate;
+  };
+
+  setUsersType = (usersType: AnalyticsType) => {
+    this.usersType = usersType;
+  };
+
   setDailyAnalitic = (analitic: IDailyProductsSum | null) => {
     this.dailyAnalitic = analitic;
   };
 
+  setUsersDailyAnalitic = (analitic: IUsersDailyProductsSum | null) => {
+    this.usersDailyAnalitic = analitic;
+  };
+
   setProductAnalitic = (productAnalitic: IProductAnalitic[]) => {
     this.productAnalitic = productAnalitic;
+  };
+
+  setUsersAnalitic = (usersAnalitic: IUsersAnalitic[]) => {
+    this.usersAnalitic = usersAnalitic;
   };
 
   setOrg = (org: string) => {
@@ -93,6 +149,22 @@ class DashboardStore {
 
   setProductAnaliticTab = (productAnaliticTab: EAnaliticType) => {
     this.productAnaliticTab = productAnaliticTab;
+  };
+
+  setUsersAnaliticTab = (usersAnaliticTab: EAnaliticType) => {
+    this.usersAnaliticTab = usersAnaliticTab;
+  };
+
+  setTotalUsersAnalitic = (totalUsersAnalitic: number) => {
+    this.totalUsersAnalitic = totalUsersAnalitic;
+  };
+
+  setUsersAnaliticPageNumber = (usersAnaliticPageNumber: number) => {
+    this.usersAnaliticPageNumber = usersAnaliticPageNumber;
+  };
+
+  setUsersAnaliticPageSize = (usersAnaliticPageSize: number) => {
+    this.usersAnaliticPageSize = usersAnaliticPageSize;
   };
 
   reset() {
