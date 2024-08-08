@@ -80,6 +80,8 @@ export interface IUsersAnaliticParams {
   endDate?: string;
   pageSize?: number;
   pageNumber?: number;
+  org?: string;
+  userId?: string;
 }
 
 export enum EAnaliticType {

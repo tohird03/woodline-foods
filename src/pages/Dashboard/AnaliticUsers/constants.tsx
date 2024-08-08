@@ -2,7 +2,7 @@ import React from 'react';
 import {VerticalAlignBottomOutlined, VerticalAlignTopOutlined} from '@ant-design/icons';
 import {EAnaliticType} from '../../../api/dashboard/types';
 import {TableColumn} from '../../../components/table/types';
-import {uszFormatPrice} from '../../../utils/formatTime';
+import {getFullDateFormat, getPaymentDate, uszFormatPrice} from '../../../utils/formatTime';
 
 export const analiticColumns: TableColumn[] = [
   {
@@ -19,6 +19,11 @@ export const analiticColumns: TableColumn[] = [
     key: 'cost',
     label: 'tableProductCost',
     render: (value, record) => (`${uszFormatPrice(parseInt(record?.total_cost, 10))} сум`),
+  },
+  {
+    key: 'createdAt',
+    label: 'tableProductCost',
+    render: (value, record) => getPaymentDate(record?.createdAt, -5),
   },
 ];
 

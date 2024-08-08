@@ -37,6 +37,9 @@ class DashboardStore {
   totalUsersAnalitic = 0;
   usersAnaliticPageNumber = 1;
   usersAnaliticPageSize = 10;
+  userOrg: string | null = null;
+  userId: string | null = null;
+  searchUser: string | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -165,6 +168,18 @@ class DashboardStore {
 
   setUsersAnaliticPageSize = (usersAnaliticPageSize: number) => {
     this.usersAnaliticPageSize = usersAnaliticPageSize;
+  };
+
+  setUserOrg = (userOrg: string | null) => {
+    this.userOrg = userOrg;
+  };
+
+  setUserId = (userId: string | null) => {
+    this.userId = userId;
+  };
+
+  setSearchUser = (searchUser: string | null) => {
+    this.searchUser = searchUser;
   };
 
   reset() {
