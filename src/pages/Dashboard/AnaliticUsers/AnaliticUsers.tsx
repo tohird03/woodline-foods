@@ -183,6 +183,7 @@ export const AnaliticUsers = observer(() => {
             title={t('dashboardFilterOrg')}
             placeholder={t('dashboardFilterOrg')}
             style={{ width: '200px' }}
+            allowClear
           />
           <DatePicker.RangePicker
             onChange={handleDateChange}
